@@ -1,4 +1,4 @@
-package com.example.discordfx.Client.Management;
+package com.example.discordfx.Management;
 
 import com.example.discordfx.Moduls.Dto.User.User;
 import javafx.scene.text.Text;
@@ -22,7 +22,7 @@ public class AccountManagement {
         return accountManagement;
     }
 
-    public User logIn(Text text, String username, String password){
+    public User logIn(String username, String password){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
             ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
@@ -30,7 +30,7 @@ public class AccountManagement {
             outputStream.writeObject(password);
             return (User) inputStream.readObject();
         } catch (Exception e) {
-            text.setText(e.getMessage());
+            e.printStackTrace();
         }
         return null;
     }
@@ -41,12 +41,11 @@ public class AccountManagement {
             ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
             outputStream.writeObject(username);
             String statusOfUsername = (String) inputStream.readObject();
-            if(statusOfUsername.equals("This username signed up before.")){
-                text.setText("This username signed up before");
+            if(statusOfUsername.equals("This username signed up before")){
+                text.setText(statusOfUsername);
                 return;
             }
             outputStream.writeObject(new User(0,username,password,email,phone));
-            text.setText((String) inputStream.readObject());
         } catch (Exception e) {
             text.setText(e.getMessage());
         }

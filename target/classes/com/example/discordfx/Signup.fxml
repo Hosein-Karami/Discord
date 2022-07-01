@@ -14,7 +14,7 @@
             <Font size="17.0" />
          </font>
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
       <TextField fx:id="phoneNumber" alignment="CENTER" layoutX="319.0" layoutY="404.0" prefHeight="42.0" prefWidth="261.0" promptText="Phone number">
@@ -22,7 +22,7 @@
             <Font size="17.0" />
          </font>
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
       <TextField fx:id="email" alignment="CENTER" layoutX="319.0" layoutY="337.0" prefHeight="42.0" prefWidth="261.0" promptText="Email">
@@ -30,7 +30,7 @@
             <Font size="17.0" />
          </font>
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
       <TextField fx:id="password" alignment="CENTER" layoutX="319.0" layoutY="269.0" prefHeight="42.0" prefWidth="261.0" promptText="Password">
@@ -38,7 +38,7 @@
             <Font size="17.0" />
          </font>
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
       <Button layoutX="389.0" layoutY="488.0" mnemonicParsing="false" onAction="#signup" prefHeight="36.0" prefWidth="122.0" text="Signup">
@@ -54,13 +54,13 @@
             <Font size="24.0" />
          </font>
       </Text>
-      <Button layoutX="772.0" layoutY="648.0" mnemonicParsing="false" onAction="#back" prefHeight="46.0" prefWidth="112.0" text="Back" textAlignment="CENTER">
-         <font>
-            <Font size="21.0" />
-         </font>
+      <Button layoutX="388.0" layoutY="541.0" mnemonicParsing="false" onAction="#back" prefHeight="36.0" prefWidth="122.0" text="Back">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <font>
+            <Font size="17.0" />
+         </font>
       </Button>
    </children>
 </AnchorPane>

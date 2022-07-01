@@ -1,6 +1,6 @@
 package com.example.discordfx;
 
-import com.example.discordfx.Client.Management.AccountManagement;
+import com.example.discordfx.Management.AccountManagement;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,7 +41,7 @@ public class Signup {
         }
     }
 
-    public void signup(){
+    public void signup(ActionEvent event){
         String pass = password.getText();
         if(username.getText().length() < 6)
             text.setText("Username should has at least 6 character");
@@ -53,9 +53,24 @@ public class Signup {
             text.setText("password should has small alphabet");
         else if ( ! Pattern.compile("[A-Z]").matcher(pass).find())
             text.setText("password should has capital alphabet");
+        else if(!(Pattern.compile("^(.+)@(.+)$").matcher(email.getText()).find()))
+            text.setText("Invalid email");
         else{
             AccountManagement accountManagement = AccountManagement.getInstance(Start.socket);
             accountManagement.signUp(text,username.getText(),password.getText(),email.getText(),phoneNumber.getText());
+            if(!(text.getText().equals("This username signed up before"))){
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Start.fxml"));
+                try {
+                    Parent root = loader.load();
+                    Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.setResizable(false);
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 

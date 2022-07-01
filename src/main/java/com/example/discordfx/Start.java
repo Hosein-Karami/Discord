@@ -1,6 +1,6 @@
 package com.example.discordfx;
 
-import com.example.discordfx.Client.Management.AccountManagement;
+import com.example.discordfx.Management.AccountManagement;
 import com.example.discordfx.Moduls.Dto.User.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,9 +45,10 @@ public class Start {
             try {
                 OutputStream outputStream = socket.getOutputStream();
                 outputStream.write(2);
-                User user = accountManagement.logIn(text,username.getText(),password.getText());
+                User user = accountManagement.logIn(username.getText(),password.getText());
                 if(user == null)
                     text.setText("Username or password is false");
+
             } catch (IOException e) {
                 text.setText(e.getMessage());
             }

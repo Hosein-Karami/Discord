@@ -20,7 +20,6 @@ public class AccountManagement {
             User userWithParticularUsername = Server.accountsService.getParticularUser(username);
             if(userWithParticularUsername != null){
                 outputStream.writeObject("This username signed up before.");
-                System.out.println("SALAM");
                 return;
             }
             outputStream.writeObject("Username is ok :)");
@@ -29,7 +28,6 @@ public class AccountManagement {
             //Make user directory for uploading files :
             File file = new File("Files/UserDirectories/"+Server.accountsService.getParticularUser(username).getId());
             file.mkdir();
-            outputStream.writeObject("You signed up successfully.\n");
         } catch (Exception e) {
             log.openStreamError(clientSocket.getInetAddress());
             e.printStackTrace();

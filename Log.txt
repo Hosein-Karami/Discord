@@ -70,3 +70,69 @@ Client whose address : /127.0.0.1 successfully connect to server.
 Client whose address : /127.0.0.1 successfully connect to server.
 2022-06-27 13:20 [Error] ClientManagement
 Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-06-27 22:43 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-06-27 22:43 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-06-27 22:44 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-06-27 22:46 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-06-27 22:47 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-06-27 22:49 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-06-27 22:51 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-06-27 22:51 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-01 23:39 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-01 23:40 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-01 23:43 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-01 23:43 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-02 00:24 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-02 00:24 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-02 00:24 [Info] UserDao
+an user added successfully with username=Hosein.
+2022-07-02 00:24 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-02 00:25 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-02 00:27 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-02 00:29 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-02 00:29 [Info] UserDao
+an user added successfully with username=sssssssssssss.
+2022-07-02 00:29 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-02 00:30 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-02 00:31 [Info] UserDao
+an user added successfully with username=Hosein87.
+2022-07-02 00:31 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-02 00:31 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-02 00:42 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-02 00:43 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-02 00:43 [Info] UserDao
+an user added successfully with username=MohamadReza.
+2022-07-02 00:43 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-02 00:45 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-02 00:45 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-02 00:45 [Info] UserDao
+an user added successfully with username=Alireza.
+2022-07-02 00:46 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.

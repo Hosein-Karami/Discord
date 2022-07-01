@@ -14,11 +14,17 @@
          <font>
             <Font size="20.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
       </TextField>
       <PasswordField fx:id="password" alignment="CENTER" layoutX="289.0" layoutY="317.0" prefHeight="50.0" prefWidth="322.0" promptText="Password">
          <font>
             <Font size="20.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
       </PasswordField>
       <Button layoutX="360.0" layoutY="393.0" mnemonicParsing="false" onAction="#login" prefHeight="38.0" prefWidth="180.0" text="Login" textAlignment="CENTER">
          <font>
@@ -41,9 +47,9 @@
             <Font size="30.0" />
          </font>
       </Text>
-      <Button layoutX="762.0" layoutY="638.0" mnemonicParsing="false" onAction="#exit" prefHeight="46.0" prefWidth="112.0" text="Exit">
+      <Button layoutX="360.0" layoutY="505.0" mnemonicParsing="false" onAction="#exit" prefHeight="38.0" prefWidth="180.0" text="Exit">
          <font>
-            <Font size="21.0" />
+            <Font size="17.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
