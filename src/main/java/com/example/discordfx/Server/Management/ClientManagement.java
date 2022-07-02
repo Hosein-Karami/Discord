@@ -2,11 +2,9 @@ package com.example.discordfx.Server.Management;
 
 
 import com.example.discordfx.Log.ServerLog;
-import com.example.discordfx.Moduls.Dto.User.Status;
 import com.example.discordfx.Moduls.Dto.User.User;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+
+import java.io.*;
 import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -17,10 +15,18 @@ public class ClientManagement implements Runnable{
     private final AccountManagement accountManagement = new AccountManagement();
     private final FriendshipManagement friendshipManagement;
     private final Socket clientSocket;
+    private InputStream in;
+    private OutputStream out;
     private final ServerLog log = new ServerLog();
 
     public ClientManagement(Socket clientSocket){
         this.clientSocket = clientSocket;
+        try {
+            in = clientSocket.getInputStream();
+            out = clientSocket.getOutputStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         friendshipManagement = new FriendshipManagement(clientSocket);
     }
 
@@ -47,46 +53,14 @@ public class ClientManagement implements Runnable{
     }
 
     private void start(User user){
-        int choose;
-        while (true){
-            try {
-                ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
-                InputStream inputStream = clientSocket.getInputStream();
-                user.loadInformation();
-                outputStream.writeObject(user);
-                choose = inputStream.read();
-                if(choose == 1)
-                    accountManagement.setPicture(user,clientSocket);
-                else if(choose == 5)
-                    accountManagement.setStatus(user,clientSocket);
-                else if(choose == 6)
-                    friendshipManagement.requestFriendShip(user);
-                else if(choose == 7)
-                    friendshipManagement.showFriends(user);
-                else if(choose == 8)
-                    friendshipManagement.blockUser(user);
-                else if(choose == 9)
-                    friendshipManagement.showBlocks(user);
-                else if(choose == 10)
-                    friendshipManagement.invitationsHandle(user);
-                else if(choose == 11)
-                    accountManagement.changePassword(user,clientSocket);
-                else if(choose == 12){
-                    ChatManagement chatManagements = new ChatManagement();
-                    chatManagements.makePrivateChat(user,clientSocket);
-                }
-                else if(choose == 13)
-                    downloadFile();
-                else if(choose == 15){
-                    log.logOut(user.getUsername());
-                    user.setStatus(Status.Offline);
-                    return;
-                }
-            } catch (Exception e) {
-                log.openStreamError(clientSocket.getInetAddress());
-                e.printStackTrace();
-                return;
+        try {
+            int choose = in.read();
+            if(choose == 1) {
+                ProfileManagement profileManagement = new ProfileManagement(user,clientSocket);
+                profileManagement.start();
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

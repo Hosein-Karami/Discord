@@ -98,4 +98,30 @@ public class UserDao {
         }
     }
 
+    public void changeEmail(String targetUsername,String newEmail) throws Exception {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Users SET email=? WHERE username=?");
+            preparedStatement.setString(1,newEmail);
+            preparedStatement.setString(2,targetUsername);
+            preparedStatement.execute();
+            log.changeEmailSuccessfully(targetUsername);
+        } catch (Exception e) {
+            log.changeEmailError(targetUsername);
+            throw new Exception();
+        }
+    }
+
+    public void changePhone(String targetUsername,String newPhone) throws Exception {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Users SET phone=? WHERE username=?");
+            preparedStatement.setString(1,newPhone);
+            preparedStatement.setString(2,targetUsername);
+            preparedStatement.execute();
+            log.changePhoneSuccessfully(targetUsername);
+        } catch (Exception e) {
+            log.changePhoneError(targetUsername);
+            throw new Exception();
+        }
+    }
+
 }

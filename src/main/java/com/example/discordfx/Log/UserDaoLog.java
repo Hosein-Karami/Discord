@@ -73,4 +73,35 @@ public class UserDaoLog {
         }
     }
 
+    public void changeEmailSuccessfully(String username){
+        try (FileWriter fileWriter = new FileWriter("Log.txt",true)){
+            fileWriter.write(LocalDateTime.now().format(formatter) + " [Info] UserDao\nUser with username="+username+ " changed his/her email successfully.\n");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void changeEmailError(String username){
+        try (FileWriter fileWriter = new FileWriter("Log.txt",true)){
+            fileWriter.write(LocalDateTime.now().format(formatter) + " [Error] UserDao\nError happening when user with username="+username+" want to change his/her email.\n");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void changePhoneSuccessfully(String username){
+        try (FileWriter fileWriter = new FileWriter("Log.txt",true)){
+            fileWriter.write(LocalDateTime.now().format(formatter) + " [Info] UserDao\nUser with username="+username+ " changed his/her phone successfully.\n");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void changePhoneError(String username){
+        try (FileWriter fileWriter = new FileWriter("Log.txt",true)){
+            fileWriter.write(LocalDateTime.now().format(formatter) + " [Error] UserDao\nError happening when user with username="+username+" want to change his/her phone.\n");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

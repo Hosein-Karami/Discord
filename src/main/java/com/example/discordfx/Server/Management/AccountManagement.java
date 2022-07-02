@@ -4,7 +4,6 @@ import com.example.discordfx.Log.ServerLog;
 import com.example.discordfx.Moduls.Dto.User.Status;
 import com.example.discordfx.Moduls.Dto.User.User;
 import com.example.discordfx.Server.Start.Server;
-
 import java.io.*;
 import java.net.Socket;
 
@@ -60,17 +59,59 @@ public class AccountManagement {
     public void changePassword(User user, Socket clientSocket){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
-            ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
-            String jwtToken = (String) inputStream.readObject();
-            if(jwtToken.equals(user.getJwtToken())){
-                outputStream.writeObject("Ok");
-                String newPassword = (String) inputStream.readObject();
-                Server.accountsService.changePassword(user.getUsername(),newPassword);
-                outputStream.writeObject("Password changed successfully.\n");
+            String status = (String) inputStream.readObject();
+            if (status.equals("OK")) {
+                ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
+                String jwtToken = (String) inputStream.readObject();
+                if (jwtToken.equals(user.getJwtToken())) {
+                    outputStream.writeObject("Ok");
+                    String newPassword = (String) inputStream.readObject();
+                    Server.accountsService.changePassword(user.getUsername(), newPassword);
+                    outputStream.writeObject("Password changed successfully.\n");
+                } else
+                    outputStream.writeObject("Verification failed");
             }
-            else
-                outputStream.writeObject("Verification failed.");
-        } catch (Exception e) {
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void changeEmail(User user,Socket clientSocket){
+        try {
+            ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
+            String status = (String) inputStream.readObject();
+            if (status.equals("OK")) {
+                ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
+                String jwtToken = (String) inputStream.readObject();
+                if (jwtToken.equals(user.getJwtToken())) {
+                    outputStream.writeObject("Ok");
+                    String newEmail = (String) inputStream.readObject();
+                    Server.accountsService.changeEmail(user.getUsername(), newEmail);
+                    outputStream.writeObject("Email changed successfully");
+                } else
+                    outputStream.writeObject("Verification failed");
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void changePhone(User user,Socket clientSocket){
+        try {
+            ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
+            String status = (String) inputStream.readObject();
+            if (status.equals("OK")) {
+                ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
+                String jwtToken = (String) inputStream.readObject();
+                if (jwtToken.equals(user.getJwtToken())) {
+                    outputStream.writeObject("Ok");
+                    String newPhone = (String) inputStream.readObject();
+                    Server.accountsService.changePhone(user.getUsername(), newPhone);
+                    outputStream.writeObject("Phone changed successfully");
+                } else
+                    outputStream.writeObject("Verification failed");
+            }
+        }catch (Exception e) {
             e.printStackTrace();
         }
     }

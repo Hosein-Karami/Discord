@@ -69,7 +69,6 @@ public class AccountsService {
                 User user = convertEntityToDto(userEntity);
                 user.setJwtToken(new TokenService(user).getToken());
                 user.loadInformation();
-                System.out.println(user.getPassword() + ":))))");
                 user.setStatus(Status.Online);
                 return user;
             }
@@ -87,6 +86,22 @@ public class AccountsService {
         }
     }
 
+    public void changeEmail(String username,String newPassword) throws Exception {
+        try {
+            userDao.changeEmail(username,newPassword);
+        } catch (Exception e) {
+            throw new Exception();
+        }
+    }
+
+    public void changePhone(String username,String newPhone) throws Exception {
+        try {
+            userDao.changeEmail(username, newPhone);
+        } catch (Exception e) {
+            throw new Exception();
+        }
+    }
+
     public void setPicture(User user, Socket clientSocket){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
@@ -95,17 +110,17 @@ public class AccountsService {
             if(jwtToken.equals(user.getJwtToken())){
                 outputStream.writeObject("Ok");
                 String status = (String) inputStream.readObject();
-                if(status.equals("Ok")){
+                if(status.equals("Ok")) {
                     byte[] bytes = (byte[]) inputStream.readObject();
-                    FileOutputStream outputStream_2 = new FileOutputStream("Files/Pictures/"+user.getId()+".jpg");
+                    FileOutputStream outputStream_2 = new FileOutputStream("Files/Pictures/" + user.getId() + ".jpg");
                     outputStream_2.write(bytes);
                     outputStream_2.close();
                     outputStream.writeObject("Your profile changed successfully");
                     log.changePictureSuccessfully(user.getId());
                 }
             }
-            else
-                outputStream.writeObject("Verification failed.");
+        else
+            outputStream.writeObject("Verification failed.");
         } catch (Exception e) {
             e.printStackTrace();
             log.changePictureError(user.getId());

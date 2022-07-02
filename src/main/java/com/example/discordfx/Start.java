@@ -38,7 +38,7 @@ public class Start {
 
     private final AccountManagement accountManagement = AccountManagement.getInstance(socket);
 
-    public void login(){
+    public void login(ActionEvent event){
         if(username.getText().isEmpty() || password.getText().isEmpty())
             text.setText("Enter username and password");
         else{
@@ -48,7 +48,20 @@ public class Start {
                 User user = accountManagement.logIn(username.getText(),password.getText());
                 if(user == null)
                     text.setText("Username or password is false");
-
+                else{
+                    try {
+                        Profile.user = user;
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
+                        Parent root = loader.load();
+                        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.setResizable(false);
+                        stage.show();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
             } catch (IOException e) {
                 text.setText(e.getMessage());
             }
