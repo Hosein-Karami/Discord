@@ -37,4 +37,34 @@ public class Dashboard {
         }
     }
 
+    public void downloadFile(ActionEvent event){
+        try {
+            out.write(2);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("FileDownloader.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void setStatus(ActionEvent event){
+        try {
+            out.write(3);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("SetStatus.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
 }

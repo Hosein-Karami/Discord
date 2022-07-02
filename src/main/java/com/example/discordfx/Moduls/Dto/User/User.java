@@ -1,7 +1,6 @@
 package com.example.discordfx.Moduls.Dto.User;
 
 import com.example.discordfx.Lateral.Notification;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,10 +8,10 @@ import java.util.HashMap;
 public class User implements Serializable {
 
     private final int id;
-    private final String username;
-    private final String password;
-    private final String email;
-    private final String phone;
+    private String username;
+    private String password;
+    private String email;
+    private String phone;
     private UserLateralInformation information;
     private String jwtToken;
 
@@ -38,6 +37,18 @@ public class User implements Serializable {
     public void setStatus(Status status){
         information.setStatus(status);
         updateInformation();
+    }
+
+    public void setPassword(String password){
+        this.password = password;
+    }
+
+    public void setEmail(String email){
+        this.email = email;
+    }
+
+    public void setPhone(String phone){
+        this.phone = phone;
     }
 
     public void setJwtToken(String jwtToken){

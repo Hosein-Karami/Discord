@@ -1,9 +1,8 @@
 package com.example.discordfx.Server.Management;
 
-
 import com.example.discordfx.Log.ServerLog;
+import com.example.discordfx.Moduls.Dto.User.Status;
 import com.example.discordfx.Moduls.Dto.User.User;
-
 import java.io.*;
 import java.net.Socket;
 import java.nio.file.Files;
@@ -17,7 +16,6 @@ public class ClientManagement implements Runnable{
     private final Socket clientSocket;
     private InputStream in;
     private OutputStream out;
-    private final ServerLog log = new ServerLog();
 
     public ClientManagement(Socket clientSocket){
         this.clientSocket = clientSocket;
@@ -53,34 +51,63 @@ public class ClientManagement implements Runnable{
     }
 
     private void start(User user){
-        try {
-            int choose = in.read();
-            if(choose == 1) {
-                ProfileManagement profileManagement = new ProfileManagement(user,clientSocket);
-                profileManagement.start();
+        while (true) {
+            try {
+                int choose = in.read();
+                if (choose == 1) {
+                    ProfileManagement profileManagement = new ProfileManagement(user, clientSocket);
+                    profileManagement.start();
+                } else if (choose == 2)
+                    downloadFile();
+                else if(choose == 3)
+                    setStatus(user);
+                else
+                    break;
+            } catch (IOException e) {
+                e.printStackTrace();
+                break;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
     private void downloadFile(){
-        try {
-            ObjectOutputStream outputStream = new ObjectOutputStream(out);
-            ObjectInputStream inputStream = new ObjectInputStream(in);
-            String name = (String) inputStream.readObject();
-            Path path = Paths.get("Files/ChatFiles/"+name);
-            if(Files.exists(path)){
-                outputStream.writeObject("OK");
-                System.out.println("Salam");
-                byte[] bytes = Files.readAllBytes(path);
-                outputStream.writeObject(bytes);
-                outputStream.flush();
+        while (true) {
+            try {
+                ObjectInputStream inputStream = new ObjectInputStream(in);
+                String status = (String) inputStream.readObject();
+                if(status.equals("Break"))
+                    break;
+                ObjectOutputStream outputStream = new ObjectOutputStream(out);
+                String name = (String) inputStream.readObject();
+                Path path = Paths.get("Files/ChatFiles/" + name);
+                if (Files.exists(path)) {
+                    outputStream.writeObject("OK");
+                    byte[] bytes = Files.readAllBytes(path);
+                    outputStream.writeObject(bytes);
+                    outputStream.flush();
+                } else
+                    outputStream.writeObject("There is no file with this name");
+            } catch (Exception e) {
+                e.printStackTrace();
+                break;
             }
-            else
-                outputStream.writeObject("There is no file with this name");
-        } catch (Exception e) {
-            e.printStackTrace();
+        }
+    }
+
+    private void setStatus(User user){
+        ObjectInputStream inputStream;
+        Status status;
+        while (true){
+            try {
+                inputStream = new ObjectInputStream(in);
+                status = (Status) inputStream.readObject();
+                if(status == null)
+                    break;
+                user.setStatus(status);
+            }catch (Exception e){
+                e.printStackTrace();
+                break;
+            }
         }
     }
 

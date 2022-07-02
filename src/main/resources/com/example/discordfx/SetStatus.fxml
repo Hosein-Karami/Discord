@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.discordfx.SetStatus">
+   <children>
+      <Button layoutX="381.0" layoutY="166.0" mnemonicParsing="false" onAction="#Online" prefHeight="37.0" prefWidth="138.0" text="Online" />
+      <Button layoutX="381.0" layoutY="248.0" mnemonicParsing="false" onAction="#Idle" prefHeight="37.0" prefWidth="138.0" text="Idle" />
+      <Button layoutX="381.0" layoutY="331.0" mnemonicParsing="false" onAction="#Do_Not_Disturb" prefHeight="37.0" prefWidth="138.0" text="Do_Not_Disturb" />
+      <Button layoutX="381.0" layoutY="415.0" mnemonicParsing="false" onAction="#Invisible" prefHeight="37.0" prefWidth="138.0" text="Invisible" />
+      <Text fx:id="text" layoutX="113.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="673.1392211914062">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Text>
+      <Button layoutX="822.0" layoutY="659.0" mnemonicParsing="false" onAction="#back" prefHeight="26.0" prefWidth="64.0" text="Back">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>

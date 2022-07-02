@@ -34,7 +34,7 @@ public class ProfileManagement {
                     accountManagement.logout(user);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
     }
 

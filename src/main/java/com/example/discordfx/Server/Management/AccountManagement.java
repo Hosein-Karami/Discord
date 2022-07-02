@@ -71,7 +71,8 @@ public class AccountManagement {
                     outputStream.writeObject("Ok");
                     String newPassword = (String) inputStream.readObject();
                     Server.accountsService.changePassword(user.getUsername(), newPassword);
-                    outputStream.writeObject("Password changed successfully.\n");
+                    outputStream.writeObject("Password changed successfully");
+                    user.setPassword(newPassword);
                 } else
                     outputStream.writeObject("Verification failed");
             }
@@ -92,6 +93,7 @@ public class AccountManagement {
                     String newEmail = (String) inputStream.readObject();
                     Server.accountsService.changeEmail(user.getUsername(), newEmail);
                     outputStream.writeObject("Email changed successfully");
+                    user.setEmail(newEmail);
                 } else
                     outputStream.writeObject("Verification failed");
             }
@@ -112,25 +114,11 @@ public class AccountManagement {
                     String newPhone = (String) inputStream.readObject();
                     Server.accountsService.changePhone(user.getUsername(), newPhone);
                     outputStream.writeObject("Phone changed successfully");
+                    user.setPhone(newPhone);
                 } else
                     outputStream.writeObject("Verification failed");
             }
         }catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void setStatus(User user,Socket clientSocket){
-        try {
-            InputStream inputStream = clientSocket.getInputStream();
-            int choice = inputStream.read();
-            if(choice == 1)
-                user.setStatus(Status.Invisible);
-            else if(choice == 2)
-                user.setStatus(Status.Idle);
-            else if(choice == 3)
-                user.setStatus(Status.Do_Not_Disturb);
-        } catch (IOException e) {
             e.printStackTrace();
         }
     }

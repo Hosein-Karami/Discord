@@ -19,7 +19,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 import java.io.*;
 import java.net.Socket;
 import java.net.URL;
@@ -64,7 +63,7 @@ public class Profile implements Initializable {
         try {
             in = socket.getInputStream();
             out = socket.getOutputStream();
-            Image image = new Image("C:\\Users\\hosein\\IdeaProjects\\DiscordFx\\ClientFiles\\Profile.jpg");
+            Image image = new Image("file:ClientFiles/Profile.jpg");
             imageView.setImage(image);
             username.setText("Username : " + user.getUsername());
             password.setText("Password : " + user.getPassword());
@@ -131,7 +130,8 @@ public class Profile implements Initializable {
                 else {
                     outputStream.writeObject(newPassword.getText());
                     text.setText((String) inputStream.readObject());
-                    password.setText(newPassword.getText());
+                    password.setText("Password : "+newPassword.getText());
+                    user.setPassword(newPassword.getText());
                     newPassword.setVisible(false);
                     changePassButton.setVisible(false);
                 }
@@ -165,7 +165,8 @@ public class Profile implements Initializable {
                 else {
                     outputStream.writeObject(newEmail.getText());
                     text.setText((String) inputStream.readObject());
-                    email.setText(newEmail.getText());
+                    email.setText("Email : "+newEmail.getText());
+                    user.setEmail(newEmail.getText());
                     newEmail.setVisible(false);
                     changeEmailButton.setVisible(false);
                 }
@@ -199,7 +200,8 @@ public class Profile implements Initializable {
                 else {
                     outputStream.writeObject(newPhone.getText());
                     text.setText((String) inputStream.readObject());
-                    phone.setText(newPhone.getText());
+                    phone.setText("Phone : "+newPhone.getText());
+                    user.setPhone(newPhone.getText());
                     newPhone.setVisible(false);
                     changePhoneButton.setVisible(false);
                 }
@@ -247,7 +249,8 @@ public class Profile implements Initializable {
     private void changeImage(File newImage,byte[] imageBytes){
         Image newProfileImage = new Image(newImage.getPath());
         imageView.setImage(newProfileImage);
-        try (FileOutputStream fileOutputStream = new FileOutputStream("C:\\Users\\hosein\\IdeaProjects\\DiscordFx\\ClientFiles\\Profile.jpg")){
+        try (FileOutputStream fileOutputStream = new FileOutputStream("file:ClientFiles/Profile.jpg")){
+            fileOutputStream.flush();
             fileOutputStream.write(imageBytes);
         } catch (IOException e) {
             e.printStackTrace();

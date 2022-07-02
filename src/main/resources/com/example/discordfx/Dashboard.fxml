@@ -16,5 +16,21 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Button layoutX="381.0" layoutY="103.0" mnemonicParsing="false" onAction="#downloadFile" prefHeight="24.0" prefWidth="137.0" text="Download file" textAlignment="CENTER">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="381.0" layoutY="173.0" mnemonicParsing="false" onAction="#setStatus" prefHeight="24.0" prefWidth="137.0" text="Set status" textAlignment="CENTER">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>
