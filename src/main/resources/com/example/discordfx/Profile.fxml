@@ -106,5 +106,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Button layoutX="454.0" layoutY="607.0" mnemonicParsing="false" onAction="#logout" text="Log out">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

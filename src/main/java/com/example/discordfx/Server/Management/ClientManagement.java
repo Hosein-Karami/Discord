@@ -66,8 +66,8 @@ public class ClientManagement implements Runnable{
 
     private void downloadFile(){
         try {
-            ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
-            ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
+            ObjectInputStream inputStream = new ObjectInputStream(in);
             String name = (String) inputStream.readObject();
             Path path = Paths.get("Files/ChatFiles/"+name);
             if(Files.exists(path)){

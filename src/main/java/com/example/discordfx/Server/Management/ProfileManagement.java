@@ -19,7 +19,7 @@ public class ProfileManagement {
         try {
             ObjectInputStream inputStream;
             Integer choice = 0;
-            while (choice != 6){
+            while (choice != 7){
                 inputStream = new ObjectInputStream(clientSocket.getInputStream());
                 choice = (Integer) inputStream.readObject();
                 if(choice == 1)
@@ -30,6 +30,8 @@ public class ProfileManagement {
                     accountManagement.changeEmail(user,clientSocket);
                 else if(choice == 5)
                     accountManagement.changePhone(user,clientSocket);
+                else if(choice == 6)
+                    accountManagement.logout(user);
             }
         } catch (Exception e) {
             e.printStackTrace();

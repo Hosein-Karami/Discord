@@ -52,6 +52,10 @@ public class AccountManagement {
         return null;
     }
 
+    public void logout(User user){
+        Server.accountsService.logout(user);
+    }
+
     public void setPicture(User user, Socket clientSocket){
         Server.accountsService.setPicture(user,clientSocket);
     }

@@ -1,5 +1,6 @@
 package com.example.discordfx.Server.Service.ClientService;
 
+import com.example.discordfx.Log.ServerLog;
 import com.example.discordfx.Log.ServicesLog.AccountsLog;
 import com.example.discordfx.Moduls.Dto.User.Status;
 import com.example.discordfx.Moduls.Dto.User.User;
@@ -76,6 +77,12 @@ public class AccountsService {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void logout(User user){
+        ServerLog log = new ServerLog();
+        log.logOut(user.getUsername());
+        user.setStatus(Status.Offline);
     }
 
     public void changePassword(String username,String newPassword) throws Exception {

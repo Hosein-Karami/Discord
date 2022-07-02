@@ -42,8 +42,6 @@ public class Profile implements Initializable {
     @FXML
     Text phone;
     @FXML
-    TextField newUsername;
-    @FXML
     TextField newPassword;
     @FXML
     TextField newEmail;
@@ -57,24 +55,32 @@ public class Profile implements Initializable {
     Button changePhoneButton;
 
     private final Socket socket = Start.socket;
+    private OutputStream out;
+    private InputStream in;
     public static User user;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Image image = new Image("C:\\Users\\hosein\\IdeaProjects\\DiscordFx\\ClientFiles\\Profile.jpg");
-        imageView.setImage(image);
-        username.setText("Username : "+user.getUsername());
-        password.setText("Password : "+user.getPassword());
-        email.setText("Email : "+user.getEmail());
-        phone.setText("Phone : "+user.getPhone());
+        try {
+            in = socket.getInputStream();
+            out = socket.getOutputStream();
+            Image image = new Image("C:\\Users\\hosein\\IdeaProjects\\DiscordFx\\ClientFiles\\Profile.jpg");
+            imageView.setImage(image);
+            username.setText("Username : " + user.getUsername());
+            password.setText("Password : " + user.getPassword());
+            email.setText("Email : " + user.getEmail());
+            phone.setText("Phone : " + user.getPhone());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void setPicture(ActionEvent event){
         try{
-            ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
             outputStream.writeObject(1);
-            outputStream = new ObjectOutputStream(socket.getOutputStream());
-            ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
+            outputStream = new ObjectOutputStream(out);
+            ObjectInputStream inputStream = new ObjectInputStream(in);
             outputStream.writeObject(user.getJwtToken());
             String status = (String) inputStream.readObject();
             if(status.equals("Verification failed."))
@@ -111,13 +117,13 @@ public class Profile implements Initializable {
 
     public void changePassword(){
         try {
-            ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
             outputStream.writeObject(3);
-            outputStream = new ObjectOutputStream(socket.getOutputStream());
+            outputStream = new ObjectOutputStream(out);
             try {
                 Checker.checkPassword(newPassword.getText());
                 outputStream.writeObject("OK");
-                ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
+                ObjectInputStream inputStream = new ObjectInputStream(in);
                 outputStream.writeObject(user.getJwtToken());
                 String status = (String) inputStream.readObject();
                 if (status.equals("Verification failed"))
@@ -145,13 +151,13 @@ public class Profile implements Initializable {
 
     public void changeEmail(){
         try {
-            ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
             outputStream.writeObject(4);
             try {
-                outputStream = new ObjectOutputStream(socket.getOutputStream());
+                outputStream = new ObjectOutputStream(out);
                 Checker.checkEmail(newEmail.getText());
                 outputStream.writeObject("OK");
-                ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
+                ObjectInputStream inputStream = new ObjectInputStream(in);
                 outputStream.writeObject(user.getJwtToken());
                 String status = (String) inputStream.readObject();
                 if (status.equals("Verification failed"))
@@ -179,13 +185,13 @@ public class Profile implements Initializable {
 
     public void changePhone(){
         try {
-            ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
             outputStream.writeObject(5);
             try {
-                outputStream = new ObjectOutputStream(socket.getOutputStream());
+                outputStream = new ObjectOutputStream(out);
                 Checker.checkPhone(newPhone.getText());
                 outputStream.writeObject("OK");
-                ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
+                ObjectInputStream inputStream = new ObjectInputStream(in);
                 outputStream.writeObject(user.getJwtToken());
                 String status = (String) inputStream.readObject();
                 if (status.equals("Verification failed"))
@@ -208,9 +214,25 @@ public class Profile implements Initializable {
 
     public void back(ActionEvent event){
         try {
-            ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
-            outputStream.writeObject(6);
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
+            outputStream.writeObject(7);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void logout(ActionEvent event){
+        try {
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
+            outputStream.writeObject(6);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Start.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
