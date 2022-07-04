@@ -40,6 +40,7 @@ public class FileDownloader {
                     fileOutputStream.write(fileBytes);
                     fileOutputStream.flush();
                     fileOutputStream.close();
+                    fileName.setText("");
                     text.setText("You can go to ClientFiles and see downloaded file");
                 }
             }

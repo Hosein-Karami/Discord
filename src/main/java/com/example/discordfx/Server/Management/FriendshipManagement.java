@@ -113,11 +113,12 @@ public class FriendshipManagement {
     void cancelRequest(User user,Socket socket){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
+            ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
             String targetUsername = (String) inputStream.readObject();
             AccountsService accountsService = new AccountsService();
             User targetUser = accountsService.getParticularUser(targetUsername);
             targetUser.removePending(user.getUsername());
-            ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
+            user.removeOutputRequest(targetUsername);
             outputStream.writeObject("Request canceled successfully");
         } catch (Exception e) {
             e.printStackTrace();

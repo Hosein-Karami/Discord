@@ -40,12 +40,12 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <ImageView fx:id="imageView" fitHeight="142.0" fitWidth="202.0" layoutX="349.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true" />
-                  <Text fx:id="senderUsername" layoutX="272.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="354.13671875">
+                  <Text fx:id="text_1" layoutX="272.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="354.13671875">
                      <font>
                         <Font size="21.0" />
                      </font>
                   </Text>
-                  <Button fx:id="previousButton" layoutX="242.0" layoutY="336.0" mnemonicParsing="false" onAction="#previousRequest" text="Back">
+                  <Button fx:id="previousButton_1" layoutX="242.0" layoutY="336.0" mnemonicParsing="false" onAction="#previousRequest" text="Back">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -53,7 +53,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="nextButton" layoutX="600.0" layoutY="336.0" mnemonicParsing="false" onAction="#nextRequest" text="Next">
+                  <Button fx:id="nextButton_1" layoutX="600.0" layoutY="336.0" mnemonicParsing="false" onAction="#nextRequest" text="Next">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -77,9 +77,9 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Text fx:id="statusText" layoutX="273.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="354.13671875">
+                  <Text fx:id="statusText" layoutX="273.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="354.13671875">
                      <font>
-                        <Font size="22.0" />
+                        <Font size="21.0" />
                      </font>
                   </Text>
                   <ImageView fx:id="status" fitHeight="50.0" fitWidth="60.0" layoutX="551.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true" />
@@ -109,7 +109,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="next" layoutX="550.0" layoutY="345.0" mnemonicParsing="false" onAction="#next" prefHeight="34.0" prefWidth="74.0" text="Next">
+                  <Button fx:id="nextButton_2" layoutX="550.0" layoutY="345.0" mnemonicParsing="false" onAction="#next" prefHeight="34.0" prefWidth="74.0" text="Next">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -117,7 +117,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="previous" layoutX="276.0" layoutY="345.0" mnemonicParsing="false" onAction="#previous" prefHeight="34.0" prefWidth="74.0" text="Previous">
+                  <Button fx:id="previousButton_2" layoutX="276.0" layoutY="345.0" mnemonicParsing="false" onAction="#previous" prefHeight="34.0" prefWidth="74.0" text="Previous">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -130,7 +130,7 @@
                         <Font size="21.0" />
                      </font>
                   </Text>
-                  <ImageView fx:id="status_2" fitHeight="50.0" fitWidth="60.0" layoutX="441.0" layoutY="528.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="status_2" fitHeight="50.0" fitWidth="60.0" layoutX="550.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
         </content>

@@ -64,6 +64,7 @@ public class RelationshipManagement implements Initializable {
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
             ObjectInputStream inputStream = new ObjectInputStream(in);
             outputStream.writeObject(requestUsername.getText());
+            requestUsername.setText("");
             String status = (String) inputStream.readObject();
             if (status.equals("OK")) {
                 status = (String) inputStream.readObject();
@@ -89,7 +90,7 @@ public class RelationshipManagement implements Initializable {
     @FXML
     ImageView status;
     @FXML
-    Text senderUsername;
+    Text text_1;
     @FXML
     Text statusText;
     @FXML
@@ -97,9 +98,9 @@ public class RelationshipManagement implements Initializable {
     @FXML
     Button rejectButton;
     @FXML
-    Button nextButton;
+    Button nextButton_1;
     @FXML
-    Button previousButton;
+    Button previousButton_1;
 
     private int senderIndex = 0;
     private ArrayList<String> requestsSenders;
@@ -143,9 +144,11 @@ public class RelationshipManagement implements Initializable {
                 statusText.setText("You don't have any input request");
                 acceptButton.setVisible(false);
                 rejectButton.setVisible(false);
-                nextButton.setVisible(false);
-                senderUsername.setVisible(false);
-                previousButton.setVisible(false);
+                nextButton_1.setVisible(false);
+                status_2.setImage(null);
+                imageView.setImage(null);
+                text_1.setVisible(false);
+                previousButton_1.setVisible(false);
                 return;
             }
             out.write(7);
@@ -162,7 +165,7 @@ public class RelationshipManagement implements Initializable {
             setProperStatusImage(userStatus,status);
             Image firstSenderProfileImage = new Image("file:ClientFiles/temp.jpg");
             imageView.setImage(firstSenderProfileImage);
-            senderUsername.setText(requestsSenders.get(senderIndex));
+            text_1.setText(requestsSenders.get(senderIndex));
             file.delete();
         } catch (Exception e) {
             e.printStackTrace();
@@ -216,9 +219,9 @@ public class RelationshipManagement implements Initializable {
     @FXML
     Button cancelButton;
     @FXML
-    Button next;
+    Button nextButton_2;
     @FXML
-    Button previous;
+    Button previousButton_2;
 
     private int requestIndex;
     private ArrayList<String> outputRequests;
@@ -242,8 +245,8 @@ public class RelationshipManagement implements Initializable {
                 statusText_2.setText("You don't have any output request");
                 imageView_2.setVisible(false);
                 cancelButton.setVisible(false);
-                next.setVisible(false);
-                previous.setVisible(false);
+                nextButton_2.setVisible(false);
+                previousButton_2.setVisible(false);
                 return;
             }
             out.write(7);
@@ -258,8 +261,8 @@ public class RelationshipManagement implements Initializable {
             fileOutputStream.flush();
             fileOutputStream.close();
             Image recieverProfileImage = new Image("file:ClientFiles/temp.jpg");
-            setProperStatusImage(userStatus,status_2);
             imageView_2.setImage(recieverProfileImage);
+            setProperStatusImage(userStatus,status_2);
             text_2.setText(outputRequests.get(requestIndex));
             file.delete();
         } catch (Exception e) {
@@ -291,8 +294,8 @@ public class RelationshipManagement implements Initializable {
         try {
             out.write(8);
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
-            outputStream.writeObject(outputRequests.get(requestIndex));
             ObjectInputStream inputStream = new ObjectInputStream(in);
+            outputStream.writeObject(outputRequests.get(requestIndex));
             statusText_2.setText((String) inputStream.readObject());
             imageView_2.setImage(null);
             status_2.setImage(null);
@@ -306,15 +309,15 @@ public class RelationshipManagement implements Initializable {
     private void setProperStatusImage(Status status,ImageView imageView){
         Image image = null;
         if(status == Status.Online)
-            image = new Image("file:Status/Online.png");
+            image = new Image("file:src/main/resources/Status/Online.png");
         else if(status == Status.Offline)
-            image = new Image("file:Status/Offline.png");
+            image = new Image("file:src/main/resources/Status/Offline.png");
         else if(status == Status.Do_Not_Disturb)
-            image = new Image("file:Status/Do_Not_Disturb.png");
+            image = new Image("file:src/main/resources/Status/Do_Not_Disturb.png");
         else if(status == Status.Invisible)
-            image = new Image("file:Status/Invisible.png");
+            image = new Image("file:src/main/resources/Status/Invisible.png");
         else if(status == Status.Idle)
-            image = new Image("file:Status/Idle.png");
+            image = new Image("file:src/main/resources/Status/Idle.png");
         imageView.setImage(image);
     }
 
