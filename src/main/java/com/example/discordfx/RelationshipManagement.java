@@ -1,5 +1,6 @@
 package com.example.discordfx;
 
+import com.example.discordfx.Moduls.Dto.User.Status;
 import com.example.discordfx.Moduls.Dto.User.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class RelationshipManagement implements Initializable {
+
+    //Tab 1 :
 
     @FXML
     Text requestText;
@@ -79,8 +82,12 @@ public class RelationshipManagement implements Initializable {
         }
     }
 
+    //Tab 2 :
+
     @FXML
     ImageView imageView;
+    @FXML
+    ImageView status;
     @FXML
     Text senderUsername;
     @FXML
@@ -95,10 +102,9 @@ public class RelationshipManagement implements Initializable {
     Button previousButton;
 
     private int senderIndex = 0;
-
     private ArrayList<String> requestsSenders;
 
-    public void initializeSenderIndex() {
+    public void initialize() {
         try {
             out.write(20);
             ObjectInputStream inputStream = new ObjectInputStream(in);
@@ -111,17 +117,23 @@ public class RelationshipManagement implements Initializable {
     }
 
     public void nextRequest(){
-        statusText.setText("");
-        if(senderIndex != (requestsSenders.size() - 1))
+        if(senderIndex != (requestsSenders.size() - 1)) {
+            statusText.setText("");
+            imageView.setImage(null);
+            status.setImage(null);
             senderIndex++;
-        loadInputRequests();
+            loadInputRequests();
+        }
     }
 
     public void previousRequest(){
-        statusText.setText("");
-        if(senderIndex != 0)
+        if(senderIndex != 0) {
+            statusText.setText("");
+            imageView.setImage(null);
+            status.setImage(null);
             senderIndex--;
-        loadInputRequests();
+            loadInputRequests();
+        }
     }
 
     public void loadInputRequests(){
@@ -132,8 +144,8 @@ public class RelationshipManagement implements Initializable {
                 acceptButton.setVisible(false);
                 rejectButton.setVisible(false);
                 nextButton.setVisible(false);
+                senderUsername.setVisible(false);
                 previousButton.setVisible(false);
-                imageView.setVisible(false);
                 return;
             }
             out.write(7);
@@ -141,11 +153,13 @@ public class RelationshipManagement implements Initializable {
             ObjectInputStream inputStream = new ObjectInputStream(in);
             outputStream.writeObject(requestsSenders.get(senderIndex));
             byte[] senderProfile = (byte[]) inputStream.readObject();
+            Status userStatus = (Status) inputStream.readObject();
             File file = new File("ClientFiles/temp.jpg");
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             fileOutputStream.write(senderProfile);
             fileOutputStream.flush();
             fileOutputStream.close();
+            setProperStatusImage(userStatus,status);
             Image firstSenderProfileImage = new Image("file:ClientFiles/temp.jpg");
             imageView.setImage(firstSenderProfileImage);
             senderUsername.setText(requestsSenders.get(senderIndex));
@@ -163,11 +177,10 @@ public class RelationshipManagement implements Initializable {
             outputStream.writeObject(requestsSenders.get(senderIndex));
             outputStream.writeObject("Accept");
             statusText.setText((String) inputStream.readObject());
-            user.removePending(requestsSenders.get(senderIndex));
-            if (senderIndex != (requestsSenders.size() - 1)) {
-                senderIndex++;
-                loadInputRequests();
-            }
+            requestsSenders.remove(senderIndex);
+            imageView.setImage(null);
+            status.setImage(null);
+            initialize();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -181,28 +194,128 @@ public class RelationshipManagement implements Initializable {
             outputStream.writeObject(requestsSenders.get(senderIndex));
             outputStream.writeObject("Reject");
             statusText.setText((String) inputStream.readObject());
-            user.removePending(requestsSenders.get(senderIndex));
-            if (senderIndex != (requestsSenders.size() - 1)) {
-                senderIndex++;
-                loadInputRequests();
-            }
+            requestsSenders.remove(senderIndex);
+            imageView.setImage(null);
+            status.setImage(null);
+            initialize();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    //Tab 3 :
+
     @FXML
     ImageView imageView_2;
     @FXML
+    ImageView status_2;
+    @FXML
     Text text_2;
     @FXML
-    Button button_2;
+    Text statusText_2;
+    @FXML
+    Button cancelButton;
+    @FXML
+    Button next;
+    @FXML
+    Button previous;
 
     private int requestIndex;
+    private ArrayList<String> outputRequests;
 
-    public void initializeIndex(){
-        requestIndex = 0;
+    public void initialize_2(){
+        try {
+            out.write(20);
+            ObjectInputStream inputStream = new ObjectInputStream(in);
+            user = (User) inputStream.readObject();
+            outputRequests = user.getOutputRequests();
+            requestIndex = 0;
+            loadOutputRequests();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+    public void loadOutputRequests(){
+        try {
+            if(outputRequests.size() == 0){
+                statusText_2.setText("You don't have any output request");
+                imageView_2.setVisible(false);
+                cancelButton.setVisible(false);
+                next.setVisible(false);
+                previous.setVisible(false);
+                return;
+            }
+            out.write(7);
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
+            ObjectInputStream inputStream = new ObjectInputStream(in);
+            outputStream.writeObject(outputRequests.get(senderIndex));
+            byte[] recieverProfileBytes = (byte[]) inputStream.readObject();
+            Status userStatus = (Status) inputStream.readObject();
+            File file = new File("ClientFiles/temp.jpg");
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            fileOutputStream.write(recieverProfileBytes);
+            fileOutputStream.flush();
+            fileOutputStream.close();
+            Image recieverProfileImage = new Image("file:ClientFiles/temp.jpg");
+            setProperStatusImage(userStatus,status_2);
+            imageView_2.setImage(recieverProfileImage);
+            text_2.setText(outputRequests.get(requestIndex));
+            file.delete();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void next(){
+        if(requestIndex != (outputRequests.size() - 1)) {
+            text_2.setText("");
+            imageView_2.setImage(null);
+            status_2.setImage(null);
+            requestIndex++;
+            loadOutputRequests();
+        }
+    }
+
+    public void previous(){
+        if(requestIndex != 0) {
+            text_2.setText("");
+            imageView_2.setImage(null);
+            status_2.setImage(null);
+            requestIndex--;
+            loadOutputRequests();
+        }
+    }
+
+    public void cancelRequest(){
+        try {
+            out.write(8);
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
+            outputStream.writeObject(outputRequests.get(requestIndex));
+            ObjectInputStream inputStream = new ObjectInputStream(in);
+            statusText_2.setText((String) inputStream.readObject());
+            imageView_2.setImage(null);
+            status_2.setImage(null);
+            text_2.setText("");
+            initialize_2();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setProperStatusImage(Status status,ImageView imageView){
+        Image image = null;
+        if(status == Status.Online)
+            image = new Image("file:Status/Online.png");
+        else if(status == Status.Offline)
+            image = new Image("file:Status/Offline.png");
+        else if(status == Status.Do_Not_Disturb)
+            image = new Image("file:Status/Do_Not_Disturb.png");
+        else if(status == Status.Invisible)
+            image = new Image("file:Status/Invisible.png");
+        else if(status == Status.Idle)
+            image = new Image("file:Status/Idle.png");
+        imageView.setImage(image);
     }
 
 }

@@ -139,6 +139,7 @@ public class AccountManagement {
             File profileImage = new File(imageAddress);
             byte[] imageBytes = Files.readAllBytes(profileImage.toPath());
             outputStream.writeObject(imageBytes);
+            outputStream.writeObject(user.getStatus());
         } catch (Exception e) {
             e.printStackTrace();
         }

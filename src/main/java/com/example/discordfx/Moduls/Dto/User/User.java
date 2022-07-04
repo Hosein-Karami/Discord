@@ -87,6 +87,10 @@ public class User implements Serializable {
         return information.getPendingUsernames();
     }
 
+    public ArrayList<String> getOutputRequests(){
+        return information.getOutputRequestsUsernames();
+    }
+
     public String getJwtToken(){
         return jwtToken;
     }
@@ -106,7 +110,6 @@ public class User implements Serializable {
 
     public void addBlock(Integer targetUserId){
         information.addBlock(targetUserId);
-        System.out.println(information.getBlockedId());
         updateInformation();
     }
 
@@ -120,8 +123,8 @@ public class User implements Serializable {
         updateInformation();
     }
 
-    public void addInvitation(int senderId){
-        information.addInvitation(senderId);
+    public void addOutputRequest(String username){
+        information.addOutputRequestUsername(username);
         updateInformation();
     }
 
@@ -147,11 +150,6 @@ public class User implements Serializable {
         updateInformation();
     }
 
-    public void deleteFriendshipRequest(int targetId){
-        information.deleteInvitation(targetId);
-        updateInformation();
-    }
-
     public void deleteNotifications(){
         information.deleteNotifications();
         updateInformation();
@@ -159,6 +157,12 @@ public class User implements Serializable {
 
     public void removePending(String targetUsername){
         information.removePending(targetUsername);
+        updateInformation();
+    }
+
+    public void removeOutputRequest(String targetUsername){
+        information.removeOutputRequest(targetUsername);
+        updateInformation();
     }
 
     public void updateInformation() {

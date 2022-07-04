@@ -35,11 +35,11 @@
                </children></AnchorPane>
       </content>
     </Tab>
-      <Tab onSelectionChanged="#initializeSenderIndex" text="Input requests">
+      <Tab onSelectionChanged="#initialize" text="Input requests">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="imageView" fitHeight="142.0" fitWidth="202.0" layoutX="349.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imageView" fitHeight="142.0" fitWidth="202.0" layoutX="349.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true" />
                   <Text fx:id="senderUsername" layoutX="272.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="354.13671875">
                      <font>
                         <Font size="21.0" />
@@ -82,22 +82,26 @@
                         <Font size="22.0" />
                      </font>
                   </Text>
+                  <ImageView fx:id="status" fitHeight="50.0" fitWidth="60.0" layoutX="551.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
         </content>
       </Tab>
-      <Tab text="Output requests">
+      <Tab onSelectionChanged="#initialize_2" text="Pending">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="350.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="imageView_2" fitHeight="142.0" fitWidth="202.0" layoutX="349.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imageView_2" fitHeight="142.0" fitWidth="202.0" layoutX="349.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
                   <Text fx:id="text_2" layoutX="276.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="347.53924560546875">
                      <font>
                         <Font size="21.0" />
                      </font>
                   </Text>
-                  <Button fx:id="button_2" layoutX="388.0" layoutY="345.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="123.0" text="Cancel request" textFill="#bf1414">
+                  <Button fx:id="cancelButton" layoutX="388.0" layoutY="345.0" mnemonicParsing="false" onAction="#cancelRequest" prefHeight="34.0" prefWidth="123.0" text="Cancel request" textFill="#bf1414">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -105,6 +109,28 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
+                  <Button fx:id="next" layoutX="550.0" layoutY="345.0" mnemonicParsing="false" onAction="#next" prefHeight="34.0" prefWidth="74.0" text="Next">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="previous" layoutX="276.0" layoutY="345.0" mnemonicParsing="false" onAction="#previous" prefHeight="34.0" prefWidth="74.0" text="Previous">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Text fx:id="statusText_2" layoutX="276.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="347.53924560546875">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Text>
+                  <ImageView fx:id="status_2" fitHeight="50.0" fitWidth="60.0" layoutX="441.0" layoutY="528.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
         </content>

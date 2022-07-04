@@ -13,7 +13,6 @@ public class UserLateralInformation implements Serializable {
 
     private final ArrayList<Integer> friendsId = new ArrayList<>();
     private final ArrayList<Integer> blockesId = new ArrayList<>();
-    private final ArrayList<Integer> invitationId = new ArrayList<>();
     private final ArrayList<Notification> notifications = new ArrayList<>();
     private final ArrayList<String> pendingUsernames = new ArrayList<>();
     private final ArrayList<String> outputRequestsUsernames = new ArrayList<>();
@@ -24,9 +23,9 @@ public class UserLateralInformation implements Serializable {
         return blockesId;
     }
 
-    public ArrayList<Integer> getInvitationId(){
+    /*public ArrayList<Integer> getInvitationId(){
         return invitationId;
-    }
+    }*/
 
     public ArrayList<String> getPendingUsernames(){
         return pendingUsernames;
@@ -72,10 +71,6 @@ public class UserLateralInformation implements Serializable {
         blockesId.add(blockedId);
     }
 
-    public void addInvitation(int senderId){
-        invitationId.add(senderId);
-    }
-
     public void addPrivateChat(String targetUsername,int port){
         privateChats.put(targetUsername,port);
     }
@@ -98,10 +93,6 @@ public class UserLateralInformation implements Serializable {
 
     public void deleteNotifications(){
         notifications.clear();
-    }
-
-    public void deleteInvitation(int targetId){
-        invitationId.remove(((Integer) targetId));
     }
 
     public boolean checkIsBlock(Integer targetUserId){

@@ -5,11 +5,9 @@ import com.example.discordfx.Moduls.Dto.User.User;
 import com.example.discordfx.Server.Service.ClientService.AccountsService;
 import com.example.discordfx.Server.Service.ClientService.FriendShipServices;
 import com.example.discordfx.Server.Start.Server;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.ArrayList;
 
 public class FriendshipManagement {
 
@@ -39,8 +37,9 @@ public class FriendshipManagement {
                         outputStream.writeObject("You were one of his/her friend from before");
                     else {
                         outputStream.writeObject("OK");
-                        sendNotification(targetUser,new Notification(user.getUsername() + " send you a friendship request"));
+                        targetUser.addNotification(new Notification(user.getUsername() + " send you a friendship request"));
                         targetUser.addPending(user.getUsername());
+                        user.addOutputRequest(targetUsername);
                         //friendShipService.requestFriendship(targetUser, user.getId());
                         outputStream.writeObject("Request send successfully");
                     }
@@ -89,46 +88,40 @@ public class FriendshipManagement {
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
             ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
             String senderUsername = (String) inputStream.readObject();
+            AccountsService accountsService = new AccountsService();
+            User targetUser = accountsService.getParticularUser(senderUsername);
             String action = (String) inputStream.readObject();
             if(action.equals("Accept")){
                 outputStream.writeObject("You are friend from now");
-                user.removePending(senderUsername);
+                user.addFriend(targetUser.getId());
+                targetUser.addFriend(user.getId());
+                Notification notification = new Notification(user.getUsername() + " accepted your friendship request");
+                targetUser.addNotification(notification);
             }
             else{
                 outputStream.writeObject("Friendship request rejected");
-                user.removePending(senderUsername);
+                Notification notification = new Notification(user.getUsername() + " rejected your friendship request");
+                targetUser.addNotification(notification);
             }
+            user.removePending(senderUsername);
+            targetUser.removeOutputRequest(user.getUsername());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    void showFriends(User user){
+    void cancelRequest(User user,Socket socket){
         try {
-            ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
-            AccountsService service = new AccountsService();
-            for(Integer x : user.getInformation().getFriendsId())
-                outputStream.writeObject(service.getParticularUser(x));
-            outputStream.writeObject(null);
-        } catch (IOException e) {
+            ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
+            String targetUsername = (String) inputStream.readObject();
+            AccountsService accountsService = new AccountsService();
+            User targetUser = accountsService.getParticularUser(targetUsername);
+            targetUser.removePending(user.getUsername());
+            ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
+            outputStream.writeObject("Request canceled successfully");
+        } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    void showBlocks(User user){
-        try {
-            ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
-            AccountsService service = new AccountsService();
-            for(Integer x : user.getInformation().getBlockedId())
-                outputStream.writeObject(service.getParticularUser(x));
-            outputStream.writeObject(null);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void sendNotification(User user, Notification notification){
-        user.addNotification(notification);
     }
 
 }

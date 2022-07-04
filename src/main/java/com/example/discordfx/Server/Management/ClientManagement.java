@@ -71,6 +71,8 @@ public class ClientManagement implements Runnable{
                     friendshipManagement.invitationsHandle(user);
                 else if(choose == 7)
                     accountManagement.sendProfileImage(clientSocket);
+                else if(choose == 8)
+                    friendshipManagement.cancelRequest(user,clientSocket);
                 else if(choose == 20){
                     ObjectOutputStream outputStream = new ObjectOutputStream(out);
                     outputStream.writeObject(user);
@@ -78,7 +80,7 @@ public class ClientManagement implements Runnable{
                 else
                     break;
             } catch (IOException e) {
-                e.printStackTrace();
+                user.setStatus(Status.Offline);
                 break;
             }
         }
