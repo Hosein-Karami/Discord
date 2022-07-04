@@ -17,6 +17,7 @@ public class HelloApplication extends Application {
         Image icon = new Image("icon.png");
         stage.getIcons().add(icon);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 

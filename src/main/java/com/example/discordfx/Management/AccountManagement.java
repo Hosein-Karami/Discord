@@ -2,7 +2,6 @@ package com.example.discordfx.Management;
 
 import com.example.discordfx.Moduls.Dto.User.User;
 import javafx.scene.text.Text;
-
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -10,16 +9,9 @@ import java.net.Socket;
 public class AccountManagement {
 
     private final Socket socket;
-    private static AccountManagement accountManagement = null;
 
-    private AccountManagement(Socket socket){
+    public AccountManagement(Socket socket){
         this.socket = socket;
-    }
-
-    public static AccountManagement getInstance(Socket socket){
-        if(accountManagement == null)
-            accountManagement = new AccountManagement(socket);
-        return accountManagement;
     }
 
     public User logIn(String username, String password){
@@ -45,7 +37,9 @@ public class AccountManagement {
                 text.setText(statusOfUsername);
                 return;
             }
-            outputStream.writeObject(new User(0,username,password,email,phone));
+            User newUser = new User(0,username,password,email,phone);
+            outputStream.writeObject(newUser);
+            String status = (String) inputStream.readObject();
         } catch (Exception e) {
             text.setText(e.getMessage());
         }

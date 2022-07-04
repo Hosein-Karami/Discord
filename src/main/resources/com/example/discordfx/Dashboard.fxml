@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.discordfx.Dashboard">
    <children>
       <Button layoutX="381.0" layoutY="38.0" mnemonicParsing="false" onAction="#profile" prefHeight="24.0" prefWidth="137.0" text="Profile" textAlignment="CENTER">
@@ -25,6 +24,14 @@
          </cursor>
       </Button>
       <Button layoutX="381.0" layoutY="173.0" mnemonicParsing="false" onAction="#setStatus" prefHeight="24.0" prefWidth="137.0" text="Set status" textAlignment="CENTER">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="381.0" layoutY="243.0" mnemonicParsing="false" onAction="#relationship" prefHeight="24.0" prefWidth="137.0" text="Relationship" textAlignment="CENTER">
          <font>
             <Font size="16.0" />
          </font>

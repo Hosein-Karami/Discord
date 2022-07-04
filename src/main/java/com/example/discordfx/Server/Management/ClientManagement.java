@@ -1,6 +1,5 @@
 package com.example.discordfx.Server.Management;
 
-import com.example.discordfx.Log.ServerLog;
 import com.example.discordfx.Moduls.Dto.User.Status;
 import com.example.discordfx.Moduls.Dto.User.User;
 import java.io.*;
@@ -32,15 +31,16 @@ public class ClientManagement implements Runnable{
     public void run() {
         while (true) {
             try {
-                InputStream inputStream = clientSocket.getInputStream();
-                int request = inputStream.read();
+                int request = in.read();
                 if(request == 1) {
-                    accountManagement.signUp(clientSocket);
-                }
-                else if(request == 2) {
+                    System.out.println("a");
                     User user = accountManagement.logIn(clientSocket);
                     if(user != null)
                         start(user);
+                }
+                else if(request == 2) {
+                    System.out.println("b");
+                    accountManagement.signUp(clientSocket);
                 }
                 else
                     break;
@@ -61,6 +61,20 @@ public class ClientManagement implements Runnable{
                     downloadFile();
                 else if(choose == 3)
                     setStatus(user);
+                else if(choose == 4){
+                    ObjectOutputStream outputStream = new ObjectOutputStream(out);
+                    outputStream.writeObject(user);
+                }
+                else if(choose == 5)
+                    friendshipManagement.requestFriendShip(user);
+                else if(choose == 6)
+                    friendshipManagement.invitationsHandle(user);
+                else if(choose == 7)
+                    accountManagement.sendProfileImage(clientSocket);
+                else if(choose == 20){
+                    ObjectOutputStream outputStream = new ObjectOutputStream(out);
+                    outputStream.writeObject(user);
+                }
                 else
                     break;
             } catch (IOException e) {

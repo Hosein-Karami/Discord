@@ -15,6 +15,8 @@ public class UserLateralInformation implements Serializable {
     private final ArrayList<Integer> blockesId = new ArrayList<>();
     private final ArrayList<Integer> invitationId = new ArrayList<>();
     private final ArrayList<Notification> notifications = new ArrayList<>();
+    private final ArrayList<String> pendingUsernames = new ArrayList<>();
+    private final ArrayList<String> outputRequestsUsernames = new ArrayList<>();
     private final HashMap<String,Integer> privateChats = new HashMap<>();
     private Status status;
 
@@ -24,6 +26,10 @@ public class UserLateralInformation implements Serializable {
 
     public ArrayList<Integer> getInvitationId(){
         return invitationId;
+    }
+
+    public ArrayList<String> getPendingUsernames(){
+        return pendingUsernames;
     }
 
     public HashMap<String,Integer> getPrivateChats(){
@@ -38,6 +44,10 @@ public class UserLateralInformation implements Serializable {
         return notifications;
     }
 
+    public ArrayList<String> getOutputRequestsUsernames() {
+        return outputRequestsUsernames;
+    }
+
     public Status getStatus(){
         return status;
     }
@@ -48,6 +58,14 @@ public class UserLateralInformation implements Serializable {
 
     public void addFriend(int friendId){
         friendsId.add(friendId);
+    }
+
+    public void addPending(String newPending){
+        pendingUsernames.add(newPending);
+    }
+
+    public void addOutputRequestUsername(String newOutputRequest){
+        outputRequestsUsernames.add(newOutputRequest);
     }
 
     public void addBlock(Integer blockedId){
@@ -70,6 +88,14 @@ public class UserLateralInformation implements Serializable {
         friendsId.remove(((Integer) targetUserId));
     }
 
+    public void removePending(String targetPendingUsername){
+        pendingUsernames.remove(targetPendingUsername);
+    }
+
+    public void removeOutputRequest(String targetUsername){
+        outputRequestsUsernames.remove(targetUsername);
+    }
+
     public void deleteNotifications(){
         notifications.clear();
     }
@@ -81,6 +107,14 @@ public class UserLateralInformation implements Serializable {
     public boolean checkIsBlock(Integer targetUserId){
         for(Integer x : blockesId){
             if(x.equals(targetUserId))
+                return true;
+        }
+        return false;
+    }
+
+    public boolean checkIsPending(String targetUsername){
+        for(String x : pendingUsernames){
+            if(x.equals(targetUsername))
                 return true;
         }
         return false;

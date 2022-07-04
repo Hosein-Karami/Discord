@@ -25,6 +25,7 @@ public class Start {
     @FXML
     PasswordField password;
 
+    public static String Username;
     public static Socket socket;
     {
         try {
@@ -36,7 +37,7 @@ public class Start {
         }
     }
 
-    private final AccountManagement accountManagement = AccountManagement.getInstance(socket);
+    private final AccountManagement accountManagement = new AccountManagement(socket);
 
     public void login(ActionEvent event){
         if(username.getText().isEmpty() || password.getText().isEmpty())
@@ -44,13 +45,14 @@ public class Start {
         else{
             try {
                 OutputStream outputStream = socket.getOutputStream();
-                outputStream.write(2);
+                outputStream.write(1);
                 User user = accountManagement.logIn(username.getText(),password.getText());
                 if(user == null)
                     text.setText("Username or password is false");
                 else{
                     try {
                         Profile.user = user;
+                        Start.Username = username.getText();
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
                         Parent root = loader.load();
                         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -71,7 +73,7 @@ public class Start {
     public void signup(ActionEvent event){
         try {
             OutputStream outputStream = socket.getOutputStream();
-            outputStream.write(1);
+            outputStream.write(2);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Signup.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

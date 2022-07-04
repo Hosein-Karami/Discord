@@ -29,7 +29,6 @@ public class AccountsService {
             //Initialize file :
             ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(file));
             outputStream.writeObject(user.getInformation());
-            outputStream.close();
         } catch (Exception e) {
             throw new Exception();
         }

@@ -29,9 +29,8 @@ public class FriendShipServices {
         secondUser.updateInformation();
     }
 
-    public void removeRequest(User receiver,int senderId) throws Exception {
-        receiver.deleteFriendshipRequest(senderId);
-        receiver.updateInformation();
+    public void removeRequest(User receiver,User sender) {
+        receiver.removePending(sender.getUsername());
     }
 
     public String friendshipRequests(User user){

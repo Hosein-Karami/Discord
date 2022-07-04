@@ -8,7 +8,7 @@ import java.util.HashMap;
 public class User implements Serializable {
 
     private final int id;
-    private String username;
+    private final String username;
     private String password;
     private String email;
     private String phone;
@@ -83,6 +83,10 @@ public class User implements Serializable {
         return information.getNotifications();
     }
 
+    public ArrayList<String> getPendings(){
+        return information.getPendingUsernames();
+    }
+
     public String getJwtToken(){
         return jwtToken;
     }
@@ -111,6 +115,11 @@ public class User implements Serializable {
         updateInformation();
     }
 
+    public void addPending(String newPending){
+        information.addPending(newPending);
+        updateInformation();
+    }
+
     public void addInvitation(int senderId){
         information.addInvitation(senderId);
         updateInformation();
@@ -123,6 +132,10 @@ public class User implements Serializable {
 
     public boolean checkIsFriend(int targetUserId){
         return information.checkIsFriend(targetUserId);
+    }
+
+    public boolean checkIsPending(String targetUsername){
+        return information.checkIsPending(targetUsername);
     }
 
     public boolean checkIsBlock(Integer targetUserId){
@@ -142,6 +155,10 @@ public class User implements Serializable {
     public void deleteNotifications(){
         information.deleteNotifications();
         updateInformation();
+    }
+
+    public void removePending(String targetUsername){
+        information.removePending(targetUsername);
     }
 
     public void updateInformation() {

@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -25,6 +26,8 @@ public class Signup {
     TextField email;
     @FXML
     TextField phoneNumber;
+    @FXML
+    Button button;
 
     public void back(ActionEvent event){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Start.fxml"));
@@ -42,21 +45,8 @@ public class Signup {
     }
 
     public void signup(ActionEvent event){
-        String pass = password.getText();
-        if(username.getText().length() < 6)
-            text.setText("Username should has at least 6 character");
-        else if(pass.length() < 8)
-            text.setText("Invalid password.password should has at least 8 character.Try again");
-        else if ( ! Pattern.compile("[0-9]").matcher(pass).find())
-            text.setText("password should has number");
-        else if ( ! Pattern.compile("[a-z]").matcher(pass).find())
-            text.setText("password should has small alphabet");
-        else if ( ! Pattern.compile("[A-Z]").matcher(pass).find())
-            text.setText("password should has capital alphabet");
-        else if(!(Pattern.compile("^(.+)@(.+)$").matcher(email.getText()).find()))
-            text.setText("Invalid email");
-        else{
-            AccountManagement accountManagement = AccountManagement.getInstance(Start.socket);
+        if(checkInfo()){
+            AccountManagement accountManagement = new AccountManagement(Start.socket);
             accountManagement.signUp(text,username.getText(),password.getText(),email.getText(),phoneNumber.getText());
             if(!(text.getText().equals("This username signed up before"))){
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Start.fxml"));
@@ -74,4 +64,42 @@ public class Signup {
         }
     }
 
+    private boolean checkInfo(){
+        String pass = password.getText();
+        if(username.getText().length() < 6) {
+            text.setText("Username should has at least 6 character");
+            return false;
+        }
+        if(pass.length() < 8) {
+            text.setText("Password should has at least 8 character");
+            return false;
+        }
+        if ( ! Pattern.compile("[0-9]").matcher(pass).find()) {
+            text.setText("password should has number");
+            return false;
+        }
+        if ( ! Pattern.compile("[a-z]").matcher(pass).find()) {
+            text.setText("password should has small alphabet");
+            return false;
+        }
+        if ( ! Pattern.compile("[A-Z]").matcher(pass).find()) {
+            text.setText("password should has capital alphabet");
+            return false;
+        }
+        if(!(Pattern.compile("^(.+)@(.+)$").matcher(email.getText()).find())) {
+            text.setText("Invalid email");
+            return false;
+        }
+        if(Pattern.compile("[A-Z]").matcher(phoneNumber.getText()).find() || Pattern.compile("[a-z]").matcher(phoneNumber.getText()).find()) {
+            text.setText("Phone number has only numbers,not alphabets");
+            return false;
+        }
+        if(!(phoneNumber.getText().isBlank())) {
+            if (phoneNumber.getText().length() != 11) {
+                text.setText("Phone number length should be 11");
+                return false;
+            }
+        }
+        return true;
+    }
 }

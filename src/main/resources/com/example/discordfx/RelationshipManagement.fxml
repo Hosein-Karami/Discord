@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.discordfx.RelationshipManagement">
+  <tabs>
+    <Tab text="Send request">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="900.0">
+               <children>
+                  <TextField fx:id="requestUsername" alignment="CENTER" layoutX="274.0" layoutY="230.0" prefHeight="38.0" prefWidth="352.0" promptText="Target username">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                     <font>
+                        <Font size="16.0" />
+                     </font></TextField>
+                  <Button layoutX="400.0" layoutY="304.0" mnemonicParsing="false" onAction="#sendRequest" prefHeight="32.0" prefWidth="99.0" text="Send">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Text fx:id="requestText" layoutX="182.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="535.7366638183594">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+      <Tab onSelectionChanged="#initializeSenderIndex" text="Input requests">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="imageView" fitHeight="142.0" fitWidth="202.0" layoutX="349.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" />
+                  <Text fx:id="senderUsername" layoutX="272.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="354.13671875">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="previousButton" layoutX="242.0" layoutY="336.0" mnemonicParsing="false" onAction="#previousRequest" text="Back">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="nextButton" layoutX="600.0" layoutY="336.0" mnemonicParsing="false" onAction="#nextRequest" text="Next">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="acceptButton" layoutX="501.0" layoutY="336.0" mnemonicParsing="false" onAction="#acceptRequest" text="Accept" textFill="#179c29">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="rejectButton" layoutX="322.0" layoutY="336.0" mnemonicParsing="false" onAction="#rejectRequest" text="Reject" textFill="#ef0000">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Text fx:id="statusText" layoutX="273.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="354.13671875">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="Output requests">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="350.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imageView_2" fitHeight="142.0" fitWidth="202.0" layoutX="349.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true" />
+                  <Text fx:id="text_2" layoutX="276.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="347.53924560546875">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="button_2" layoutX="388.0" layoutY="345.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="123.0" text="Cancel request" textFill="#bf1414">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+  </tabs>
+</TabPane>

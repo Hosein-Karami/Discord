@@ -1,11 +1,14 @@
 package com.example.discordfx.Server.Management;
 
+import com.example.discordfx.Lateral.FileCopier;
 import com.example.discordfx.Log.ServerLog;
 import com.example.discordfx.Moduls.Dto.User.Status;
 import com.example.discordfx.Moduls.Dto.User.User;
+import com.example.discordfx.Server.Start.Main;
 import com.example.discordfx.Server.Start.Server;
 import java.io.*;
 import java.net.Socket;
+import java.nio.file.Files;
 
 public class AccountManagement {
 
@@ -18,15 +21,18 @@ public class AccountManagement {
             String username = (String) inputStream.readObject();
             User userWithParticularUsername = Server.accountsService.getParticularUser(username);
             if(userWithParticularUsername != null){
-                outputStream.writeObject("This username signed up before.");
+                outputStream.writeObject("This username signed up before");
                 return;
             }
-            outputStream.writeObject("Username is ok :)");
+            outputStream.writeObject("OK");
             User newUser = (User)inputStream.readObject();
             Server.accountsService.signUp(newUser);
-            //Make user directory for uploading files :
-            File file = new File("Files/UserDirectories/"+Server.accountsService.getParticularUser(username).getId());
-            file.mkdir();
+            File file = new File("Files/Pictures/"+Server.accountsService.getParticularUser(username).getId() + ".jpg");
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            File defaultProfile = new File("Files/Pictures/default.jpg");
+            FileCopier copier = new FileCopier(defaultProfile,fileOutputStream);
+            Main.executorService.execute(copier);
+            outputStream.writeObject("OK");
         } catch (Exception e) {
             log.openStreamError(clientSocket.getInetAddress());
             e.printStackTrace();
@@ -119,6 +125,21 @@ public class AccountManagement {
                     outputStream.writeObject("Verification failed");
             }
         }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendProfileImage(Socket socket){
+        try{
+            ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
+            ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
+            String targetUsername = (String) inputStream.readObject();
+            User  user = Server.accountsService.getParticularUser(targetUsername);
+            String imageAddress = "Files/Pictures/"+user.getId()+".jpg";
+            File profileImage = new File(imageAddress);
+            byte[] imageBytes = Files.readAllBytes(profileImage.toPath());
+            outputStream.writeObject(imageBytes);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
