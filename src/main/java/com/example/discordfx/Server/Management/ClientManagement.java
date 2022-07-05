@@ -73,6 +73,10 @@ public class ClientManagement implements Runnable{
                     accountManagement.sendProfileImage(clientSocket);
                 else if(choose == 8)
                     friendshipManagement.cancelRequest(user,clientSocket);
+                else if(choose == 9)
+                    friendshipManagement.block(user);
+                else if(choose == 10)
+                    friendshipManagement.unblock(user);
                 else if(choose == 20){
                     ObjectOutputStream outputStream = new ObjectOutputStream(out);
                     outputStream.writeObject(user);

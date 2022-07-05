@@ -1194,3 +1194,25 @@ an user added successfully with username=HamidReza.
 Client whose address : /127.0.0.1 successfully connect to server.
 2022-07-04 23:58 [Info] UserDao
 User with username=HamidReza log in successfully.
+2022-07-05 09:26 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-05 09:27 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-05 09:27 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-05 10:03 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-05 10:03 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-05 10:05 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-05 10:05 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-05 10:06 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-05 10:06 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-05 10:07 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-05 10:07 [Info] UserDao
+User with username=MohammadReza log in successfully.

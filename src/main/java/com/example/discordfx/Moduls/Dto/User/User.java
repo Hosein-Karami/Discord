@@ -145,6 +145,10 @@ public class User implements Serializable {
         return information.checkIsBlock(targetUserId);
     }
 
+    public void unblock(int targetUserId){
+        information.unblock(targetUserId);
+    }
+
     public void removeFriend(int targetUser){
         information.removeFriend(targetUser);
         updateInformation();

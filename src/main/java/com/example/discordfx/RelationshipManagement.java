@@ -64,7 +64,6 @@ public class RelationshipManagement implements Initializable {
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
             ObjectInputStream inputStream = new ObjectInputStream(in);
             outputStream.writeObject(requestUsername.getText());
-            requestUsername.setText("");
             String status = (String) inputStream.readObject();
             if (status.equals("OK")) {
                 status = (String) inputStream.readObject();
@@ -81,6 +80,7 @@ public class RelationshipManagement implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        requestUsername.setText("");
     }
 
     //Tab 2 :
@@ -319,6 +319,84 @@ public class RelationshipManagement implements Initializable {
         else if(status == Status.Idle)
             image = new Image("file:src/main/resources/Status/Idle.png");
         imageView.setImage(image);
+    }
+
+    //Tab 4 :
+
+    @FXML
+    Text text_3;
+    @FXML
+    TextField targetUsername;
+
+    public void block(){
+        if(targetUsername.getText().isEmpty()){
+            text_3.setText("Enter your target username");
+            return;
+        }
+        if(targetUsername.getText().equals(user.getUsername())){
+            text_3.setText("You can't block yourself :|");
+            return;
+        }
+        try {
+            out.write(9);
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
+            ObjectInputStream inputStream = new ObjectInputStream(in);
+            outputStream.writeObject(targetUsername.getText());
+            String status = (String) inputStream.readObject();
+            if(status.equals("OK")){
+                status = (String) inputStream.readObject();
+                if(status.equals("OK")){
+                    status = (String) inputStream.readObject();
+                    text_3.setText(status);
+                }
+                else
+                    text_3.setText("You blocked this user before");
+            }
+            else
+                text_3.setText("Invalid username");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        targetUsername.setText("");
+    }
+
+    //Tab 5 :
+
+    @FXML
+    TextField targetUsername_2;
+    @FXML
+    Text text_4;
+
+    public void unblock() {
+        if (targetUsername_2.getText().isEmpty()) {
+            text_4.setText("Enter target username");
+            return;
+        }
+        if (targetUsername_2.getText().equals(user.getUsername())) {
+            text_4.setText("You can't unblock yourself");
+            return;
+        }
+        try {
+            out.write(10);
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
+            ObjectInputStream inputStream = new ObjectInputStream(in);
+            outputStream.writeObject(targetUsername_2.getText());
+            String status = (String) inputStream.readObject();
+            if(status.equals("OK")){
+                status = (String) inputStream.readObject();
+                if(status.equals("OK")){
+                    status = (String) inputStream.readObject();
+                    text_4.setText(status);
+                }
+                else
+                    text_4.setText("You didn't block this user");
+            }
+            else
+                text_4.setText("Invalid username");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        targetUsername_2.setText("");
     }
 
 }

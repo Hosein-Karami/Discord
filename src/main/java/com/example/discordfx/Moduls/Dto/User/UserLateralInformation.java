@@ -79,6 +79,10 @@ public class UserLateralInformation implements Serializable {
         notifications.add(notification);
     }
 
+    public void unblock(int targetUserId){
+        blockesId.remove((Integer) targetUserId);
+    }
+
     public void removeFriend(int targetUserId){
         friendsId.remove(((Integer) targetUserId));
     }
