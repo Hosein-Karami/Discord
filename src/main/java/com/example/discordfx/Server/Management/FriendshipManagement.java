@@ -5,8 +5,6 @@ import com.example.discordfx.Moduls.Dto.User.User;
 import com.example.discordfx.Server.Service.ClientService.AccountsService;
 import com.example.discordfx.Server.Service.ClientService.FriendShipServices;
 import com.example.discordfx.Server.Start.Server;
-
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
