@@ -29,11 +29,11 @@ public class FriendshipManagement {
             else {
                 outputStream.writeObject("OK");
                 targetUser.loadInformation();
-                if (targetUser.checkIsBlock(user.getId()))
+                if (targetUser.checkIsBlock(user.getUsername()))
                     outputStream.writeObject("Target user blocked you");
                 else {
                     outputStream.writeObject("OK");
-                    if (targetUser.checkIsFriend(user.getId()))
+                    if (targetUser.checkIsFriend(user.getUsername()))
                         outputStream.writeObject("You were one of his/her friend from before");
                     else {
                         outputStream.writeObject("OK");
@@ -61,13 +61,13 @@ public class FriendshipManagement {
             else {
                 outputStream.writeObject("OK");
                 targetUser.loadInformation();
-                if (targetUser.checkIsFriend(user.getId()))
+                if (targetUser.checkIsFriend(user.getUsername()))
                     friendShipService.removeFriend(targetUser, user);
-                if (user.checkIsBlock(targetUser.getId()))
+                if (user.checkIsBlock(targetUser.getUsername()))
                     outputStream.writeObject("Blocked before");
                 else {
                     outputStream.writeObject("OK");
-                    user.addBlock(targetUser.getId());
+                    user.addBlock(targetUser.getUsername());
                     outputStream.writeObject("User blocked successfully");
                     }
                 }
@@ -85,9 +85,9 @@ public class FriendshipManagement {
             User targetUser = accountsService.getParticularUser(targetUsername);
             if(targetUser != null){
                 outputStream.writeObject("OK");
-                if(user.checkIsBlock(targetUser.getId())){
+                if(user.checkIsBlock(targetUser.getUsername())){
                     outputStream.writeObject("OK");
-                    user.unblock(targetUser.getId());
+                    user.unblock(targetUser.getUsername());
                     outputStream.writeObject("User unblocked successfully");
                 }
                 else
@@ -110,8 +110,8 @@ public class FriendshipManagement {
             String action = (String) inputStream.readObject();
             if(action.equals("Accept")){
                 outputStream.writeObject("You are friend from now");
-                user.addFriend(targetUser.getId());
-                targetUser.addFriend(user.getId());
+                user.addFriend(targetUser.getUsername());
+                targetUser.addFriend(user.getUsername());
                 Notification notification = new Notification(user.getUsername() + " accepted your friendship request");
                 targetUser.addNotification(notification);
             }

@@ -28,7 +28,7 @@ public class User implements Serializable {
     public void loadInformation(){
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("Files/UsersInfo/"+id+".bin"))){
             information = (UserLateralInformation) inputStream.readObject();
-            System.out.println(information.getBlockedId());
+            System.out.println(information.getBlockesUsername());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -108,13 +108,13 @@ public class User implements Serializable {
         updateInformation();
     }
 
-    public void addBlock(Integer targetUserId){
-        information.addBlock(targetUserId);
+    public void addBlock(String targetUsername){
+        information.addBlock(targetUsername);
         updateInformation();
     }
 
-    public void addFriend(int targetUserId){
-        information.addFriend(targetUserId);
+    public void addFriend(String targetUsername){
+        information.addFriend(targetUsername);
         updateInformation();
     }
 
@@ -133,24 +133,24 @@ public class User implements Serializable {
         updateInformation();
     }
 
-    public boolean checkIsFriend(int targetUserId){
-        return information.checkIsFriend(targetUserId);
+    public boolean checkIsFriend(String targetUsername){
+        return information.checkIsFriend(targetUsername);
     }
 
     public boolean checkIsPending(String targetUsername){
         return information.checkIsPending(targetUsername);
     }
 
-    public boolean checkIsBlock(Integer targetUserId){
-        return information.checkIsBlock(targetUserId);
+    public boolean checkIsBlock(String targetUsername){
+        return information.checkIsBlock(targetUsername);
     }
 
-    public void unblock(int targetUserId){
-        information.unblock(targetUserId);
+    public void unblock(String targetUsername){
+        information.unblock(targetUsername);
     }
 
-    public void removeFriend(int targetUser){
-        information.removeFriend(targetUser);
+    public void removeFriend(String targetUsername){
+        information.removeFriend(targetUsername);
         updateInformation();
     }
 

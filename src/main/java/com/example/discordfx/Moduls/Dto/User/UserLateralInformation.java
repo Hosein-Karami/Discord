@@ -11,21 +11,17 @@ public class UserLateralInformation implements Serializable {
     @Serial
     private static final long serialVersionUID = 254231684205732173L;
 
-    private final ArrayList<Integer> friendsId = new ArrayList<>();
-    private final ArrayList<Integer> blockesId = new ArrayList<>();
-    private final ArrayList<Notification> notifications = new ArrayList<>();
+    private final ArrayList<String> friendsUsername = new ArrayList<>();
+    private final ArrayList<String> blockesUsername = new ArrayList<>();
     private final ArrayList<String> pendingUsernames = new ArrayList<>();
     private final ArrayList<String> outputRequestsUsernames = new ArrayList<>();
+    private final ArrayList<Notification> notifications = new ArrayList<>();
     private final HashMap<String,Integer> privateChats = new HashMap<>();
     private Status status;
 
-    public ArrayList<Integer> getBlockedId(){
-        return blockesId;
+    public ArrayList<String> getBlockesUsername(){
+        return blockesUsername;
     }
-
-    /*public ArrayList<Integer> getInvitationId(){
-        return invitationId;
-    }*/
 
     public ArrayList<String> getPendingUsernames(){
         return pendingUsernames;
@@ -35,8 +31,8 @@ public class UserLateralInformation implements Serializable {
         return privateChats;
     }
 
-    public ArrayList<Integer> getFriendsId(){
-        return friendsId;
+    public ArrayList<String> getFriendsUsernames(){
+        return friendsUsername;
     }
 
     public ArrayList<Notification> getNotifications(){
@@ -55,8 +51,8 @@ public class UserLateralInformation implements Serializable {
         this.status = status;
     }
 
-    public void addFriend(int friendId){
-        friendsId.add(friendId);
+    public void addFriend(String friendUsername){
+        friendsUsername.add(friendUsername);
     }
 
     public void addPending(String newPending){
@@ -67,8 +63,8 @@ public class UserLateralInformation implements Serializable {
         outputRequestsUsernames.add(newOutputRequest);
     }
 
-    public void addBlock(Integer blockedId){
-        blockesId.add(blockedId);
+    public void addBlock(String blockedUsername){
+        blockesUsername.add(blockedUsername);
     }
 
     public void addPrivateChat(String targetUsername,int port){
@@ -79,12 +75,12 @@ public class UserLateralInformation implements Serializable {
         notifications.add(notification);
     }
 
-    public void unblock(int targetUserId){
-        blockesId.remove((Integer) targetUserId);
+    public void unblock(String targetUsername){
+        blockesUsername.remove(targetUsername);
     }
 
-    public void removeFriend(int targetUserId){
-        friendsId.remove(((Integer) targetUserId));
+    public void removeFriend(String targetUsername){
+        friendsUsername.remove(targetUsername);
     }
 
     public void removePending(String targetPendingUsername){
@@ -99,9 +95,9 @@ public class UserLateralInformation implements Serializable {
         notifications.clear();
     }
 
-    public boolean checkIsBlock(Integer targetUserId){
-        for(Integer x : blockesId){
-            if(x.equals(targetUserId))
+    public boolean checkIsBlock(String targetUsername){
+        for(String x : blockesUsername){
+            if(x.equals(targetUsername))
                 return true;
         }
         return false;
@@ -115,9 +111,9 @@ public class UserLateralInformation implements Serializable {
         return false;
     }
 
-    public boolean checkIsFriend(int targetUserId){
-        for(Integer x : friendsId){
-            if(x == targetUserId)
+    public boolean checkIsFriend(String targetUsername){
+        for(String x : friendsUsername){
+            if(x.equals(targetUsername))
                 return true;
         }
         return false;
