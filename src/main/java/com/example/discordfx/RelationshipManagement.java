@@ -92,17 +92,17 @@ public class RelationshipManagement implements Initializable {
     //Tab 2 :
 
     @FXML
-    ImageView imageView;
+    ImageView profileImage_1;
     @FXML
-    ImageView status;
+    ImageView status_1;
     @FXML
-    Text text_1;
+    Text username_1;
     @FXML
-    Text statusText;
+    Text statusText_1;
     @FXML
-    Button acceptButton;
+    Button acceptButton_1;
     @FXML
-    Button rejectButton;
+    Button rejectButton_1;
     @FXML
     Button nextButton_1;
     @FXML
@@ -125,9 +125,9 @@ public class RelationshipManagement implements Initializable {
 
     public void nextRequest(){
         if(senderIndex != (requestsSenders.size() - 1)) {
-            statusText.setText("");
-            imageView.setImage(null);
-            status.setImage(null);
+            statusText_1.setText("");
+            profileImage_1.setImage(null);
+            status_1.setImage(null);
             senderIndex++;
             initialize();
         }
@@ -135,9 +135,9 @@ public class RelationshipManagement implements Initializable {
 
     public void previousRequest(){
         if(senderIndex != 0) {
-            statusText.setText("");
-            imageView.setImage(null);
-            status.setImage(null);
+            statusText_1.setText("");
+            profileImage_1.setImage(null);
+            status_1.setImage(null);
             senderIndex--;
             initialize();
         }
@@ -146,32 +146,17 @@ public class RelationshipManagement implements Initializable {
     public void loadInputRequests(){
         try {
             if(requestsSenders.size() == 0){
-                statusText.setText("You don't have any input request");
-                acceptButton.setVisible(false);
-                rejectButton.setVisible(false);
+                statusText_1.setText("You don't have any input request");
+                acceptButton_1.setVisible(false);
+                rejectButton_1.setVisible(false);
                 nextButton_1.setVisible(false);
                 status_2.setImage(null);
-                imageView.setImage(null);
-                text_1.setVisible(false);
+                profileImage_1.setImage(null);
+                username_1.setVisible(false);
                 previousButton_1.setVisible(false);
-                return;
             }
-            out.write(7);
-            ObjectOutputStream outputStream = new ObjectOutputStream(out);
-            ObjectInputStream inputStream = new ObjectInputStream(in);
-            outputStream.writeObject(requestsSenders.get(senderIndex));
-            byte[] senderProfile = (byte[]) inputStream.readObject();
-            Status userStatus = (Status) inputStream.readObject();
-            File file = new File("ClientFiles/temp.jpg");
-            FileOutputStream fileOutputStream = new FileOutputStream(file);
-            fileOutputStream.write(senderProfile);
-            fileOutputStream.flush();
-            fileOutputStream.close();
-            setProperStatusImage(userStatus,status);
-            Image firstSenderProfileImage = new Image("file:ClientFiles/temp.jpg");
-            imageView.setImage(firstSenderProfileImage);
-            text_1.setText(requestsSenders.get(senderIndex));
-            file.delete();
+            else
+                loadInformation(requestsSenders,senderIndex,profileImage_1,status_1,username_1);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -184,10 +169,10 @@ public class RelationshipManagement implements Initializable {
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
             outputStream.writeObject(requestsSenders.get(senderIndex));
             outputStream.writeObject("Accept");
-            statusText.setText((String) inputStream.readObject());
+            statusText_1.setText((String) inputStream.readObject());
             requestsSenders.remove(senderIndex);
-            imageView.setImage(null);
-            status.setImage(null);
+            profileImage_1.setImage(null);
+            status_1.setImage(null);
             initialize();
         } catch (Exception e) {
             e.printStackTrace();
@@ -201,10 +186,10 @@ public class RelationshipManagement implements Initializable {
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
             outputStream.writeObject(requestsSenders.get(senderIndex));
             outputStream.writeObject("Reject");
-            statusText.setText((String) inputStream.readObject());
+            statusText_1.setText((String) inputStream.readObject());
             requestsSenders.remove(senderIndex);
-            imageView.setImage(null);
-            status.setImage(null);
+            profileImage_1.setImage(null);
+            status_1.setImage(null);
             initialize();
         } catch (Exception e) {
             e.printStackTrace();
@@ -214,11 +199,11 @@ public class RelationshipManagement implements Initializable {
     //Tab 3 :
 
     @FXML
-    ImageView imageView_2;
+    ImageView profileImage_2;
     @FXML
     ImageView status_2;
     @FXML
-    Text text_2;
+    Text username_2;
     @FXML
     Text statusText_2;
     @FXML
@@ -247,28 +232,13 @@ public class RelationshipManagement implements Initializable {
         try {
             if(outputRequests.size() == 0){
                 statusText_2.setText("You don't have any output request");
-                imageView_2.setVisible(false);
+                profileImage_2.setVisible(false);
                 cancelButton.setVisible(false);
                 nextButton_2.setVisible(false);
                 previousButton_2.setVisible(false);
-                return;
             }
-            out.write(7);
-            ObjectOutputStream outputStream = new ObjectOutputStream(out);
-            ObjectInputStream inputStream = new ObjectInputStream(in);
-            outputStream.writeObject(outputRequests.get(senderIndex));
-            byte[] recieverProfileBytes = (byte[]) inputStream.readObject();
-            Status userStatus = (Status) inputStream.readObject();
-            File file = new File("ClientFiles/temp.jpg");
-            FileOutputStream fileOutputStream = new FileOutputStream(file);
-            fileOutputStream.write(recieverProfileBytes);
-            fileOutputStream.flush();
-            fileOutputStream.close();
-            Image recieverProfileImage = new Image("file:ClientFiles/temp.jpg");
-            imageView_2.setImage(recieverProfileImage);
-            setProperStatusImage(userStatus,status_2);
-            text_2.setText(outputRequests.get(requestIndex));
-            file.delete();
+            else
+                loadInformation(outputRequests,requestIndex,profileImage_2,status_2,username_2);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -276,8 +246,8 @@ public class RelationshipManagement implements Initializable {
 
     public void next(){
         if(requestIndex != (outputRequests.size() - 1)) {
-            text_2.setText("");
-            imageView_2.setImage(null);
+            username_2.setText("");
+            profileImage_2.setImage(null);
             status_2.setImage(null);
             requestIndex++;
             initialize_2();
@@ -286,8 +256,8 @@ public class RelationshipManagement implements Initializable {
 
     public void previous(){
         if(requestIndex != 0) {
-            text_2.setText("");
-            imageView_2.setImage(null);
+            username_2.setText("");
+            profileImage_2.setImage(null);
             status_2.setImage(null);
             requestIndex--;
             initialize_2();
@@ -301,9 +271,9 @@ public class RelationshipManagement implements Initializable {
             ObjectInputStream inputStream = new ObjectInputStream(in);
             outputStream.writeObject(outputRequests.get(requestIndex));
             statusText_2.setText((String) inputStream.readObject());
-            imageView_2.setImage(null);
+            profileImage_2.setImage(null);
             status_2.setImage(null);
-            text_2.setText("");
+            username_2.setText("");
             initialize_2();
         } catch (Exception e) {
             e.printStackTrace();
@@ -347,6 +317,29 @@ public class RelationshipManagement implements Initializable {
             e.printStackTrace();
         }
         targetUsername.setText("");
+    }
+
+    private void loadInformation(ArrayList<String> usernames,int index,ImageView profileImage,ImageView status,Text username){
+        try {
+            out.write(7);
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
+            ObjectInputStream inputStream = new ObjectInputStream(in);
+            outputStream.writeObject(usernames.get(index));
+            byte[] senderProfile = (byte[]) inputStream.readObject();
+            Status userStatus = (Status) inputStream.readObject();
+            File file = new File("ClientFiles/temp.jpg");
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            fileOutputStream.write(senderProfile);
+            fileOutputStream.flush();
+            fileOutputStream.close();
+            setProperStatusImage(userStatus, status);
+            Image friendProfile = new Image("file:ClientFiles/temp.jpg");
+            profileImage.setImage(friendProfile);
+            username.setText(usernames.get(index));
+            file.delete();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void setProperStatusImage(Status status,ImageView imageView){
