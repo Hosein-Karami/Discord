@@ -39,5 +39,21 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Button layoutX="381.0" layoutY="305.0" mnemonicParsing="false" onAction="#friendshipManagement" prefHeight="24.0" prefWidth="137.0" text="Friendship" textAlignment="CENTER">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="381.0" layoutY="372.0" mnemonicParsing="false" onAction="#logOut" prefHeight="24.0" prefWidth="137.0" text="Log out" textAlignment="CENTER">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

@@ -87,6 +87,14 @@ public class User implements Serializable {
         return information.getPendingUsernames();
     }
 
+    public ArrayList<String> getFriends() {
+        return information.getFriendsUsernames();
+    }
+
+    public ArrayList<String> getBlockedUsernames(){
+        return information.getBlockesUsername();
+    }
+
     public ArrayList<String> getOutputRequests(){
         return information.getOutputRequestsUsernames();
     }

@@ -7,21 +7,21 @@ import com.example.discordfx.Moduls.Entity.UserEntity;
 public class FriendShipServices {
 
     public void addFriends(User firstUser, User secondUser){
-        firstUser.addFriend(secondUser.getId());
-        secondUser.addFriend(firstUser.getId());
+        firstUser.addFriend(secondUser.getUsername());
+        secondUser.addFriend(firstUser.getUsername());
         try {
             firstUser.updateInformation();
             secondUser.updateInformation();
             FriendshipLog log = new FriendshipLog();
-            log.addFriendSuccessfully(firstUser.getId(), secondUser.getId());
+            log.addFriendSuccessfully(firstUser.getUsername(), secondUser.getUsername());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public void removeFriend(User firstUser,User secondUser) throws Exception {
-        firstUser.removeFriend(secondUser.getId());
-        secondUser.removeFriend(firstUser.getId());
+        firstUser.removeFriend(secondUser.getUsername());
+        secondUser.removeFriend(firstUser.getUsername());
         firstUser.updateInformation();
         secondUser.updateInformation();
     }
@@ -30,14 +30,14 @@ public class FriendShipServices {
         receiver.removePending(sender.getUsername());
     }
 
-    public void blockUser(User blocker,Integer targetUserId) throws Exception {
-        blocker.addBlock(targetUserId);
+    public void blockUser(User blocker,String targetUsername) throws Exception {
+        blocker.addBlock(targetUsername);
         FriendshipLog log = new FriendshipLog();
         try {
             blocker.updateInformation();
-            log.blockSuccessfully(blocker.getId(),targetUserId);
+            log.blockSuccessfully(blocker.getUsername(),targetUsername);
         } catch (Exception e) {
-            log.blockError(blocker.getId(),targetUserId);
+            log.blockError(blocker.getUsername(),targetUsername);
             throw new Exception();
         }
     }

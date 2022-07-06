@@ -1,12 +1,16 @@
 package com.example.discordfx.Server.Management;
 
 import com.example.discordfx.Lateral.Notification;
+import com.example.discordfx.Moduls.Dto.User.Status;
 import com.example.discordfx.Moduls.Dto.User.User;
 import com.example.discordfx.Server.Service.ClientService.AccountsService;
 import com.example.discordfx.Server.Service.ClientService.FriendShipServices;
 import com.example.discordfx.Server.Start.Server;
+
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.net.Socket;
 
 public class FriendshipManagement {
@@ -50,56 +54,6 @@ public class FriendshipManagement {
         }
     }
 
-    void block(User user){
-        try {
-            ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
-            ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
-            String targetUsername = (String) inputStream.readObject();
-            User targetUser = Server.accountsService.getParticularUser(targetUsername);
-            if(targetUser == null)
-                outputStream.writeObject("Error");
-            else {
-                outputStream.writeObject("OK");
-                targetUser.loadInformation();
-                if (targetUser.checkIsFriend(user.getUsername()))
-                    friendShipService.removeFriend(targetUser, user);
-                if (user.checkIsBlock(targetUser.getUsername()))
-                    outputStream.writeObject("Blocked before");
-                else {
-                    outputStream.writeObject("OK");
-                    user.addBlock(targetUser.getUsername());
-                    outputStream.writeObject("User blocked successfully");
-                    }
-                }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void unblock(User user){
-        try {
-            AccountsService accountsService = new AccountsService();
-            ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
-            ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
-            String targetUsername = (String) inputStream.readObject();
-            User targetUser = accountsService.getParticularUser(targetUsername);
-            if(targetUser != null){
-                outputStream.writeObject("OK");
-                if(user.checkIsBlock(targetUser.getUsername())){
-                    outputStream.writeObject("OK");
-                    user.unblock(targetUser.getUsername());
-                    outputStream.writeObject("User unblocked successfully");
-                }
-                else
-                    outputStream.writeObject("Invalid request");
-            }
-            else
-                outputStream.writeObject("Invalid username");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     void invitationsHandle(User user) {
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
@@ -127,16 +81,87 @@ public class FriendshipManagement {
         }
     }
 
-    void cancelRequest(User user,Socket socket){
+    void cancelRequest(User user){
         try {
-            ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
-            ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
+            ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
+            ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
             String targetUsername = (String) inputStream.readObject();
             AccountsService accountsService = new AccountsService();
             User targetUser = accountsService.getParticularUser(targetUsername);
             targetUser.removePending(user.getUsername());
             user.removeOutputRequest(targetUsername);
             outputStream.writeObject("Request canceled successfully");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    void removeFriend(User user){
+        try {
+            ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
+            ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
+            AccountsService accountsService = new AccountsService();
+            String targetUsername = (String) inputStream.readObject();
+            User targetUser = accountsService.getParticularUser(targetUsername);
+            targetUser.removeFriend(user.getUsername());
+            user.removeFriend(targetUsername);
+            outputStream.writeObject("Friend removed successfully");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    void sendOnlineFriends(User user){
+        try {
+            ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
+            AccountsService accountsService = new AccountsService();
+            User friend;
+            for(String x : user.getFriends()){
+                friend = accountsService.getParticularUser(x);
+                if(friend.getStatus() == Status.Online)
+                    outputStream.writeObject(x);
+            }
+            outputStream.writeObject(null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    void block(User user){
+        try {
+            ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
+            ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
+            String targetUsername = (String) inputStream.readObject();
+            User targetUser = Server.accountsService.getParticularUser(targetUsername);
+            if(targetUser == null)
+                outputStream.writeObject("Error");
+            else {
+                outputStream.writeObject("OK");
+                targetUser.loadInformation();
+                if (targetUser.checkIsFriend(user.getUsername()))
+                    friendShipService.removeFriend(targetUser, user);
+                if (user.checkIsBlock(targetUser.getUsername()))
+                    outputStream.writeObject("Blocked before");
+                else {
+                    outputStream.writeObject("OK");
+                    user.addBlock(targetUser.getUsername());
+                    outputStream.writeObject("User blocked successfully");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void unblock(User user){
+        try {
+            AccountsService accountsService = new AccountsService();
+            ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
+            ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
+            String targetUsername = (String) inputStream.readObject();
+            User targetUser = accountsService.getParticularUser(targetUsername);
+            user.unblock(targetUser.getUsername());
+            outputStream.writeObject("User unblocked successfully");
         } catch (Exception e) {
             e.printStackTrace();
         }

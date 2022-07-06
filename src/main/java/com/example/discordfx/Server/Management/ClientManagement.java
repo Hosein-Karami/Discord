@@ -33,15 +33,12 @@ public class ClientManagement implements Runnable{
             try {
                 int request = in.read();
                 if(request == 1) {
-                    System.out.println("a");
                     User user = accountManagement.logIn(clientSocket);
                     if(user != null)
                         start(user);
                 }
-                else if(request == 2) {
-                    System.out.println("b");
+                else if(request == 2)
                     accountManagement.signUp(clientSocket);
-                }
                 else
                     break;
             } catch (Exception e) {
@@ -72,17 +69,23 @@ public class ClientManagement implements Runnable{
                 else if(choose == 7)
                     accountManagement.sendProfileImage(clientSocket);
                 else if(choose == 8)
-                    friendshipManagement.cancelRequest(user,clientSocket);
+                    friendshipManagement.cancelRequest(user);
                 else if(choose == 9)
                     friendshipManagement.block(user);
                 else if(choose == 10)
                     friendshipManagement.unblock(user);
+                else if(choose == 11)
+                    friendshipManagement.removeFriend(user);
+                else if(choose == 12)
+                    friendshipManagement.sendOnlineFriends(user);
                 else if(choose == 20){
                     ObjectOutputStream outputStream = new ObjectOutputStream(out);
                     outputStream.writeObject(user);
                 }
-                else
+                else {
+                    user.setStatus(Status.Offline);
                     break;
+                }
             } catch (IOException e) {
                 user.setStatus(Status.Offline);
                 break;

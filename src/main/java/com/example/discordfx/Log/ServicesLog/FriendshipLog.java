@@ -8,44 +8,44 @@ public class FriendshipLog {
 
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");//format of Localdate variable.
 
-    public void friendRequestSuccessfully(int senderId,int receiverId){
+    public void friendRequestSuccessfully(String senderUsername,String receiverUsername){
         try (FileWriter fileWriter = new FileWriter("Log.txt",true)){
-            fileWriter.write(LocalDateTime.now().format(formatter) + " [Info] FriendShipServices\nUser with id="+senderId+ " send friendship request to user with id="+receiverId+" successfully.\n");
+            fileWriter.write(LocalDateTime.now().format(formatter) + " [Info] FriendShipServices\n"+senderUsername+ " send friendship request to "+receiverUsername+" successfully.\n");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void friendRequestError(int senderId,int receiverId){
+    public void friendRequestError(String senderUsername,String receiverUsername){
         try (FileWriter fileWriter = new FileWriter("Log.txt",true)){
-            fileWriter.write(LocalDateTime.now().format(formatter) + " [Error] FriendShipServices\nError happening when user with id="+senderId+ " want to send friendship request to user with id="+receiverId+".\n");
+            fileWriter.write(LocalDateTime.now().format(formatter) + " [Error] FriendShipServices\nError happening when "+senderUsername+ " want to send friendship request to "+receiverUsername+".\n");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void blockSuccessfully(Integer blockingUserId,Integer blockedUserId){
+    public void blockSuccessfully(String blockingUsername,String blockedUsername){
         try (FileWriter fileWriter = new FileWriter("Log.txt",true)){
-            fileWriter.write(LocalDateTime.now().format(formatter) + " [Info] FriendShipServices\nUser with id="+blockingUserId+
-                    " blocked user with id="+blockedUserId+".\n");
+            fileWriter.write(LocalDateTime.now().format(formatter) + " [Info] FriendShipServices\n"+blockingUsername+
+                    " blocked "+blockedUsername+".\n");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void blockError(Integer blockingUserId,Integer blockedUserId){
+    public void blockError(String blockingUsername,String blockedUsername){
         try (FileWriter fileWriter = new FileWriter("Log.txt",true)){
-            fileWriter.write(LocalDateTime.now().format(formatter) + " [Error] FriendShipServices\nError happening when user with id="+blockingUserId+
-                    " want to block user with id="+blockedUserId+".\n");
+            fileWriter.write(LocalDateTime.now().format(formatter) + " [Error] FriendShipServices\nError happening when ="+blockingUsername+
+                    " want to block "+blockedUsername+".\n");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void addFriendSuccessfully(int firstUserId,int secondUserId){
+    public void addFriendSuccessfully(String firstUsername,String secondUsername){
         try (FileWriter fileWriter = new FileWriter("Log.txt",true)){
-            fileWriter.write(LocalDateTime.now().format(formatter) + " [Info] FriendShipServices\nUser with id="+firstUserId+
-                    " connect friendship with user with id="+secondUserId+".\n");
+            fileWriter.write(LocalDateTime.now().format(formatter) + " [Info] FriendShipServices\n"+firstUsername+
+                    " connect friendship with "+secondUsername+".\n");
         } catch (Exception e) {
             e.printStackTrace();
         }

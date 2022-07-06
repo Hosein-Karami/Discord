@@ -116,7 +116,7 @@ public class RelationshipManagement implements Initializable {
             out.write(20);
             ObjectInputStream inputStream = new ObjectInputStream(in);
             user = (User) inputStream.readObject();
-            senderIndex = 0;
+            requestsSenders = user.getPendings();
             loadInputRequests();
         }catch (Exception e){
             e.printStackTrace();
@@ -129,7 +129,7 @@ public class RelationshipManagement implements Initializable {
             imageView.setImage(null);
             status.setImage(null);
             senderIndex++;
-            loadInputRequests();
+            initialize();
         }
     }
 
@@ -139,13 +139,12 @@ public class RelationshipManagement implements Initializable {
             imageView.setImage(null);
             status.setImage(null);
             senderIndex--;
-            loadInputRequests();
+            initialize();
         }
     }
 
     public void loadInputRequests(){
         try {
-            requestsSenders = user.getPendings();
             if(requestsSenders.size() == 0){
                 statusText.setText("You don't have any input request");
                 acceptButton.setVisible(false);
@@ -238,7 +237,6 @@ public class RelationshipManagement implements Initializable {
             ObjectInputStream inputStream = new ObjectInputStream(in);
             user = (User) inputStream.readObject();
             outputRequests = user.getOutputRequests();
-            requestIndex = 0;
             loadOutputRequests();
         } catch (Exception e) {
             e.printStackTrace();
@@ -282,7 +280,7 @@ public class RelationshipManagement implements Initializable {
             imageView_2.setImage(null);
             status_2.setImage(null);
             requestIndex++;
-            loadOutputRequests();
+            initialize_2();
         }
     }
 
@@ -292,7 +290,7 @@ public class RelationshipManagement implements Initializable {
             imageView_2.setImage(null);
             status_2.setImage(null);
             requestIndex--;
-            loadOutputRequests();
+            initialize_2();
         }
     }
 
@@ -310,21 +308,6 @@ public class RelationshipManagement implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private void setProperStatusImage(Status status,ImageView imageView){
-        Image image = null;
-        if(status == Status.Online)
-            image = new Image("file:src/main/resources/Status/Online.png");
-        else if(status == Status.Offline)
-            image = new Image("file:src/main/resources/Status/Offline.png");
-        else if(status == Status.Do_Not_Disturb)
-            image = new Image("file:src/main/resources/Status/Do_Not_Disturb.png");
-        else if(status == Status.Invisible)
-            image = new Image("file:src/main/resources/Status/Invisible.png");
-        else if(status == Status.Idle)
-            image = new Image("file:src/main/resources/Status/Idle.png");
-        imageView.setImage(image);
     }
 
     //Tab 4 :
@@ -366,43 +349,19 @@ public class RelationshipManagement implements Initializable {
         targetUsername.setText("");
     }
 
-    //Tab 5 :
-
-    @FXML
-    TextField targetUsername_2;
-    @FXML
-    Text text_4;
-
-    public void unblock() {
-        if (targetUsername_2.getText().isEmpty()) {
-            text_4.setText("Enter target username");
-            return;
-        }
-        if (targetUsername_2.getText().equals(user.getUsername())) {
-            text_4.setText("You can't unblock yourself");
-            return;
-        }
-        try {
-            out.write(10);
-            ObjectOutputStream outputStream = new ObjectOutputStream(out);
-            ObjectInputStream inputStream = new ObjectInputStream(in);
-            outputStream.writeObject(targetUsername_2.getText());
-            String status = (String) inputStream.readObject();
-            if(status.equals("OK")){
-                status = (String) inputStream.readObject();
-                if(status.equals("OK")){
-                    status = (String) inputStream.readObject();
-                    text_4.setText(status);
-                }
-                else
-                    text_4.setText("You didn't block this user");
-            }
-            else
-                text_4.setText("Invalid username");
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        targetUsername_2.setText("");
+    private void setProperStatusImage(Status status,ImageView imageView){
+        Image image = null;
+        if(status == Status.Online)
+            image = new Image("file:src/main/resources/Status/Online.png");
+        else if(status == Status.Offline)
+            image = new Image("file:src/main/resources/Status/Offline.png");
+        else if(status == Status.Do_Not_Disturb)
+            image = new Image("file:src/main/resources/Status/Do_Not_Disturb.png");
+        else if(status == Status.Invisible)
+            image = new Image("file:src/main/resources/Status/Invisible.png");
+        else if(status == Status.Idle)
+            image = new Image("file:src/main/resources/Status/Idle.png");
+        imageView.setImage(image);
     }
 
     public void backToMenu(ActionEvent event){

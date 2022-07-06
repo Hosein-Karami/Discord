@@ -44,7 +44,7 @@
       </Button>
       <Text fx:id="text" layoutX="231.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="438.13671875">
          <font>
-            <Font size="30.0" />
+            <Font size="23.0" />
          </font>
       </Text>
       <Button layoutX="360.0" layoutY="505.0" mnemonicParsing="false" onAction="#exit" prefHeight="38.0" prefWidth="180.0" text="Exit">

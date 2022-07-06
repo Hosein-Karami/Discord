@@ -45,7 +45,7 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <ImageView fx:id="imageView" fitHeight="142.0" fitWidth="202.0" layoutX="349.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true" />
-                  <Text fx:id="text_1" layoutX="272.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="354.13671875">
+                  <Text fx:id="text_1" layoutX="294.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="354.13671875">
                      <font>
                         <Font size="21.0" />
                      </font>
@@ -170,37 +170,6 @@
                   <Text fx:id="text_3" layoutX="173.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="553.9393310546875">
                      <font>
                         <Font size="21.0" />
-                     </font>
-                  </Text>
-                  <Button layoutX="822.0" layoutY="630.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="26.0" prefWidth="64.0" text="Back">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-               </children>
-            </AnchorPane>
-        </content>
-      </Tab>
-      <Tab text="Unblock">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <TextField fx:id="targetUsername_2" alignment="CENTER" layoutX="260.0" layoutY="248.0" prefHeight="31.0" prefWidth="379.0" promptText="Target username">
-                     <cursor>
-                        <Cursor fx:constant="TEXT" />
-                     </cursor>
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </TextField>
-                  <Button layoutX="410.0" layoutY="320.0" mnemonicParsing="false" onAction="#unblock" prefHeight="31.0" prefWidth="79.0" text="Block">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Text fx:id="text_4" layoutX="182.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="535.7366638183594">
-                     <font>
-                        <Font size="20.0" />
                      </font>
                   </Text>
                   <Button layoutX="822.0" layoutY="630.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="26.0" prefWidth="64.0" text="Back">

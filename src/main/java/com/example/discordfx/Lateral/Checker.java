@@ -6,7 +6,6 @@ import com.example.discordfx.Lateral.Exceptions.PasswordExceptions.FourthPasswor
 import com.example.discordfx.Lateral.Exceptions.PasswordExceptions.SecondPasswordException;
 import com.example.discordfx.Lateral.Exceptions.PasswordExceptions.ThirdPasswordException;
 import com.example.discordfx.Lateral.Exceptions.PhoneException;
-
 import java.util.regex.Pattern;
 
 public class Checker {
