@@ -2,7 +2,6 @@ package com.example.discordfx;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.AccessibleAttribute;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -93,6 +92,34 @@ public class Dashboard {
             stage.setResizable(false);
             stage.show();
         }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void notification(ActionEvent event){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ShowNotifications.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void makePrivateChat(ActionEvent event){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("MakePrivateChat.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

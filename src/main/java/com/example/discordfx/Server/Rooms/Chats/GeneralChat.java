@@ -1,7 +1,6 @@
 package com.example.discordfx.Server.Rooms.Chats;
 
 import com.example.discordfx.Moduls.Dto.Messages.Message;
-import com.example.discordfx.Moduls.Dto.User.User;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -10,21 +9,19 @@ import java.util.ArrayList;
 public abstract class GeneralChat {
 
     protected ArrayList<Socket> joinSockets = new ArrayList<>();
-    protected ArrayList<User> users = new ArrayList<>();
+    protected ArrayList<String> memberUsernames = new ArrayList<>();
     private final ArrayList<Message> messages = new ArrayList<>();
 
     public abstract void join(Socket joinedSocket);
 
-    synchronized public <T> void sendMessage(T t,Socket sender){
+    synchronized public <T> void sendMessage(T t){
         ObjectOutputStream outputStream;
         for(Socket x : joinSockets) {
-            if (x != sender) {
-                try {
-                    outputStream = new ObjectOutputStream(x.getOutputStream());
-                    outputStream.writeObject(t);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            try {
+                outputStream = new ObjectOutputStream(x.getOutputStream());
+                outputStream.writeObject(t);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -49,7 +46,11 @@ public abstract class GeneralChat {
     protected void sendBeforeMessages(Socket socket){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
-            outputStream.writeObject(messages);
+            StringBuilder str = new StringBuilder();
+            for(Message x : messages)
+                str.append(x.getInformation()).append("\n");
+            System.out.println(str);
+            outputStream.writeObject(str.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

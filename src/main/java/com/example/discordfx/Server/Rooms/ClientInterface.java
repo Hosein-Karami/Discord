@@ -3,7 +3,6 @@ package com.example.discordfx.Server.Rooms;
 import com.example.discordfx.Moduls.Dto.Messages.FileMessage;
 import com.example.discordfx.Moduls.Dto.Messages.TextMessage;
 import com.example.discordfx.Server.Rooms.Chats.GeneralChat;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -28,34 +27,30 @@ public class ClientInterface implements Runnable{
             while (true) {
                 inputStream = new ObjectInputStream(clientSocket.getInputStream());
                 temp = (String) inputStream.readObject();
-                chat.sendMessage(temp, clientSocket);
+                chat.sendMessage(temp);
                 String Info = (String) inputStream.readObject();
-                chat.sendMessage(Info, clientSocket);
+                chat.sendMessage(Info);
                 switch (temp) {
                     case "#TEXT":
                         TextMessage message = (TextMessage) inputStream.readObject();
-                        chat.sendMessage(message.getInformation(), clientSocket);
+                        chat.sendMessage(message.getInformation());
                         chat.addMessage(message);
+                        System.out.println(message.getInformation());
                         break;
                     case "#FILE": {
-                        String status = (String) inputStream.readObject();
-                        chat.sendMessage(status, clientSocket);
-                        if (status.equals("OK")) {
-                            String fileName = (String) inputStream.readObject();
-                            FileMessage message_2 = (FileMessage) inputStream.readObject();
-                            chat.sendMessage(message_2, clientSocket);
-                            byte[] bytes = (byte[]) inputStream.readObject();
-                            saveFile(bytes, fileName);
-                            chat.addMessage(message_2);
-                        }
+                        String fileName = (String) inputStream.readObject();
+                        FileMessage message_2 = (FileMessage) inputStream.readObject();
+                        chat.sendMessage(message_2);
+                        byte[] bytes = (byte[]) inputStream.readObject();
+                        saveFile(bytes, fileName);
+                        chat.addMessage(message_2);
                         break;
                     }
-                    case "#VOICE":
-                    case "#MUSIC": {
+                    case "#VOICE": {
                         String status = (String) inputStream.readObject();
                         if (status.equals("OK")) {
                             byte[] bytes = (byte[]) inputStream.readObject();
-                            chat.sendMessage(bytes, clientSocket);
+                            chat.sendMessage(bytes);
                         }
                         break;
                     }

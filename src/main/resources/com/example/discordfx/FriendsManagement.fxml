@@ -69,7 +69,6 @@
                         <Font size="21.0" />
                      </font>
                   </Text>
-                  <ImageView fx:id="status_2" fitHeight="50.0" fitWidth="60.0" layoutX="560.0" layoutY="183.0" pickOnBounds="true" preserveRatio="true" />
                   <Text fx:id="username_2" layoutX="273.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="354.13671875">
                      <font>
                         <Font size="21.0" />

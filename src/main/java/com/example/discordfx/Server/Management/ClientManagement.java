@@ -1,5 +1,6 @@
 package com.example.discordfx.Server.Management;
 
+import com.example.discordfx.Lateral.Notification;
 import com.example.discordfx.Moduls.Dto.User.Status;
 import com.example.discordfx.Moduls.Dto.User.User;
 import java.io.*;
@@ -12,6 +13,7 @@ public class ClientManagement implements Runnable{
 
     private final AccountManagement accountManagement = new AccountManagement();
     private final FriendshipManagement friendshipManagement;
+    private final ChatManagement chatManagement = new ChatManagement();
     private final Socket clientSocket;
     private InputStream in;
     private OutputStream out;
@@ -78,6 +80,12 @@ public class ClientManagement implements Runnable{
                     friendshipManagement.removeFriend(user);
                 else if(choose == 12)
                     friendshipManagement.sendOnlineFriends(user);
+                else if(choose == 13)
+                    sendNotifications(user);
+                else if(choose == 14)
+                    user.deleteNotifications();
+                else if(choose == 15)
+                    chatManagement.makePrivateChat(user,clientSocket);
                 else if(choose == 20){
                     ObjectOutputStream outputStream = new ObjectOutputStream(out);
                     outputStream.writeObject(user);
@@ -131,6 +139,17 @@ public class ClientManagement implements Runnable{
                 e.printStackTrace();
                 break;
             }
+        }
+    }
+
+    private void sendNotifications(User user){
+        try {
+            ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
+            for(Notification x : user.getNotifications())
+                outputStream.writeObject(x);
+            outputStream.writeObject(null);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

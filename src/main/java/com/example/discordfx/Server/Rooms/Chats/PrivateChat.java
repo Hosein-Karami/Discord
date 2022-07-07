@@ -17,9 +17,10 @@ public class PrivateChat extends GeneralChat{
         ClientInterface clientInterface = new ClientInterface(this,joinedSocket);
         try {
             ObjectInputStream inputStream = new ObjectInputStream(joinedSocket.getInputStream());
-            User user = (User) inputStream.readObject();
-            if( ! (users.contains(user)))
-                users.add(user);
+            String username = (String) inputStream.readObject();
+            if( ! (memberUsernames.contains(username)))
+                memberUsernames.add(username);
+            System.out.println("START");
             sendBeforeMessages(joinedSocket);
             executorService.execute(clientInterface);
         } catch (Exception e) {

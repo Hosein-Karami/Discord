@@ -283,16 +283,22 @@ public class FriendsManagement {
             outputStream.writeObject(usernames.get(index));
             byte[] senderProfile = (byte[]) inputStream.readObject();
             Status userStatus = (Status) inputStream.readObject();
-            File file = new File("ClientFiles/temp.jpg");
-            FileOutputStream fileOutputStream = new FileOutputStream(file);
-            fileOutputStream.write(senderProfile);
-            fileOutputStream.flush();
-            fileOutputStream.close();
-            setProperStatusImage(userStatus, status);
-            Image friendProfile = new Image("file:ClientFiles/temp.jpg");
-            profileImage.setImage(friendProfile);
+            if(senderProfile == null){
+                profileImage.setImage(null);
+                status.setImage(null);
+            }
+            else {
+                File file = new File("ClientFiles/temp.jpg");
+                FileOutputStream fileOutputStream = new FileOutputStream(file);
+                fileOutputStream.write(senderProfile);
+                fileOutputStream.flush();
+                fileOutputStream.close();
+                setProperStatusImage(userStatus, status);
+                Image friendProfile = new Image("file:ClientFiles/temp.jpg");
+                profileImage.setImage(friendProfile);
+                file.delete();
+            }
             username.setText(usernames.get(index));
-            file.delete();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,6 +1,6 @@
 package com.example.discordfx;
 
-import com.example.discordfx.Management.AccountManagement;
+import com.example.discordfx.Client.Management.*;
 import com.example.discordfx.Moduls.Dto.User.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,9 +12,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Start {
 
@@ -25,19 +28,20 @@ public class Start {
     @FXML
     PasswordField password;
 
+    public static String hostIp = "127.0.0.1";
     public static String Username;
     public static Socket socket;
     {
         try {
-            String ip = "127.0.0.1";
             int port = 2000;
-            socket = new Socket(ip, port);
+            socket = new Socket(hostIp, port);
         } catch (IOException e) {
             text.setText(e.getMessage());
         }
     }
 
     private final AccountManagement accountManagement = new AccountManagement(socket);
+    public static ExecutorService executorService = Executors.newCachedThreadPool();
 
     public void login(ActionEvent event){
         if(username.getText().isEmpty() || password.getText().isEmpty())

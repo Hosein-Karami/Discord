@@ -134,12 +134,19 @@ public class AccountManagement {
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
             ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
             String targetUsername = (String) inputStream.readObject();
-            User  user = Server.accountsService.getParticularUser(targetUsername);
-            String imageAddress = "Files/Pictures/"+user.getId()+".jpg";
-            File profileImage = new File(imageAddress);
-            byte[] imageBytes = Files.readAllBytes(profileImage.toPath());
-            outputStream.writeObject(imageBytes);
-            outputStream.writeObject(user.getStatus());
+            User viewerUser = (User) inputStream.readObject();
+            User  targetUser = Server.accountsService.getParticularUser(targetUsername);
+            if(targetUser.checkIsBlock(viewerUser.getUsername())){
+                outputStream.writeObject(null);
+                outputStream.writeObject(null);
+            }
+            else {
+                String imageAddress = "Files/Pictures/" + targetUser.getId() + ".jpg";
+                File profileImage = new File(imageAddress);
+                byte[] imageBytes = Files.readAllBytes(profileImage.toPath());
+                outputStream.writeObject(imageBytes);
+                outputStream.writeObject(targetUser.getStatus());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

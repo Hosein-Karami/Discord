@@ -23,6 +23,7 @@ public class Connector implements Runnable{
             ServerSocket serverSocket = new ServerSocket(port);
             while (true) {
                 Socket client = serverSocket.accept();
+                System.out.println(client.getInetAddress());
                 chat.join(client);
             }
         } catch (IOException e) {

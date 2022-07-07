@@ -5,7 +5,6 @@ import com.example.discordfx.Moduls.Dto.User.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,11 +15,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.*;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
-public class RelationshipManagement implements Initializable {
+public class RelationshipManagement {
 
     //Tab 1 :
 
@@ -42,15 +39,6 @@ public class RelationshipManagement implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            ObjectInputStream inputStream = new ObjectInputStream(in);
-            user = (User) inputStream.readObject();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     public void sendRequest() {
         if (requestUsername.getText().isEmpty()) {
@@ -327,16 +315,22 @@ public class RelationshipManagement implements Initializable {
             outputStream.writeObject(usernames.get(index));
             byte[] senderProfile = (byte[]) inputStream.readObject();
             Status userStatus = (Status) inputStream.readObject();
-            File file = new File("ClientFiles/temp.jpg");
-            FileOutputStream fileOutputStream = new FileOutputStream(file);
-            fileOutputStream.write(senderProfile);
-            fileOutputStream.flush();
-            fileOutputStream.close();
-            setProperStatusImage(userStatus, status);
-            Image friendProfile = new Image("file:ClientFiles/temp.jpg");
-            profileImage.setImage(friendProfile);
+            if(senderProfile == null) {
+                profileImage.setImage(null);
+                status.setImage(null);
+            }
+            else {
+                File file = new File("ClientFiles/temp.jpg");
+                FileOutputStream fileOutputStream = new FileOutputStream(file);
+                fileOutputStream.write(senderProfile);
+                fileOutputStream.flush();
+                fileOutputStream.close();
+                setProperStatusImage(userStatus, status);
+                Image friendProfile = new Image("file:ClientFiles/temp.jpg");
+                profileImage.setImage(friendProfile);
+                file.delete();
+            }
             username.setText(usernames.get(index));
-            file.delete();
         } catch (Exception e) {
             e.printStackTrace();
         }

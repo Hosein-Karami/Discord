@@ -1,6 +1,6 @@
 package com.example.discordfx;
 
-import com.example.discordfx.Management.AccountManagement;
+import com.example.discordfx.Client.Management.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
