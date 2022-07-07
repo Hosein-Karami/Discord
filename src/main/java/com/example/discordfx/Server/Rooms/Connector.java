@@ -2,6 +2,7 @@ package com.example.discordfx.Server.Rooms;
 
 import com.example.discordfx.Log.ServerLog;
 import com.example.discordfx.Server.Rooms.Chats.GeneralChat;
+import java.io.File;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -14,7 +15,9 @@ public class Connector implements Runnable{
 
     public Connector(int port,String chatType){
         this.port = port;
-        chat = new ChatFactory().getProperChat(chatType);
+        chat = new ChatFactory().getProperChat(chatType,port);
+        File chatDirectory = new File("Files/ChatVoices/"+port);
+        chatDirectory.mkdir();
     }
 
     @Override

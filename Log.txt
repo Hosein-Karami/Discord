@@ -306,3 +306,7 @@ User with username=MohammadRezaa log in successfully.
 Client whose address : /127.0.0.1 successfully connect to server.
 2022-07-07 21:08 [Info] UserDao
 User with username=MohammadRezaa log in successfully.
+2022-07-07 21:21 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-07 21:22 [Info] UserDao
+User with username=HamidREza log in successfully.

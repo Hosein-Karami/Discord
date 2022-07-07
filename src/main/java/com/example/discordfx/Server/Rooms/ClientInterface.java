@@ -27,9 +27,13 @@ public class ClientInterface implements Runnable{
             while (true) {
                 inputStream = new ObjectInputStream(clientSocket.getInputStream());
                 temp = (String) inputStream.readObject();
-                chat.sendMessage(temp);
-                String Info = (String) inputStream.readObject();
-                chat.sendMessage(Info);
+                if(temp.equals("#GETVOICE"))
+                    chat.sendMessageToParticularSocket(temp,clientSocket);
+                else {
+                    chat.sendMessage(temp);
+                    String Info = (String) inputStream.readObject();
+                    chat.sendMessage(Info);
+                }
                 switch (temp) {
                     case "#TEXT":
                         TextMessage message = (TextMessage) inputStream.readObject();
@@ -49,6 +53,12 @@ public class ClientInterface implements Runnable{
                     case "#VOICE": {
                         byte[] bytes = (byte[]) inputStream.readObject();
                         chat.sendMessage(bytes);
+                        chat.addVoice(bytes);
+                        break;
+                    }
+                    case "#GETVOICE":{
+                        Integer voiceIndex = (Integer) inputStream.readObject();
+                        chat.sendParticularVoice(clientSocket,voiceIndex);
                         break;
                     }
                     case "#EXIT":

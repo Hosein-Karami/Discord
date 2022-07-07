@@ -79,7 +79,7 @@ public class FriendsManagement {
 
     public void next_1(){
         if(friendIndex != (allFriends.size() - 1)) {
-            username_1.setText("");
+            //username_1.setText("");
             profileImage_1.setImage(null);
             status_1.setImage(null);
             friendIndex++;
@@ -89,7 +89,7 @@ public class FriendsManagement {
 
     public void previous_1(){
         if(friendIndex != 0) {
-            username_1.setText("");
+            //username_1.setText("");
             profileImage_1.setImage(null);
             status_1.setImage(null);
             friendIndex--;

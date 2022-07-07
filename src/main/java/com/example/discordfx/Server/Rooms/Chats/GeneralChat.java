@@ -1,9 +1,10 @@
 package com.example.discordfx.Server.Rooms.Chats;
 
 import com.example.discordfx.Moduls.Dto.Messages.Message;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+
+import java.io.*;
 import java.net.Socket;
+import java.nio.file.Files;
 import java.util.ArrayList;
 
 public abstract class GeneralChat {
@@ -11,6 +12,13 @@ public abstract class GeneralChat {
     protected ArrayList<Socket> joinSockets = new ArrayList<>();
     protected ArrayList<String> memberUsernames = new ArrayList<>();
     private final ArrayList<Message> messages = new ArrayList<>();
+    protected final ArrayList<File> voices = new ArrayList<>();
+    private final int port;
+    private int voiceCounter;
+
+    public GeneralChat(int port){
+        this.port = port;
+    }
 
     public abstract void join(Socket joinedSocket);
 
@@ -56,8 +64,16 @@ public abstract class GeneralChat {
         }
     }
 
-    public ArrayList<Socket> getJoinSockets(){
-        return joinSockets;
+    public void addVoice(byte[] voiceBytes){
+        File file = new File("Files/ChatVoices/"+port+"/"+voiceCounter+".wav");
+        try (FileOutputStream fileOutputStream = new FileOutputStream(file)){
+            fileOutputStream.write(voiceBytes);
+            voiceCounter++;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
+
+    public abstract void sendParticularVoice(Socket clientSocket,int voiceIndex);
 
 }
