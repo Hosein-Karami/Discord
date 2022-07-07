@@ -1,0 +1,39 @@
+#background
+{
+    -fx-background-color: #999999;
+}
+
+#secondPane
+{
+    -fx-background-color: #8a2be2;
+    -fx-background-radius: 30;
+
+}
+
+.text-field
+{
+    -fx-border: solid 5px #000;
+    -fx-background-color: rgba(0, 0, 0, 0.4);
+    -fx-border-radius: 5;
+    -fx-font-size: 20px;
+    -fx-font-family: "Arial";
+    -fx-text-fill: #fff;
+    -fx-prompt-text-fill: #fff;
+    -fx-focus-color: rgba(0, 0, 0, 0.4);;
+    -fx-alignment: left;
+}
+
+
+.button
+{
+    -fx-font-size: 20px;
+    -fx-text-fill: #000000;
+    -fx-font-weight: bold;
+}
+
+#signup
+{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 30;
+}
+
