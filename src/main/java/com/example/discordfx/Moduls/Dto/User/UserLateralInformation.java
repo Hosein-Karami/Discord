@@ -15,6 +15,7 @@ public class UserLateralInformation implements Serializable {
     private final ArrayList<String> blockesUsername = new ArrayList<>();
     private final ArrayList<String> pendingUsernames = new ArrayList<>();
     private final ArrayList<String> outputRequestsUsernames = new ArrayList<>();
+    private final ArrayList<String> discordServers = new ArrayList<>();
     private final ArrayList<Notification> notifications = new ArrayList<>();
     private final HashMap<String,Integer> privateChats = new HashMap<>();
     private Status status;
@@ -33,6 +34,10 @@ public class UserLateralInformation implements Serializable {
 
     public ArrayList<String> getFriendsUsernames(){
         return friendsUsername;
+    }
+
+    public ArrayList<String> getDiscordServers(){
+        return discordServers;
     }
 
     public ArrayList<Notification> getNotifications(){
@@ -57,6 +62,10 @@ public class UserLateralInformation implements Serializable {
 
     public void addPending(String newPending){
         pendingUsernames.add(newPending);
+    }
+
+    public void addDiscordServer(String newDiscordServer){
+        discordServers.add(newDiscordServer);
     }
 
     public void addOutputRequestUsername(String newOutputRequest){
@@ -85,6 +94,10 @@ public class UserLateralInformation implements Serializable {
 
     public void removePending(String targetPendingUsername){
         pendingUsernames.remove(targetPendingUsername);
+    }
+
+    public void removeDiscordServer(String targetDiscordServer){
+        discordServers.remove(targetDiscordServer);
     }
 
     public void removeOutputRequest(String targetUsername){

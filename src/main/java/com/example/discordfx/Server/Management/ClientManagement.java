@@ -62,10 +62,6 @@ public class ClientManagement implements Runnable{
                     downloadFile();
                 else if(choose == 3)
                     setStatus();
-                else if(choose == 4){
-                    ObjectOutputStream outputStream = new ObjectOutputStream(out);
-                    outputStream.writeObject(user);
-                }
                 else if(choose == 5)
                     friendshipManagement.requestFriendShip(user);
                 else if(choose == 6)

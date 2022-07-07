@@ -64,16 +64,4 @@ public abstract class GeneralChat {
         }
     }
 
-    public void addVoice(byte[] voiceBytes){
-        File file = new File("Files/ChatVoices/"+port+"/"+voiceCounter+".wav");
-        try (FileOutputStream fileOutputStream = new FileOutputStream(file)){
-            fileOutputStream.write(voiceBytes);
-            voiceCounter++;
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    public abstract void sendParticularVoice(Socket clientSocket,int voiceIndex);
-
 }

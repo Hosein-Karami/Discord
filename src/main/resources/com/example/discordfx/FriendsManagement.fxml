@@ -103,6 +103,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
+                  <ImageView fx:id="status_2" fitHeight="50.0" fitWidth="60.0" layoutX="564.0" layoutY="183.0" pickOnBounds="true" preserveRatio="true" />
                </children></AnchorPane>
       </content>
     </Tab>

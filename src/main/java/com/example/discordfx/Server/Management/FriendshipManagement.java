@@ -6,11 +6,9 @@ import com.example.discordfx.Moduls.Dto.User.User;
 import com.example.discordfx.Server.Service.ClientService.AccountsService;
 import com.example.discordfx.Server.Service.ClientService.FriendShipServices;
 import com.example.discordfx.Server.Start.Server;
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.net.Socket;
 
 public class FriendshipManagement {
@@ -44,7 +42,6 @@ public class FriendshipManagement {
                         targetUser.addNotification(new Notification(user.getUsername() + " send you a friendship request"));
                         targetUser.addPending(user.getUsername());
                         user.addOutputRequest(targetUsername);
-                        //friendShipService.requestFriendship(targetUser, user.getId());
                         outputStream.writeObject("Request send successfully");
                     }
                 }
@@ -140,13 +137,9 @@ public class FriendshipManagement {
                 targetUser.loadInformation();
                 if (targetUser.checkIsFriend(user.getUsername()))
                     friendShipService.removeFriend(targetUser, user);
-                if (user.checkIsBlock(targetUser.getUsername()))
-                    outputStream.writeObject("Blocked before");
-                else {
-                    outputStream.writeObject("OK");
-                    user.addBlock(targetUser.getUsername());
-                    outputStream.writeObject("User blocked successfully");
-                }
+                outputStream.writeObject("OK");
+                user.addBlock(targetUser.getUsername());
+                outputStream.writeObject("User blocked successfully");
             }
         } catch (Exception e) {
             e.printStackTrace();

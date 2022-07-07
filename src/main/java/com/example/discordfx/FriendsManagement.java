@@ -5,6 +5,7 @@ import com.example.discordfx.Moduls.Dto.User.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,9 +15,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.*;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class FriendsManagement {
+public class FriendsManagement implements Initializable{
 
     private OutputStream out;
     private InputStream in;
@@ -25,6 +28,17 @@ public class FriendsManagement {
             in = Start.socket.getInputStream();
             out = Start.socket.getOutputStream();
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            out.write(20);
+            ObjectInputStream inputStream = new ObjectInputStream(in);
+            user = (User) inputStream.readObject();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -47,6 +61,7 @@ public class FriendsManagement {
     Button removeFriend_1;
 
     private ArrayList<String> allFriends = new ArrayList<>();
+    private User user;
     private int friendIndex;
 
     public void initialize_1() {
@@ -55,7 +70,7 @@ public class FriendsManagement {
         try {
             out.write(20);
             ObjectInputStream inputStream = new ObjectInputStream(in);
-            User user = (User) inputStream.readObject();
+            user = (User) inputStream.readObject();
             allFriends = user.getFriends();
             load_1();
         } catch (Exception e) {
@@ -206,7 +221,7 @@ public class FriendsManagement {
         try {
             out.write(20);
             ObjectInputStream inputStream = new ObjectInputStream(in);
-            User user = (User) inputStream.readObject();
+            user = (User) inputStream.readObject();
             blockedUsernames = user.getBlockedUsernames();
             load_3();
         } catch (Exception e) {
@@ -281,6 +296,7 @@ public class FriendsManagement {
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
             ObjectInputStream inputStream = new ObjectInputStream(in);
             outputStream.writeObject(usernames.get(index));
+            outputStream.writeObject(user);
             byte[] senderProfile = (byte[]) inputStream.readObject();
             Status userStatus = (Status) inputStream.readObject();
             if(senderProfile == null){

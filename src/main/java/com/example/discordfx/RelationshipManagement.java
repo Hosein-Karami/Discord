@@ -5,6 +5,7 @@ import com.example.discordfx.Moduls.Dto.User.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -29,12 +30,14 @@ public class RelationshipManagement {
     private User user;
     private InputStream in;
     private OutputStream out;
-
     {
         try {
             out = Start.socket.getOutputStream();
             in = Start.socket.getInputStream();
-        } catch (IOException e) {
+            out.write(20);
+            ObjectInputStream inputStream = new ObjectInputStream(in);
+            user = (User) inputStream.readObject();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -42,7 +45,7 @@ public class RelationshipManagement {
 
     public void sendRequest() {
         if (requestUsername.getText().isEmpty()) {
-            requestText.setText("Enter target username first");
+            requestText.setText("Enter target username");
             return;
         }
         try {
@@ -54,23 +57,31 @@ public class RelationshipManagement {
                 requestText.setText("You can't send request to yourself");
                 return;
             }
+            if(user.checkIsFriend(requestUsername.getText())){
+                requestText.setText("You are friend from before");
+                return;
+            }
             out.write(5);
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
             ObjectInputStream inputStream = new ObjectInputStream(in);
             outputStream.writeObject(requestUsername.getText());
-            String status = (String) inputStream.readObject();
-            if (status.equals("OK")) {
-                status = (String) inputStream.readObject();
-                if (status.equals("OK")) {
-                    status = (String) inputStream.readObject();
-                    if (status.equals("OK")) {
+            String Status = (String) inputStream.readObject();
+            System.out.println(Status.equals("OK"));
+            if (Status.equals("OK")) {
+                Status = (String) inputStream.readObject();
+                if (Status.equals("OK")) {
+                    Status = (String) inputStream.readObject();
+                    if (Status.equals("OK")) {
                         requestText.setText((String) inputStream.readObject());
+                        out.write(20);
+                        inputStream = new ObjectInputStream(in);
+                        user = (User) inputStream.readObject();
                     } else
-                        requestText.setText(status);
+                        requestText.setText(Status);
                 } else
-                    requestText.setText(status);
+                    requestText.setText(Status);
             } else
-                requestText.setText(status);
+                requestText.setText(Status);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -113,7 +124,6 @@ public class RelationshipManagement {
 
     public void nextRequest(){
         if(senderIndex != (requestsSenders.size() - 1)) {
-            statusText_1.setText("");
             profileImage_1.setImage(null);
             status_1.setImage(null);
             senderIndex++;
@@ -123,7 +133,6 @@ public class RelationshipManagement {
 
     public void previousRequest(){
         if(senderIndex != 0) {
-            statusText_1.setText("");
             profileImage_1.setImage(null);
             status_1.setImage(null);
             senderIndex--;
@@ -234,7 +243,6 @@ public class RelationshipManagement {
 
     public void next(){
         if(requestIndex != (outputRequests.size() - 1)) {
-            username_2.setText("");
             profileImage_2.setImage(null);
             status_2.setImage(null);
             requestIndex++;
@@ -244,7 +252,6 @@ public class RelationshipManagement {
 
     public void previous(){
         if(requestIndex != 0) {
-            username_2.setText("");
             profileImage_2.setImage(null);
             status_2.setImage(null);
             requestIndex--;
@@ -284,6 +291,10 @@ public class RelationshipManagement {
             text_3.setText("You can't block yourself :|");
             return;
         }
+        if(user.checkIsBlock(targetUsername.getText())){
+            text_3.setText("You blocked this user before");
+            return;
+        }
         try {
             out.write(9);
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
@@ -292,12 +303,7 @@ public class RelationshipManagement {
             String status = (String) inputStream.readObject();
             if(status.equals("OK")){
                 status = (String) inputStream.readObject();
-                if(status.equals("OK")){
-                    status = (String) inputStream.readObject();
-                    text_3.setText(status);
-                }
-                else
-                    text_3.setText("You blocked this user before");
+                text_3.setText(status);
             }
             else
                 text_3.setText("Invalid username");
@@ -309,12 +315,20 @@ public class RelationshipManagement {
 
     private void loadInformation(ArrayList<String> usernames,int index,ImageView profileImage,ImageView status,Text username){
         try {
+            System.out.println("aa");
             out.write(7);
+            System.out.println("bb");
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
+            System.out.println("cc");
             ObjectInputStream inputStream = new ObjectInputStream(in);
+            System.out.println("dd");
             outputStream.writeObject(usernames.get(index));
+            outputStream.writeObject(user);
+            System.out.println("ee");
             byte[] senderProfile = (byte[]) inputStream.readObject();
+            System.out.println("ff");
             Status userStatus = (Status) inputStream.readObject();
+            System.out.println("gg");
             if(senderProfile == null) {
                 profileImage.setImage(null);
                 status.setImage(null);

@@ -69,7 +69,6 @@ public class Dashboard {
 
     public void relationship(ActionEvent event){
         try {
-            out.write(4);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("RelationshipManagement.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

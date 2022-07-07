@@ -53,12 +53,6 @@ public class ClientInterface implements Runnable{
                     case "#VOICE": {
                         byte[] bytes = (byte[]) inputStream.readObject();
                         chat.sendMessage(bytes);
-                        chat.addVoice(bytes);
-                        break;
-                    }
-                    case "#GETVOICE":{
-                        Integer voiceIndex = (Integer) inputStream.readObject();
-                        chat.sendParticularVoice(clientSocket,voiceIndex);
                         break;
                     }
                     case "#EXIT":

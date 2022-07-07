@@ -44,8 +44,8 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="imageView" fitHeight="142.0" fitWidth="202.0" layoutX="349.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true" />
-                  <Text fx:id="text_1" layoutX="294.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="354.13671875">
+                  <ImageView fx:id="profileImage_1" fitHeight="142.0" fitWidth="202.0" layoutX="349.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true" />
+                  <Text fx:id="username_1" layoutX="294.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="354.13671875">
                      <font>
                         <Font size="21.0" />
                      </font>
@@ -66,7 +66,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="acceptButton" layoutX="501.0" layoutY="336.0" mnemonicParsing="false" onAction="#acceptRequest" text="Accept" textFill="#179c29">
+                  <Button fx:id="acceptButton_1" layoutX="501.0" layoutY="336.0" mnemonicParsing="false" onAction="#acceptRequest" text="Accept" textFill="#179c29">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -74,7 +74,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="rejectButton" layoutX="322.0" layoutY="336.0" mnemonicParsing="false" onAction="#rejectRequest" text="Reject" textFill="#ef0000">
+                  <Button fx:id="rejectButton_1" layoutX="322.0" layoutY="336.0" mnemonicParsing="false" onAction="#rejectRequest" text="Reject" textFill="#ef0000">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -82,12 +82,12 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Text fx:id="statusText" layoutX="273.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="354.13671875">
+                  <Text fx:id="statusText_1" layoutX="273.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="354.13671875">
                      <font>
                         <Font size="21.0" />
                      </font>
                   </Text>
-                  <ImageView fx:id="status" fitHeight="50.0" fitWidth="60.0" layoutX="551.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="status_1" fitHeight="50.0" fitWidth="60.0" layoutX="551.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true" />
                   <Button layoutX="822.0" layoutY="630.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="26.0" prefWidth="64.0" text="Back">
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -101,12 +101,12 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="imageView_2" fitHeight="142.0" fitWidth="202.0" layoutX="349.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="profileImage_2" fitHeight="142.0" fitWidth="202.0" layoutX="349.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <Text fx:id="text_2" layoutX="276.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="347.53924560546875">
+                  <Text fx:id="username_2" layoutX="276.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="347.53924560546875">
                      <font>
                         <Font size="21.0" />
                      </font>

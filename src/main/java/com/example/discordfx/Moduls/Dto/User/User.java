@@ -4,6 +4,7 @@ import com.example.discordfx.Lateral.Notification;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.SplittableRandom;
 
 public class User implements Serializable {
 
@@ -85,6 +86,10 @@ public class User implements Serializable {
 
     public ArrayList<String> getPendings(){
         return information.getPendingUsernames();
+    }
+
+    public ArrayList<String> getServerChats(){
+        return information.getDiscordServers();
     }
 
     public ArrayList<String> getFriends() {
