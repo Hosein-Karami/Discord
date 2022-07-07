@@ -47,11 +47,8 @@ public class ClientInterface implements Runnable{
                         break;
                     }
                     case "#VOICE": {
-                        String status = (String) inputStream.readObject();
-                        if (status.equals("OK")) {
-                            byte[] bytes = (byte[]) inputStream.readObject();
-                            chat.sendMessage(bytes);
-                        }
+                        byte[] bytes = (byte[]) inputStream.readObject();
+                        chat.sendMessage(bytes);
                         break;
                     }
                     case "#EXIT":

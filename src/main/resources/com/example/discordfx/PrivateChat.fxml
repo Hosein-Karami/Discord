@@ -54,7 +54,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="cancelVoice" layoutX="383.0" layoutY="577.0" mnemonicParsing="false" onAction="#cancelVoice" prefHeight="36.0" prefWidth="155.0" text="Send voice" visible="false">
+      <Button fx:id="cancelVoice" layoutX="383.0" layoutY="577.0" mnemonicParsing="false" onAction="#cancelVoice" prefHeight="36.0" prefWidth="155.0" text="Cancel" visible="false">
          <font>
             <Font size="16.0" />
          </font>

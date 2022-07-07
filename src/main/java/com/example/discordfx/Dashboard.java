@@ -124,6 +124,20 @@ public class Dashboard {
         }
     }
 
+    public void connectToPrivateChat(ActionEvent event){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ConnectToPrivateChat.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void logOut(ActionEvent event){
         try {
             out.write(200);

@@ -54,6 +54,10 @@ public class MakePrivateChat implements Initializable {
             text.setText("You can't start private chat with yourself");
             return;
         }
+        if(user.getPrivateChats().get(targetUsername.getText()) != null){
+            text.setText("You have private chat with this user");
+            return;
+        }
         try {
             out.write(15);
             ObjectOutputStream outputStream = new ObjectOutputStream(out);

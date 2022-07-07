@@ -47,7 +47,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="381.0" layoutY="505.0" mnemonicParsing="false" onAction="#logOut" prefHeight="37.0" prefWidth="162.0" text="Log out" textAlignment="CENTER">
+      <Button layoutX="381.0" layoutY="560.0" mnemonicParsing="false" onAction="#logOut" prefHeight="37.0" prefWidth="162.0" text="Log out" textAlignment="CENTER">
          <font>
             <Font size="16.0" />
          </font>
@@ -64,6 +64,14 @@
          </cursor>
       </Button>
       <Button layoutX="381.0" layoutY="437.0" mnemonicParsing="false" onAction="#makePrivateChat" prefHeight="37.0" prefWidth="162.0" text=" Make private chat" textAlignment="CENTER">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="381.0" layoutY="499.0" mnemonicParsing="false" onAction="#connectToPrivateChat" prefHeight="38.0" prefWidth="175.0" text="Connect private chat" textAlignment="CENTER">
          <font>
             <Font size="16.0" />
          </font>

@@ -4,6 +4,8 @@ import com.example.discordfx.Moduls.Dto.User.User;
 import com.example.discordfx.Server.Rooms.Connector;
 import com.example.discordfx.Server.Start.Main;
 import com.example.discordfx.Server.Start.Server;
+
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -41,6 +43,16 @@ public class ChatManagement {
             else
                 outputStream.writeObject("Verification failed.");
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void connectToPrivateChat(User user,int port,Socket clientSocket){
+        try {
+            ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
+            outputStream.writeObject(port);
+            outputStream.writeObject(user);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

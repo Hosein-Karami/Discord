@@ -78,7 +78,8 @@ public class PrivateChat implements Initializable {
     public void recordeVoice() {
         if (!(sendVoice.isVisible())) {
             sendVoice.setVisible(true);
-            File file = new File("Voice/voice.wav");
+            cancelVoice.setVisible(true);
+            File file = new File("ClientFiles/voice.wav");
             Recorder recorder = new Recorder(file);
             Thread recorderThread = new Thread(recorder);
             voiceRecorder = recorder;

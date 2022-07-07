@@ -52,9 +52,9 @@ public class GeneralSender {
     public void sendVoice(){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
-            outputStream.writeObject("#Voice");
+            outputStream.writeObject("#VOICE");
             outputStream.writeObject(senderUsername + " is recording a voice...");
-            File voiceFile = new File("Voice/voice.wav");
+            File voiceFile = new File("ClientFiles/voice.wav");
             byte[] voiceBytes = Files.readAllBytes(voiceFile.toPath());
             outputStream.writeObject(voiceBytes);
         } catch (IOException e) {

@@ -15,6 +15,7 @@ public class ClientManagement implements Runnable{
     private final FriendshipManagement friendshipManagement;
     private final ChatManagement chatManagement = new ChatManagement();
     private final Socket clientSocket;
+    private User user;
     private InputStream in;
     private OutputStream out;
 
@@ -50,6 +51,7 @@ public class ClientManagement implements Runnable{
     }
 
     private void start(User user){
+        this.user = user;
         while (true) {
             try {
                 int choose = in.read();
@@ -59,7 +61,7 @@ public class ClientManagement implements Runnable{
                 } else if (choose == 2)
                     downloadFile();
                 else if(choose == 3)
-                    setStatus(user);
+                    setStatus();
                 else if(choose == 4){
                     ObjectOutputStream outputStream = new ObjectOutputStream(out);
                     outputStream.writeObject(user);
@@ -81,11 +83,13 @@ public class ClientManagement implements Runnable{
                 else if(choose == 12)
                     friendshipManagement.sendOnlineFriends(user);
                 else if(choose == 13)
-                    sendNotifications(user);
+                    sendNotifications();
                 else if(choose == 14)
                     user.deleteNotifications();
                 else if(choose == 15)
                     chatManagement.makePrivateChat(user,clientSocket);
+                else if(choose == 16)
+                    connectToPrivateChat();
                 else if(choose == 20){
                     ObjectOutputStream outputStream = new ObjectOutputStream(out);
                     outputStream.writeObject(user);
@@ -125,7 +129,7 @@ public class ClientManagement implements Runnable{
         }
     }
 
-    private void setStatus(User user){
+    private void setStatus(){
         ObjectInputStream inputStream;
         Status status;
         while (true){
@@ -142,7 +146,7 @@ public class ClientManagement implements Runnable{
         }
     }
 
-    private void sendNotifications(User user){
+    private void sendNotifications(){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
             for(Notification x : user.getNotifications())
@@ -153,4 +157,13 @@ public class ClientManagement implements Runnable{
         }
     }
 
+    private void connectToPrivateChat(){
+        try {
+            ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
+            Integer port = (Integer) inputStream.readObject();
+            chatManagement.connectToPrivateChat(user,port,clientSocket);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
