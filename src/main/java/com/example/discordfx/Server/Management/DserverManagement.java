@@ -65,9 +65,10 @@ public class DserverManagement {
         try {
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
             ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
-            String serverName = (String) inputStream.readObject();
-            Dserver targetServer = getParticularServer(serverName);
+            Integer serverId = (Integer) inputStream.readObject();
+            Dserver targetServer = Server.discordServers.get(serverId);
             File serverProfile = new File("Files/DiscordServers/"+targetServer.getId()+"/Profile.jpg");
+            outputStream.writeObject(targetServer.getName());
             outputStream.writeObject(Files.readAllBytes(serverProfile.toPath()));
         } catch (Exception e) {
             e.printStackTrace();

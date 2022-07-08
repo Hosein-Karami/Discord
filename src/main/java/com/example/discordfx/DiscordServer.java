@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 
 public class DiscordServer implements Initializable {
 
-    static String DserverName;
+    static int DserverId;
     private OutputStream out;
     private InputStream in;
     {
@@ -40,13 +40,14 @@ public class DiscordServer implements Initializable {
             out.write(21);
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
             ObjectInputStream inputStream = new ObjectInputStream(in);
-            outputStream.writeObject(DserverName);
+            outputStream.writeObject(DserverId);
+            String serverName = (String) inputStream.readObject();
             byte[] serverImageBytes = (byte[]) inputStream.readObject();
             setServerImageProfile(serverImageBytes);
-            name.setText(DserverName);
+            name.setText(serverName);
             out.write(22);
             outputStream = new ObjectOutputStream(out);
-            outputStream.writeObject(DserverName);
+            outputStream.writeObject(DserverId);
         } catch (Exception e) {
             e.printStackTrace();
         }

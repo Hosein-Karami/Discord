@@ -163,8 +163,8 @@ public class ClientManagement implements Runnable{
     private void connectToServerChat(){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
-            String serverName = (String) inputStream.readObject();
-            DserverService service = new DserverService(dserverManagement.getParticularServer(serverName),clientSocket,user);
+            Integer serverId = (Integer) inputStream.readObject();
+            DserverService service = new DserverService(Server.discordServers.get(serverId),clientSocket,user);
             service.start();
         } catch (Exception e) {
             e.printStackTrace();
@@ -180,6 +180,10 @@ public class ClientManagement implements Runnable{
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void sendInvitations(){
+
     }
 
 }

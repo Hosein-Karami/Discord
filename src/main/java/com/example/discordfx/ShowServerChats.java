@@ -33,7 +33,7 @@ public class ShowServerChats {
     @FXML
     Button joinButton;
 
-    private ArrayList<String> servers;
+    private ArrayList<Integer> servers;
     private int serverIndex;
     private OutputStream out;
     private InputStream in;
@@ -47,26 +47,20 @@ public class ShowServerChats {
     }
 
     public void initialize() {
-        servers = new ArrayList<>();
         try {
-            out.write(23);
+            out.write(20);
             ObjectInputStream inputStream = new ObjectInputStream(in);
-            String serverName;
-            while (true){
-                serverName = (String) inputStream.readObject();
-                if(serverName == null)
-                    break;
-                servers.add(serverName);
-            }
+            user = (User) inputStream.readObject();
+            servers = user.getServerChats();
             if(servers.size() == 0){
                 text.setText("You aren't in any discord server");
                 nextButton.setVisible(false);
                 previousButton.setVisible(false);
                 joinButton.setVisible(false);
+                serverChatName.setVisible(false);
             }
             else {
                 serverIndex = 0;
-                inviteIndex = 0;
                 loadInformation();
             }
         } catch (Exception e) {
@@ -75,28 +69,7 @@ public class ShowServerChats {
     }
 
     public void loadInformation(){
-        try {
-            out.write(21);
-            ObjectOutputStream outputStream = new ObjectOutputStream(out);
-            ObjectInputStream inputStream = new ObjectInputStream(in);
-            outputStream.writeObject(servers.get(serverIndex));
-            byte[] serverImageBytes = (byte[]) inputStream.readObject();
-            if(serverImageBytes == null)
-                serverProfileImage.setImage(null);
-            else {
-                File file = new File("ClientFiles/temp.jpg");
-                FileOutputStream fileOutputStream = new FileOutputStream(file);
-                fileOutputStream.write(serverImageBytes);
-                fileOutputStream.flush();
-                fileOutputStream.close();
-                Image serverImage = new Image("file:ClientFiles/temp.jpg");
-                serverProfileImage.setImage(serverImage);
-                file.delete();
-                serverChatName.setText(servers.get(serverIndex));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        load(servers.get(serverIndex),serverProfileImage,serverChatName);
     }
 
     public void next(){
@@ -116,7 +89,7 @@ public class ShowServerChats {
     }
 
     public void connect(ActionEvent event){
-        DiscordServer.DserverName = servers.get(serverIndex);
+        DiscordServer.DserverId = servers.get(serverIndex);
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("DiscordServer.fxml"));
             Parent root = loader.load();
@@ -156,6 +129,8 @@ public class ShowServerChats {
     @FXML
     Text text_2;
     @FXML
+    Text invitationMessage;
+    @FXML
     Button nextButton_2;
     @FXML
     Button previousButton_2;
@@ -166,11 +141,53 @@ public class ShowServerChats {
 
     public void initialize_2(){
         invitations = user.getInvitations();
-        inviteIndex = 0;
-        serverIndex = 0;
-
+        if(invitations.size() == 0){
+            nextButton_2.setVisible(false);
+            previousButton_2.setVisible(false);
+            acceptButton.setVisible(false);
+            rejectButton.setVisible(false);
+            invitationMessage.setVisible(false);
+            serverChatName_2.setVisible(false);
+            text_2.setText("You don't have any invitation");
+        }
+        else {
+            inviteIndex = 0;
+            load_2();
+        }
     }
 
+    public void load_2(){
+        Invitation targetInvitation = invitations.get(inviteIndex);
+        load(targetInvitation.getServerId(),serverProfileImage_2,serverChatName_2);
+        invitationMessage.setText(targetInvitation.getInvitationText());
+    }
+
+
+    public void load(int serverId,ImageView profile,Text serverName){
+        try {
+            out.write(21);
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
+            ObjectInputStream inputStream = new ObjectInputStream(in);
+            outputStream.writeObject(serverId);
+            String name = (String) inputStream.readObject();
+            byte[] serverImageBytes = (byte[]) inputStream.readObject();
+            if(serverImageBytes == null)
+                profile.setImage(null);
+            else {
+                File file = new File("ClientFiles/temp.jpg");
+                FileOutputStream fileOutputStream = new FileOutputStream(file);
+                fileOutputStream.write(serverImageBytes);
+                fileOutputStream.flush();
+                fileOutputStream.close();
+                Image serverImage = new Image("file:ClientFiles/temp.jpg");
+                profile.setImage(serverImage);
+                file.delete();
+                serverName.setText(name);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public void backToMenu(ActionEvent event){
         try {
