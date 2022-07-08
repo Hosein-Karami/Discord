@@ -11,7 +11,7 @@ import java.nio.file.Files;
 
 public class DserverManagement {
 
-    public void makeServerChatImage(Socket socket, User serverMaker){
+    public void makeServerChat(Socket socket, User serverMaker){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
             ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
@@ -19,23 +19,23 @@ public class DserverManagement {
             //Check name is unique??
             if(checkName(serverName)) {
                 outputStream.writeObject("OK");
-                Member owner = new Member(serverMaker);
+                Member owner = new Member(serverMaker.getId());
                 owner.addRole(getOwnerRole());
                 Dserver dserver = new Dserver(owner, Server.discordServers.size());
                 dserver.setName(serverName);
                 Server.discordServers.add(dserver);
-                serverMaker.addServerChat(serverName);
-                File serverFolder = new File("Files/DiscordServers/" + dserver.getFolderNumber());
+                serverMaker.addServerChat(dserver.getId());
+                File serverFolder = new File("Files/DiscordServers/" + dserver.getId());
                 serverFolder.mkdir();
                 byte[] imageBytes = (byte[]) inputStream.readObject();
                 if (imageBytes != null) {
-                    FileOutputStream fileOutputStream = new FileOutputStream("Files/DiscordServers/" + dserver.getFolderNumber() + "/Profile.jpg");
+                    FileOutputStream fileOutputStream = new FileOutputStream("Files/DiscordServers/" + dserver.getId() + "/Profile.jpg");
                     fileOutputStream.write(imageBytes);
                     fileOutputStream.flush();
                     fileOutputStream.close();
                 }
                 else
-                    setDefaultProfilePicture("Files/DiscordServers/" + dserver.getFolderNumber()+"/Profile.jpg");
+                    setDefaultProfilePicture("Files/DiscordServers/" + dserver.getId()+"/Profile.jpg");
                 outputStream.writeObject("Server made successfully");
             }
             else
@@ -50,7 +50,7 @@ public class DserverManagement {
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
             byte[] imageBytes = inputStream.readAllBytes();
             String serverName = (String) inputStream.readObject();
-            int serverFolderNumber = getParticularServer(serverName).getFolderNumber();
+            int serverFolderNumber = getParticularServer(serverName).getId();
             File serverProfile = new File("Files/DiscordServers/"+serverFolderNumber+"/Profile.jpg");
             FileOutputStream fileOutputStream = new FileOutputStream(serverProfile);
             fileOutputStream.write(imageBytes);
@@ -67,7 +67,7 @@ public class DserverManagement {
             ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
             String serverName = (String) inputStream.readObject();
             Dserver targetServer = getParticularServer(serverName);
-            File serverProfile = new File("Files/DiscordServers/"+targetServer.getFolderNumber()+"/Profile.jpg");
+            File serverProfile = new File("Files/DiscordServers/"+targetServer.getId()+"/Profile.jpg");
             outputStream.writeObject(Files.readAllBytes(serverProfile.toPath()));
         } catch (Exception e) {
             e.printStackTrace();
@@ -83,7 +83,7 @@ public class DserverManagement {
     }
 
     private void setDefaultProfilePicture(String path){
-        File defaultPicture = new File("icon.png");
+        File defaultPicture = new File("Files/Pictures/defaultServer.jpg");
         try (FileOutputStream fileOutputStream = new FileOutputStream(path)){
             fileOutputStream.write(Files.readAllBytes(defaultPicture.toPath()));
             fileOutputStream.flush();

@@ -4,10 +4,13 @@ import com.example.discordfx.Lateral.Notification;
 import com.example.discordfx.Moduls.Dto.ServerMembers.Member;
 import com.example.discordfx.Moduls.Dto.User.User;
 import com.example.discordfx.Server.Start.Server;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Dserver {
+public class Dserver implements Serializable {
 
+    private final int id;
     private String name;
     private int counterOfJoinedClient;
     private final int folderNumber;
@@ -15,9 +18,10 @@ public class Dserver {
     private final ArrayList<Member> members = new ArrayList<>();
     private final ArrayList<Channel> channels = new ArrayList<>();
 
-    public Dserver(Member superChatMaker,int folderNumber){
+    public Dserver(Member superChatMaker,int id){
         this.superChatMaker = superChatMaker;
-        this.folderNumber = folderNumber;
+        this.folderNumber = id;
+        this.id = id;
         Server.lastUsedPort++;
         members.add(superChatMaker);
     }
@@ -52,8 +56,8 @@ public class Dserver {
         return counterOfJoinedClient;
     }
 
-    public int getFolderNumber(){
-        return folderNumber;
+    public int getId(){
+        return id;
     }
 
     public Member getSuperChatMaker() {
@@ -62,8 +66,10 @@ public class Dserver {
 
     public Member getParticularMember(String username){
         for(Member x : members){
-            if(x.getUser().getUsername().equals(username))
+            if(x.getUser().getUsername().equals(username)) {
+                System.out.println("SALAM BACHEHA");
                 return x;
+            }
         }
         return null;
     }
@@ -82,7 +88,7 @@ public class Dserver {
                 return;
         }
         members.add(newMember);
-        newMember.getUser().addServerChat(name);
+        newMember.getUser().addServerChat(id);
         newMember.getUser().addNotification(new Notification("You are added to server chat with name : "+name));
     }
 

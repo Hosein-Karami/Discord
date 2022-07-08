@@ -129,6 +129,23 @@ public class AccountManagement {
         }
     }
 
+    public void setStatus(User user,Socket socket){
+        ObjectInputStream inputStream;
+        Status status;
+        while (true){
+            try {
+                inputStream = new ObjectInputStream(socket.getInputStream());
+                status = (Status) inputStream.readObject();
+                if(status == null)
+                    break;
+                user.setStatus(status);
+            }catch (Exception e){
+                e.printStackTrace();
+                break;
+            }
+        }
+    }
+
     public void sendProfileImage(Socket socket){
         try{
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());

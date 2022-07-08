@@ -1,10 +1,11 @@
 package com.example.discordfx.Moduls.Dto.User;
 
 import com.example.discordfx.Lateral.Notification;
+import com.example.discordfx.Moduls.Dto.DiscordServer.Invitation;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.SplittableRandom;
 
 public class User implements Serializable {
 
@@ -88,7 +89,7 @@ public class User implements Serializable {
         return information.getPendingUsernames();
     }
 
-    public ArrayList<String> getServerChats(){
+    public ArrayList<Integer> getServerChats(){
         return information.getDiscordServers();
     }
 
@@ -102,6 +103,10 @@ public class User implements Serializable {
 
     public ArrayList<String> getOutputRequests(){
         return information.getOutputRequestsUsernames();
+    }
+
+    public ArrayList<Invitation> getInvitations(){
+        return information.getInvitations();
     }
 
     public String getJwtToken(){
@@ -131,8 +136,13 @@ public class User implements Serializable {
         updateInformation();
     }
 
-    public void addServerChat(String newDserverName){
+    public void addServerChat(Integer newDserverName){
         information.addDiscordServer(newDserverName);
+        updateInformation();
+    }
+
+    public void addInvitation(Invitation newInvitation){
+        information.addInvitation(newInvitation);
         updateInformation();
     }
 
@@ -184,6 +194,11 @@ public class User implements Serializable {
 
     public void removeServerChat(String targetServerChatName){
         information.removeDiscordServer(targetServerChatName);
+        updateInformation();
+    }
+
+    public void removeInvitation(Invitation targetInvitation){
+        information.removeInvitation(targetInvitation);
         updateInformation();
     }
 

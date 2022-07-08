@@ -47,6 +47,20 @@ public class AccountsService {
         return null;
     }
 
+    public User getParticularUser(int userId){
+        try {
+            UserEntity userEntity = userDao.getParticularUser(userId);
+            if(userEntity != null) {
+                User user = convertEntityToDto(userEntity);
+                user.loadInformation();
+                return user;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public User logIn(String username,String password){
         try {
             UserEntity userEntity = userDao.logIn(username,password);

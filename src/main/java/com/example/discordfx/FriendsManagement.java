@@ -94,7 +94,6 @@ public class FriendsManagement implements Initializable{
 
     public void next_1(){
         if(friendIndex != (allFriends.size() - 1)) {
-            //username_1.setText("");
             profileImage_1.setImage(null);
             status_1.setImage(null);
             friendIndex++;
@@ -104,7 +103,6 @@ public class FriendsManagement implements Initializable{
 
     public void previous_1(){
         if(friendIndex != 0) {
-            //username_1.setText("");
             profileImage_1.setImage(null);
             status_1.setImage(null);
             friendIndex--;

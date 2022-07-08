@@ -1,6 +1,7 @@
 package com.example.discordfx;
 
 import com.example.discordfx.Client.Management.*;
+import com.example.discordfx.Moduls.Dto.DiscordServer.Invitation;
 import com.example.discordfx.Moduls.Dto.User.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,7 +13,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
@@ -56,6 +56,10 @@ public class Start {
                 else{
                     try {
                         Profile.user = user;
+                        System.out.println("a");
+                        for(Invitation x : user.getInvitations())
+                            System.out.println(x.getInvitationText() + " " +x.getServerId());
+                        System.out.println("b");
                         Start.Username = username.getText();
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
                         Parent root = loader.load();

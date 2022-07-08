@@ -3,7 +3,10 @@ package com.example.discordfx.Server.Management;
 import com.example.discordfx.Lateral.Notification;
 import com.example.discordfx.Moduls.Dto.User.Status;
 import com.example.discordfx.Moduls.Dto.User.User;
+import com.example.discordfx.Server.Service.DserverService;
 import com.example.discordfx.Server.Service.ProfileService;
+import com.example.discordfx.Server.Start.Server;
+import com.example.discordfx.Start;
 
 import java.io.*;
 import java.net.Socket;
@@ -64,7 +67,7 @@ public class ClientManagement implements Runnable{
                 } else if (choose == 2)
                     downloadFile();
                 else if(choose == 3)
-                    setStatus();
+                    accountManagement.setStatus(user,clientSocket);
                 else if(choose == 5)
                     friendshipManagement.requestFriendShip(user);
                 else if(choose == 6)
@@ -90,13 +93,17 @@ public class ClientManagement implements Runnable{
                 else if(choose == 16)
                     connectToPrivateChat();
                 else if(choose == 17)
-                    dserverManagement.makeServerChatImage(clientSocket,user);
+                    dserverManagement.makeServerChat(clientSocket,user);
                 else if(choose == 20){
                     ObjectOutputStream outputStream = new ObjectOutputStream(out);
                     outputStream.writeObject(user);
                 }
                 else if(choose == 21)
                     dserverManagement.sendServerChatInfo(clientSocket);
+                else if(choose == 22)
+                    connectToServerChat();
+                else if(choose == 23)
+                    sendUserServerChats();
                 else {
                     user.setStatus(Status.Offline);
                     break;
@@ -132,23 +139,6 @@ public class ClientManagement implements Runnable{
         }
     }
 
-    private void setStatus(){
-        ObjectInputStream inputStream;
-        Status status;
-        while (true){
-            try {
-                inputStream = new ObjectInputStream(in);
-                status = (Status) inputStream.readObject();
-                if(status == null)
-                    break;
-                user.setStatus(status);
-            }catch (Exception e){
-                e.printStackTrace();
-                break;
-            }
-        }
-    }
-
     private void sendNotifications(){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
@@ -160,7 +150,7 @@ public class ClientManagement implements Runnable{
         }
     }
 
-    private void connectToPrivateChat(){
+    public void connectToPrivateChat(){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
             Integer port = (Integer) inputStream.readObject();
@@ -169,4 +159,27 @@ public class ClientManagement implements Runnable{
             e.printStackTrace();
         }
     }
+
+    private void connectToServerChat(){
+        try {
+            ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
+            String serverName = (String) inputStream.readObject();
+            DserverService service = new DserverService(dserverManagement.getParticularServer(serverName),clientSocket,user);
+            service.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void sendUserServerChats(){
+        try {
+            ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
+            for(Integer x : user.getServerChats())
+                outputStream.writeObject(Server.discordServers.get(x).getName());
+            outputStream.writeObject(null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

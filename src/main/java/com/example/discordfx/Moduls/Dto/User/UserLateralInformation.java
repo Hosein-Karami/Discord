@@ -1,6 +1,8 @@
 package com.example.discordfx.Moduls.Dto.User;
 
 import com.example.discordfx.Lateral.Notification;
+import com.example.discordfx.Moduls.Dto.DiscordServer.Invitation;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,7 +17,8 @@ public class UserLateralInformation implements Serializable {
     private final ArrayList<String> blockesUsername = new ArrayList<>();
     private final ArrayList<String> pendingUsernames = new ArrayList<>();
     private final ArrayList<String> outputRequestsUsernames = new ArrayList<>();
-    private final ArrayList<String> discordServers = new ArrayList<>();
+    private final ArrayList<Integer> discordServers = new ArrayList<>();
+    private final ArrayList<Invitation> invitations = new ArrayList<>();
     private final ArrayList<Notification> notifications = new ArrayList<>();
     private final HashMap<String,Integer> privateChats = new HashMap<>();
     private Status status;
@@ -36,7 +39,11 @@ public class UserLateralInformation implements Serializable {
         return friendsUsername;
     }
 
-    public ArrayList<String> getDiscordServers(){
+    public ArrayList<Invitation> getInvitations(){
+        return invitations;
+    }
+
+    public ArrayList<Integer> getDiscordServers(){
         return discordServers;
     }
 
@@ -64,7 +71,7 @@ public class UserLateralInformation implements Serializable {
         pendingUsernames.add(newPending);
     }
 
-    public void addDiscordServer(String newDiscordServer){
+    public void addDiscordServer(Integer newDiscordServer){
         discordServers.add(newDiscordServer);
     }
 
@@ -78,6 +85,10 @@ public class UserLateralInformation implements Serializable {
 
     public void addPrivateChat(String targetUsername,int port){
         privateChats.put(targetUsername,port);
+    }
+
+    public void addInvitation(Invitation newInvitation){
+        invitations.add(newInvitation);
     }
 
     public void addNotification(Notification notification){
@@ -98,6 +109,10 @@ public class UserLateralInformation implements Serializable {
 
     public void removeDiscordServer(String targetDiscordServer){
         discordServers.remove(targetDiscordServer);
+    }
+
+    public void removeInvitation(Invitation targetInvitation){
+        invitations.remove(targetInvitation);
     }
 
     public void removeOutputRequest(String targetUsername){

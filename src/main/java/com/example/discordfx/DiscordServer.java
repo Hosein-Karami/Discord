@@ -1,13 +1,16 @@
 package com.example.discordfx;
 
-import com.example.discordfx.Moduls.Dto.User.Status;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-
-import java.awt.event.ActionEvent;
+import javafx.stage.Stage;
 import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -41,13 +44,27 @@ public class DiscordServer implements Initializable {
             byte[] serverImageBytes = (byte[]) inputStream.readObject();
             setServerImageProfile(serverImageBytes);
             name.setText(DserverName);
+            out.write(22);
+            outputStream = new ObjectOutputStream(out);
+            outputStream.writeObject(DserverName);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public void addMember(ActionEvent event){
-
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AddServerMember.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+            System.out.println("4");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setServerImageProfile(byte[] imageBytes){

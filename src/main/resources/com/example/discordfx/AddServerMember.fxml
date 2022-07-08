@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.discordfx.AddServerMember">
    <children>
-      <Text fx:id="resultText" layoutX="219.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="461.3367919921875">
+      <Text fx:id="resultText" layoutX="219.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="461.3367919921875">
          <font>
             <Font size="22.0" />
          </font>
@@ -30,6 +30,9 @@
          <font>
             <Font size="17.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <Button layoutX="822.0" layoutY="659.0" mnemonicParsing="false" onAction="#backToServer" prefHeight="26.0" prefWidth="64.0" text="Back">
          <cursor>

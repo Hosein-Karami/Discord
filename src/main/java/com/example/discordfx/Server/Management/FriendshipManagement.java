@@ -12,7 +12,6 @@ import java.net.Socket;
 
 public class FriendshipManagement {
 
-    private final FriendShipServices friendShipService = new FriendShipServices();
     private final Socket clientSocket;
 
     FriendshipManagement(Socket clientSocket){
@@ -134,8 +133,10 @@ public class FriendshipManagement {
             else {
                 outputStream.writeObject("OK");
                 targetUser.loadInformation();
-                if (targetUser.checkIsFriend(user.getUsername()))
-                    friendShipService.removeFriend(targetUser, user);
+                if (targetUser.checkIsFriend(user.getUsername())){
+                    user.removeFriend(targetUsername);
+                    targetUser.removeFriend(user.getUsername());
+                }
                 outputStream.writeObject("OK");
                 user.addBlock(targetUser.getUsername());
                 outputStream.writeObject("User blocked successfully");

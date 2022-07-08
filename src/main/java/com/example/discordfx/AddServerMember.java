@@ -60,6 +60,7 @@ public class AddServerMember implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
+            out.write(1);
             ObjectInputStream inputStream = new ObjectInputStream(in);
             user = (User) inputStream.readObject();
             friends = user.getFriends();
@@ -71,6 +72,8 @@ public class AddServerMember implements Initializable {
                 targetUsername.setVisible(false);
                 searchButton.setVisible(false);
             }
+            else
+                load();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -82,6 +85,7 @@ public class AddServerMember implements Initializable {
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
             ObjectInputStream inputStream = new ObjectInputStream(in);
             outputStream.writeObject(friends.get(friendIndex));
+            outputStream.writeObject(user.getUsername());
             resultText.setText((String) inputStream.readObject());
             inviteButton.setVisible(false);
         }catch (Exception e){
@@ -90,23 +94,23 @@ public class AddServerMember implements Initializable {
     }
 
     public void load(){
-        String friendUsername = friends.get(friendIndex);
+        String username = friends.get(friendIndex);
         try {
             out.write(1);
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
             ObjectInputStream inputStream = new ObjectInputStream(in);
-            outputStream.writeObject(friendUsername);
+            outputStream.writeObject(username);
             String status = (String) inputStream.readObject();
             out.write(3);
             outputStream = new ObjectOutputStream(out);
             inputStream = new ObjectInputStream(in);
-            outputStream.writeObject(friendUsername);
+            outputStream.writeObject(username);
             outputStream.writeObject(user);
             byte[] imageBytes = (byte[]) inputStream.readObject();
             Status userStatus = (Status) inputStream.readObject();
             setTargetUserProfile(imageBytes);
             setProperStatusImage(userStatus);
-            targetUsername.setText(friendUsername);
+            friendUsername.setText(username);
             if(status.equals("NO")) {
                 resultText_2.setVisible(false);
                 inviteButton.setVisible(true);
@@ -131,9 +135,12 @@ public class AddServerMember implements Initializable {
         }
         else
             resultText.setText("You don't have friend with this username");
+        targetUsername.clear();
     }
 
     public void next(){
+        System.out.println(friends.size());
+        System.out.println(friendIndex);
         if(friendIndex != (friends.size() - 1)) {
             targetUserProfile.setImage(null);
             targetUserStatus.setImage(null);
@@ -153,6 +160,7 @@ public class AddServerMember implements Initializable {
 
     public void backToServer(ActionEvent event){
         try {
+            out.write(4);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("DiscordServer.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -173,7 +181,7 @@ public class AddServerMember implements Initializable {
         }catch (Exception e){
             e.printStackTrace();
         }
-        Image profile = new Image("ClientFiles/temp.jpg");
+        Image profile = new Image("file:ClientFiles/temp.jpg");
         targetUserProfile.setImage(profile);
         file.delete();
     }

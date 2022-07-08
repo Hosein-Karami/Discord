@@ -1,10 +1,10 @@
 package com.example.discordfx;
 
+import com.example.discordfx.Moduls.Dto.DiscordServer.Invitation;
 import com.example.discordfx.Moduls.Dto.User.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,11 +14,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.*;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
-public class ShowServerChats implements Initializable {
+public class ShowServerChats {
+
+    private User user;
 
     @FXML
     ImageView serverProfileImage;
@@ -46,20 +46,29 @@ public class ShowServerChats implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize() {
+        servers = new ArrayList<>();
         try {
-            out.write(20);
+            out.write(23);
             ObjectInputStream inputStream = new ObjectInputStream(in);
-            servers = ((User) inputStream.readObject()).getServerChats();
+            String serverName;
+            while (true){
+                serverName = (String) inputStream.readObject();
+                if(serverName == null)
+                    break;
+                servers.add(serverName);
+            }
             if(servers.size() == 0){
                 text.setText("You aren't in any discord server");
                 nextButton.setVisible(false);
                 previousButton.setVisible(false);
                 joinButton.setVisible(false);
             }
-            else
+            else {
+                serverIndex = 0;
+                inviteIndex = 0;
                 loadInformation();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -107,7 +116,18 @@ public class ShowServerChats implements Initializable {
     }
 
     public void connect(ActionEvent event){
-
+        DiscordServer.DserverName = servers.get(serverIndex);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("DiscordServer.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void makeDserver(ActionEvent event){
@@ -123,6 +143,34 @@ public class ShowServerChats implements Initializable {
             e.printStackTrace();
         }
     }
+
+    //Invitation handle
+
+    private ArrayList<Invitation> invitations;
+    private int inviteIndex;
+
+    @FXML
+    ImageView serverProfileImage_2;
+    @FXML
+    Text serverChatName_2;
+    @FXML
+    Text text_2;
+    @FXML
+    Button nextButton_2;
+    @FXML
+    Button previousButton_2;
+    @FXML
+    Button acceptButton;
+    @FXML
+    Button rejectButton;
+
+    public void initialize_2(){
+        invitations = user.getInvitations();
+        inviteIndex = 0;
+        serverIndex = 0;
+
+    }
+
 
     public void backToMenu(ActionEvent event){
         try {
