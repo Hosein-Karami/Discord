@@ -112,21 +112,12 @@ public class AccountsService {
         try {
             ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
-            String jwtToken = (String) inputStream.readObject();
-            if(jwtToken.equals(user.getJwtToken())){
-                outputStream.writeObject("Ok");
-                String status = (String) inputStream.readObject();
-                if(status.equals("Ok")) {
-                    byte[] bytes = (byte[]) inputStream.readObject();
-                    FileOutputStream outputStream_2 = new FileOutputStream("Files/Pictures/" + user.getId() + ".jpg");
-                    outputStream_2.write(bytes);
-                    outputStream_2.close();
-                    outputStream.writeObject("Your profile changed successfully");
-                    log.changePictureSuccessfully(user.getId());
-                }
-            }
-        else
-            outputStream.writeObject("Verification failed.");
+            byte[] bytes = (byte[]) inputStream.readObject();
+            FileOutputStream outputStream_2 = new FileOutputStream("Files/Pictures/" + user.getId() + ".jpg");
+            outputStream_2.write(bytes);
+            outputStream_2.close();
+            outputStream.writeObject("Your profile changed successfully");
+            log.changePictureSuccessfully(user.getId());
         } catch (Exception e) {
             e.printStackTrace();
             log.changePictureError(user.getId());

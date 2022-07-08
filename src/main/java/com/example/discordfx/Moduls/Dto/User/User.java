@@ -131,6 +131,11 @@ public class User implements Serializable {
         updateInformation();
     }
 
+    public void addServerChat(String newDserverName){
+        information.addDiscordServer(newDserverName);
+        updateInformation();
+    }
+
     public void addPending(String newPending){
         information.addPending(newPending);
         updateInformation();
@@ -174,6 +179,11 @@ public class User implements Serializable {
 
     public void removePending(String targetUsername){
         information.removePending(targetUsername);
+        updateInformation();
+    }
+
+    public void removeServerChat(String targetServerChatName){
+        information.removeDiscordServer(targetServerChatName);
         updateInformation();
     }
 

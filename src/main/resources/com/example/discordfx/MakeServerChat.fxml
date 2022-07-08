@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.discordfx.MakeServerChat">
+   <children>
+      <TextField fx:id="serverName" alignment="CENTER" layoutX="271.0" layoutY="292.0" prefHeight="42.0" prefWidth="356.0" promptText="Server name">
+         <font>
+            <Font size="19.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </TextField>
+      <Text fx:id="resultText" layoutX="191.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="517.3367004394531">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Button layoutX="378.0" layoutY="360.0" mnemonicParsing="false" onAction="#setPicture" prefHeight="29.0" prefWidth="142.0" text="Set picture">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="378.0" layoutY="426.0" mnemonicParsing="false" onAction="#makeServer" prefHeight="29.0" prefWidth="142.0" text="Create">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="serverProfile" fitHeight="150.0" fitWidth="200.0" layoutX="361.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>

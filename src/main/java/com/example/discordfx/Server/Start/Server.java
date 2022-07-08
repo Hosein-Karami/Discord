@@ -1,6 +1,7 @@
 package com.example.discordfx.Server.Start;
 
 import com.example.discordfx.Log.ServerLog;
+import com.example.discordfx.Moduls.Dto.DiscordServer.Dserver;
 import com.example.discordfx.Server.Management.ClientManagement;
 import com.example.discordfx.Server.Service.ClientService.AccountsService;
 import java.net.ServerSocket;
@@ -12,9 +13,9 @@ import java.util.concurrent.Executors;
 public class Server {
 
     public static int lastUsedPort = 2000;
-
     public static AccountsService accountsService = new AccountsService();
     static ArrayList<Socket> clients = new ArrayList<>();
+    public static final ArrayList<Dserver> discordServers = new ArrayList<>();
     static ExecutorService executorService = Executors.newCachedThreadPool();
     private final ServerLog log = new ServerLog();
 

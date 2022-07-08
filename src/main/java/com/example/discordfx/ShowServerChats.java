@@ -1,12 +1,18 @@
 package com.example.discordfx;
 
 import com.example.discordfx.Moduls.Dto.User.User;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.URL;
@@ -76,6 +82,54 @@ public class ShowServerChats implements Initializable {
                 serverProfileImage.setImage(serverImage);
             }
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void next(){
+        if(serverIndex != (servers.size() - 1)) {
+            serverProfileImage.setImage(null);
+            serverIndex++;
+            loadInformation();
+        }
+    }
+
+    public void previous(){
+        if(serverIndex != 0) {
+            serverProfileImage.setImage(null);
+            serverIndex--;
+            loadInformation();
+        }
+    }
+
+    public void connect(ActionEvent event){
+
+    }
+
+    public void makeDserver(ActionEvent event){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("MakeServerChat.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void backToMenu(ActionEvent event){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        }catch (Exception e){
             e.printStackTrace();
         }
     }

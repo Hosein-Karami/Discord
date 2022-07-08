@@ -76,33 +76,21 @@ public class Profile implements Initializable {
 
     public void setPicture(ActionEvent event){
         try{
-            ObjectOutputStream outputStream = new ObjectOutputStream(out);
-            outputStream.writeObject(1);
-            outputStream = new ObjectOutputStream(out);
-            ObjectInputStream inputStream = new ObjectInputStream(in);
-            outputStream.writeObject(user.getJwtToken());
-            String status = (String) inputStream.readObject();
-            if(status.equals("Verification failed."))
-                text.setText("Verification failed");
-            else {
-                try {
-                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    FileChooser fileChooser = new FileChooser();
-                    File image = fileChooser.showOpenDialog(stage);
-                    if ((Pattern.compile("^(.+).jpg\\z").matcher(image.getName()).find())) {
-                        outputStream.writeObject("Ok");
-                        byte[] imageBytes = Files.readAllBytes(image.toPath());
-                        outputStream.writeObject(imageBytes);
-                        status = (String) inputStream.readObject();
-                        changeImage(image, imageBytes);
-                        text.setText(status);
-                    } else {
-                        outputStream.writeObject("Invalid format");
-                        text.setText("Format of input file should be jpg");
-                    }
-                }catch (Exception e){
-                    outputStream.writeObject("ERROR");
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            FileChooser fileChooser = new FileChooser();
+            File image = fileChooser.showOpenDialog(stage);
+            if(image != null){
+                String fileName = image.getName();
+                if(fileName.contains(".jpg") || fileName.contains(".png") || fileName.contains(".jpeg")){
+                    ObjectOutputStream outputStream = new ObjectOutputStream(out);
+                    ObjectInputStream inputStream = new ObjectInputStream(in);
+                    outputStream.writeObject(1);
+                    outputStream = new ObjectOutputStream(out);
+                    outputStream.writeObject(Files.readAllBytes(image.toPath()));
+                    text.setText((String) inputStream.readObject());
                 }
+                else
+                    text.setText("Invalid file format,format should be jpg,png,jpeg");
             }
         } catch (Exception e) {
             e.printStackTrace();

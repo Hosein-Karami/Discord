@@ -14,6 +14,7 @@ public class ClientManagement implements Runnable{
     private final AccountManagement accountManagement = new AccountManagement();
     private final FriendshipManagement friendshipManagement;
     private final ChatManagement chatManagement = new ChatManagement();
+    private final DserverManagement dserverManagement = new DserverManagement();
     private final Socket clientSocket;
     private User user;
     private InputStream in;
@@ -86,6 +87,8 @@ public class ClientManagement implements Runnable{
                     chatManagement.makePrivateChat(user,clientSocket);
                 else if(choose == 16)
                     connectToPrivateChat();
+                else if(choose == 17)
+                    dserverManagement.makeServerChatImage(clientSocket,user);
                 else if(choose == 20){
                     ObjectOutputStream outputStream = new ObjectOutputStream(out);
                     outputStream.writeObject(user);
