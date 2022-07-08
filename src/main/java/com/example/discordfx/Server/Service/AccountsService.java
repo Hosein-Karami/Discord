@@ -1,4 +1,4 @@
-package com.example.discordfx.Server.Service.ClientService;
+package com.example.discordfx.Server.Service;
 
 import com.example.discordfx.Log.ServerLog;
 import com.example.discordfx.Log.ServicesLog.AccountsLog;
@@ -6,7 +6,6 @@ import com.example.discordfx.Moduls.Dto.User.Status;
 import com.example.discordfx.Moduls.Dto.User.User;
 import com.example.discordfx.Moduls.Entity.UserEntity;
 import com.example.discordfx.Server.Dao.UserDao;
-import com.example.discordfx.Server.Service.TokenService;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -37,20 +36,6 @@ public class AccountsService {
     public User getParticularUser(String username) {
         try {
             UserEntity userEntity = userDao.getParticularUser(username);
-            if(userEntity != null) {
-                User user = convertEntityToDto(userEntity);
-                user.loadInformation();
-                return user;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public User getParticularUser(int id) {
-        try {
-            UserEntity userEntity = userDao.getParticularUser(id);
             if(userEntity != null) {
                 User user = convertEntityToDto(userEntity);
                 user.loadInformation();

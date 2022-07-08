@@ -2,14 +2,16 @@ package com.example.discordfx;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 import java.io.*;
 import java.nio.file.Files;
 
@@ -40,7 +42,7 @@ public class MakeServerChat {
             return;
         }
         try {
-            out.write(16);
+            out.write(17);
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
             ObjectInputStream inputStream = new ObjectInputStream(in);
             outputStream.writeObject(serverName.getText());
@@ -72,6 +74,20 @@ public class MakeServerChat {
             }
             else
                 resultText.setText("Invalid picture format,format should be jpg,png,jpeg");
+        }
+    }
+
+    public void backToMenu(ActionEvent event){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ShowServerChats.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 

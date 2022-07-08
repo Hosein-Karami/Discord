@@ -37,7 +37,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="380.0" layoutY="383.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="138.0" text="Join" textFill="#ed11b7">
+      <Button fx:id="joinButton" layoutX="380.0" layoutY="383.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="138.0" text="Join" textFill="#ed11b7">
          <font>
             <Font size="15.0" />
          </font>

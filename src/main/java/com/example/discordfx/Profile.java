@@ -24,7 +24,6 @@ import java.net.Socket;
 import java.net.URL;
 import java.nio.file.Files;
 import java.util.ResourceBundle;
-import java.util.regex.Pattern;
 
 public class Profile implements Initializable {
 
@@ -83,10 +82,16 @@ public class Profile implements Initializable {
                 String fileName = image.getName();
                 if(fileName.contains(".jpg") || fileName.contains(".png") || fileName.contains(".jpeg")){
                     ObjectOutputStream outputStream = new ObjectOutputStream(out);
-                    ObjectInputStream inputStream = new ObjectInputStream(in);
                     outputStream.writeObject(1);
                     outputStream = new ObjectOutputStream(out);
-                    outputStream.writeObject(Files.readAllBytes(image.toPath()));
+                    ObjectInputStream inputStream = new ObjectInputStream(in);
+                    byte[] imageBytes = Files.readAllBytes(image.toPath());
+                    outputStream.writeObject(imageBytes);
+                    FileOutputStream fileOutputStream = new FileOutputStream("ClientFiles/Profile.jpg");
+                    fileOutputStream.write(imageBytes);
+                    fileOutputStream.flush();
+                    fileOutputStream.close();
+                    imageView.setImage(new Image(image.getPath()));
                     text.setText((String) inputStream.readObject());
                 }
                 else

@@ -315,20 +315,13 @@ public class RelationshipManagement {
 
     private void loadInformation(ArrayList<String> usernames,int index,ImageView profileImage,ImageView status,Text username){
         try {
-            System.out.println("aa");
             out.write(7);
-            System.out.println("bb");
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
-            System.out.println("cc");
             ObjectInputStream inputStream = new ObjectInputStream(in);
-            System.out.println("dd");
             outputStream.writeObject(usernames.get(index));
             outputStream.writeObject(user);
-            System.out.println("ee");
             byte[] senderProfile = (byte[]) inputStream.readObject();
-            System.out.println("ff");
             Status userStatus = (Status) inputStream.readObject();
-            System.out.println("gg");
             if(senderProfile == null) {
                 profileImage.setImage(null);
                 status.setImage(null);

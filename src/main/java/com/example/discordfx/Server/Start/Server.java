@@ -3,7 +3,7 @@ package com.example.discordfx.Server.Start;
 import com.example.discordfx.Log.ServerLog;
 import com.example.discordfx.Moduls.Dto.DiscordServer.Dserver;
 import com.example.discordfx.Server.Management.ClientManagement;
-import com.example.discordfx.Server.Service.ClientService.AccountsService;
+import com.example.discordfx.Server.Service.AccountsService;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;

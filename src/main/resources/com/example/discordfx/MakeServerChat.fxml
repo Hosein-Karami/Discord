@@ -8,7 +8,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.discordfx.MakeServerChat">
    <children>
       <TextField fx:id="serverName" alignment="CENTER" layoutX="271.0" layoutY="292.0" prefHeight="42.0" prefWidth="356.0" promptText="Server name">
@@ -28,12 +27,23 @@
          <font>
             <Font size="16.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <Button layoutX="378.0" layoutY="426.0" mnemonicParsing="false" onAction="#makeServer" prefHeight="29.0" prefWidth="142.0" text="Create">
          <font>
             <Font size="16.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <ImageView fx:id="serverProfile" fitHeight="150.0" fitWidth="200.0" layoutX="361.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="822.0" layoutY="659.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="26.0" prefWidth="64.0" text="Back">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

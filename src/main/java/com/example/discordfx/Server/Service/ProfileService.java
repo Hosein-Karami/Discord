@@ -1,16 +1,18 @@
-package com.example.discordfx.Server.Management;
+package com.example.discordfx.Server.Service;
 
 import com.example.discordfx.Moduls.Dto.User.User;
+import com.example.discordfx.Server.Management.AccountManagement;
+
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
-public class ProfileManagement {
+public class ProfileService {
 
     private final Socket clientSocket;
     private final User user;
     private final AccountManagement accountManagement = new AccountManagement();
 
-    public ProfileManagement(User user,Socket clientSocket){
+    public ProfileService(User user, Socket clientSocket){
         this.clientSocket = clientSocket;
         this.user = user;
     }

@@ -3,6 +3,8 @@ package com.example.discordfx.Server.Management;
 import com.example.discordfx.Lateral.Notification;
 import com.example.discordfx.Moduls.Dto.User.Status;
 import com.example.discordfx.Moduls.Dto.User.User;
+import com.example.discordfx.Server.Service.ProfileService;
+
 import java.io.*;
 import java.net.Socket;
 import java.nio.file.Files;
@@ -57,8 +59,8 @@ public class ClientManagement implements Runnable{
             try {
                 int choose = in.read();
                 if (choose == 1) {
-                    ProfileManagement profileManagement = new ProfileManagement(user, clientSocket);
-                    profileManagement.start();
+                    ProfileService profileService = new ProfileService(user, clientSocket);
+                    profileService.start();
                 } else if (choose == 2)
                     downloadFile();
                 else if(choose == 3)
@@ -93,6 +95,8 @@ public class ClientManagement implements Runnable{
                     ObjectOutputStream outputStream = new ObjectOutputStream(out);
                     outputStream.writeObject(user);
                 }
+                else if(choose == 21)
+                    dserverManagement.sendServerChatInfo(clientSocket);
                 else {
                     user.setStatus(Status.Offline);
                     break;

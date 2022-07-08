@@ -13,7 +13,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
@@ -31,6 +30,8 @@ public class ShowServerChats implements Initializable {
     Button nextButton;
     @FXML
     Button previousButton;
+    @FXML
+    Button joinButton;
 
     private ArrayList<String> servers;
     private int serverIndex;
@@ -55,6 +56,7 @@ public class ShowServerChats implements Initializable {
                 text.setText("You aren't in any discord server");
                 nextButton.setVisible(false);
                 previousButton.setVisible(false);
+                joinButton.setVisible(false);
             }
             else
                 loadInformation();
@@ -80,6 +82,8 @@ public class ShowServerChats implements Initializable {
                 fileOutputStream.close();
                 Image serverImage = new Image("file:ClientFiles/temp.jpg");
                 serverProfileImage.setImage(serverImage);
+                file.delete();
+                serverChatName.setText(servers.get(serverIndex));
             }
         } catch (Exception e) {
             e.printStackTrace();

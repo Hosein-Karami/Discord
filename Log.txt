@@ -448,3 +448,77 @@ an user added successfully with username=Hosein.
 Client whose address : /127.0.0.1 successfully connect to server.
 2022-07-08 01:57 [Info] UserDao
 User with username=MohammadReza log in successfully.
+2022-07-08 14:47 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-08 14:47 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-08 14:49 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-08 14:49 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-08 14:49 [Info] ClientService
+User with id=78 changed profile picture successfully.
+2022-07-08 14:49 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-08 14:57 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-08 14:58 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-08 14:58 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-08 14:58 [Info] ClientService
+User with id=78 changed profile picture successfully.
+2022-07-08 15:05 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-08 15:05 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-08 15:05 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-08 15:10 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-08 15:10 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-08 15:10 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-08 15:10 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-08 15:14 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-08 15:14 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-08 15:15 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-08 15:15 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-08 15:16 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-08 15:16 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-08 15:24 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-08 15:25 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-08 15:25 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-08 15:30 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-08 15:30 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-08 15:30 [Info] UserDao
+User with username=HamidReza log in successfully.
+2022-07-08 15:32 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-08 15:32 [Info] UserDao
+User with username=HamidReza log in successfully.
+2022-07-08 15:47 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-08 15:48 [Info] UserDao
+User with username=Alireza log in successfully.
+2022-07-08 15:48 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-08 15:50 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-08 15:50 [Info] UserDao
+User with username=Alireza log in successfully.
+2022-07-08 15:50 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.

@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Role implements Serializable {
 
+    private final String name;
     private boolean makeChannel;
     private boolean deleteChannel;
     private boolean removeMemberFromServer;
@@ -11,6 +12,10 @@ public class Role implements Serializable {
     private boolean limitMemberToJoinChannel;
     private boolean changeChannelName;
     private boolean pinMessage;
+
+    public Role(String name){
+        this.name = name;
+    }
 
     public void setMakeChannel(boolean makeChannel){
         this.makeChannel = makeChannel;
@@ -66,6 +71,10 @@ public class Role implements Serializable {
 
     public boolean isLimitMemberToJoinChannel(){
         return limitMemberToJoinChannel;
+    }
+
+    public String getName(){
+        return name;
     }
 
 }
