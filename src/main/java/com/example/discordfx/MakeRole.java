@@ -49,6 +49,10 @@ public class MakeRole {
             result.setText("Enter name of role");
             return;
         }
+        if(roleName.getText().equals("Owner")){
+            result.setText("You can't make this role");
+            return;
+        }
         try {
             out.write(1);
             ObjectOutputStream outputStream = new ObjectOutputStream(out);

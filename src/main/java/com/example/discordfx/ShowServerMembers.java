@@ -2,6 +2,7 @@ package com.example.discordfx;
 
 import com.example.discordfx.Moduls.Dto.DiscordServer.Dserver;
 import com.example.discordfx.Moduls.Dto.ServerMembers.Member;
+import com.example.discordfx.Moduls.Dto.ServerMembers.Role;
 import com.example.discordfx.Moduls.Dto.User.Status;
 import com.example.discordfx.Moduls.Dto.User.User;
 import javafx.event.ActionEvent;
@@ -12,6 +13,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -28,11 +31,19 @@ public class ShowServerMembers implements Initializable {
     @FXML
     ImageView statusImage;
     @FXML
+    TextArea roles;
+    @FXML
     Text memberUsername;
     @FXML
     Text result;
     @FXML
     Button kickButton;
+    @FXML
+    Button addRole;
+    @FXML
+    TextField roleName;
+    @FXML
+    Button add;
 
     private OutputStream out;
     private InputStream in;
@@ -58,9 +69,12 @@ public class ShowServerMembers implements Initializable {
             for(Member x : members)
                 membersId.add(x.getUser().getId());
             Boolean canKick = (Boolean) inputStream.readObject();
+            Boolean isOwner = (Boolean) inputStream.readObject();
             user = (User) inputStream.readObject();
             if(!canKick)
                 kickButton.setVisible(false);
+            if(!isOwner)
+                addRole.setVisible(false);
             loadInformation();
         } catch (Exception e) {
             e.printStackTrace();
@@ -92,6 +106,7 @@ public class ShowServerMembers implements Initializable {
                 setProperStatusImage(memberStatus);
             }
             memberUsername.setText(targetUsername);
+            setRoles();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -122,14 +137,52 @@ public class ShowServerMembers implements Initializable {
             ObjectInputStream inputStream = new ObjectInputStream(in);
             outputStream.writeObject(membersId.get(memberIndex));
             result.setText((String) inputStream.readObject());
+            profileImage.setImage(null);
+            statusImage.setImage(null);
+            roles.clear();
+            memberUsername.setText("");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void backToMenu(ActionEvent event){
+    public void addRole(){
+        roleName.setVisible(true);
+        add.setVisible(true);
+    }
+
+    public void add(){
+        if(roleName.getText().isEmpty()){
+            result.setText("Enter name of role");
+            return;
+        }
+        if(roleName.getText().equals("Owner")){
+            result.setText("You can't add this role to other");
+            return;
+        }
         try {
             out.write(3);
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
+            ObjectInputStream inputStream = new ObjectInputStream(in);
+            outputStream.writeObject(roleName.getText());
+            String status = (String) inputStream.readObject();
+            if(status.equals("OK")) {
+                outputStream.writeObject(membersId.get(memberIndex));
+                result.setText((String) inputStream.readObject());
+                roles.appendText(roleName.getText());
+            }else
+                result.setText("There is no role with this name in server");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        roleName.setText("");
+        roleName.setVisible(false);
+        add.setVisible(false);
+    }
+
+    public void backToMenu(ActionEvent event){
+        try {
+            out.write(4);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("DiscordServer.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -155,6 +208,21 @@ public class ShowServerMembers implements Initializable {
         else if(status == Status.Idle)
             image = new Image("file:src/main/resources/Status/Idle.png");
         statusImage.setImage(image);
+    }
+
+    private void setRoles(){
+        try {
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
+            ObjectInputStream inputStream = new ObjectInputStream(in);
+            outputStream.writeObject(membersId.get(memberIndex));
+            Member targetMember = (Member) inputStream.readObject();
+            StringBuilder str = new StringBuilder();
+            for(Role x : targetMember.getRoles())
+                str.append(x.getName()).append(",");
+            roles.setText(str.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

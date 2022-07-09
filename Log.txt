@@ -1286,3 +1286,25 @@ User with username=qqqqqq log in successfully.
 Client whose address : /127.0.0.1 successfully connect to server.
 2022-07-09 17:21 [Info] UserDao
 User with username=wwwwww log in successfully.
+2022-07-09 18:36 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 18:36 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-09 18:37 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 18:37 [Info] UserDao
+an user added successfully with username=zzzzzz.
+2022-07-09 18:37 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 18:37 [Info] UserDao
+User with username=zzzzzz log in successfully.
+2022-07-09 19:21 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 19:22 [Info] UserDao
+an user added successfully with username=rrrrrr.
+2022-07-09 19:22 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 19:22 [Info] UserDao
+User with username=rrrrrr log in successfully.
+2022-07-09 19:22 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.

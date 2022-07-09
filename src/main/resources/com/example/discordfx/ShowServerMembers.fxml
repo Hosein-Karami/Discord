@@ -2,6 +2,8 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -9,19 +11,19 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.discordfx.ShowServerMembers">
    <children>
-      <ImageView fx:id="profileImage" fitHeight="159.0" fitWidth="206.0" layoutX="347.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="profileImage" fitHeight="159.0" fitWidth="206.0" layoutX="347.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
       <Button layoutX="822.0" layoutY="659.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="26.0" prefWidth="64.0" text="Back">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ImageView fx:id="statusImage" fitHeight="56.0" fitWidth="64.0" layoutX="553.0" layoutY="254.0" pickOnBounds="true" preserveRatio="true" />
-      <Text fx:id="memberUsername" layoutX="255.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="388.3392333984375">
+      <ImageView fx:id="statusImage" fitHeight="56.0" fitWidth="64.0" layoutX="553.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fx:id="memberUsername" layoutX="256.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="388.3392333984375">
          <font>
             <Font size="21.0" />
          </font>
       </Text>
-      <Button fx:id="kickButton" layoutX="404.0" layoutY="412.0" mnemonicParsing="false" onAction="#kick" prefHeight="34.0" prefWidth="91.0" text="Kick">
+      <Button fx:id="kickButton" layoutX="404.0" layoutY="325.0" mnemonicParsing="false" onAction="#kick" prefHeight="34.0" prefWidth="91.0" text="Kick">
          <font>
             <Font size="15.0" />
          </font>
@@ -29,7 +31,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="553.0" layoutY="412.0" mnemonicParsing="false" onAction="#next" prefHeight="34.0" prefWidth="91.0" text="Next">
+      <Button layoutX="553.0" layoutY="325.0" mnemonicParsing="false" onAction="#next" prefHeight="34.0" prefWidth="91.0" text="Next">
          <font>
             <Font size="15.0" />
          </font>
@@ -37,7 +39,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="255.0" layoutY="412.0" mnemonicParsing="false" onAction="#previous" prefHeight="34.0" prefWidth="91.0" text="Previous">
+      <Button layoutX="256.0" layoutY="325.0" mnemonicParsing="false" onAction="#previous" prefHeight="34.0" prefWidth="91.0" text="Previous">
          <font>
             <Font size="15.0" />
          </font>
@@ -50,5 +52,28 @@
             <Font size="21.0" />
          </font>
       </Text>
+      <TextArea fx:id="roles" editable="false" layoutX="55.0" layoutY="95.0" prefHeight="174.0" prefWidth="246.0" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextArea>
+      <Button fx:id="addRole" layoutX="377.0" layoutY="404.0" mnemonicParsing="false" onAction="#addRole" prefHeight="34.0" prefWidth="145.0" text="Add role">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <TextField fx:id="roleName" alignment="CENTER" layoutX="297.0" layoutY="521.0" prefHeight="28.0" prefWidth="306.0" promptText="Role name" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </TextField>
+      <Button fx:id="add" layoutX="404.0" layoutY="571.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="91.0" text="Add" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

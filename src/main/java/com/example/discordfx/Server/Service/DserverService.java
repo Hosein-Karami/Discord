@@ -46,6 +46,7 @@ public class DserverService {
                 outputStream = new ObjectOutputStream(out);
                 outputStream.writeObject(dserver);
                 outputStream.writeObject(member.canKickMembers());
+                outputStream.writeObject(member.isOwner());
                 outputStream.writeObject(member.getUser());
                 showMembers();
             }
@@ -141,16 +142,50 @@ public class DserverService {
         while (true){
             try {
                 choice = in.read();
-                if(choice == 1)
+                if(choice == 1) {
                     management.sendUserInfo(clientSocket);
+                    sendMemberRoles();
+                }
                 else if(choice == 2)
                     kickMember();
+                else if(choice == 3)
+                    addRoleToMember();
                 else
                     break;
             } catch (IOException e) {
                 e.printStackTrace();
                 break;
             }
+        }
+    }
+
+    private void sendMemberRoles(){
+        try {
+            ObjectInputStream inputStream = new ObjectInputStream(in);
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
+            Integer memberId = (Integer) inputStream.readObject();
+            outputStream.writeObject(dserver.getParticularMember(memberId));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void addRoleToMember(){
+        try {
+            ObjectInputStream inputStream = new ObjectInputStream(in);
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
+            String roleName = (String) inputStream.readObject();
+            Role targetRole = dserver.getParticularRole(roleName);
+            if(targetRole != null){
+                Integer targetMemberId = (Integer) inputStream.readObject();
+                Member targetMember = dserver.getParticularMember(targetMemberId);
+                targetMember.addRole(targetRole);
+                outputStream.writeObject("Role added successfully");
+            }
+            else
+                outputStream.writeObject("Not exist");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
