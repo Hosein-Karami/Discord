@@ -5,6 +5,7 @@ import com.example.discordfx.Moduls.Dto.User.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,11 +15,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.*;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class ShowServerChats {
+public class ShowServerChats implements Initializable {
 
     private User user;
+    private ArrayList<Invitation> invitations;
 
     @FXML
     ImageView serverProfileImage;
@@ -46,7 +50,19 @@ public class ShowServerChats {
         }
     }
 
-    public void initialize() {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            out.write(20);
+            ObjectInputStream inputStream = new ObjectInputStream(in);
+            user = (User) inputStream.readObject();
+            invitations = user.getInvitations();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void initialize_1() {
         try {
             out.write(20);
             ObjectInputStream inputStream = new ObjectInputStream(in);
@@ -119,7 +135,6 @@ public class ShowServerChats {
 
     //Invitation handle
 
-    private ArrayList<Invitation> invitations;
     private int inviteIndex;
 
     @FXML
@@ -140,7 +155,6 @@ public class ShowServerChats {
     Button rejectButton;
 
     public void initialize_2(){
-        invitations = user.getInvitations();
         if(invitations.size() == 0){
             nextButton_2.setVisible(false);
             previousButton_2.setVisible(false);
@@ -230,7 +244,7 @@ public class ShowServerChats {
             invitations.remove(inviteIndex);
             if(inviteIndex == invitations.size())
                 inviteIndex--;
-            loadInformation_2();
+            initialize_2();
         } catch (Exception e) {
             e.printStackTrace();
         }

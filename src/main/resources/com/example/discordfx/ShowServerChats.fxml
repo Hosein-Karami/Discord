@@ -11,22 +11,22 @@
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.discordfx.ShowServerChats">
   <tabs>
-    <Tab onSelectionChanged="#initialize" text="Server chat">
-         <content>
-            <AnchorPane prefHeight="700.0" prefWidth="900.0">
+    <Tab onSelectionChanged="#initialize_1" text="Server chats">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Text fx:id="text" layoutX="220.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="459.8497619628906">
+                  <Text fx:id="text" layoutX="220.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="459.8497619628906">
                      <font>
                         <Font size="21.0" />
                      </font>
                   </Text>
-                  <ImageView fx:id="serverProfileImage" fitHeight="150.0" fitWidth="200.0" layoutX="350.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="serverProfileImage" fitHeight="150.0" fitWidth="200.0" layoutX="350.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true" />
                   <Text fx:id="serverChatName" layoutX="257.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="386.7392578125">
                      <font>
                         <Font size="21.0" />
                      </font>
                   </Text>
-                  <Button fx:id="previousButton" layoutX="219.0" layoutY="383.0" mnemonicParsing="false" onAction="#previous" text="Previous">
+                  <Button fx:id="previousButton" layoutX="218.0" layoutY="370.0" mnemonicParsing="false" onAction="#previous" text="Previous">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -34,7 +34,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="nextButton" layoutX="605.0" layoutY="383.0" mnemonicParsing="false" onAction="#next" prefHeight="31.0" prefWidth="77.0" text="Next">
+                  <Button fx:id="joinButton" layoutX="380.0" layoutY="370.0" mnemonicParsing="false" onAction="#connect" prefHeight="31.0" prefWidth="138.0" text="Join" textFill="#ed11b7">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -42,7 +42,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="joinButton" layoutX="380.0" layoutY="383.0" mnemonicParsing="false" onAction="#connect" prefHeight="31.0" prefWidth="138.0" text="Join" textFill="#ed11b7">
+                  <Button fx:id="nextButton" layoutX="602.0" layoutY="370.0" mnemonicParsing="false" onAction="#next" prefHeight="31.0" prefWidth="77.0" text="Next">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -50,12 +50,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="822.0" layoutY="631.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="26.0" prefWidth="64.0" text="Back">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button layoutX="381.0" layoutY="471.0" mnemonicParsing="false" onAction="#makeDserver" prefHeight="31.0" prefWidth="138.0" text="Make server chat" textFill="#2313eb">
+                  <Button layoutX="381.0" layoutY="450.0" mnemonicParsing="false" onAction="#makeDserver" prefHeight="31.0" prefWidth="138.0" text="Make server chat" textFill="#2313eb">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -63,21 +58,30 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-               </children>
-            </AnchorPane>
-         </content>
+                  <Button layoutX="822.0" layoutY="630.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="26.0" prefWidth="64.0" text="Back">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children></AnchorPane>
+      </content>
     </Tab>
-    <Tab text="Invitations">
+    <Tab onSelectionChanged="#initialize_2" text="Invitations">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="serverProfileImage_2" fitHeight="150.0" fitWidth="200.0" layoutX="350.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true" />
-                  <Text fx:id="text_2" layoutX="230.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="459.8497619628906">
+                  <Text fx:id="text_2" layoutX="220.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="459.8497619628906">
                      <font>
                         <Font size="21.0" />
                      </font>
                   </Text>
-                  <Text fx:id="serverChatName_2" layoutX="256.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="386.7392578125">
+                  <ImageView fx:id="serverProfileImage_2" fitHeight="150.0" fitWidth="200.0" layoutX="350.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true" />
+                  <Text fx:id="serverChatName_2" layoutX="257.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="386.7392578125">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="invitationMessage" layoutX="247.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="405.1392822265625">
                      <font>
                         <Font size="21.0" />
                      </font>
@@ -87,30 +91,37 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Text fx:id="invitationMessage" layoutX="247.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="405.1392822265625">
-                     <font>
-                        <Font size="21.0" />
-                     </font>
-                  </Text>
-                  <Button fx:id="previousButton_2" layoutX="206.0" layoutY="434.0" mnemonicParsing="false" onAction="#previous_2" prefHeight="31.0" prefWidth="82.0" text="Previous">
+                  <Button fx:id="previousButton_2" layoutX="205.0" layoutY="394.0" mnemonicParsing="false" onAction="#previous_2" prefHeight="31.0" prefWidth="82.0" text="Previous">
                      <font>
                         <Font size="15.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
-                  <Button fx:id="nextButton_2" layoutX="601.0" layoutY="434.0" mnemonicParsing="false" onAction="#next_2" prefHeight="31.0" prefWidth="82.0" text="Next">
+                  <Button fx:id="nextButton_2" layoutX="611.0" layoutY="394.0" mnemonicParsing="false" onAction="#next_2" prefHeight="31.0" prefWidth="82.0" text="Next">
                      <font>
                         <Font size="15.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
-                  <Button fx:id="rejectButton" layoutX="309.0" layoutY="434.0" mnemonicParsing="false" onAction="#reject" prefHeight="31.0" prefWidth="122.0" text="Previous">
+                  <Button fx:id="rejectButton" layoutX="317.0" layoutY="394.0" mnemonicParsing="false" onAction="#reject" prefHeight="31.0" prefWidth="122.0" text="Previous">
                      <font>
                         <Font size="15.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
-                  <Button fx:id="acceptButton" layoutX="450.0" layoutY="434.0" mnemonicParsing="false" onAction="#accept" prefHeight="31.0" prefWidth="122.0" text="Accept">
+                  <Button fx:id="acceptButton" layoutX="462.0" layoutY="394.0" mnemonicParsing="false" onAction="#accept" prefHeight="31.0" prefWidth="122.0" text="Accept">
                      <font>
                         <Font size="15.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                </children></AnchorPane>
       </content>

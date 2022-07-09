@@ -27,6 +27,14 @@ public class Member implements Serializable {
         roles.add(newRole);
     }
 
+    public boolean canKickMembers(){
+        for(Role x : roles){
+            if(x.isRemoveMemberFromServer())
+                return true;
+        }
+        return false;
+    }
+
     public boolean canChangeServerName(){
         for(Role x : roles){
             if(x.isChangeServerName())

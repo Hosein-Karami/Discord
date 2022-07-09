@@ -6,9 +6,16 @@ import com.example.discordfx.Lateral.Exceptions.PasswordExceptions.FourthPasswor
 import com.example.discordfx.Lateral.Exceptions.PasswordExceptions.SecondPasswordException;
 import com.example.discordfx.Lateral.Exceptions.PasswordExceptions.ThirdPasswordException;
 import com.example.discordfx.Lateral.Exceptions.PhoneException;
+import com.example.discordfx.Lateral.Exceptions.UsernameException;
+
 import java.util.regex.Pattern;
 
 public class Checker {
+
+    public static void checkUsername(String username) throws UsernameException {
+        if(username.length() < 6)
+            throw new UsernameException();
+    }
 
     public static void checkPassword(String password) throws FirstPasswordException, SecondPasswordException, ThirdPasswordException, FourthPasswordException {
         if(password.length() < 8)

@@ -72,8 +72,9 @@ public class AccountManagement {
             ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
             String newUsername = (String) inputStream.readObject();
-            AccountsService service = new AccountsService();
-            if(service.getParticularUser(newUsername) != null){
+            AccountsService service = Server.accountsService;
+            if(service.getParticularUser(newUsername) == null){
+                service.changeUsername(user.getUsername(),newUsername);
                 user.setUsername(newUsername);
                 outputStream.writeObject("OK");
             }
@@ -140,7 +141,7 @@ public class AccountManagement {
         }
     }
 
-    public void sendProfileImage(Socket socket){
+    public void sendUserInfo(Socket socket){
         try{
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
             ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
@@ -157,8 +158,8 @@ public class AccountManagement {
                 byte[] imageBytes = Files.readAllBytes(profileImage.toPath());
                 outputStream.writeObject(imageBytes);
                 outputStream.writeObject(targetUser.getStatus());
-                outputStream.writeObject(targetUser.getUsername());
             }
+            outputStream.writeObject(targetUser.getUsername());
         } catch (Exception e) {
             e.printStackTrace();
         }

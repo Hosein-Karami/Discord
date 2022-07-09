@@ -73,7 +73,7 @@ public class ClientManagement implements Runnable{
                 else if(choose == 6)
                     friendshipManagement.invitationsHandle(user);
                 else if(choose == 7)
-                    accountManagement.sendProfileImage(clientSocket);
+                    accountManagement.sendUserInfo(clientSocket);
                 else if(choose == 8)
                     friendshipManagement.cancelRequest(user);
                 else if(choose == 9)

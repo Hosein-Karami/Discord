@@ -94,9 +94,16 @@ public class Dserver implements Serializable {
         channels.add(channel);
     }
 
-    public void removeMember(Member targetMember){
-        members.remove(targetMember);
-        targetMember.getUser().removeServerChat(name);
+    public void kickMember(Integer userId){
+        int targetIndex = 0;
+        for(Member x : members){
+            if(x.getUser().getId() == userId)
+                break;
+            targetIndex++;
+        }
+        Notification notification = new Notification("You are kicked from serer with name : " + name);
+        members.get(targetIndex).getUser().addNotification(notification);
+        members.remove(targetIndex);
     }
 
     public void removeChannel(Channel targetChannel){

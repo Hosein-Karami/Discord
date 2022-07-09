@@ -1,5 +1,6 @@
 package com.example.discordfx.Server.Service;
 
+import com.example.discordfx.Moduls.Dto.User.Status;
 import com.example.discordfx.Moduls.Dto.User.User;
 import com.example.discordfx.Server.Management.AccountManagement;
 import java.io.IOException;
@@ -42,6 +43,7 @@ public class ProfileService {
                     accountManagement.logout(user);
             }
         } catch (Exception e) {
+            user.setStatus(Status.Offline);
             e.printStackTrace();
         }
     }

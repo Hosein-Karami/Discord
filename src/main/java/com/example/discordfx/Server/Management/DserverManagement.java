@@ -72,6 +72,8 @@ public class DserverManagement {
             ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
             Integer serverId = (Integer) inputStream.readObject();
             Dserver targetServer = Server.discordServers.get(serverId);
+            for(Member x : targetServer.getMembers())
+                System.out.println(x.getUser().getUsername());
             File serverProfile = new File("Files/DiscordServers/"+targetServer.getId()+"/Profile.jpg");
             outputStream.writeObject(targetServer.getName());
             outputStream.writeObject(Files.readAllBytes(serverProfile.toPath()));

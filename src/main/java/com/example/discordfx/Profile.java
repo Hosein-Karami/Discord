@@ -4,6 +4,7 @@ import com.example.discordfx.Lateral.Checker;
 import com.example.discordfx.Lateral.Exceptions.EmailException;
 import com.example.discordfx.Lateral.Exceptions.PasswordExceptions.PasswordException;
 import com.example.discordfx.Lateral.Exceptions.PhoneException;
+import com.example.discordfx.Lateral.Exceptions.UsernameException;
 import com.example.discordfx.Moduls.Dto.User.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -112,6 +113,7 @@ public class Profile implements Initializable {
 
     public void changeUsername(){
         try {
+            Checker.checkUsername(newUsername.getText());
             out.write(2);
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
             ObjectInputStream inputStream = new ObjectInputStream(in);
@@ -126,7 +128,10 @@ public class Profile implements Initializable {
             }
             else
                 text.setText("This username is used before");
-        }catch (Exception e){
+        }catch (UsernameException e){
+            text.setText(e.getErrorMessage());
+        }
+        catch (Exception e){
             e.printStackTrace();
         }
     }

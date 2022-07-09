@@ -85,6 +85,20 @@ public class UserDao {
         }
     }
 
+    public void changeUsername(String username,String newUsername) throws Exception {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Users SET username=? WHERE username=?");
+            preparedStatement.setString(1,newUsername);
+            preparedStatement.setString(2,username);
+            preparedStatement.execute();
+            System.out.println(username +"     " + newUsername);
+            log.changeUsernameSuccessfully(username,newUsername);
+        } catch (Exception e) {
+            log.changeUsernameError(username);
+            throw new Exception();
+        }
+    }
+
     public void changePassword(String targetUsername,String newPassword) throws Exception {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Users SET password=? WHERE username=?");

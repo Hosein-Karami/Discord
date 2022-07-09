@@ -62,7 +62,34 @@ public class DiscordServer implements Initializable {
             stage.setScene(scene);
             stage.setResizable(false);
             stage.show();
-            System.out.println("4");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showMembers(ActionEvent event){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ShowServerMembers.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void backToMenu(ActionEvent event){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

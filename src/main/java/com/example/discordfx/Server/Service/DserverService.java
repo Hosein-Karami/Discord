@@ -37,6 +37,13 @@ public class DserverService {
                 outputStream.writeObject(member.getUser());
                 addMember();
             }
+            else if(choose == 2){
+                ObjectOutputStream outputStream = new ObjectOutputStream(out);
+                outputStream.writeObject(dserver);
+                outputStream.writeObject(member.canKickMembers());
+                outputStream.writeObject(member.getUser());
+                showMembers();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -59,6 +66,7 @@ public class DserverService {
                     break;
             }
         }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -84,9 +92,7 @@ public class DserverService {
             AccountsService service = new AccountsService();
             User user = service.getParticularUser(targetId);
             String senderUsername = (String) inputStream.readObject();
-            System.out.println(user.getPassword() + "  " + user.getUsername() + "  " + user.getEmail());
             Invitation invitation = new Invitation(dserver.getId(),senderUsername);
-            System.out.println(invitation.getInvitationText());
             user.addInvitation(invitation);
             outputStream.writeObject("Invitation send successfully");
         } catch (Exception e) {
@@ -96,7 +102,7 @@ public class DserverService {
 
     private void sendUserInfo(){
         AccountManagement accountManagement = new AccountManagement();
-        accountManagement.sendProfileImage(clientSocket);
+        accountManagement.sendUserInfo(clientSocket);
     }
 
     private void searchFriend(){
@@ -115,6 +121,39 @@ public class DserverService {
                 else
                     outputStream.writeObject(-1);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showMembers(){
+        AccountManagement management = new AccountManagement();
+        int choice;
+        while (true){
+            try {
+                choice = in.read();
+                if(choice == 1)
+                    management.sendUserInfo(clientSocket);
+                else if(choice == 2)
+                    kickMember();
+                else
+                    break;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void kickMember() {
+        try {
+            ObjectInputStream inputStream = new ObjectInputStream(in);
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
+            Integer memberId = (Integer) inputStream.readObject();
+            if (dserver.getSuperChatMaker().getUser().getId() != memberId) {
+                dserver.kickMember(memberId);
+                outputStream.writeObject("User kicked successfully");
+            } else
+                outputStream.writeObject("You can't kick server maker");
         } catch (Exception e) {
             e.printStackTrace();
         }

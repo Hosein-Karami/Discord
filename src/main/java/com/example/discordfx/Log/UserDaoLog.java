@@ -57,6 +57,22 @@ public class UserDaoLog {
         }
     }
 
+    public void changeUsernameSuccessfully(String olderUsername,String newUsername){
+        try (FileWriter fileWriter = new FileWriter("Log.txt",true)){
+            fileWriter.write(LocalDateTime.now().format(formatter) + " [Info] UserDao\nUser with username="+olderUsername+ " changed his/her username to "+newUsername+" successfully.\n");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void changeUsernameError(String username){
+        try (FileWriter fileWriter = new FileWriter("Log.txt",true)){
+            fileWriter.write(LocalDateTime.now().format(formatter) + " [Error] UserDao\nError happening when user with username="+username+" want to change his/her username.\n");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void changePasswordSuccessfully(String username){
         try (FileWriter fileWriter = new FileWriter("Log.txt",true)){
             fileWriter.write(LocalDateTime.now().format(formatter) + " [Info] UserDao\nUser with username="+username+ " changed his/her password successfully.\n");

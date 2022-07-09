@@ -83,6 +83,14 @@ public class AccountsService {
         user.setStatus(Status.Offline);
     }
 
+    public void changeUsername(String username,String newUsername) throws Exception {
+        try {
+            userDao.changeUsername(username,newUsername);
+        } catch (Exception e) {
+            throw new Exception();
+        }
+    }
+
     public void changePassword(String username,String newPassword) throws Exception {
         try {
             userDao.changePassword(username,newPassword);
