@@ -3,6 +3,7 @@ package com.example.discordfx.Server.Service;
 import com.example.discordfx.Moduls.Dto.DiscordServer.Dserver;
 import com.example.discordfx.Moduls.Dto.DiscordServer.Invitation;
 import com.example.discordfx.Moduls.Dto.ServerMembers.Member;
+import com.example.discordfx.Moduls.Dto.ServerMembers.Role;
 import com.example.discordfx.Moduls.Dto.User.User;
 import com.example.discordfx.Server.Management.AccountManagement;
 import com.example.discordfx.Server.Management.DserverManagement;
@@ -50,6 +51,8 @@ public class DserverService {
             }
             else if(choose == 3)
                 changeName();
+            else if(choose == 4)
+                makeRole();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -182,6 +185,31 @@ public class DserverService {
                     outputStream.writeObject("Name changed successfully");
                 } else
                     outputStream.writeObject("This name is used before");
+            } catch (Exception e) {
+                e.printStackTrace();
+                break;
+            }
+        }
+    }
+
+    private void makeRole(){
+        int choice;
+        while (true){
+            try {
+                choice = in.read();
+                if(choice == 2)
+                    break;
+                ObjectInputStream inputStream = new ObjectInputStream(in);
+                ObjectOutputStream outputStream = new ObjectOutputStream(out);
+                String roleName = (String) inputStream.readObject();
+                if(dserver.getParticularRole(roleName) == null){
+                    outputStream.writeObject("OK");
+                    Role newRole = (Role) inputStream.readObject();
+                    dserver.addRole(newRole);
+                    outputStream.writeObject("Role added successfully");
+                }
+                else
+                    outputStream.writeObject("Not unique");
             } catch (Exception e) {
                 e.printStackTrace();
                 break;

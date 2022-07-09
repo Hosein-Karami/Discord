@@ -103,7 +103,25 @@ public class DiscordServer implements Initializable {
             }
         }else
             result.setText("Permission denied");
+    }
 
+    public void makeRole(ActionEvent event){
+        if(member.isOwner()){
+            try{
+                out.write(4);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("MakeRole.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.setResizable(false);
+                stage.show();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        else
+            result.setText("Permission denied");
     }
 
     public void backToMenu(ActionEvent event){

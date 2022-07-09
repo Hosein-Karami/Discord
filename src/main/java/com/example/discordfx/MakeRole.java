@@ -50,6 +50,7 @@ public class MakeRole {
             return;
         }
         try {
+            out.write(1);
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
             ObjectInputStream inputStream = new ObjectInputStream(in);
             outputStream.writeObject(roleName.getText());
@@ -67,6 +68,7 @@ public class MakeRole {
 
     public void backToMenu(ActionEvent event){
         try {
+            out.write(2);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("DiscordServer.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

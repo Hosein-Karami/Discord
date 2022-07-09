@@ -20,8 +20,9 @@ public class DserverManagement {
             //Check name is unique??
             if(getDserver(serverName) == null) {
                 outputStream.writeObject("OK");
+                Role ownerRole = getOwnerRole();
                 Member owner = new Member(serverMaker.getId());
-                owner.addRole(getOwnerRole());
+                owner.addRole(ownerRole);
                 Dserver dserver = new Dserver(owner, Server.discordServers.size());
                 dserver.setName(serverName);
                 Server.discordServers.add(dserver);

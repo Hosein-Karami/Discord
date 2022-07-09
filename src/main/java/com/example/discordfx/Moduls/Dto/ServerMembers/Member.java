@@ -27,6 +27,14 @@ public class Member implements Serializable {
         roles.add(newRole);
     }
 
+    public boolean isOwner(){
+        for(Role x : roles){
+            if(x.getName().equals("Owner"))
+                return true;
+        }
+        return false;
+    }
+
     public boolean canKickMembers(){
         for(Role x : roles){
             if(x.isRemoveMemberFromServer())
@@ -42,5 +50,6 @@ public class Member implements Serializable {
         }
         return false;
     }
+
 
 }

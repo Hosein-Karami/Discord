@@ -49,5 +49,13 @@
             <Font size="20.0" />
          </font>
       </Text>
+      <Button layoutX="702.0" layoutY="242.0" mnemonicParsing="false" onAction="#makeRole" prefHeight="34.0" prefWidth="132.0" text="Make role">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
