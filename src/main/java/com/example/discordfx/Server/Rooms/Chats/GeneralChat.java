@@ -12,12 +12,6 @@ public abstract class GeneralChat {
     protected ArrayList<Socket> joinSockets = new ArrayList<>();
     protected ArrayList<String> memberUsernames = new ArrayList<>();
     private final ArrayList<Message> messages = new ArrayList<>();
-    protected final ArrayList<File> voices = new ArrayList<>();
-    private final int port;
-
-    public GeneralChat(int port){
-        this.port = port;
-    }
 
     public abstract void join(Socket joinedSocket);
 

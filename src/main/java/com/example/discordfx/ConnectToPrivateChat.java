@@ -58,7 +58,6 @@ public class ConnectToPrivateChat implements Initializable {
             out.write(20);
             ObjectInputStream inputStream = new ObjectInputStream(in);
             user = (User) inputStream.readObject();
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             privateChats = user.getPrivateChats();
             if(privateChats.size() == 0) {
                 text.setText("You don't have any private chat");

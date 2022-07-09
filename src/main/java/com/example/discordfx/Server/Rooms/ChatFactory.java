@@ -5,9 +5,9 @@ import com.example.discordfx.Server.Rooms.Chats.PrivateChat;
 
 public class ChatFactory {
 
-    public GeneralChat getProperChat(String chatType,int port){
+    public GeneralChat getProperChat(String chatType){
         if(chatType.equals("Private"))
-            return new PrivateChat(port);
+            return new PrivateChat();
         return null;
     }
 

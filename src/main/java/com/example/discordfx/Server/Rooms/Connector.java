@@ -15,7 +15,7 @@ public class Connector implements Runnable{
 
     public Connector(int port,String chatType){
         this.port = port;
-        chat = new ChatFactory().getProperChat(chatType,port);
+        chat = new ChatFactory().getProperChat(chatType);
         File chatDirectory = new File("Files/ChatVoices/"+port);
         chatDirectory.mkdir();
     }

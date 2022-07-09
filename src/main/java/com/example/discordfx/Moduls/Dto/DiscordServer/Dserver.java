@@ -3,9 +3,7 @@ package com.example.discordfx.Moduls.Dto.DiscordServer;
 import com.example.discordfx.Lateral.Notification;
 import com.example.discordfx.Moduls.Dto.ServerMembers.Member;
 import com.example.discordfx.Moduls.Dto.ServerMembers.Role;
-import com.example.discordfx.Server.Start.Main;
 import com.example.discordfx.Server.Start.Server;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -14,7 +12,6 @@ public class Dserver implements Serializable {
     private String name;
     private final int id;
     private final Member superChatMaker;
-    private final MusicSender sender;
     private final ArrayList<Member> members = new ArrayList<>();
     private final ArrayList<Role> roles = new ArrayList<>();
     private final ArrayList<Channel> channels = new ArrayList<>();
@@ -25,8 +22,6 @@ public class Dserver implements Serializable {
         members.add(superChatMaker);
         Server.lastUsedPort++;
         int senderPort = Server.lastUsedPort;
-        sender = new MusicSender(senderPort);
-        Main.executorService.execute(sender);
     }
 
     public void setName(String name){
@@ -107,10 +102,6 @@ public class Dserver implements Serializable {
         Notification notification = new Notification("You are kicked from serer with name : " + name);
         members.get(targetIndex).getUser().addNotification(notification);
         members.remove(targetIndex);
-    }
-
-    public void sendMusic(byte[] musicBytes){
-        sender.sendMusic(musicBytes);
     }
 
 }

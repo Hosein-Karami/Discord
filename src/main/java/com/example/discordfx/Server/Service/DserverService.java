@@ -9,7 +9,9 @@ import com.example.discordfx.Moduls.Dto.User.User;
 import com.example.discordfx.Server.Management.AccountManagement;
 import com.example.discordfx.Server.Management.DserverManagement;
 import com.example.discordfx.Server.Rooms.Connector;
+import com.example.discordfx.Server.Start.Main;
 import com.example.discordfx.Server.Start.Server;
+
 
 import java.io.*;
 import java.net.Socket;
@@ -256,5 +258,29 @@ public class DserverService {
         }
     }
 
+    private void makeChannel(){
+        try {
+            ObjectInputStream inputStream = new ObjectInputStream(in);
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
+            String channelName = (String) inputStream.readObject();
+            if(dserver.getParticularChannel(channelName) == null){
+                outputStream.writeObject("OK");
+                Server.lastUsedPort++;
+                int channelPort = Server.lastUsedPort;
+                Channel channel = new Channel(channelName,channelPort);
+                dserver.addChannel(channel);
+                runChannel(channelPort);
+            }
+            else
+                outputStream.writeObject("Not unique");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void runChannel(int port){
+        Connector connector = new Connector(port,"Channel");
+
+    }
 
 }
