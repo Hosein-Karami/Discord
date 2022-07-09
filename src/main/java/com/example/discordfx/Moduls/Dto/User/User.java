@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class User implements Serializable {
 
     private final int id;
-    private final String username;
+    private String username;
     private String password;
     private String email;
     private String phone;
@@ -39,6 +39,10 @@ public class User implements Serializable {
     public void setStatus(Status status){
         information.setStatus(status);
         updateInformation();
+    }
+
+    public void setUsername(String username){
+        this.username = username;
     }
 
     public void setPassword(String password){

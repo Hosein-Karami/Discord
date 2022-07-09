@@ -16,7 +16,7 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <TextField layoutX="529.0" layoutY="288.0" prefHeight="26.0" prefWidth="235.0" promptText="New username" visible="false">
+      <TextField fx:id="newUsername" layoutX="529.0" layoutY="288.0" prefHeight="26.0" prefWidth="235.0" promptText="New username" visible="false">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
@@ -36,7 +36,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <Button layoutX="789.0" layoutY="288.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Change" visible="false">
+      <Button fx:id="changeUsernameButton" layoutX="789.0" layoutY="288.0" mnemonicParsing="false" onAction="#changeUsername" prefHeight="26.0" prefWidth="78.0" text="Change" visible="false">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -61,7 +61,7 @@
             <Font size="16.0" />
          </font>
       </Text>
-      <Button layoutX="451.0" layoutY="287.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="64.0" text="Edit">
+      <Button layoutX="451.0" layoutY="287.0" mnemonicParsing="false" onAction="#wantToChangeUsername" prefHeight="26.0" prefWidth="64.0" text="Edit">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

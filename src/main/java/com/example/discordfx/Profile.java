@@ -40,11 +40,15 @@ public class Profile implements Initializable {
     @FXML
     Text phone;
     @FXML
+    TextField newUsername;
+    @FXML
     TextField newPassword;
     @FXML
     TextField newEmail;
     @FXML
     TextField newPhone;
+    @FXML
+    Button changeUsernameButton;
     @FXML
     Button changePassButton;
     @FXML
@@ -81,9 +85,8 @@ public class Profile implements Initializable {
             if(image != null){
                 String fileName = image.getName();
                 if(fileName.contains(".jpg") || fileName.contains(".png") || fileName.contains(".jpeg")){
+                    out.write(1);
                     ObjectOutputStream outputStream = new ObjectOutputStream(out);
-                    outputStream.writeObject(1);
-                    outputStream = new ObjectOutputStream(out);
                     ObjectInputStream inputStream = new ObjectInputStream(in);
                     byte[] imageBytes = Files.readAllBytes(image.toPath());
                     outputStream.writeObject(imageBytes);
@@ -102,6 +105,32 @@ public class Profile implements Initializable {
         }
     }
 
+    public void wantToChangeUsername(){
+        newUsername.setVisible(true);
+        changeUsernameButton.setVisible(true);
+    }
+
+    public void changeUsername(){
+        try {
+            out.write(2);
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
+            ObjectInputStream inputStream = new ObjectInputStream(in);
+            outputStream.writeObject(newUsername.getText());
+            String status = (String) inputStream.readObject();
+            if(status.equals("OK")){
+                text.setText("Username changed successfully");
+                user.setUsername(newUsername.getText());
+                username.setText("Username : " + newUsername.getText());
+                changeUsernameButton.setVisible(false);
+                newUsername.setVisible(false);
+            }
+            else
+                text.setText("This username is used before");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public void wantToChangePass(){
         newPassword.setVisible(true);
         changePassButton.setVisible(true);
@@ -109,30 +138,16 @@ public class Profile implements Initializable {
 
     public void changePassword(){
         try {
-            ObjectOutputStream outputStream = new ObjectOutputStream(out);
-            outputStream.writeObject(3);
-            outputStream = new ObjectOutputStream(out);
-            try {
-                Checker.checkPassword(newPassword.getText());
-                outputStream.writeObject("OK");
-                ObjectInputStream inputStream = new ObjectInputStream(in);
-                outputStream.writeObject(user.getJwtToken());
-                String status = (String) inputStream.readObject();
-                if (status.equals("Verification failed"))
-                    text.setText(status);
-                else {
-                    outputStream.writeObject(newPassword.getText());
-                    text.setText((String) inputStream.readObject());
-                    password.setText("Password : "+newPassword.getText());
-                    user.setPassword(newPassword.getText());
-                    newPassword.setVisible(false);
-                    changePassButton.setVisible(false);
-                }
-            }catch (PasswordException e){
-                outputStream.writeObject("ERROR");
-                text.setText(e.getErrorMessage());
-            }
-        } catch (IOException | ClassNotFoundException e) {
+            Checker.checkPassword(newPassword.getText());
+            out.write(3);
+            change(newPassword.getText());
+            password.setText("Password : " + newPassword.getText());
+            user.setPassword(newPassword.getText());
+            newPassword.setVisible(false);
+            changePassButton.setVisible(false);
+        } catch (PasswordException e) {
+            text.setText(e.getErrorMessage());
+        }catch (Exception e){
             e.printStackTrace();
         }
     }
@@ -144,30 +159,17 @@ public class Profile implements Initializable {
 
     public void changeEmail(){
         try {
-            ObjectOutputStream outputStream = new ObjectOutputStream(out);
-            outputStream.writeObject(4);
-            try {
-                outputStream = new ObjectOutputStream(out);
-                Checker.checkEmail(newEmail.getText());
-                outputStream.writeObject("OK");
-                ObjectInputStream inputStream = new ObjectInputStream(in);
-                outputStream.writeObject(user.getJwtToken());
-                String status = (String) inputStream.readObject();
-                if (status.equals("Verification failed"))
-                    text.setText(status);
-                else {
-                    outputStream.writeObject(newEmail.getText());
-                    text.setText((String) inputStream.readObject());
-                    email.setText("Email : "+newEmail.getText());
-                    user.setEmail(newEmail.getText());
-                    newEmail.setVisible(false);
-                    changeEmailButton.setVisible(false);
-                }
-            }catch (EmailException e){
-                outputStream.writeObject("ERROR");
-                text.setText(e.getErrorMessage());
-            }
-        } catch (IOException | ClassNotFoundException e) {
+            Checker.checkEmail(newEmail.getText());
+            out.write(4);
+            change(newEmail.getText());
+            email.setText("Email : " + newEmail.getText());
+            user.setEmail(newEmail.getText());
+            newEmail.setVisible(false);
+            changeEmailButton.setVisible(false);
+        }catch (EmailException e){
+            text.setText(e.getErrorMessage());
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -177,56 +179,36 @@ public class Profile implements Initializable {
         changePhoneButton.setVisible(true);
     }
 
-    public void changePhone(){
+    public void changePhone() {
         try {
-            ObjectOutputStream outputStream = new ObjectOutputStream(out);
-            outputStream.writeObject(5);
-            try {
-                outputStream = new ObjectOutputStream(out);
-                Checker.checkPhone(newPhone.getText());
-                outputStream.writeObject("OK");
-                ObjectInputStream inputStream = new ObjectInputStream(in);
-                outputStream.writeObject(user.getJwtToken());
-                String status = (String) inputStream.readObject();
-                if (status.equals("Verification failed"))
-                    text.setText(status);
-                else {
-                    outputStream.writeObject(newPhone.getText());
-                    text.setText((String) inputStream.readObject());
-                    phone.setText("Phone : "+newPhone.getText());
-                    user.setPhone(newPhone.getText());
-                    newPhone.setVisible(false);
-                    changePhoneButton.setVisible(false);
-                }
-            }catch (PhoneException e){
-                outputStream.writeObject("ERROR");
-                text.setText(e.getErrorMessage());
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void back(ActionEvent event){
-        try {
-            ObjectOutputStream outputStream = new ObjectOutputStream(out);
-            outputStream.writeObject(7);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.show();
+            Checker.checkPhone(newPhone.getText());
+            out.write(5);
+            change(newPhone.getText());
+            phone.setText("Phone : " + newPhone.getText());
+            user.setPhone(newPhone.getText());
+            newPhone.setVisible(false);
+            changePhoneButton.setVisible(false);
+        } catch (PhoneException e) {
+            text.setText(e.getErrorMessage());
         }catch (Exception e){
             e.printStackTrace();
         }
     }
 
+    private void change(String newValue) throws Exception {
+        try{
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
+            ObjectInputStream inputStream = new ObjectInputStream(in);
+            outputStream.writeObject(newValue);
+            text.setText((String) inputStream.readObject());
+        }catch (Exception e){
+            throw new Exception();
+        }
+    }
+
     public void logout(ActionEvent event){
         try {
-            ObjectOutputStream outputStream = new ObjectOutputStream(out);
-            outputStream.writeObject(6);
+            out.write(6);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Start.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -239,13 +221,17 @@ public class Profile implements Initializable {
         }
     }
 
-    private void changeImage(File newImage,byte[] imageBytes){
-        Image newProfileImage = new Image(newImage.getPath());
-        imageView.setImage(newProfileImage);
-        try (FileOutputStream fileOutputStream = new FileOutputStream("file:ClientFiles/Profile.jpg")){
-            fileOutputStream.flush();
-            fileOutputStream.write(imageBytes);
-        } catch (IOException e) {
+    public void back(ActionEvent event){
+        try {
+            out.write(7);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        }catch (Exception e){
             e.printStackTrace();
         }
     }
