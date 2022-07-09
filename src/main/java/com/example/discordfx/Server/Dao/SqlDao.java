@@ -4,7 +4,7 @@ import com.example.discordfx.Log.UserDaoLog;
 import com.example.discordfx.Moduls.Entity.UserEntity;
 import java.sql.*;
 
-public class UserDao {
+public class SqlDao implements GeneralDao{
 
     private final UserDaoLog log = new UserDaoLog();
     private Connection connection;
@@ -16,6 +16,7 @@ public class UserDao {
         }
     }
 
+    @Override
     public void insert(UserEntity userEntity) throws Exception {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Users SET username=?,password=?,email=?,phone=?");
@@ -31,6 +32,7 @@ public class UserDao {
         }
     }
 
+    @Override
     public UserEntity logIn(String username,String password) throws Exception {
         try {
             Statement statement = connection.createStatement();
@@ -51,6 +53,7 @@ public class UserDao {
         }
     }
 
+    @Override
     public UserEntity getParticularUser(String username) throws Exception {
         try {
             Statement statement = connection.createStatement();
@@ -69,6 +72,7 @@ public class UserDao {
         }
     }
 
+    @Override
     public UserEntity getParticularUser(int id) throws Exception {
         try {
             Statement statement = connection.createStatement();
@@ -85,6 +89,7 @@ public class UserDao {
         }
     }
 
+    @Override
     public void changeUsername(String username,String newUsername) throws Exception {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Users SET username=? WHERE username=?");
@@ -99,6 +104,7 @@ public class UserDao {
         }
     }
 
+    @Override
     public void changePassword(String targetUsername,String newPassword) throws Exception {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Users SET password=? WHERE username=?");
@@ -112,6 +118,7 @@ public class UserDao {
         }
     }
 
+    @Override
     public void changeEmail(String targetUsername,String newEmail) throws Exception {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Users SET email=? WHERE username=?");
@@ -125,6 +132,7 @@ public class UserDao {
         }
     }
 
+    @Override
     public void changePhone(String targetUsername,String newPhone) throws Exception {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Users SET phone=? WHERE username=?");
