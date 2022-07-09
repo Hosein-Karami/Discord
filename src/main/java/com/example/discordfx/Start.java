@@ -56,10 +56,6 @@ public class Start {
                 else{
                     try {
                         Profile.user = user;
-                        System.out.println("a");
-                        for(Invitation x : user.getInvitations())
-                            System.out.println(x.getInvitationText() + " " +x.getServerId());
-                        System.out.println("b");
                         Start.Username = username.getText();
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
                         Parent root = loader.load();

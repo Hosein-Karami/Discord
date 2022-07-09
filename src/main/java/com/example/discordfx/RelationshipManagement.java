@@ -5,7 +5,6 @@ import com.example.discordfx.Moduls.Dto.User.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -30,6 +29,7 @@ public class RelationshipManagement {
     private User user;
     private InputStream in;
     private OutputStream out;
+
     {
         try {
             out = Start.socket.getOutputStream();
@@ -49,16 +49,8 @@ public class RelationshipManagement {
             return;
         }
         try {
-            if (user.checkIsPending(requestUsername.getText())) {
-                requestText.setText("You requested to this user before");
-                return;
-            }
-            if(user.getUsername().equals(requestUsername.getText())){
+            if (user.getUsername().equals(requestUsername.getText())) {
                 requestText.setText("You can't send request to yourself");
-                return;
-            }
-            if(user.checkIsFriend(requestUsername.getText())){
-                requestText.setText("You are friend from before");
                 return;
             }
             out.write(5);
@@ -72,16 +64,16 @@ public class RelationshipManagement {
                 if (Status.equals("OK")) {
                     Status = (String) inputStream.readObject();
                     if (Status.equals("OK")) {
-                        requestText.setText((String) inputStream.readObject());
-                        out.write(20);
-                        inputStream = new ObjectInputStream(in);
-                        user = (User) inputStream.readObject();
-                    } else
-                        requestText.setText(Status);
-                } else
-                    requestText.setText(Status);
-            } else
-                requestText.setText(Status);
+                        Status = (String) inputStream.readObject();
+                        if (Status.equals("OK")) {
+                            requestText.setText((String) inputStream.readObject());
+                            out.write(20);
+                            inputStream = new ObjectInputStream(in);
+                            user = (User) inputStream.readObject();
+                        }
+                    } else requestText.setText(Status);
+                } else requestText.setText(Status);
+            } else requestText.setText(Status);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -108,13 +100,14 @@ public class RelationshipManagement {
     Button previousButton_1;
 
     private int senderIndex = 0;
-    private ArrayList<String> requestsSenders;
+    private ArrayList<Integer> requestsSenders;
 
     public void initialize() {
         try {
             out.write(20);
             ObjectInputStream inputStream = new ObjectInputStream(in);
             user = (User) inputStream.readObject();
+            System.out.println(user.getPassword());
             requestsSenders = user.getPendings();
             loadInputRequests();
         }catch (Exception e){
@@ -211,7 +204,7 @@ public class RelationshipManagement {
     Button previousButton_2;
 
     private int requestIndex;
-    private ArrayList<String> outputRequests;
+    private ArrayList<Integer> outputRequests;
 
     public void initialize_2(){
         try {
@@ -291,10 +284,6 @@ public class RelationshipManagement {
             text_3.setText("You can't block yourself :|");
             return;
         }
-        if(user.checkIsBlock(targetUsername.getText())){
-            text_3.setText("You blocked this user before");
-            return;
-        }
         try {
             out.write(9);
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
@@ -303,7 +292,10 @@ public class RelationshipManagement {
             String status = (String) inputStream.readObject();
             if(status.equals("OK")){
                 status = (String) inputStream.readObject();
-                text_3.setText(status);
+                if(status.equals("OK"))
+                    text_3.setText((String) inputStream.readObject());
+                else
+                    text_3.setText("You blocked this user before");
             }
             else
                 text_3.setText("Invalid username");
@@ -313,15 +305,17 @@ public class RelationshipManagement {
         targetUsername.setText("");
     }
 
-    private void loadInformation(ArrayList<String> usernames,int index,ImageView profileImage,ImageView status,Text username){
+    private void loadInformation(ArrayList<Integer> Id,int index,ImageView profileImage,ImageView status,Text username){
         try {
             out.write(7);
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
             ObjectInputStream inputStream = new ObjectInputStream(in);
-            outputStream.writeObject(usernames.get(index));
+            outputStream.writeObject(Id.get(index));
             outputStream.writeObject(user);
             byte[] senderProfile = (byte[]) inputStream.readObject();
             Status userStatus = (Status) inputStream.readObject();
+            String targetUsername = (String) inputStream.readObject();
+            username.setText(targetUsername);
             if(senderProfile == null) {
                 profileImage.setImage(null);
                 status.setImage(null);
@@ -337,7 +331,6 @@ public class RelationshipManagement {
                 profileImage.setImage(friendProfile);
                 file.delete();
             }
-            username.setText(usernames.get(index));
         } catch (Exception e) {
             e.printStackTrace();
         }

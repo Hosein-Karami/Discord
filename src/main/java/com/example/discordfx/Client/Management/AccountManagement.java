@@ -38,7 +38,9 @@ public class AccountManagement {
                 return;
             }
             User newUser = new User(0,username,password,email,phone);
+            System.out.println("111111");
             outputStream.writeObject(newUser);
+            System.out.println("222222");
             String status = (String) inputStream.readObject();
         } catch (Exception e) {
             text.setText(e.getMessage());

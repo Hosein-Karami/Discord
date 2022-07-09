@@ -150,10 +150,10 @@ public class AccountManagement {
         try{
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
             ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
-            String targetUsername = (String) inputStream.readObject();
+            Integer targetId = (Integer) inputStream.readObject();
             User viewerUser = (User) inputStream.readObject();
-            User  targetUser = Server.accountsService.getParticularUser(targetUsername);
-            if(targetUser.checkIsBlock(viewerUser.getUsername())){
+            User  targetUser = Server.accountsService.getParticularUser(targetId);
+            if(targetUser.checkIsBlock(viewerUser.getId())){
                 outputStream.writeObject(null);
                 outputStream.writeObject(null);
             }
@@ -163,6 +163,7 @@ public class AccountManagement {
                 byte[] imageBytes = Files.readAllBytes(profileImage.toPath());
                 outputStream.writeObject(imageBytes);
                 outputStream.writeObject(targetUser.getStatus());
+                outputStream.writeObject(targetUser.getUsername());
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -33,7 +33,7 @@ public class AccountsService {
         }
     }
 
-    public User getParticularUser(String username) {
+    public User getParticularUser(String username){
         try {
             UserEntity userEntity = userDao.getParticularUser(username);
             if(userEntity != null) {

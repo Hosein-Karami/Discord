@@ -20,13 +20,6 @@ public class DserverService {
         this.dserver = dserver;
         this.clientSocket = clientSocket;
         member = dserver.getParticularMember(client.getUsername());
-        System.out.println(client.getUsername());
-        System.out.println(member.getUser().getUsername());
-        System.out.println(member.getUser().getPassword());
-        System.out.println("1");
-        for(String x : member.getUser().getFriends())
-            System.out.println(x);
-        System.out.println("2");
         //System.out.println(member.getUser().getFriends().toString());
         try {
             in = clientSocket.getInputStream();
@@ -86,9 +79,9 @@ public class DserverService {
         try {
             ObjectInputStream inputStream = new ObjectInputStream(in);
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
-            String targetUsername = (String) inputStream.readObject();
+            Integer targetId = (Integer) inputStream.readObject();
             AccountsService service = new AccountsService();
-            User user = service.getParticularUser(targetUsername);
+            User user = service.getParticularUser(targetId);
             String senderUsername = (String) inputStream.readObject();
             System.out.println(user.getPassword() + "  " + user.getUsername() + "  " + user.getEmail());
             Invitation invitation = new Invitation(dserver.getId(),senderUsername);

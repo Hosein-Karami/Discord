@@ -30,7 +30,7 @@ public class User implements Serializable {
     public void loadInformation(){
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("Files/UsersInfo/"+id+".bin"))){
             information = (UserLateralInformation) inputStream.readObject();
-            System.out.println(information.getBlockesUsername());
+            System.out.println(information.getBlockesId());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -85,24 +85,24 @@ public class User implements Serializable {
         return information.getNotifications();
     }
 
-    public ArrayList<String> getPendings(){
-        return information.getPendingUsernames();
+    public ArrayList<Integer> getPendings(){
+        return information.getPendingId();
     }
 
     public ArrayList<Integer> getServerChats(){
         return information.getDiscordServers();
     }
 
-    public ArrayList<String> getFriends() {
-        return information.getFriendsUsernames();
+    public ArrayList<Integer> getFriends() {
+        return information.getFriendsId();
     }
 
-    public ArrayList<String> getBlockedUsernames(){
-        return information.getBlockesUsername();
+    public ArrayList<Integer> getBlockedId(){
+        return information.getBlockesId();
     }
 
-    public ArrayList<String> getOutputRequests(){
-        return information.getOutputRequestsUsernames();
+    public ArrayList<Integer> getOutputRequests(){
+        return information.getOutputRequestsId();
     }
 
     public ArrayList<Invitation> getInvitations(){
@@ -126,13 +126,13 @@ public class User implements Serializable {
         updateInformation();
     }
 
-    public void addBlock(String targetUsername){
-        information.addBlock(targetUsername);
+    public void addBlock(Integer targetId){
+        information.addBlock(targetId);
         updateInformation();
     }
 
-    public void addFriend(String targetUsername){
-        information.addFriend(targetUsername);
+    public void addFriend(Integer targetId){
+        information.addFriend(targetId);
         updateInformation();
     }
 
@@ -146,13 +146,13 @@ public class User implements Serializable {
         updateInformation();
     }
 
-    public void addPending(String newPending){
+    public void addPending(Integer newPending){
         information.addPending(newPending);
         updateInformation();
     }
 
-    public void addOutputRequest(String username){
-        information.addOutputRequestUsername(username);
+    public void addOutputRequest(Integer Id){
+        information.addOutputRequestUsername(Id);
         updateInformation();
     }
 
@@ -161,24 +161,28 @@ public class User implements Serializable {
         updateInformation();
     }
 
-    public boolean checkIsFriend(String targetUsername){
-        return information.checkIsFriend(targetUsername);
+    public boolean checkIsFriend(Integer targetId){
+        return information.checkIsFriend(targetId);
     }
 
-    public boolean checkIsPending(String targetUsername){
-        return information.checkIsPending(targetUsername);
+//    public boolean checkIsPending(Integer targetId){
+      //  return information.checkIsPending(targetId);
+   // }
+
+    public boolean checkIsBlock(Integer targetId){
+        return information.checkIsBlock(targetId);
     }
 
-    public boolean checkIsBlock(String targetUsername){
-        return information.checkIsBlock(targetUsername);
+    public boolean checkIsRequested(Integer targetId){
+        return information.checkIsRequested(targetId);
     }
 
-    public void unblock(String targetUsername){
-        information.unblock(targetUsername);
+    public void unblock(Integer targetId){
+        information.unblock(targetId);
     }
 
-    public void removeFriend(String targetUsername){
-        information.removeFriend(targetUsername);
+    public void removeFriend(Integer targetId){
+        information.removeFriend(targetId);
         updateInformation();
     }
 
@@ -187,8 +191,8 @@ public class User implements Serializable {
         updateInformation();
     }
 
-    public void removePending(String targetUsername){
-        information.removePending(targetUsername);
+    public void removePending(Integer targetId){
+        information.removePending(targetId);
         updateInformation();
     }
 
@@ -202,8 +206,8 @@ public class User implements Serializable {
         updateInformation();
     }
 
-    public void removeOutputRequest(String targetUsername){
-        information.removeOutputRequest(targetUsername);
+    public void removeOutputRequest(Integer targetId){
+        information.removeOutputRequest(targetId);
         updateInformation();
     }
 

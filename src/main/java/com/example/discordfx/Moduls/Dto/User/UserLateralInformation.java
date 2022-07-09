@@ -13,30 +13,30 @@ public class UserLateralInformation implements Serializable {
     @Serial
     private static final long serialVersionUID = 254231684205732173L;
 
-    private final ArrayList<String> friendsUsername = new ArrayList<>();
-    private final ArrayList<String> blockesUsername = new ArrayList<>();
-    private final ArrayList<String> pendingUsernames = new ArrayList<>();
-    private final ArrayList<String> outputRequestsUsernames = new ArrayList<>();
+    private final ArrayList<Integer> friendsId = new ArrayList<>();
+    private final ArrayList<Integer> blockesId = new ArrayList<>();
+    private final ArrayList<Integer> pendingId = new ArrayList<>();
+    private final ArrayList<Integer> outputRequestsId = new ArrayList<>();
     private final ArrayList<Integer> discordServers = new ArrayList<>();
     private final ArrayList<Invitation> invitations = new ArrayList<>();
     private final ArrayList<Notification> notifications = new ArrayList<>();
     private final HashMap<String,Integer> privateChats = new HashMap<>();
     private Status status;
 
-    public ArrayList<String> getBlockesUsername(){
-        return blockesUsername;
+    public ArrayList<Integer> getBlockesId(){
+        return blockesId;
     }
 
-    public ArrayList<String> getPendingUsernames(){
-        return pendingUsernames;
+    public ArrayList<Integer> getPendingId(){
+        return pendingId;
     }
 
     public HashMap<String,Integer> getPrivateChats(){
         return privateChats;
     }
 
-    public ArrayList<String> getFriendsUsernames(){
-        return friendsUsername;
+    public ArrayList<Integer> getFriendsId(){
+        return friendsId;
     }
 
     public ArrayList<Invitation> getInvitations(){
@@ -51,8 +51,8 @@ public class UserLateralInformation implements Serializable {
         return notifications;
     }
 
-    public ArrayList<String> getOutputRequestsUsernames() {
-        return outputRequestsUsernames;
+    public ArrayList<Integer> getOutputRequestsId() {
+        return outputRequestsId;
     }
 
     public Status getStatus(){
@@ -63,24 +63,24 @@ public class UserLateralInformation implements Serializable {
         this.status = status;
     }
 
-    public void addFriend(String friendUsername){
-        friendsUsername.add(friendUsername);
+    public void addFriend(Integer friendId){
+        friendsId.add(friendId);
     }
 
-    public void addPending(String newPending){
-        pendingUsernames.add(newPending);
+    public void addPending(Integer newPending){
+        pendingId.add(newPending);
     }
 
     public void addDiscordServer(Integer newDiscordServer){
         discordServers.add(newDiscordServer);
     }
 
-    public void addOutputRequestUsername(String newOutputRequest){
-        outputRequestsUsernames.add(newOutputRequest);
+    public void addOutputRequestUsername(Integer newOutputRequest){
+        outputRequestsId.add(newOutputRequest);
     }
 
-    public void addBlock(String blockedUsername){
-        blockesUsername.add(blockedUsername);
+    public void addBlock(Integer blockedId){
+        blockesId.add(blockedId);
     }
 
     public void addPrivateChat(String targetUsername,int port){
@@ -95,16 +95,16 @@ public class UserLateralInformation implements Serializable {
         notifications.add(notification);
     }
 
-    public void unblock(String targetUsername){
-        blockesUsername.remove(targetUsername);
+    public void unblock(Integer targetId){
+        blockesId.remove(targetId);
     }
 
-    public void removeFriend(String targetUsername){
-        friendsUsername.remove(targetUsername);
+    public void removeFriend(Integer targetId){
+        friendsId.remove(targetId);
     }
 
-    public void removePending(String targetPendingUsername){
-        pendingUsernames.remove(targetPendingUsername);
+    public void removePending(Integer targetPendingId){
+        pendingId.remove(targetPendingId);
     }
 
     public void removeDiscordServer(String targetDiscordServer){
@@ -115,33 +115,41 @@ public class UserLateralInformation implements Serializable {
         invitations.remove(targetInvitation);
     }
 
-    public void removeOutputRequest(String targetUsername){
-        outputRequestsUsernames.remove(targetUsername);
+    public void removeOutputRequest(Integer targetId){
+        outputRequestsId.remove(targetId);
     }
 
     public void deleteNotifications(){
         notifications.clear();
     }
 
-    public boolean checkIsBlock(String targetUsername){
-        for(String x : blockesUsername){
-            if(x.equals(targetUsername))
+    public boolean checkIsBlock(Integer targetId){
+        for(Integer x : blockesId){
+            if(x.equals(targetId))
                 return true;
         }
         return false;
     }
 
-    public boolean checkIsPending(String targetUsername){
-        for(String x : pendingUsernames){
-            if(x.equals(targetUsername))
+    public boolean checkIsPending(Integer targetId){
+        for(Integer x : pendingId){
+            if(x.equals(targetId))
                 return true;
         }
         return false;
     }
 
-    public boolean checkIsFriend(String targetUsername){
-        for(String x : friendsUsername){
-            if(x.equals(targetUsername))
+    public boolean checkIsRequested(Integer targetId){
+        for(Integer x : outputRequestsId){
+            if(x.equals(targetId))
+                return true;
+        }
+        return false;
+    }
+
+    public boolean checkIsFriend(Integer targetId){
+        for(Integer x : friendsId){
+            if(x.equals(targetId))
                 return true;
         }
         return false;

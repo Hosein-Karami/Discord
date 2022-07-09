@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 public class AddServerMember implements Initializable {
 
     private User user;
-    private ArrayList<String> friends;
+    private ArrayList<Integer> friends;
     private int friendIndex;
     private OutputStream out;
     private InputStream in;
@@ -94,20 +94,21 @@ public class AddServerMember implements Initializable {
     }
 
     public void load(){
-        String username = friends.get(friendIndex);
+        Integer Id = friends.get(friendIndex);
         try {
             out.write(1);
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
             ObjectInputStream inputStream = new ObjectInputStream(in);
-            outputStream.writeObject(username);
+            outputStream.writeObject(Id);
             String status = (String) inputStream.readObject();
             out.write(3);
             outputStream = new ObjectOutputStream(out);
             inputStream = new ObjectInputStream(in);
-            outputStream.writeObject(username);
+            outputStream.writeObject(Id);
             outputStream.writeObject(user);
             byte[] imageBytes = (byte[]) inputStream.readObject();
             Status userStatus = (Status) inputStream.readObject();
+            String username = (String) inputStream.readObject();
             setTargetUserProfile(imageBytes);
             setProperStatusImage(userStatus);
             friendUsername.setText(username);

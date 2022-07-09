@@ -60,7 +60,7 @@ public class FriendsManagement implements Initializable{
     @FXML
     Button removeFriend_1;
 
-    private ArrayList<String> allFriends = new ArrayList<>();
+    private ArrayList<Integer> allFriends = new ArrayList<>();
     private User user;
     private int friendIndex;
 
@@ -132,7 +132,7 @@ public class FriendsManagement implements Initializable{
     @FXML
     Button removeFriend_2;
 
-    private final ArrayList<String> onlineFriends = new ArrayList<>();
+    private final ArrayList<Integer> onlineFriends = new ArrayList<>();
     private int onlineFriendIndex;
 
     public void initialize_2(){
@@ -141,12 +141,12 @@ public class FriendsManagement implements Initializable{
         try {
             out.write(12);
             ObjectInputStream inputStream = new ObjectInputStream(in);
-            String onlineFriendUsername;
+            Integer onlineFriendId;
             while (true){
-                onlineFriendUsername = (String) inputStream.readObject();
-                if(onlineFriendUsername == null)
+                onlineFriendId = (Integer) inputStream.readObject();
+                if(onlineFriendId == null)
                     break;
-                onlineFriends.add(onlineFriendUsername);
+                onlineFriends.add(onlineFriendId);
             }
             load_2();
         } catch (Exception e) {
@@ -210,7 +210,7 @@ public class FriendsManagement implements Initializable{
     @FXML
     Button unblock;
 
-    private ArrayList<String> blockedUsernames;
+    private ArrayList<Integer> blockedId;
     private int blockedIndex;
 
     public void initialize_3(){
@@ -220,7 +220,7 @@ public class FriendsManagement implements Initializable{
             out.write(20);
             ObjectInputStream inputStream = new ObjectInputStream(in);
             user = (User) inputStream.readObject();
-            blockedUsernames = user.getBlockedUsernames();
+            blockedId = user.getBlockedId();
             load_3();
         } catch (Exception e) {
             e.printStackTrace();
@@ -228,7 +228,7 @@ public class FriendsManagement implements Initializable{
     }
 
     public void load_3(){
-        if (blockedUsernames.size() == 0) {
+        if (blockedId.size() == 0) {
             textStatus_3.setText("You didn't block any user");
             nextButton_3.setVisible(false);
             previousButton_3.setVisible(false);
@@ -238,11 +238,11 @@ public class FriendsManagement implements Initializable{
             unblock.setVisible(false);
         }
         else
-            loadInformation(blockedUsernames,blockedIndex,profileImage_3,status_3,username_3);
+            loadInformation(blockedId,blockedIndex,profileImage_3,status_3,username_3);
     }
 
     public void next_3(){
-        if(blockedIndex != (blockedUsernames.size() - 1)) {
+        if(blockedIndex != (blockedId.size() - 1)) {
             username_3.setText("");
             profileImage_3.setImage(null);
             status_3.setImage(null);
@@ -266,7 +266,7 @@ public class FriendsManagement implements Initializable{
             out.write(10);
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
             ObjectInputStream inputStream = new ObjectInputStream(in);
-            outputStream.writeObject(blockedUsernames.get(blockedIndex));
+            outputStream.writeObject(blockedId.get(blockedIndex));
             textStatus_3.setText((String) inputStream.readObject());
             initialize_3();
         }catch (Exception e){
@@ -288,7 +288,7 @@ public class FriendsManagement implements Initializable{
         }
     }
 
-    private void loadInformation(ArrayList<String> usernames,int index,ImageView profileImage,ImageView status,Text username){
+    private void loadInformation(ArrayList<Integer> usernames,int index,ImageView profileImage,ImageView status,Text username){
         try {
             out.write(7);
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
@@ -297,6 +297,8 @@ public class FriendsManagement implements Initializable{
             outputStream.writeObject(user);
             byte[] senderProfile = (byte[]) inputStream.readObject();
             Status userStatus = (Status) inputStream.readObject();
+            String Username = (String) inputStream.readObject();
+            username.setText(Username);
             if(senderProfile == null){
                 profileImage.setImage(null);
                 status.setImage(null);
@@ -312,18 +314,17 @@ public class FriendsManagement implements Initializable{
                 profileImage.setImage(friendProfile);
                 file.delete();
             }
-            username.setText(usernames.get(index));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void removeFriend(String targetUsername,ImageView profileImage,ImageView statusImage,Text username,Text result){
+    private void removeFriend(Integer targetId,ImageView profileImage,ImageView statusImage,Text username,Text result){
         try {
             out.write(11);
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
             ObjectInputStream inputStream = new ObjectInputStream(in);
-            outputStream.writeObject(targetUsername);
+            outputStream.writeObject(targetId);
             String status = (String) inputStream.readObject();
             result.setText(status);
             statusImage.setImage(null);

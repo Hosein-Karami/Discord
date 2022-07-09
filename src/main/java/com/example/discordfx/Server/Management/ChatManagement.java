@@ -25,7 +25,7 @@ public class ChatManagement {
             User targetUser = Server.accountsService.getParticularUser(targetUsername);
             if(targetUser != null) {
                 outputStream.writeObject("OK");
-                if (targetUser.checkIsBlock(user.getUsername()))
+                if (targetUser.checkIsBlock(user.getId()))
                     outputStream.writeObject("This user blocked you :)");
                 else {
                     outputStream.writeObject("OK");

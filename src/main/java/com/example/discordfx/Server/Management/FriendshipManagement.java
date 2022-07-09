@@ -18,33 +18,40 @@ public class FriendshipManagement {
         this.clientSocket = clientSocket;
     }
 
-    void requestFriendShip(User user){
+    void requestFriendShip(User user) {
         try {
             ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
             String targetUsername = (String) inputStream.readObject();
             User targetUser = Server.accountsService.getParticularUser(targetUsername);
-            if(targetUser == null)
+            if (targetUser == null)
                 outputStream.writeObject("There is no user with this username");
             else {
                 outputStream.writeObject("OK");
                 targetUser.loadInformation();
-                if (targetUser.checkIsBlock(user.getUsername()))
+                if (targetUser.checkIsBlock(user.getId()))
                     outputStream.writeObject("Target user blocked you");
                 else {
                     outputStream.writeObject("OK");
-                    if (targetUser.checkIsFriend(user.getUsername()))
+                    if (targetUser.checkIsFriend(user.getId()))
                         outputStream.writeObject("You were one of his/her friend from before");
+                    if (user.checkIsRequested(targetUser.getId()))
+                        outputStream.writeObject("You requested to this user before");
                     else {
                         outputStream.writeObject("OK");
-                        targetUser.addNotification(new Notification(user.getUsername() + " send you a friendship request"));
-                        targetUser.addPending(user.getUsername());
-                        user.addOutputRequest(targetUsername);
-                        outputStream.writeObject("Request send successfully");
+                        if (user.checkIsFriend(targetUser.getId()))
+                            outputStream.writeObject("You are friend from before");
+                        else {
+                            outputStream.writeObject("OK");
+                            targetUser.addNotification(new Notification(user.getUsername() + " send you a friendship request"));
+                            targetUser.addPending(user.getId());
+                            user.addOutputRequest(targetUser.getId());
+                            outputStream.writeObject("Request send successfully");
+                        }
                     }
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -53,14 +60,14 @@ public class FriendshipManagement {
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
             ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
-            String senderUsername = (String) inputStream.readObject();
+            Integer senderId = (Integer) inputStream.readObject();
             AccountsService accountsService = new AccountsService();
-            User targetUser = accountsService.getParticularUser(senderUsername);
+            User targetUser = accountsService.getParticularUser(senderId);
             String action = (String) inputStream.readObject();
             if(action.equals("Accept")){
                 outputStream.writeObject("You are friend from now");
-                user.addFriend(targetUser.getUsername());
-                targetUser.addFriend(user.getUsername());
+                user.addFriend(targetUser.getId());
+                targetUser.addFriend(user.getId());
                 Notification notification = new Notification(user.getUsername() + " accepted your friendship request");
                 targetUser.addNotification(notification);
             }
@@ -69,8 +76,8 @@ public class FriendshipManagement {
                 Notification notification = new Notification(user.getUsername() + " rejected your friendship request");
                 targetUser.addNotification(notification);
             }
-            user.removePending(senderUsername);
-            targetUser.removeOutputRequest(user.getUsername());
+            user.removePending(senderId);
+            targetUser.removeOutputRequest(user.getId());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -80,11 +87,11 @@ public class FriendshipManagement {
         try {
             ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
-            String targetUsername = (String) inputStream.readObject();
+            Integer targetId = (Integer) inputStream.readObject();
             AccountsService accountsService = new AccountsService();
-            User targetUser = accountsService.getParticularUser(targetUsername);
-            targetUser.removePending(user.getUsername());
-            user.removeOutputRequest(targetUsername);
+            User targetUser = accountsService.getParticularUser(targetId);
+            targetUser.removePending(user.getId());
+            user.removeOutputRequest(targetId);
             outputStream.writeObject("Request canceled successfully");
         } catch (Exception e) {
             e.printStackTrace();
@@ -96,10 +103,10 @@ public class FriendshipManagement {
             ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
             AccountsService accountsService = new AccountsService();
-            String targetUsername = (String) inputStream.readObject();
-            User targetUser = accountsService.getParticularUser(targetUsername);
-            targetUser.removeFriend(user.getUsername());
-            user.removeFriend(targetUsername);
+            Integer targetId = (Integer) inputStream.readObject();
+            User targetUser = accountsService.getParticularUser(targetId);
+            targetUser.removeFriend(user.getId());
+            user.removeFriend(targetId);
             outputStream.writeObject("Friend removed successfully");
         } catch (Exception e) {
             e.printStackTrace();
@@ -111,7 +118,7 @@ public class FriendshipManagement {
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
             AccountsService accountsService = new AccountsService();
             User friend;
-            for(String x : user.getFriends()){
+            for(Integer x : user.getFriends()){
                 friend = accountsService.getParticularUser(x);
                 if(friend.getStatus() == Status.Online)
                     outputStream.writeObject(x);
@@ -132,14 +139,18 @@ public class FriendshipManagement {
                 outputStream.writeObject("Error");
             else {
                 outputStream.writeObject("OK");
-                targetUser.loadInformation();
-                if (targetUser.checkIsFriend(user.getUsername())){
-                    user.removeFriend(targetUsername);
-                    targetUser.removeFriend(user.getUsername());
+                if(user.checkIsBlock(targetUser.getId()))
+                    outputStream.writeObject("Blocked before");
+                else{
+                    outputStream.writeObject("OK");
+                    targetUser.loadInformation();
+                    if (targetUser.checkIsFriend(user.getId())) {
+                        user.removeFriend(targetUser.getId());
+                        targetUser.removeFriend(user.getId());
+                    }
+                    user.addBlock(targetUser.getId());
+                    outputStream.writeObject("User blocked successfully");
                 }
-                outputStream.writeObject("OK");
-                user.addBlock(targetUser.getUsername());
-                outputStream.writeObject("User blocked successfully");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -151,9 +162,9 @@ public class FriendshipManagement {
             AccountsService accountsService = new AccountsService();
             ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
-            String targetUsername = (String) inputStream.readObject();
-            User targetUser = accountsService.getParticularUser(targetUsername);
-            user.unblock(targetUser.getUsername());
+            Integer targetId = (Integer) inputStream.readObject();
+            User targetUser = accountsService.getParticularUser(targetId);
+            user.unblock(targetUser.getId());
             outputStream.writeObject("User unblocked successfully");
         } catch (Exception e) {
             e.printStackTrace();
