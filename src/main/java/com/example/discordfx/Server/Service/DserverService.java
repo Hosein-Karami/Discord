@@ -1,5 +1,6 @@
 package com.example.discordfx.Server.Service;
 
+import com.example.discordfx.Moduls.Dto.DiscordServer.Channel;
 import com.example.discordfx.Moduls.Dto.DiscordServer.Dserver;
 import com.example.discordfx.Moduls.Dto.DiscordServer.Invitation;
 import com.example.discordfx.Moduls.Dto.ServerMembers.Member;
@@ -7,6 +8,8 @@ import com.example.discordfx.Moduls.Dto.ServerMembers.Role;
 import com.example.discordfx.Moduls.Dto.User.User;
 import com.example.discordfx.Server.Management.AccountManagement;
 import com.example.discordfx.Server.Management.DserverManagement;
+import com.example.discordfx.Server.Rooms.Connector;
+import com.example.discordfx.Server.Start.Server;
 
 import java.io.*;
 import java.net.Socket;
@@ -177,6 +180,7 @@ public class DserverService {
             String roleName = (String) inputStream.readObject();
             Role targetRole = dserver.getParticularRole(roleName);
             if(targetRole != null){
+                outputStream.writeObject("OK");
                 Integer targetMemberId = (Integer) inputStream.readObject();
                 Member targetMember = dserver.getParticularMember(targetMemberId);
                 targetMember.addRole(targetRole);
@@ -251,5 +255,6 @@ public class DserverService {
             }
         }
     }
+
 
 }

@@ -1,5 +1,6 @@
 package com.example.discordfx;
 
+import com.example.discordfx.Moduls.Dto.DiscordServer.MusicReceiver;
 import com.example.discordfx.Moduls.Dto.ServerMembers.Member;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +21,7 @@ public class DiscordServer implements Initializable {
 
     static int DserverId;
     private Member member;
+    private MusicReceiver receiver;
     private OutputStream out;
     private InputStream in;
     {
@@ -54,6 +56,9 @@ public class DiscordServer implements Initializable {
             outputStream.writeObject(DserverId);
             inputStream = new ObjectInputStream(in);
             member = (Member) inputStream.readObject();
+            Integer musicPort = (Integer) inputStream.readObject();
+            receiver = new MusicReceiver(musicPort);
+            Start.executorService.execute(receiver);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -126,6 +131,7 @@ public class DiscordServer implements Initializable {
 
     public void backToMenu(ActionEvent event){
         try {
+            out.write(5);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

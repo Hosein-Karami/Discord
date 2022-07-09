@@ -61,6 +61,9 @@
          <font>
             <Font size="15.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <TextField fx:id="roleName" alignment="CENTER" layoutX="297.0" layoutY="521.0" prefHeight="28.0" prefWidth="306.0" promptText="Role name" visible="false">
          <font>
@@ -70,10 +73,13 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <Button fx:id="add" layoutX="404.0" layoutY="571.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="91.0" text="Add" visible="false">
+      <Button fx:id="add" layoutX="404.0" layoutY="571.0" mnemonicParsing="false" onAction="#add" prefHeight="34.0" prefWidth="91.0" text="Add" visible="false">
          <font>
             <Font size="15.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
    </children>
 </AnchorPane>

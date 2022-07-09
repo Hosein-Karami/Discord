@@ -23,7 +23,6 @@ public class PrivateChat extends GeneralChat{
             String username = (String) inputStream.readObject();
             if( ! (memberUsernames.contains(username)))
                 memberUsernames.add(username);
-            System.out.println("START");
             sendBeforeMessages(joinedSocket);
             executorService.execute(clientInterface);
         } catch (Exception e) {

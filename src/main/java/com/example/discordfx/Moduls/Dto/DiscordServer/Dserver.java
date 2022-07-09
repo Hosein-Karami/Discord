@@ -3,7 +3,9 @@ package com.example.discordfx.Moduls.Dto.DiscordServer;
 import com.example.discordfx.Lateral.Notification;
 import com.example.discordfx.Moduls.Dto.ServerMembers.Member;
 import com.example.discordfx.Moduls.Dto.ServerMembers.Role;
+import com.example.discordfx.Server.Start.Main;
 import com.example.discordfx.Server.Start.Server;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -12,6 +14,7 @@ public class Dserver implements Serializable {
     private String name;
     private final int id;
     private final Member superChatMaker;
+    private final MusicSender sender;
     private final ArrayList<Member> members = new ArrayList<>();
     private final ArrayList<Role> roles = new ArrayList<>();
     private final ArrayList<Channel> channels = new ArrayList<>();
@@ -19,8 +22,11 @@ public class Dserver implements Serializable {
     public Dserver(Member superChatMaker,int id){
         this.superChatMaker = superChatMaker;
         this.id = id;
-        Server.lastUsedPort++;
         members.add(superChatMaker);
+        Server.lastUsedPort++;
+        int senderPort = Server.lastUsedPort;
+        sender = new MusicSender(senderPort);
+        Main.executorService.execute(sender);
     }
 
     public void setName(String name){
@@ -41,10 +47,6 @@ public class Dserver implements Serializable {
         return members;
     }
 
-    public ArrayList<Role> getRoles(){
-        return roles;
-    }
-
     public int getId(){
         return id;
     }
@@ -61,12 +63,24 @@ public class Dserver implements Serializable {
         return null;
     }
 
+    public Channel getParticularChannel(String channelName){
+        for(Channel x : channels){
+            if(x.getName().equals(channelName))
+                return x;
+        }
+        return null;
+    }
+
     public Role getParticularRole(String roleName){
         for(Role x : roles){
             if(x.getName().equals(roleName))
                 return x;
         }
         return null;
+    }
+
+    public void addChannel(Channel newChannel){
+        channels.add(newChannel);
     }
 
     public void addMember(Member newMember){
@@ -83,7 +97,6 @@ public class Dserver implements Serializable {
         roles.add(newRole);
     }
 
-
     public void kickMember(Integer userId){
         int targetIndex = 0;
         for(Member x : members){
@@ -94,6 +107,10 @@ public class Dserver implements Serializable {
         Notification notification = new Notification("You are kicked from serer with name : " + name);
         members.get(targetIndex).getUser().addNotification(notification);
         members.remove(targetIndex);
+    }
+
+    public void sendMusic(byte[] musicBytes){
+        sender.sendMusic(musicBytes);
     }
 
 }

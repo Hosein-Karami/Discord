@@ -14,7 +14,6 @@ public abstract class GeneralChat {
     private final ArrayList<Message> messages = new ArrayList<>();
     protected final ArrayList<File> voices = new ArrayList<>();
     private final int port;
-    private int voiceCounter;
 
     public GeneralChat(int port){
         this.port = port;
@@ -57,7 +56,6 @@ public abstract class GeneralChat {
             StringBuilder str = new StringBuilder();
             for(Message x : messages)
                 str.append(x.getInformation()).append("\n");
-            System.out.println(str);
             outputStream.writeObject(str.toString());
         } catch (IOException e) {
             e.printStackTrace();
