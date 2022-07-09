@@ -7,7 +7,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.discordfx.ShowServerMembers">
    <children>
       <ImageView fx:id="profileImage" fitHeight="159.0" fitWidth="206.0" layoutX="347.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true" />
@@ -26,16 +25,25 @@
          <font>
             <Font size="15.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <Button layoutX="553.0" layoutY="412.0" mnemonicParsing="false" onAction="#next" prefHeight="34.0" prefWidth="91.0" text="Next">
          <font>
             <Font size="15.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <Button layoutX="255.0" layoutY="412.0" mnemonicParsing="false" onAction="#previous" prefHeight="34.0" prefWidth="91.0" text="Previous">
          <font>
             <Font size="15.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <Text fx:id="result" layoutX="207.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="486.7392578125">
          <font>

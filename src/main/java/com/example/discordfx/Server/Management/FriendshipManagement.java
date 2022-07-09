@@ -149,6 +149,8 @@ public class FriendshipManagement {
                         targetUser.removeFriend(user.getId());
                     }
                     user.addBlock(targetUser.getId());
+                    Notification notification = new Notification(user.getUsername() + " blocked you");
+                    targetUser.addNotification(notification);
                     outputStream.writeObject("User blocked successfully");
                 }
             }
@@ -165,6 +167,8 @@ public class FriendshipManagement {
             Integer targetId = (Integer) inputStream.readObject();
             User targetUser = accountsService.getParticularUser(targetId);
             user.unblock(targetUser.getId());
+            Notification notification = new Notification(user.getUsername() + " unblocked you");
+            targetUser.addNotification(notification);
             outputStream.writeObject("User unblocked successfully");
         } catch (Exception e) {
             e.printStackTrace();

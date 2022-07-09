@@ -46,7 +46,7 @@ public class ShowServerMembers implements Initializable {
     }
 
     private User user;
-    private ArrayList<Integer> membersId;
+    private final ArrayList<Integer> membersId = new ArrayList<>();
     private int memberIndex;
 
     @Override
@@ -61,6 +61,7 @@ public class ShowServerMembers implements Initializable {
             user = (User) inputStream.readObject();
             if(!canKick)
                 kickButton.setVisible(false);
+            loadInformation();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -129,7 +130,7 @@ public class ShowServerMembers implements Initializable {
     public void backToMenu(ActionEvent event){
         try {
             out.write(3);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("DiscordServer.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);

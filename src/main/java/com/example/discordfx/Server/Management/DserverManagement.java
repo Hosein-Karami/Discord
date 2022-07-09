@@ -18,7 +18,7 @@ public class DserverManagement {
             ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
             String serverName = (String) inputStream.readObject();
             //Check name is unique??
-            if(checkName(serverName)) {
+            if(getDserver(serverName) == null) {
                 outputStream.writeObject("OK");
                 Member owner = new Member(serverMaker.getId());
                 owner.addRole(getOwnerRole());
@@ -92,12 +92,12 @@ public class DserverManagement {
         }
     }
 
-    private boolean checkName(String serverName){
+    public Dserver getDserver(String serverName){
         for(Dserver x : Server.discordServers){
             if(x.getName().equals(serverName))
-                return false;
+                return x;
         }
-        return true;
+        return null;
     }
 
     private Role getOwnerRole(){

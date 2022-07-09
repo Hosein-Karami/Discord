@@ -244,6 +244,9 @@ public class ShowServerChats implements Initializable {
             invitations.remove(inviteIndex);
             if(inviteIndex == invitations.size())
                 inviteIndex--;
+            serverProfileImage_2.setImage(null);
+            invitationMessage.setText("");
+            serverChatName_2.setText("");
             initialize_2();
         } catch (Exception e) {
             e.printStackTrace();

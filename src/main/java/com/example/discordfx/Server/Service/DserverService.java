@@ -5,6 +5,8 @@ import com.example.discordfx.Moduls.Dto.DiscordServer.Invitation;
 import com.example.discordfx.Moduls.Dto.ServerMembers.Member;
 import com.example.discordfx.Moduls.Dto.User.User;
 import com.example.discordfx.Server.Management.AccountManagement;
+import com.example.discordfx.Server.Management.DserverManagement;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -31,19 +33,23 @@ public class DserverService {
     public void start() {
         int choose;
         try {
+            ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
+            outputStream.writeObject(member);
             choose = in.read();
             if (choose == 1) {
-                ObjectOutputStream outputStream = new ObjectOutputStream(out);
+                outputStream = new ObjectOutputStream(out);
                 outputStream.writeObject(member.getUser());
                 addMember();
             }
             else if(choose == 2){
-                ObjectOutputStream outputStream = new ObjectOutputStream(out);
+                outputStream = new ObjectOutputStream(out);
                 outputStream.writeObject(dserver);
                 outputStream.writeObject(member.canKickMembers());
                 outputStream.writeObject(member.getUser());
                 showMembers();
             }
+            else if(choose == 3)
+                changeName();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -140,6 +146,7 @@ public class DserverService {
                     break;
             } catch (IOException e) {
                 e.printStackTrace();
+                break;
             }
         }
     }
@@ -156,6 +163,29 @@ public class DserverService {
                 outputStream.writeObject("You can't kick server maker");
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private void changeName() {
+        DserverManagement management = new DserverManagement();
+        int choice;
+        while (true) {
+            try {
+                choice = in.read();
+                if(choice == 2)
+                    break;
+                ObjectInputStream inputStream = new ObjectInputStream(in);
+                ObjectOutputStream outputStream = new ObjectOutputStream(out);
+                String newName = (String) inputStream.readObject();
+                if (management.getDserver(newName) == null) {
+                    dserver.setName(newName);
+                    outputStream.writeObject("Name changed successfully");
+                } else
+                    outputStream.writeObject("This name is used before");
+            } catch (Exception e) {
+                e.printStackTrace();
+                break;
+            }
         }
     }
 

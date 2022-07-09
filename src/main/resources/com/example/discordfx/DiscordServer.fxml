@@ -19,16 +19,35 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <font>
+            <Font size="15.0" />
+         </font>
       </Button>
       <Button layoutX="702.0" layoutY="117.0" mnemonicParsing="false" onAction="#showMembers" prefHeight="34.0" prefWidth="132.0" text="Show members">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <font>
+            <Font size="15.0" />
+         </font>
       </Button>
       <Button layoutX="822.0" layoutY="659.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="26.0" prefWidth="64.0" text="Back">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Button layoutX="702.0" layoutY="180.0" mnemonicParsing="false" onAction="#changeName" prefHeight="34.0" prefWidth="132.0" text="Change name">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Text layoutX="258.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="383.2945861816406">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
