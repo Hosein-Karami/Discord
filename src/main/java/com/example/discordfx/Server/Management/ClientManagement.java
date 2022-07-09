@@ -104,6 +104,8 @@ public class ClientManagement implements Runnable{
                     connectToServerChat();
                 else if(choose == 23)
                     sendUserServerChats();
+                else if(choose == 24)
+                    dserverManagement.invitationHandle(user,clientSocket);
                 else {
                     user.setStatus(Status.Offline);
                     break;

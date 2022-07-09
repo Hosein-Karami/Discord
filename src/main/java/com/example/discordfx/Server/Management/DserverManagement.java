@@ -1,6 +1,7 @@
 package com.example.discordfx.Server.Management;
 
 import com.example.discordfx.Moduls.Dto.DiscordServer.Dserver;
+import com.example.discordfx.Moduls.Dto.DiscordServer.Invitation;
 import com.example.discordfx.Moduls.Dto.ServerMembers.Member;
 import com.example.discordfx.Moduls.Dto.ServerMembers.Role;
 import com.example.discordfx.Moduls.Dto.User.User;
@@ -45,17 +46,21 @@ public class DserverManagement {
         }
     }
 
-    public void setServerPicture(Socket socket){
+    public void invitationHandle(User user,Socket socket){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
-            byte[] imageBytes = inputStream.readAllBytes();
-            String serverName = (String) inputStream.readObject();
-            int serverFolderNumber = getParticularServer(serverName).getId();
-            File serverProfile = new File("Files/DiscordServers/"+serverFolderNumber+"/Profile.jpg");
-            FileOutputStream fileOutputStream = new FileOutputStream(serverProfile);
-            fileOutputStream.write(imageBytes);
-            fileOutputStream.flush();
-            fileOutputStream.close();
+            ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
+            Invitation targetInvitation = (Invitation) inputStream.readObject();
+            Dserver targetServer = Server.discordServers.get(targetInvitation.getServerId());
+            String reaction = (String) inputStream.readObject();
+            if(reaction.equals("Accept")){
+                targetServer.addMember(new Member(user.getId()));
+                user.addServerChat(targetInvitation.getServerId());
+                outputStream.writeObject("You joined to server successfully");
+            }
+            else
+                outputStream.writeObject("Invitation rejected successfully");
+            user.removeInvitation(targetInvitation);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -73,14 +78,6 @@ public class DserverManagement {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public Dserver getParticularServer(String serverName){
-        for(Dserver x : Server.discordServers){
-            if(x.getName().equals(serverName))
-                return x;
-        }
-        return null;
     }
 
     private void setDefaultProfilePicture(String path){

@@ -146,24 +146,55 @@ public class ShowServerChats {
             previousButton_2.setVisible(false);
             acceptButton.setVisible(false);
             rejectButton.setVisible(false);
-            invitationMessage.setVisible(false);
-            serverChatName_2.setVisible(false);
             text_2.setText("You don't have any invitation");
         }
         else {
             inviteIndex = 0;
-            load_2();
+            loadInformation_2();
         }
     }
 
-    public void load_2(){
+    public void loadInformation_2(){
         Invitation targetInvitation = invitations.get(inviteIndex);
         load(targetInvitation.getServerId(),serverProfileImage_2,serverChatName_2);
         invitationMessage.setText(targetInvitation.getInvitationText());
     }
 
+    public void next_2(){
+        if(inviteIndex != (invitations.size() - 1)) {
+            serverProfileImage_2.setImage(null);
+            inviteIndex++;
+            loadInformation_2();
+        }
+    }
 
-    public void load(int serverId,ImageView profile,Text serverName){
+    public void previous_2(){
+        if(inviteIndex != 0) {
+            serverProfileImage_2.setImage(null);
+            inviteIndex++;
+            loadInformation_2();
+        }
+    }
+
+    public void accept(){
+        try {
+            out.write(24);
+            invitationHandle("Accept");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void reject(){
+        try {
+            out.write(24);
+            invitationHandle("Reject");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void load(int serverId,ImageView profile,Text serverName){
         try {
             out.write(21);
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
@@ -184,6 +215,22 @@ public class ShowServerChats {
                 file.delete();
                 serverName.setText(name);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void invitationHandle(String reaction){
+        try {
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
+            ObjectInputStream inputStream = new ObjectInputStream(in);
+            outputStream.writeObject(invitations.get(inviteIndex));
+            outputStream.writeObject(reaction);
+            text_2.setText((String) inputStream.readObject());
+            invitations.remove(inviteIndex);
+            if(inviteIndex == invitations.size())
+                inviteIndex--;
+            loadInformation_2();
         } catch (Exception e) {
             e.printStackTrace();
         }

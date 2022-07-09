@@ -1016,3 +1016,91 @@ Client whose address : /127.0.0.1 successfully connect to server.
 User with username=MohammadReza log in successfully.
 2022-07-09 10:51 [Info] Server
 Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 11:32 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 11:32 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-09 11:33 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 11:33 [Info] UserDao
+User with username=HamidReza log in successfully.
+2022-07-09 11:33 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 11:33 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-09 11:38 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 11:38 [Info] UserDao
+an user added successfully with username=aaaaaaa.
+2022-07-09 11:38 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 11:38 [Info] UserDao
+an user added successfully with username=bbbbbbb.
+2022-07-09 11:38 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 11:38 [Info] UserDao
+User with username=aaaaaaa log in successfully.
+2022-07-09 11:40 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 11:40 [Info] UserDao
+User with username=bbbbbbb log in successfully.
+2022-07-09 11:40 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 11:40 [Info] UserDao
+User with username=aaaaaaa log in successfully.
+2022-07-09 11:50 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 11:50 [Info] UserDao
+an user added successfully with username=ccccccc.
+2022-07-09 11:50 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 11:50 [Info] UserDao
+an user added successfully with username=ddddddd.
+2022-07-09 11:50 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 11:50 [Info] UserDao
+User with username=ccccccc log in successfully.
+2022-07-09 11:50 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 11:51 [Info] UserDao
+User with username=ddddddd log in successfully.
+2022-07-09 11:51 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 11:51 [Info] UserDao
+User with username=ccccccc log in successfully.
+2022-07-09 11:53 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 11:53 [Info] UserDao
+User with username=ccccccc log in successfully.
+2022-07-09 11:55 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 11:55 [Info] UserDao
+User with username=ccccccc log in successfully.
+2022-07-09 12:00 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 12:01 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 12:01 [Info] UserDao
+an user added successfully with username=aaaaaaaa.
+2022-07-09 12:01 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 12:01 [Info] UserDao
+an user added successfully with username=bbbbbbbb.
+2022-07-09 12:01 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 12:01 [Info] UserDao
+User with username=aaaaaaaa log in successfully.
+2022-07-09 12:02 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 12:02 [Info] UserDao
+User with username=bbbbbbbb log in successfully.
+2022-07-09 12:02 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 12:02 [Info] UserDao
+User with username=aaaaaaaa log in successfully.
+2022-07-09 12:03 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 12:03 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-09 12:03 [Info] UserDao
+User with username=bbbbbbbb log in successfully.

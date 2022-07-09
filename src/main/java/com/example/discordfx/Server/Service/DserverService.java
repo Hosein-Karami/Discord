@@ -19,8 +19,7 @@ public class DserverService {
     public DserverService(Dserver dserver, Socket clientSocket, User client) {
         this.dserver = dserver;
         this.clientSocket = clientSocket;
-        member = dserver.getParticularMember(client.getUsername());
-        //System.out.println(member.getUser().getFriends().toString());
+        member = dserver.getParticularMember(client.getId());
         try {
             in = clientSocket.getInputStream();
             out = clientSocket.getOutputStream();
@@ -54,6 +53,8 @@ public class DserverService {
                     invite();
                 else if(choose == 3)
                     sendUserInfo();
+                else if(choose == 4)
+                    searchFriend();
                 else
                     break;
             }
@@ -65,7 +66,7 @@ public class DserverService {
         try {
             ObjectInputStream inputStream = new ObjectInputStream(in);
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
-            String targetUsername = (String) inputStream.readObject();
+            Integer targetUsername = (Integer) inputStream.readObject();
             if(dserver.getParticularMember(targetUsername) == null)
                 outputStream.writeObject("NO");
             else
@@ -98,8 +99,25 @@ public class DserverService {
         accountManagement.sendProfileImage(clientSocket);
     }
 
-    private void sendServerInfo(){
-
+    private void searchFriend(){
+        try {
+            ObjectInputStream inputStream = new ObjectInputStream(in);
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
+            String targetUsername = (String) inputStream.readObject();
+            AccountsService service = new AccountsService();
+            User targetUser = service.getParticularUser(targetUsername);
+            if(targetUser == null)
+                outputStream.writeObject(-1);
+            else {
+                outputStream.writeObject(1);
+                if(member.getUser().checkIsFriend(targetUser.getId()))
+                    outputStream.writeObject(targetUser.getId());
+                else
+                    outputStream.writeObject(-1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

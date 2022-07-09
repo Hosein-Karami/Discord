@@ -13,14 +13,12 @@ public class Dserver implements Serializable {
     private final int id;
     private String name;
     private int counterOfJoinedClient;
-    private final int folderNumber;
     private Member superChatMaker;
     private final ArrayList<Member> members = new ArrayList<>();
     private final ArrayList<Channel> channels = new ArrayList<>();
 
     public Dserver(Member superChatMaker,int id){
         this.superChatMaker = superChatMaker;
-        this.folderNumber = id;
         this.id = id;
         Server.lastUsedPort++;
         members.add(superChatMaker);
@@ -64,9 +62,9 @@ public class Dserver implements Serializable {
         return superChatMaker;
     }
 
-    public Member getParticularMember(String username){
+    public Member getParticularMember(int targetId){
         for(Member x : members){
-            if(x.getUser().getUsername().equals(username)) {
+            if(x.getUser().getId() == targetId) {
                 System.out.println("SALAM BACHEHA");
                 return x;
             }

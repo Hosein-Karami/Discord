@@ -130,12 +130,30 @@ public class AddServerMember implements Initializable {
             resultText.setText("Enter your friend username");
             return;
         }
-        if(friends.contains(targetUsername.getText())){
-            friendIndex = friends.indexOf(targetUsername.getText());
-            load();
+        if(targetUsername.getText().equals(user.getUsername())){
+            resultText.setText("Dadash dari eshtebah mizani :|");
+            return;
         }
-        else
-            resultText.setText("You don't have friend with this username");
+        try {
+            out.write(4);
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
+            ObjectInputStream inputStream = new ObjectInputStream(in);
+            outputStream.writeObject(targetUsername.getText());
+            Integer status = (Integer) inputStream.readObject();
+            if(status.equals(1)){
+                Integer targetId = (Integer) inputStream.readObject();
+                if(targetId != -1) {
+                    friendIndex = friends.indexOf(targetId);
+                    load();
+                }
+                else
+                    resultText.setText("You don't have any friend with this username");
+            }
+            else
+                resultText.setText("You don't have any friend with this username");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         targetUsername.clear();
     }
 
@@ -161,7 +179,7 @@ public class AddServerMember implements Initializable {
 
     public void backToServer(ActionEvent event){
         try {
-            out.write(4);
+            out.write(5);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("DiscordServer.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

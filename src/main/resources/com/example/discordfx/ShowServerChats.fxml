@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="com.example.discordfx.ShowServerChats">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.discordfx.ShowServerChats">
   <tabs>
     <Tab onSelectionChanged="#initialize" text="Server chat">
          <content>
@@ -50,7 +50,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="822.0" layoutY="659.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="26.0" prefWidth="64.0" text="Back">
+                  <Button layoutX="822.0" layoutY="631.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="26.0" prefWidth="64.0" text="Back">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -69,7 +69,50 @@
     </Tab>
     <Tab text="Invitations">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="serverProfileImage_2" fitHeight="150.0" fitWidth="200.0" layoutX="350.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true" />
+                  <Text fx:id="text_2" layoutX="230.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="459.8497619628906">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="serverChatName_2" layoutX="256.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="386.7392578125">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Text>
+                  <Button layoutX="822.0" layoutY="630.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="26.0" prefWidth="64.0" text="Back">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Text fx:id="invitationMessage" layoutX="247.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="405.1392822265625">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="previousButton_2" layoutX="206.0" layoutY="434.0" mnemonicParsing="false" onAction="#previous_2" prefHeight="31.0" prefWidth="82.0" text="Previous">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="nextButton_2" layoutX="601.0" layoutY="434.0" mnemonicParsing="false" onAction="#next_2" prefHeight="31.0" prefWidth="82.0" text="Next">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="rejectButton" layoutX="309.0" layoutY="434.0" mnemonicParsing="false" onAction="#reject" prefHeight="31.0" prefWidth="122.0" text="Previous">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="acceptButton" layoutX="450.0" layoutY="434.0" mnemonicParsing="false" onAction="#accept" prefHeight="31.0" prefWidth="122.0" text="Accept">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children></AnchorPane>
       </content>
     </Tab>
   </tabs>
