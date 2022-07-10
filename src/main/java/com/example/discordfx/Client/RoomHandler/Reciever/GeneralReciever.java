@@ -2,18 +2,24 @@ package com.example.discordfx.Client.RoomHandler.Reciever;
 
 import com.example.discordfx.Client.RoomHandler.VoiceManagement.AudioPlayer;
 import com.example.discordfx.Moduls.Dto.Messages.FileMessage;
-import com.example.discordfx.Moduls.Dto.Messages.TextMessage;
 import javafx.application.Platform;
 import javafx.scene.control.TextArea;
 
 import java.io.*;
+import java.net.Socket;
 
 public class GeneralReciever {
 
+    protected InputStream in;
     private final TextArea textArea;
 
-    public GeneralReciever(TextArea textArea){
+    public GeneralReciever(TextArea textArea, Socket socket){
         this.textArea = textArea;
+        try {
+            in = socket.getInputStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void showMessage(String message){

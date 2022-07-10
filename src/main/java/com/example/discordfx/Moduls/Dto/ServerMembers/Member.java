@@ -75,4 +75,12 @@ public class Member implements Serializable {
         return false;
     }
 
+    public boolean canPinMessage(){
+        for(Role x : roles){
+            if(x.isPinMessage())
+                return true;
+        }
+        return false;
+    }
+
 }

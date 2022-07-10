@@ -3,7 +3,6 @@ package com.example.discordfx.Moduls.Dto.DiscordServer;
 import com.example.discordfx.Lateral.Notification;
 import com.example.discordfx.Moduls.Dto.ServerMembers.Member;
 import com.example.discordfx.Moduls.Dto.ServerMembers.Role;
-import com.example.discordfx.Server.Start.Server;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -20,8 +19,6 @@ public class Dserver implements Serializable {
         this.superChatMaker = superChatMaker;
         this.id = id;
         members.add(superChatMaker);
-        Server.lastUsedPort++;
-        int senderPort = Server.lastUsedPort;
     }
 
     public void setName(String name){
@@ -102,6 +99,16 @@ public class Dserver implements Serializable {
         Notification notification = new Notification("You are kicked from serer with name : " + name);
         members.get(targetIndex).getUser().addNotification(notification);
         members.remove(targetIndex);
+    }
+
+    public void removeChannel(String channelName){
+        int targetIndex = 0;
+        for(Channel x : channels){
+            if(x.getName().equals(channelName))
+                break;
+            targetIndex++;
+        }
+        channels.remove(targetIndex);
     }
 
 }

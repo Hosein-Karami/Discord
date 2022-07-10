@@ -23,12 +23,29 @@ public class ChannelChat extends GeneralChat{
         }
     }
 
-    public void pinMessage(Message pinnedMessage){
-        this.pinnedMessage = pinnedMessage;
+    public Dserver getDserver(){
+        return dserver;
     }
 
     public Message getPinnedMessage(){
         return pinnedMessage;
+    }
+
+    public Message getParticularMessage(int messageIndex){
+        return messages.get(messageIndex);
+    }
+
+    public int getSizeOfMessages(){
+        return messages.size();
+    }
+
+    public boolean pinMessage(int messageNumber){
+        if(messageNumber <= messages.size()){
+            pinnedMessage = messages.get(messageNumber - 1);
+            return true;
+        }
+        else
+            return false;
     }
 
 }

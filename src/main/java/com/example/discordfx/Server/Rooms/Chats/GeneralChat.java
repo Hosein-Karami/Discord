@@ -9,7 +9,7 @@ public abstract class GeneralChat {
 
     protected ArrayList<Socket> joinSockets = new ArrayList<>();
     protected ArrayList<String> memberUsernames = new ArrayList<>();
-    private final ArrayList<Message> messages = new ArrayList<>();
+    protected final ArrayList<Message> messages = new ArrayList<>();
 
     public abstract void join(Socket joinedSocket);
 

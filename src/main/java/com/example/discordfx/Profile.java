@@ -82,6 +82,7 @@ public class Profile implements Initializable {
         try{
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Discord");
             File image = fileChooser.showOpenDialog(stage);
             if(image != null){
                 String fileName = image.getName();

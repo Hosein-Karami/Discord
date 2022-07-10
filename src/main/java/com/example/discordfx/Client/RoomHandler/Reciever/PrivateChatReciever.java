@@ -1,29 +1,18 @@
 package com.example.discordfx.Client.RoomHandler.Reciever;
 
 import javafx.scene.control.TextArea;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
 public class PrivateChatReciever extends GeneralReciever implements Runnable{
 
-    private InputStream in;
-
     public PrivateChatReciever(Socket socket, TextArea textArea) {
-        super(textArea);
-        try {
-            in = socket.getInputStream();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        super(textArea,socket);
     }
 
     @Override
     public void run() {
         try {
-            System.out.println("STARTTTTTTT");
             ObjectInputStream inputStream = new ObjectInputStream(in);
             String beforeMessages = (String) inputStream.readObject();
             System.out.println(beforeMessages);

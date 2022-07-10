@@ -29,6 +29,10 @@ public abstract class Message implements Serializable {
         this.text = text;
     }
 
+    public String getText(){
+        return text;
+    }
+
     public String getInformation(){
         return getTime() + "    " + getSenderUsername() + " : " + text;
     }

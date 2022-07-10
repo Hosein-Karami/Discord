@@ -1,9 +1,10 @@
 package com.example.discordfx;
 
-import com.example.discordfx.Client.RoomHandler.Reciever.PrivateChatReciever;
-import com.example.discordfx.Client.RoomHandler.Sender.PrivateChatSender;
+import com.example.discordfx.Client.RoomHandler.Reciever.ChannelChatReciever;
+import com.example.discordfx.Client.RoomHandler.Sender.ChannelChatSender;
 import com.example.discordfx.Client.RoomHandler.VoiceManagement.Recorder;
 import com.example.discordfx.Moduls.Dto.User.User;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,7 +15,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
-import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 import java.io.File;
 import java.io.ObjectInputStream;
@@ -23,9 +23,9 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PrivateChat implements Initializable {
+public class ChannelChat implements Initializable {
 
-    private PrivateChatSender sender;
+    private ChannelChatSender sender;
     private Recorder voiceRecorder;
     private final FileChooser fileChooser = new FileChooser();
     {
@@ -41,6 +41,7 @@ public class PrivateChat implements Initializable {
     @FXML
     TextArea messages;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -50,8 +51,8 @@ public class PrivateChat implements Initializable {
             Socket socket = new Socket(Start.hostIp, port);
             ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
             outputStream.writeObject(user.getUsername());
-            sender = new PrivateChatSender(socket, user.getUsername());
-            PrivateChatReciever reciever = new PrivateChatReciever(socket, messages);
+            sender = new ChannelChatSender(socket, user.getUsername());
+            ChannelChatReciever reciever = new ChannelChatReciever(messages, socket);
             Start.executorService.execute(reciever);
         } catch (Exception e) {
             e.printStackTrace();
