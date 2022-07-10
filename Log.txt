@@ -1,0 +1,222 @@
+2022-07-10 17:21 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 17:21 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-10 17:22 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 17:22 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-10 17:23 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 17:24 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-10 17:24 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 17:24 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-10 17:26 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 17:26 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-10 17:26 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 17:26 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 17:26 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-10 17:32 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 17:32 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-10 17:34 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 17:34 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 17:34 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-10 17:42 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 17:43 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 17:43 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-10 17:45 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 17:45 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 17:45 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 17:45 [Info] Server
+aaaaaa logout successfully.
+2022-07-10 17:45 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 17:46 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-10 17:50 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 17:50 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 17:50 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 17:51 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-10 17:53 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 17:53 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 17:54 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 17:54 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-10 17:55 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 17:55 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 17:56 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-10 17:59 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 17:59 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 18:00 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-10 18:00 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 18:00 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-10 18:03 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 18:03 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 18:04 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 18:04 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 18:04 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-10 18:09 [Error] Server
+Error happening when we want to open port 2000 on server.
+2022-07-10 18:09 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 18:10 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-10 18:15 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 18:15 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-10 18:17 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 18:17 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-10 18:33 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 18:33 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 18:33 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 18:33 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 18:33 [Info] Server
+aaaaaa logout successfully.
+2022-07-10 18:33 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 18:34 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 18:34 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 18:34 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 18:34 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-10 18:34 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-10 18:35 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 18:35 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 19:01 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 19:01 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 19:02 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-10 19:37 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 19:40 [Info] UserDao
+an user added successfully with username=aaaaaa.
+2022-07-10 19:40 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 19:40 [Info] UserDao
+User with username=aaaaaa log in successfully.
+2022-07-10 19:40 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 19:40 [Info] UserDao
+an user added successfully with username=bbbbbb.
+2022-07-10 19:40 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 19:41 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 19:41 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 19:41 [Info] UserDao
+User with username=aaaaaa log in successfully.
+2022-07-10 19:41 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 19:41 [Info] UserDao
+User with username=aaaaaa log in successfully.
+2022-07-10 19:42 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 19:42 [Info] UserDao
+User with username=aaaaaa log in successfully.
+2022-07-10 19:42 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 19:42 [Info] UserDao
+User with username=aaaaaa log in successfully.
+2022-07-10 19:42 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-10 19:42 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 19:42 [Info] UserDao
+User with username=aaaaaa log in successfully.
+2022-07-10 19:44 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 19:59 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 19:59 [Info] UserDao
+an user added successfully with username=vvvvvv.
+2022-07-10 19:59 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 19:59 [Info] UserDao
+User with username=vvvvvv log in successfully.
+2022-07-10 19:59 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 19:59 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 20:00 [Info] UserDao
+User with username=vvvvvv log in successfully.
+2022-07-10 20:00 [Info] UserDao
+User with username=vvvvvv changed his/her username to yyyyrfwsw3 successfully.
+2022-07-10 20:00 [Info] ClientService
+User with username=vvvvvv changed username to yyyyrfwsw3 successfully.
+2022-07-10 20:00 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 20:12 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 20:12 [Info] UserDao
+an user added successfully with username=1111111.
+2022-07-10 20:12 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 20:12 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 20:12 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 20:12 [Info] UserDao
+User with username=1111111 log in successfully.
+2022-07-10 20:12 [Info] UserDao
+User with username=1111111 changed his/her username to 2222222 successfully.
+2022-07-10 20:12 [Info] ClientService
+User with username=1111111 changed username to 2222222 successfully.
+2022-07-10 20:12 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-10 20:12 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.

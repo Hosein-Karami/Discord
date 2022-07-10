@@ -17,7 +17,7 @@ public class SqlDao implements GeneralDao{
     }
 
     @Override
-    public void insert(UserEntity userEntity) throws Exception {
+    public void insert(UserEntity userEntity) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Users SET username=?,password=?,email=?,phone=?");
             preparedStatement.setString(1, userEntity.getUsername());
@@ -28,12 +28,12 @@ public class SqlDao implements GeneralDao{
             log.insertSuccess(userEntity.getUsername());
         } catch (Exception e) {
             log.insertError();
-            throw new Exception();
+            e.printStackTrace();
         }
     }
 
     @Override
-    public UserEntity logIn(String username,String password) throws Exception {
+    public UserEntity logIn(String username,String password) {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM Users WHERE username='"+username+"' AND password='"+password+"'");
@@ -49,12 +49,12 @@ public class SqlDao implements GeneralDao{
             return null;
         } catch (Exception e) {
             log.logInError(username);
-            throw new Exception();
+            return null;
         }
     }
 
     @Override
-    public UserEntity getParticularUser(String username) throws Exception {
+    public UserEntity getParticularUser(String username) {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM Users WHERE username='"+username+"'");
@@ -68,12 +68,12 @@ public class SqlDao implements GeneralDao{
             return null;
         } catch (Exception e) {
             log.getError(username);
-            throw new Exception();
+            return null;
         }
     }
 
     @Override
-    public UserEntity getParticularUser(int id) throws Exception {
+    public UserEntity getParticularUser(int id) {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM Users WHERE id='"+id+"'");
@@ -85,12 +85,12 @@ public class SqlDao implements GeneralDao{
             return null;
         } catch (Exception e) {
             log.getError(id);
-            throw new Exception();
+            return null;
         }
     }
 
     @Override
-    public void changeUsername(String username,String newUsername) throws Exception {
+    public void changeUsername(String username,String newUsername) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Users SET username=? WHERE username=?");
             preparedStatement.setString(1,newUsername);
@@ -100,12 +100,12 @@ public class SqlDao implements GeneralDao{
             log.changeUsernameSuccessfully(username,newUsername);
         } catch (Exception e) {
             log.changeUsernameError(username);
-            throw new Exception();
+            e.printStackTrace();
         }
     }
 
     @Override
-    public void changePassword(String targetUsername,String newPassword) throws Exception {
+    public void changePassword(String targetUsername,String newPassword) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Users SET password=? WHERE username=?");
             preparedStatement.setString(1,newPassword);
@@ -114,12 +114,12 @@ public class SqlDao implements GeneralDao{
             log.changePasswordSuccessfully(targetUsername);
         } catch (Exception e) {
             log.changePasswordError(targetUsername);
-            throw new Exception();
+            e.printStackTrace();
         }
     }
 
     @Override
-    public void changeEmail(String targetUsername,String newEmail) throws Exception {
+    public void changeEmail(String targetUsername,String newEmail) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Users SET email=? WHERE username=?");
             preparedStatement.setString(1,newEmail);
@@ -128,12 +128,12 @@ public class SqlDao implements GeneralDao{
             log.changeEmailSuccessfully(targetUsername);
         } catch (Exception e) {
             log.changeEmailError(targetUsername);
-            throw new Exception();
+            e.printStackTrace();
         }
     }
 
     @Override
-    public void changePhone(String targetUsername,String newPhone) throws Exception {
+    public void changePhone(String targetUsername,String newPhone) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Users SET phone=? WHERE username=?");
             preparedStatement.setString(1,newPhone);
@@ -142,7 +142,7 @@ public class SqlDao implements GeneralDao{
             log.changePhoneSuccessfully(targetUsername);
         } catch (Exception e) {
             log.changePhoneError(targetUsername);
-            throw new Exception();
+            e.printStackTrace();
         }
     }
 

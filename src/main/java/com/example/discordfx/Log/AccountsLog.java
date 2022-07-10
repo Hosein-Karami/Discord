@@ -26,4 +26,13 @@ public class AccountsLog {
         }
     }
 
+    public void changeUsername(String olderUsername,String newUsername){
+        try (FileWriter fileWriter = new FileWriter("Log.txt",true)){
+            fileWriter.write(LocalDateTime.now().format(formatter) + " [Info] ClientService\nUser with username="+olderUsername+
+                    " changed username to "+newUsername+" successfully.\n");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
