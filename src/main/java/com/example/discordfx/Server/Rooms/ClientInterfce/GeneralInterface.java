@@ -50,7 +50,7 @@ public abstract class GeneralInterface {
 
     public void exit(){
         chat.sendMessageToParticularSocket("#LEFT",clientSocket);
-        chat.removeJoinSocket(clientSocket);
+        chat.removeSocket(clientSocket);
     }
 
     private void saveFile(byte[] bytes,String fileName){

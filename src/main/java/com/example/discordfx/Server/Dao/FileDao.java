@@ -7,9 +7,9 @@ import java.util.HashMap;
 
 public class FileDao implements GeneralDao{
 
-    private int counter;
+    private static int counter;
     private UserDaoLog log = new UserDaoLog();
-    private final HashMap<Integer,String> usersInfo = new HashMap<>();
+    private static final HashMap<Integer,String> usersInfo = new HashMap<>();
 
     @Override
     public void insert(UserEntity userEntity) {
@@ -60,6 +60,8 @@ public class FileDao implements GeneralDao{
     @Override
     public UserEntity getParticularUser(int id) {
         String targetUsername = usersInfo.get(id);
+        System.out.println(usersInfo);
+        System.out.println(id);
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(getValidPath(targetUsername)))){
             return  (UserEntity) inputStream.readObject();
         }catch (FileNotFoundException e){

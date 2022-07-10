@@ -5,7 +5,6 @@ import com.example.discordfx.Log.AccountsLog;
 import com.example.discordfx.Moduls.Dto.User.Status;
 import com.example.discordfx.Moduls.Dto.User.User;
 import com.example.discordfx.Moduls.Entity.UserEntity;
-import com.example.discordfx.Server.Dao.FileDao;
 import com.example.discordfx.Server.Dao.GeneralDao;
 import com.example.discordfx.Server.Dao.SqlDao;
 import java.io.File;
@@ -16,26 +15,20 @@ import java.net.Socket;
 
 public class AccountsService {
 
-    private final GeneralDao userDao = new FileDao();
+    private final GeneralDao userDao = new SqlDao();
     private final AccountsLog log = new AccountsLog();
 
     public void signUp(User newUser) throws Exception {
         try {
             userDao.insert(convertDtoToEntity(newUser));
             //Make a binary file for this user in LateralFiles directory :
-            System.out.println("1111");
             User user = convertEntityToDto(userDao.getParticularUser(newUser.getUsername()));
-            System.out.println("22222");
             user.setStatus(Status.Offline);
-            System.out.println("333333");
             File file = new File("Files/UsersInfo/"+ user.getId() + ".bin");
-            System.out.println("3333333");
             file.createNewFile();
             //Initialize file :
             ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(file));
-            System.out.println("444444");
             outputStream.writeObject(user.getInformation());
-            System.out.println("555555");
         } catch (Exception e) {
             e.printStackTrace();
             throw new Exception();
@@ -121,7 +114,7 @@ public class AccountsService {
 
     public void changePhone(String username,String newPhone) throws Exception {
         try {
-            userDao.changeEmail(username, newPhone);
+            userDao.changePhone(username, newPhone);
         } catch (Exception e) {
             throw new Exception();
         }

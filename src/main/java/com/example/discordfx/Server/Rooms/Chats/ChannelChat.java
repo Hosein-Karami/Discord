@@ -31,14 +31,6 @@ public class ChannelChat extends GeneralChat{
         return pinnedMessage;
     }
 
-    public Message getParticularMessage(int messageIndex){
-        return messages.get(messageIndex);
-    }
-
-    public int getSizeOfMessages(){
-        return messages.size();
-    }
-
     public boolean pinMessage(int messageNumber){
         if(messageNumber <= messages.size()){
             pinnedMessage = messages.get(messageNumber - 1);

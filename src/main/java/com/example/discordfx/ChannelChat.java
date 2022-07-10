@@ -4,7 +4,6 @@ import com.example.discordfx.Client.RoomHandler.Reciever.ChannelChatReciever;
 import com.example.discordfx.Client.RoomHandler.Sender.ChannelChatSender;
 import com.example.discordfx.Client.RoomHandler.VoiceManagement.Recorder;
 import com.example.discordfx.Moduls.Dto.ServerMembers.Member;
-import com.example.discordfx.Moduls.Dto.User.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,7 +35,7 @@ public class ChannelChat implements Initializable {
     @FXML
     TextField textField;
     @FXML
-    TextField pinMessageNumber;
+    TextField messageNumber;
     @FXML
     Button sendVoice;
     @FXML
@@ -45,6 +44,12 @@ public class ChannelChat implements Initializable {
     TextArea messages;
     @FXML
     Button submitPinMessage;
+    @FXML
+    Button likeButton;
+    @FXML
+    Button dislikeButton;
+    @FXML
+    Button smileButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -104,17 +109,17 @@ public class ChannelChat implements Initializable {
 
     public void pinMessage(){
         if(member.canPinMessage()) {
-            pinMessageNumber.setVisible(true);
+            messageNumber.setVisible(true);
             submitPinMessage.setVisible(true);
         }
     }
 
     public void submitPinMessage() {
         try {
-            sender.pinMessage(Integer.parseInt(pinMessageNumber.getText()));
-            System.out.println("SSSSSSSSSSSSSSSS");
-            pinMessageNumber.setVisible(false);
+            sender.pinMessage(Integer.parseInt(messageNumber.getText()));
+            messageNumber.setVisible(false);
             submitPinMessage.setVisible(false);
+            messageNumber.clear();
         }catch (Exception e){
             System.out.println("Invalid format");
         }
@@ -122,6 +127,51 @@ public class ChannelChat implements Initializable {
 
     public void getPinnedMessage(){
         sender.getPinnedMessage();
+    }
+
+    public void react(){
+        messageNumber.setVisible(true);
+        likeButton.setVisible(true);
+        dislikeButton.setVisible(true);
+        smileButton.setVisible(true);
+    }
+
+    public void like(){
+        try {
+            sender.react(Integer.parseInt(messageNumber.getText()), "LIKE");
+            finishReact();
+        }catch (Exception e){
+            finishReact();
+            System.out.println("Invalid format");
+        }
+    }
+
+    public void dislike() {
+        try {
+            sender.react(Integer.parseInt(messageNumber.getText()), "DISLIKE");
+            finishReact();
+        }catch (Exception e){
+            finishReact();
+            System.out.println("Invalid format");
+        }
+    }
+
+    public void smile() {
+        try {
+            sender.react(Integer.parseInt(messageNumber.getText()), "SMILE");
+            finishReact();
+        }catch (Exception e){
+            finishReact();
+            System.out.println("Invalid format");
+        }
+    }
+
+    public void finishReact(){
+        likeButton.setVisible(false);
+        dislikeButton.setVisible(false);
+        smileButton.setVisible(false);
+        messageNumber.clear();
+        messageNumber.setVisible(false);
     }
 
     public void exit(ActionEvent event){

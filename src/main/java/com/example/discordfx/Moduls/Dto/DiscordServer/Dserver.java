@@ -23,8 +23,6 @@ public class Dserver implements Serializable {
 
     public void setName(String name){
         this.name = name;
-        for(Member x : members)
-            x.getUser().updateInformation();
     }
 
     public String getName(){

@@ -32,6 +32,7 @@ public class PrivateChatReciever extends GeneralReciever implements Runnable{
                     case "#FILE" -> getFile(inputStream);
                     case "#VOICE" -> getVoice(inputStream);
                     case "#LEFT" -> {
+                        disconnect();
                         break label;
                     }
                 }

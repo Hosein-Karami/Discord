@@ -29,4 +29,16 @@ public class ChannelChatSender extends GeneralSender{
         }
     }
 
+    public void react(int messageNumber,String react){
+        try {
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
+            outputStream.writeObject("#REACT");
+            outputStream.writeObject(messageNumber);
+            outputStream.writeObject(react);
+            outputStream.writeObject(senderUsername);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

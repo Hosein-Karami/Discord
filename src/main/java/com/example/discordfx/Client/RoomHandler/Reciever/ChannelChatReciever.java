@@ -25,24 +25,27 @@ public class ChannelChatReciever extends GeneralReciever implements Runnable{
             while (true) {
                 inputStream = new ObjectInputStream(in);
                 messageType = (String) inputStream.readObject();
+                if(messageType.equals("#REACT"))
+                    System.out.println("SALAM");
                 inputStream = new ObjectInputStream(in);
-                if (!(messageType.equals("#LEFT")) && (!(messageType.equals("#GETPIN"))) && (!(messageType.equals("#PIN")))) {
+                if (!(messageType.equals("#LEFT")) && (!(messageType.equals("#GETPIN"))) && (!(messageType.equals("#PIN"))) && (!(messageType.equals("#REACT")))) {
                     showMessage((String) inputStream.readObject());
                     inputStream = new ObjectInputStream(in);
                 }
                 switch (messageType) {
-                    case "#TEXT" -> showMessage((String) inputStream.readObject());
+                    case "#TEXT","#REACT" -> showMessage((String) inputStream.readObject());
                     case "#FILE" -> getFile(inputStream);
                     case "#VOICE" -> getVoice(inputStream);
                     case "#PIN" -> pin(inputStream);
                     case "#GETPIN" -> getPinnedMessage(inputStream);
                     case "#LEFT" -> {
+                        disconnect();
                         break label;
                     }
                 }
             }
+
         }catch (Exception e) {
-            e.printStackTrace();
         }
     }
 

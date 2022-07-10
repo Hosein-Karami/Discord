@@ -24,7 +24,7 @@ public class ChannelChatInterface extends GeneralInterface implements Runnable{
             while (true) {
                 inputStream = new ObjectInputStream(clientSocket.getInputStream());
                 temp = (String) inputStream.readObject();
-                if((!(temp.equals("#PIN"))) && (!(temp.equals("#GETPIN")))) {
+                if((!(temp.equals("#PIN"))) && (!(temp.equals("#GETPIN"))) && (!(temp.equals("#REACT"))) && (!(temp.equals("#EXIT")))) {
                     chat.sendMessage(temp);
                     String Info = (String) inputStream.readObject();
                     chat.sendMessage(Info);
@@ -42,7 +42,7 @@ public class ChannelChatInterface extends GeneralInterface implements Runnable{
                         Integer messageNumber = (Integer) inputStream.readObject();
                         pinMessage(messageNumber);
                     }
-                    case "#REACT" -> react();
+                    case "#REACT" -> react(inputStream);
                     case "#EXIT" ->{
                         exit();
                         break label;
@@ -60,31 +60,29 @@ public class ChannelChatInterface extends GeneralInterface implements Runnable{
             chat.sendMessageToParticularSocket("ERROR",clientSocket);
     }
 
-
-    private void react(){
+    private void react(ObjectInputStream inputStream){
         try {
-            ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
             Integer messageNumber = (Integer) inputStream.readObject();
-            Integer reactNumber = (Integer) inputStream.readObject();
-            String reacterUsername = (String) inputStream.readObject();
-            if(messageNumber <= (((ChannelChat)chat).getSizeOfMessages())) {
-                String reaction;
-                if(reactNumber == 1)
-                    reaction = "\uD83D\uDE00";
-                else if(reactNumber == 2)
-                    reaction = "\uD83D\uDC4D";
+            String react = (String) inputStream.readObject();
+            String reactorUsername = (String) inputStream.readObject();
+            if((messageNumber > 0) && (messageNumber <= chat.getMessagesSize())){
+                String reactEmoji;
+                if(react.equals("LIKE"))
+                    reactEmoji = "\uD83D\uDC4D";
+                else if(react.equals("DISLIKE"))
+                    reactEmoji = "\uD83D\uDC4E";
                 else
-                    reaction = "\uD83D\uDC4E";
-                Message targetMessage = ((ChannelChat) chat).getParticularMessage(messageNumber - 1);
-                Message reactionMessage = new TextMessage(reacterUsername,"reaction : " + reaction + "   target message : "
-                        +targetMessage.getText());
+                    reactEmoji = "\uD83D\uDE00";
+                TextMessage reactMessage = new TextMessage(reactorUsername,"React : "+reactEmoji+"  react message : "+
+                        chat.getParticularMessage(messageNumber - 1).getText());
                 chat.sendMessage("#REACT");
-                chat.sendMessage(reactionMessage.getInformation());
-                chat.addMessage(reactionMessage);
+                chat.sendMessage(reactMessage.getInformation());
+                chat.addMessage(reactMessage);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
 }

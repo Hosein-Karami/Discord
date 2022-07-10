@@ -11,7 +11,7 @@
 <AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.discordfx.ChannelChat">
    <children>
       <TextArea fx:id="messages" editable="false" layoutX="7.0" layoutY="3.0" prefHeight="523.0" prefWidth="887.0" wrapText="true" />
-      <Button layoutX="7.0" layoutY="538.0" mnemonicParsing="false" onAction="#sendFile" prefHeight="36.0" prefWidth="155.0" text="File">
+      <Button layoutX="7.0" layoutY="538.0" mnemonicParsing="false" onAction="#sendFile" prefHeight="37.0" prefWidth="100.0" text="File">
          <font>
             <Font size="16.0" />
          </font>
@@ -35,7 +35,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="195.0" layoutY="538.0" mnemonicParsing="false" onAction="#recordeVoice" prefHeight="36.0" prefWidth="155.0" text="Voice">
+      <Button layoutX="125.0" layoutY="537.0" mnemonicParsing="false" onAction="#recordeVoice" prefHeight="37.0" prefWidth="100.0" text="Voice">
          <font>
             <Font size="16.0" />
          </font>
@@ -51,7 +51,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="cancelVoice" layoutX="380.0" layoutY="538.0" mnemonicParsing="false" onAction="#cancelVoice" prefHeight="36.0" prefWidth="155.0" text="Cancel" visible="false">
+      <Button fx:id="cancelVoice" layoutX="250.0" layoutY="538.0" mnemonicParsing="false" onAction="#cancelVoice" prefHeight="37.0" prefWidth="100.0" text="Cancel" visible="false">
          <font>
             <Font size="16.0" />
          </font>
@@ -59,7 +59,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="sendVoice" layoutX="562.0" layoutY="538.0" mnemonicParsing="false" onAction="#sendVoice" prefHeight="36.0" prefWidth="155.0" text="Send voice" visible="false">
+      <Button fx:id="sendVoice" layoutX="372.0" layoutY="538.0" mnemonicParsing="false" onAction="#sendVoice" prefHeight="37.0" prefWidth="100.0" text="Send voice" visible="false">
          <font>
             <Font size="16.0" />
          </font>
@@ -67,7 +67,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="7.0" layoutY="586.0" mnemonicParsing="false" onAction="#sendFile" prefHeight="36.0" prefWidth="155.0" text="React">
+      <Button layoutX="7.0" layoutY="586.0" mnemonicParsing="false" onAction="#react" prefHeight="37.0" prefWidth="100.0" text="React">
          <font>
             <Font size="16.0" />
          </font>
@@ -75,7 +75,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="195.0" layoutY="586.0" mnemonicParsing="false" onAction="#pinMessage" prefHeight="36.0" prefWidth="155.0" text="Pin">
+      <Button layoutX="496.0" layoutY="538.0" mnemonicParsing="false" onAction="#pinMessage" prefHeight="37.0" prefWidth="100.0" text="Pin">
          <font>
             <Font size="16.0" />
          </font>
@@ -83,7 +83,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="372.0" layoutY="586.0" mnemonicParsing="false" onAction="#getPinnedMessage" prefHeight="36.0" prefWidth="155.0" text="Get pin">
+      <Button layoutX="619.0" layoutY="538.0" mnemonicParsing="false" onAction="#getPinnedMessage" prefHeight="37.0" prefWidth="100.0" text="Get pin">
          <font>
             <Font size="16.0" />
          </font>
@@ -91,12 +91,36 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextField fx:id="pinMessageNumber" alignment="CENTER" layoutX="546.0" layoutY="585.0" prefHeight="37.0" prefWidth="186.0" promptText="Message number" visible="false">
+      <TextField fx:id="messageNumber" alignment="CENTER" layoutX="546.0" layoutY="585.0" prefHeight="37.0" prefWidth="186.0" promptText="Message number" visible="false">
          <font>
             <Font size="17.0" />
          </font>
       </TextField>
       <Button fx:id="submitPinMessage" layoutX="738.0" layoutY="586.0" mnemonicParsing="false" onAction="#submitPinMessage" prefHeight="36.0" prefWidth="155.0" text="OK" visible="false">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="smileButton" layoutX="125.0" layoutY="586.0" mnemonicParsing="false" onAction="#smile" prefHeight="37.0" prefWidth="100.0" text="Smile" visible="false">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="dislikeButton" layoutX="372.0" layoutY="585.0" mnemonicParsing="false" onAction="#dislike" prefHeight="37.0" prefWidth="100.0" text="Dislike" visible="false">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="likeButton" layoutX="250.0" layoutY="586.0" mnemonicParsing="false" onAction="#like" prefHeight="37.0" prefWidth="100.0" text="Like" visible="false">
          <font>
             <Font size="16.0" />
          </font>

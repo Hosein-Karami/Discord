@@ -1,7 +1,6 @@
 package com.example.discordfx;
 
 import com.example.discordfx.Client.Management.*;
-import com.example.discordfx.Moduls.Dto.DiscordServer.Invitation;
 import com.example.discordfx.Moduls.Dto.User.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

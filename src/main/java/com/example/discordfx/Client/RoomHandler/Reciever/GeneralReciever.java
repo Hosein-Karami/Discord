@@ -10,10 +10,12 @@ import java.net.Socket;
 
 public class GeneralReciever {
 
+    protected final Socket socket;
     protected InputStream in;
     private final TextArea textArea;
 
     public GeneralReciever(TextArea textArea, Socket socket){
+        this.socket = socket;
         this.textArea = textArea;
         try {
             in = socket.getInputStream();
@@ -47,6 +49,14 @@ public class GeneralReciever {
             AudioPlayer player = new AudioPlayer(new File("ClientFiles/Voice.wav"));
             player.run();
         } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void disconnect(){
+        try {
+            socket.close();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

@@ -16,11 +16,16 @@ public abstract class GeneralChat {
     synchronized public <T> void sendMessage(T t){
         ObjectOutputStream outputStream;
         for(Socket x : joinSockets) {
-            try {
-                outputStream = new ObjectOutputStream(x.getOutputStream());
-                outputStream.writeObject(t);
-            } catch (IOException e) {
+            if(x.isClosed())
                 joinSockets.remove(x);
+            else {
+                try {
+                    outputStream = new ObjectOutputStream(x.getOutputStream());
+                    outputStream.writeObject(t);
+                } catch (IOException e) {
+                    joinSockets.remove(x);
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -35,12 +40,13 @@ public abstract class GeneralChat {
         }
     }
 
-    synchronized public void removeJoinSocket(Socket targetSocket){
-        joinSockets.remove(targetSocket);
-    }
-
     public void addMessage(Message newMessage){
         messages.add(newMessage);
+
+    }
+
+    public void removeSocket(Socket socket){
+        joinSockets.remove(socket);
     }
 
     protected void sendBeforeMessages(Socket socket){
@@ -53,6 +59,14 @@ public abstract class GeneralChat {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public Message getParticularMessage(int messageIndex){
+        return messages.get(messageIndex - 1);
+    }
+
+    public int getMessagesSize(){
+        return messages.size();
     }
 
 }
