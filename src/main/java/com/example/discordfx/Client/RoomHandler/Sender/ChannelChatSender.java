@@ -1,5 +1,7 @@
 package com.example.discordfx.Client.RoomHandler.Sender;
 
+import com.example.discordfx.Moduls.Dto.Messages.TextMessage;
+
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -36,6 +38,18 @@ public class ChannelChatSender extends GeneralSender{
             outputStream.writeObject(messageNumber);
             outputStream.writeObject(react);
             outputStream.writeObject(senderUsername);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void tagMember(String messageText,String taggedUsername){
+        try {
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
+            outputStream.writeObject("#TAG");
+            TextMessage message = new TextMessage(senderUsername,"Tagged member : " + taggedUsername +"   message : "+messageText);
+            outputStream.writeObject(message);
+            outputStream.writeObject(taggedUsername);
         } catch (IOException e) {
             e.printStackTrace();
         }

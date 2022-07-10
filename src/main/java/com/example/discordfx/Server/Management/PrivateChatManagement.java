@@ -30,7 +30,8 @@ public class PrivateChatManagement {
                 else {
                     outputStream.writeObject("OK");
                     Server.lastUsedPort++;
-                    Connector connector = new Connector(Server.lastUsedPort, "Private");
+                    Connector connector = new Connector(Server.lastUsedPort);
+                    connector.setChat();
                     connectors.put(Server.lastUsedPort, connector);
                     executorService.execute(connector);
                     outputStream = new ObjectOutputStream(clientSocket.getOutputStream());

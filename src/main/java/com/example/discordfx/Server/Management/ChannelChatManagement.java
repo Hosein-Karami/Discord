@@ -21,7 +21,7 @@ public class ChannelChatManagement {
                 int channelPort = Server.lastUsedPort;
                 Channel channel = new Channel(channelName,channelPort);
                 dserver.addChannel(channel);
-                runChannel(channelPort);
+                runChannel(channelPort,dserver);
                 outputStream.writeObject("Channel made successfully");
             }
             else
@@ -31,8 +31,9 @@ public class ChannelChatManagement {
         }
     }
 
-    private void runChannel(int channelPort){
-        Connector connector = new Connector(channelPort,"Channel");
+    private void runChannel(int channelPort,Dserver dserver){
+        Connector connector = new Connector(channelPort);
+        connector.setChat(dserver);
         Main.executorService.execute(connector);
     }
 

@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.discordfx.ChannelChat">
    <children>
       <TextArea fx:id="messages" editable="false" layoutX="7.0" layoutY="3.0" prefHeight="523.0" prefWidth="887.0" wrapText="true" />
@@ -27,7 +26,7 @@
             <Font size="17.0" />
          </font>
       </TextField>
-      <Button layoutX="805.0" layoutY="630.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="62.0" prefWidth="88.0" text="Send">
+      <Button layoutX="805.0" layoutY="630.0" mnemonicParsing="false" onAction="#pressSend" prefHeight="62.0" prefWidth="88.0" text="Send">
          <font>
             <Font size="20.0" />
          </font>
@@ -91,12 +90,15 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextField fx:id="messageNumber" alignment="CENTER" layoutX="546.0" layoutY="585.0" prefHeight="37.0" prefWidth="186.0" promptText="Message number" visible="false">
+      <TextField fx:id="tempTextField" alignment="CENTER" layoutX="603.0" layoutY="585.0" prefHeight="38.0" prefWidth="195.0" visible="false">
          <font>
             <Font size="17.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
       </TextField>
-      <Button fx:id="submitPinMessage" layoutX="738.0" layoutY="586.0" mnemonicParsing="false" onAction="#submitPinMessage" prefHeight="36.0" prefWidth="155.0" text="OK" visible="false">
+      <Button fx:id="submitButton" layoutX="805.0" layoutY="586.0" mnemonicParsing="false" onAction="#submitPinMessage" prefHeight="38.0" prefWidth="88.0" text="OK" visible="false">
          <font>
             <Font size="16.0" />
          </font>
@@ -121,6 +123,14 @@
          </cursor>
       </Button>
       <Button fx:id="likeButton" layoutX="250.0" layoutY="586.0" mnemonicParsing="false" onAction="#like" prefHeight="37.0" prefWidth="100.0" text="Like" visible="false">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="496.0" layoutY="585.0" mnemonicParsing="false" onAction="#tag" prefHeight="37.0" prefWidth="100.0" text="Tag">
          <font>
             <Font size="16.0" />
          </font>

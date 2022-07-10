@@ -24,6 +24,7 @@ import java.util.ResourceBundle;
 
 public class ChannelChat implements Initializable {
 
+    private boolean sendTagMessage = false;
     private Member member;
     private ChannelChatSender sender;
     private Recorder voiceRecorder;
@@ -35,7 +36,7 @@ public class ChannelChat implements Initializable {
     @FXML
     TextField textField;
     @FXML
-    TextField messageNumber;
+    TextField tempTextField;
     @FXML
     Button sendVoice;
     @FXML
@@ -43,7 +44,7 @@ public class ChannelChat implements Initializable {
     @FXML
     TextArea messages;
     @FXML
-    Button submitPinMessage;
+    Button submitButton;
     @FXML
     Button likeButton;
     @FXML
@@ -64,6 +65,13 @@ public class ChannelChat implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void pressSend(){
+        if(sendTagMessage)
+            sendTaggedMessage();
+        else
+            sendMessage();
     }
 
     public void sendMessage(){
@@ -109,17 +117,17 @@ public class ChannelChat implements Initializable {
 
     public void pinMessage(){
         if(member.canPinMessage()) {
-            messageNumber.setVisible(true);
-            submitPinMessage.setVisible(true);
+            tempTextField.setVisible(true);
+            submitButton.setVisible(true);
         }
     }
 
     public void submitPinMessage() {
         try {
-            sender.pinMessage(Integer.parseInt(messageNumber.getText()));
-            messageNumber.setVisible(false);
-            submitPinMessage.setVisible(false);
-            messageNumber.clear();
+            sender.pinMessage(Integer.parseInt(tempTextField.getText()));
+            tempTextField.setVisible(false);
+            submitButton.setVisible(false);
+            tempTextField.clear();
         }catch (Exception e){
             System.out.println("Invalid format");
         }
@@ -130,7 +138,7 @@ public class ChannelChat implements Initializable {
     }
 
     public void react(){
-        messageNumber.setVisible(true);
+        tempTextField.setVisible(true);
         likeButton.setVisible(true);
         dislikeButton.setVisible(true);
         smileButton.setVisible(true);
@@ -138,7 +146,7 @@ public class ChannelChat implements Initializable {
 
     public void like(){
         try {
-            sender.react(Integer.parseInt(messageNumber.getText()), "LIKE");
+            sender.react(Integer.parseInt(tempTextField.getText()), "LIKE");
             finishReact();
         }catch (Exception e){
             finishReact();
@@ -148,7 +156,7 @@ public class ChannelChat implements Initializable {
 
     public void dislike() {
         try {
-            sender.react(Integer.parseInt(messageNumber.getText()), "DISLIKE");
+            sender.react(Integer.parseInt(tempTextField.getText()), "DISLIKE");
             finishReact();
         }catch (Exception e){
             finishReact();
@@ -158,7 +166,7 @@ public class ChannelChat implements Initializable {
 
     public void smile() {
         try {
-            sender.react(Integer.parseInt(messageNumber.getText()), "SMILE");
+            sender.react(Integer.parseInt(tempTextField.getText()), "SMILE");
             finishReact();
         }catch (Exception e){
             finishReact();
@@ -170,8 +178,19 @@ public class ChannelChat implements Initializable {
         likeButton.setVisible(false);
         dislikeButton.setVisible(false);
         smileButton.setVisible(false);
-        messageNumber.clear();
-        messageNumber.setVisible(false);
+        tempTextField.clear();
+        tempTextField.setVisible(false);
+    }
+
+    public void tag(){
+        sendTagMessage = true;
+        tempTextField.setVisible(true);
+    }
+
+    public void sendTaggedMessage(){
+        sender.tagMember(textField.getText(),tempTextField.getText());
+        tempTextField.setVisible(false);
+        sendTagMessage = false;
     }
 
     public void exit(ActionEvent event){

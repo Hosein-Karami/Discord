@@ -62,7 +62,7 @@ public abstract class GeneralChat {
     }
 
     public Message getParticularMessage(int messageIndex){
-        return messages.get(messageIndex - 1);
+        return messages.get(messageIndex);
     }
 
     public int getMessagesSize(){

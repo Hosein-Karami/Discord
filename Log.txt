@@ -608,3 +608,89 @@ an user added successfully with username=bgbgbg.
 Client whose address : /127.0.0.1 successfully connect to server.
 2022-07-10 23:32 [Info] UserDao
 User with username=bgbgbg log in successfully.
+2022-07-11 00:29 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 00:29 [Info] UserDao
+an user added successfully with username=cdcdcd.
+2022-07-11 00:29 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 00:30 [Info] UserDao
+an user added successfully with username=dcdcdc.
+2022-07-11 00:30 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 00:30 [Info] UserDao
+User with username=cdcdcd log in successfully.
+2022-07-11 00:30 [Info] FriendShipServices
+cdcdcd send friendship request to dcdcdc successfully.
+2022-07-11 00:31 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 00:32 [Info] UserDao
+an user added successfully with username=fgfgfg.
+2022-07-11 00:32 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 00:32 [Info] UserDao
+User with username=fgfgfg log in successfully.
+2022-07-11 00:32 [Info] FriendShipServices
+fgfgfg send friendship request to dcdcdc successfully.
+2022-07-11 00:33 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 00:33 [Info] UserDao
+User with username=dcdcdc log in successfully.
+2022-07-11 00:33 [Info] FriendShipServices
+dcdcdc connect friendship with fgfgfg.
+2022-07-11 00:34 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 00:34 [Info] UserDao
+User with username=fgfgfg log in successfully.
+2022-07-11 00:34 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 00:34 [Info] UserDao
+User with username=dcdcdc log in successfully.
+2022-07-11 00:35 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 00:36 [Info] UserDao
+User with username=fgfgfg log in successfully.
+2022-07-11 00:36 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 00:37 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 00:37 [Info] UserDao
+User with username=dcdcdc log in successfully.
+2022-07-11 00:43 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 00:43 [Info] UserDao
+an user added successfully with username=rdrdrd.
+2022-07-11 00:43 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 00:43 [Info] UserDao
+an user added successfully with username=drdrdr.
+2022-07-11 00:43 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 00:43 [Info] UserDao
+User with username=rdrdrd log in successfully.
+2022-07-11 00:43 [Info] FriendShipServices
+rdrdrd send friendship request to drdrdr successfully.
+2022-07-11 00:44 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 00:44 [Info] UserDao
+User with username=drdrdr log in successfully.
+2022-07-11 00:44 [Info] FriendShipServices
+drdrdr connect friendship with rdrdrd.
+2022-07-11 00:44 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 00:44 [Info] UserDao
+User with username=rdrdrd log in successfully.
+2022-07-11 00:44 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 00:44 [Info] UserDao
+User with username=drdrdr log in successfully.
+2022-07-11 00:44 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 00:45 [Info] UserDao
+User with username=rdrdrd log in successfully.
+2022-07-11 00:45 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 00:45 [Info] UserDao
+User with username=drdrdr log in successfully.
+2022-07-11 00:45 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.

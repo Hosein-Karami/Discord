@@ -1,12 +1,15 @@
 package com.example.discordfx.Server.Rooms.ClientInterfce;
 
+import com.example.discordfx.Lateral.Notification;
 import com.example.discordfx.Moduls.Dto.Messages.Message;
 import com.example.discordfx.Moduls.Dto.Messages.TextMessage;
 import com.example.discordfx.Moduls.Dto.ServerMembers.Member;
+import com.example.discordfx.Moduls.Dto.User.User;
 import com.example.discordfx.Server.Rooms.Chats.ChannelChat;
 import com.example.discordfx.Server.Rooms.Chats.GeneralChat;
 import com.example.discordfx.Server.Service.AccountsService;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class ChannelChatInterface extends GeneralInterface implements Runnable{
@@ -24,7 +27,8 @@ public class ChannelChatInterface extends GeneralInterface implements Runnable{
             while (true) {
                 inputStream = new ObjectInputStream(clientSocket.getInputStream());
                 temp = (String) inputStream.readObject();
-                if((!(temp.equals("#PIN"))) && (!(temp.equals("#GETPIN"))) && (!(temp.equals("#REACT"))) && (!(temp.equals("#EXIT")))) {
+                if((!(temp.equals("#PIN"))) && (!(temp.equals("#GETPIN"))) && (!(temp.equals("#REACT"))) &&
+                        (!(temp.equals("#EXIT"))) && (!(temp.equals("#TAG")))) {
                     chat.sendMessage(temp);
                     String Info = (String) inputStream.readObject();
                     chat.sendMessage(Info);
@@ -43,6 +47,7 @@ public class ChannelChatInterface extends GeneralInterface implements Runnable{
                         pinMessage(messageNumber);
                     }
                     case "#REACT" -> react(inputStream);
+                    case "#TAG" -> tag(inputStream);
                     case "#EXIT" ->{
                         exit();
                         break label;
@@ -83,6 +88,23 @@ public class ChannelChatInterface extends GeneralInterface implements Runnable{
             e.printStackTrace();
         }
 
+    }
+
+    private void tag(ObjectInputStream inputStream){
+        try {
+            TextMessage message = (TextMessage) inputStream.readObject();
+            String taggedUsername = (String) inputStream.readObject();
+            AccountsService service = new AccountsService();
+            User targetUser = service.getParticularUser(taggedUsername);
+            if((targetUser != null) && (((ChannelChat)chat).getDserver().getParticularMember(targetUser.getId()) != null)){
+                chat.sendMessage("#TAGMESSAGE");
+                chat.sendMessage(message.getInformation());
+                Notification notification = new Notification("You are tagged,"+message.getInformation());
+                targetUser.addNotification(notification);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 }
