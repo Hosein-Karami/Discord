@@ -1,18 +1,13 @@
 package com.example.discordfx.Server.Service;
 
-import com.example.discordfx.Moduls.Dto.DiscordServer.Channel;
 import com.example.discordfx.Moduls.Dto.DiscordServer.Dserver;
 import com.example.discordfx.Moduls.Dto.DiscordServer.Invitation;
 import com.example.discordfx.Moduls.Dto.ServerMembers.Member;
 import com.example.discordfx.Moduls.Dto.ServerMembers.Role;
 import com.example.discordfx.Moduls.Dto.User.User;
 import com.example.discordfx.Server.Management.AccountManagement;
+import com.example.discordfx.Server.Management.ChannelChatManagement;
 import com.example.discordfx.Server.Management.DserverManagement;
-import com.example.discordfx.Server.Rooms.Connector;
-import com.example.discordfx.Server.Start.Main;
-import com.example.discordfx.Server.Start.Server;
-
-
 import java.io.*;
 import java.net.Socket;
 
@@ -21,6 +16,7 @@ public class DserverService {
     private final Dserver dserver;
     private final Member member;
     private final Socket clientSocket;
+    private final ChannelChatManagement management = new ChannelChatManagement();
     private InputStream in;
     private OutputStream out;
 
@@ -59,6 +55,14 @@ public class DserverService {
                 changeName();
             else if(choose == 4)
                 makeRole();
+            else if(choose == 5)
+                makeChannel();
+            else if(choose == 6){
+                outputStream = new ObjectOutputStream(out);
+                outputStream.writeObject(member);
+                outputStream.writeObject(dserver);
+                manageChannels();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -259,28 +263,22 @@ public class DserverService {
     }
 
     private void makeChannel(){
+        int choose;
         try {
-            ObjectInputStream inputStream = new ObjectInputStream(in);
-            ObjectOutputStream outputStream = new ObjectOutputStream(out);
-            String channelName = (String) inputStream.readObject();
-            if(dserver.getParticularChannel(channelName) == null){
-                outputStream.writeObject("OK");
-                Server.lastUsedPort++;
-                int channelPort = Server.lastUsedPort;
-                Channel channel = new Channel(channelName,channelPort);
-                dserver.addChannel(channel);
-                runChannel(channelPort);
+            while (true) {
+                choose = in.read();
+                if(choose == 2)
+                    break;
+                management.makeChannel(clientSocket, dserver);
             }
-            else
-                outputStream.writeObject("Not unique");
-        } catch (Exception e) {
+        }catch (Exception e){
             e.printStackTrace();
         }
     }
 
-    private void runChannel(int port){
-        Connector connector = new Connector(port,"Channel");
-
+    private void manageChannels(){
+        ChannelChatService service = new ChannelChatService(dserver,clientSocket);
+        service.start();
     }
 
 }

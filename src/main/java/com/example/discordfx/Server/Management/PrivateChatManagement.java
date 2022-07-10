@@ -12,7 +12,7 @@ import java.net.Socket;
 import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 
-public class ChatManagement {
+public class PrivateChatManagement {
 
     private final ExecutorService executorService = Main.executorService;
     private final HashMap<Integer, Connector> connectors = new HashMap<>();

@@ -124,9 +124,28 @@ public class DiscordServer implements Initializable {
             result.setText("Permission denied");
     }
 
+    public void makeChannel(ActionEvent event){
+        if(member.canMakeChannel()){
+            try {
+                out.write(5);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("MakeRole.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.setResizable(false);
+                stage.show();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        else
+            result.setText("Permission denied");
+    }
+
     public void backToMenu(ActionEvent event){
         try {
-            out.write(5);
+            out.write(11);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

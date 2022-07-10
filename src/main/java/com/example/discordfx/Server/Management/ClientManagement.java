@@ -6,7 +6,6 @@ import com.example.discordfx.Moduls.Dto.User.User;
 import com.example.discordfx.Server.Service.DserverService;
 import com.example.discordfx.Server.Service.ProfileService;
 import com.example.discordfx.Server.Start.Server;
-import com.example.discordfx.Start;
 
 import java.io.*;
 import java.net.Socket;
@@ -18,7 +17,7 @@ public class ClientManagement implements Runnable{
 
     private final AccountManagement accountManagement = new AccountManagement();
     private final FriendshipManagement friendshipManagement;
-    private final ChatManagement chatManagement = new ChatManagement();
+    private final PrivateChatManagement chatManagement = new PrivateChatManagement();
     private final DserverManagement dserverManagement = new DserverManagement();
     private final Socket clientSocket;
     private User user;

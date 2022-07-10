@@ -8,12 +8,8 @@ import java.net.Socket;
 
 public class ChannelChat extends GeneralChat{
 
-    private final Dserver dserver;
+    private Dserver dserver;
     private Message pinnedMessage = null;
-
-    public ChannelChat(Dserver dserver) {
-        this.dserver = dserver;
-    }
 
     @Override
     public void join(Socket joinedSocket) {

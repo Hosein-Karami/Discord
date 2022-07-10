@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.discordfx.DiscordServer">
+<AnchorPane onDragDetected="#makeChannel" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.discordfx.DiscordServer">
    <children>
       <ImageView fx:id="serverImageProfile" fitHeight="159.0" fitWidth="214.0" layoutX="14.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
       <Text fx:id="name" layoutX="14.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="319.2945556640625">
@@ -59,7 +59,7 @@
          </font>
       </Button>
       <MediaView fitHeight="200.0" fitWidth="200.0" layoutX="298.0" layoutY="466.0" />
-      <Button layoutX="702.0" layoutY="302.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="132.0" text="Play music">
+      <Button layoutX="702.0" layoutY="302.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="132.0" text="Make channel">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

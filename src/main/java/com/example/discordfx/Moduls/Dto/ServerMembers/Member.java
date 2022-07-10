@@ -51,5 +51,28 @@ public class Member implements Serializable {
         return false;
     }
 
+    public boolean canMakeChannel(){
+        for(Role x : roles){
+            if(x.isMakeChannel())
+                return true;
+        }
+        return false;
+    }
+
+    public boolean canDeleteChannel(){
+        for(Role x : roles){
+            if(x.isDeleteChannel())
+                return true;
+        }
+        return false;
+    }
+
+    public boolean canLimitMembersToChannels(){
+        for(Role x : roles){
+            if(x.isLimitMemberToJoinChannel())
+                return true;
+        }
+        return false;
+    }
 
 }

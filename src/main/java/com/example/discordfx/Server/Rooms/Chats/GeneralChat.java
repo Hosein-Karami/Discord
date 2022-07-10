@@ -1,10 +1,8 @@
 package com.example.discordfx.Server.Rooms.Chats;
 
 import com.example.discordfx.Moduls.Dto.Messages.Message;
-
 import java.io.*;
 import java.net.Socket;
-import java.nio.file.Files;
 import java.util.ArrayList;
 
 public abstract class GeneralChat {
