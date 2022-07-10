@@ -14,7 +14,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
@@ -44,6 +43,8 @@ public class ManageChannels implements Initializable {
     @FXML
     Text channelName;
     @FXML
+    Button joinButton;
+    @FXML
     Button next;
     @FXML
     Button previous;
@@ -51,9 +52,6 @@ public class ManageChannels implements Initializable {
     Button deleteButton;
     @FXML
     Button limitButton;
-    @FXML
-    Button bannedButton;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -62,18 +60,28 @@ public class ManageChannels implements Initializable {
             member = (Member) inputStream.readObject();
             dserver = (Dserver) inputStream.readObject();
             channels = dserver.getChannels();
-            if(!(member.canDeleteChannel()))
-                deleteButton.setVisible(false);
-            if(!(member.canLimitMembersToChannels()))
-                limitButton.setVisible(false);
-            load();
+            if(channels.size() == 0)
+                setUnvisible();
+            else {
+                if (!(member.canDeleteChannel()))
+                    deleteButton.setVisible(false);
+                if (!(member.canLimitMembersToChannels())) {
+                    limitButton.setVisible(false);
+                    bannedUsername.setVisible(false);
+                }
+                load();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void load(){
-        channelName.setText(channels.get(channelIndex).getName());
+    public void load() {
+        if (channels.size() == 0)
+            setUnvisible();
+        else {
+            channelName.setText(channels.get(channelIndex).getName());
+        }
     }
 
     public void next(){
@@ -98,7 +106,15 @@ public class ManageChannels implements Initializable {
         try {
             out.write(1);
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
-            outputStream.writeObject(channels.get(channelIndex).getName());
+            outputStream.writeObject(channels.get(channelIndex).getPort());
+            outputStream.writeObject(member);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ChannelChat.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -111,6 +127,8 @@ public class ManageChannels implements Initializable {
             ObjectInputStream inputStream = new ObjectInputStream(in);
             outputStream.writeObject(channels.get(channelIndex).getName());
             result.setText((String) inputStream.readObject());
+            channels.remove(channelIndex);
+            load();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -131,6 +149,7 @@ public class ManageChannels implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        bannedUsername.clear();
     }
 
     public void backToMenu(ActionEvent event){
@@ -146,6 +165,17 @@ public class ManageChannels implements Initializable {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    private void setUnvisible(){
+        result.setText("There is no channel in this server");
+        next.setVisible(false);
+        previous.setVisible(false);
+        bannedUsername.setVisible(false);
+        limitButton.setVisible(false);
+        joinButton.setVisible(false);
+        deleteButton.setVisible(false);
+        channelName.setVisible(false);
     }
 
 }

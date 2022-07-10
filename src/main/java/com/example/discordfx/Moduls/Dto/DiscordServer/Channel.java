@@ -1,8 +1,9 @@
 package com.example.discordfx.Moduls.Dto.DiscordServer;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Channel {
+public class Channel implements Serializable {
 
     private String name;
     private final int port;

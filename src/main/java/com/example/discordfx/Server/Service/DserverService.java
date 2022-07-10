@@ -1,5 +1,6 @@
 package com.example.discordfx.Server.Service;
 
+import com.example.discordfx.Moduls.Dto.DiscordServer.Channel;
 import com.example.discordfx.Moduls.Dto.DiscordServer.Dserver;
 import com.example.discordfx.Moduls.Dto.DiscordServer.Invitation;
 import com.example.discordfx.Moduls.Dto.ServerMembers.Member;
@@ -23,6 +24,8 @@ public class DserverService {
     public DserverService(Dserver dserver, Socket clientSocket, User client) {
         this.dserver = dserver;
         this.clientSocket = clientSocket;
+        for(Channel x : dserver.getChannels())
+            System.out.println(x.getName());
         member = dserver.getParticularMember(client.getId());
         try {
             in = clientSocket.getInputStream();

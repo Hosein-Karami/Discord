@@ -26,7 +26,7 @@ public class ChannelChatReciever extends GeneralReciever implements Runnable{
                 inputStream = new ObjectInputStream(in);
                 messageType = (String) inputStream.readObject();
                 inputStream = new ObjectInputStream(in);
-                if (!(messageType.equals("#LEFT"))) {
+                if (!(messageType.equals("#LEFT")) && (!(messageType.equals("#GETPIN"))) && (!(messageType.equals("#PIN")))) {
                     showMessage((String) inputStream.readObject());
                     inputStream = new ObjectInputStream(in);
                 }
@@ -34,8 +34,8 @@ public class ChannelChatReciever extends GeneralReciever implements Runnable{
                     case "#TEXT" -> showMessage((String) inputStream.readObject());
                     case "#FILE" -> getFile(inputStream);
                     case "#VOICE" -> getVoice(inputStream);
-                    case "#PIN" -> pin();
-                    case "#GETPIN" -> getPinnedMessage();
+                    case "#PIN" -> pin(inputStream);
+                    case "#GETPIN" -> getPinnedMessage(inputStream);
                     case "#LEFT" -> {
                         break label;
                     }
@@ -46,27 +46,20 @@ public class ChannelChatReciever extends GeneralReciever implements Runnable{
         }
     }
 
-    private void pin(){
+    private void pin(ObjectInputStream inputStream){
         try {
-            ObjectInputStream inputStream = new ObjectInputStream(in);
             String status = (String) inputStream.readObject();
-            if(status.equals("OK")){
-                inputStream = new ObjectInputStream(in);
-                status = (String) inputStream.readObject();
-                if(status.equals("OK"))
-                    showMessage("Message pinned successfully");
-                else
-                    showMessage("Invalid message number");
-            }else
-                showMessage("Permission denied");
+            if(status.equals("OK"))
+                showMessage("Message pinned successfully");
+            else
+                showMessage("Invalid message number");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void getPinnedMessage(){
+    private void getPinnedMessage(ObjectInputStream inputStream){
         try {
-            ObjectInputStream inputStream = new ObjectInputStream(in);
             Message pinnedMessage = (Message) inputStream.readObject();
             if(pinnedMessage == null)
                 showMessage("No message pinned in this channel");

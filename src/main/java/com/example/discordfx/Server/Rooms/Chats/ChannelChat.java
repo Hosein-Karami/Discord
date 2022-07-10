@@ -42,6 +42,7 @@ public class ChannelChat extends GeneralChat{
     public boolean pinMessage(int messageNumber){
         if(messageNumber <= messages.size()){
             pinnedMessage = messages.get(messageNumber - 1);
+            System.out.println(pinnedMessage.getInformation());
             return true;
         }
         else

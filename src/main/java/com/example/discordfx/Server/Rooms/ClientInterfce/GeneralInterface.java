@@ -49,8 +49,8 @@ public abstract class GeneralInterface {
     }
 
     public void exit(){
-        chat.removeJoinSocket(clientSocket);
         chat.sendMessageToParticularSocket("#LEFT",clientSocket);
+        chat.removeJoinSocket(clientSocket);
     }
 
     private void saveFile(byte[] bytes,String fileName){

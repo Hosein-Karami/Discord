@@ -20,7 +20,7 @@ public abstract class GeneralChat {
                 outputStream = new ObjectOutputStream(x.getOutputStream());
                 outputStream.writeObject(t);
             } catch (IOException e) {
-                e.printStackTrace();
+                joinSockets.remove(x);
             }
         }
     }
@@ -31,6 +31,7 @@ public abstract class GeneralChat {
             outputStream.writeObject(t);
         } catch (IOException e) {
             e.printStackTrace();
+            joinSockets.remove(targetSocket);
         }
     }
 

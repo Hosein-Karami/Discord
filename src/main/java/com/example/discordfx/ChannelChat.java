@@ -3,6 +3,7 @@ package com.example.discordfx;
 import com.example.discordfx.Client.RoomHandler.Reciever.ChannelChatReciever;
 import com.example.discordfx.Client.RoomHandler.Sender.ChannelChatSender;
 import com.example.discordfx.Client.RoomHandler.VoiceManagement.Recorder;
+import com.example.discordfx.Moduls.Dto.ServerMembers.Member;
 import com.example.discordfx.Moduls.Dto.User.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,13 +19,13 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.File;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ChannelChat implements Initializable {
 
+    private Member member;
     private ChannelChatSender sender;
     private Recorder voiceRecorder;
     private final FileChooser fileChooser = new FileChooser();
@@ -35,23 +36,24 @@ public class ChannelChat implements Initializable {
     @FXML
     TextField textField;
     @FXML
+    TextField pinMessageNumber;
+    @FXML
     Button sendVoice;
     @FXML
     Button cancelVoice;
     @FXML
     TextArea messages;
-
+    @FXML
+    Button submitPinMessage;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             ObjectInputStream inputStream = new ObjectInputStream(Start.socket.getInputStream());
             Integer port = (Integer) inputStream.readObject();
-            User user = (User) inputStream.readObject();
+            member = (Member) inputStream.readObject();
             Socket socket = new Socket(Start.hostIp, port);
-            ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
-            outputStream.writeObject(user.getUsername());
-            sender = new ChannelChatSender(socket, user.getUsername());
+            sender = new ChannelChatSender(socket, member.getUser().getUsername());
             ChannelChatReciever reciever = new ChannelChatReciever(messages, socket);
             Start.executorService.execute(reciever);
         } catch (Exception e) {
@@ -98,6 +100,28 @@ public class ChannelChat implements Initializable {
         voiceRecorder.stop();
         sendVoice.setVisible(false);
         cancelVoice.setVisible(false);
+    }
+
+    public void pinMessage(){
+        if(member.canPinMessage()) {
+            pinMessageNumber.setVisible(true);
+            submitPinMessage.setVisible(true);
+        }
+    }
+
+    public void submitPinMessage() {
+        try {
+            sender.pinMessage(Integer.parseInt(pinMessageNumber.getText()));
+            System.out.println("SSSSSSSSSSSSSSSS");
+            pinMessageNumber.setVisible(false);
+            submitPinMessage.setVisible(false);
+        }catch (Exception e){
+            System.out.println("Invalid format");
+        }
+    }
+
+    public void getPinnedMessage(){
+        sender.getPinnedMessage();
     }
 
     public void exit(ActionEvent event){

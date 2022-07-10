@@ -30,6 +30,8 @@ public class ChannelChatService {
         try{
             while (true){
                 choice = in.read();
+                if(choice == 1)
+                    joinChannel();
                 if(choice == 2)
                     deleteChannel();
                 else if(choice == 3)
@@ -38,6 +40,19 @@ public class ChannelChatService {
                     break;
             }
         }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private void joinChannel(){
+        try {
+            ObjectInputStream inputStream = new ObjectInputStream(in);
+            Integer channelPort = (Integer) inputStream.readObject();
+            Member member = (Member) inputStream.readObject();
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
+            outputStream.writeObject(channelPort);
+            outputStream.writeObject(member);
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

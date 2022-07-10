@@ -1,7 +1,7 @@
 package com.example.discordfx.Server.Service;
 
 import com.example.discordfx.Log.ServerLog;
-import com.example.discordfx.Log.ServicesLog.AccountsLog;
+import com.example.discordfx.Log.AccountsLog;
 import com.example.discordfx.Moduls.Dto.User.Status;
 import com.example.discordfx.Moduls.Dto.User.User;
 import com.example.discordfx.Moduls.Entity.UserEntity;

@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -58,8 +57,15 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <MediaView fitHeight="200.0" fitWidth="200.0" layoutX="298.0" layoutY="466.0" />
-      <Button layoutX="702.0" layoutY="302.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="132.0" text="Make channel">
+      <Button layoutX="702.0" layoutY="302.0" mnemonicParsing="false" onAction="#makeChannel" prefHeight="34.0" prefWidth="132.0" text="Make channel">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="702.0" layoutY="359.0" mnemonicParsing="false" onAction="#channels" prefHeight="34.0" prefWidth="132.0" text="Channels">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

@@ -1,10 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.discordfx.ManageChannels"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.discordfx.ManageChannels">
+   <children>
+      <Text fx:id="result" layoutX="169.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="561.1392822265625">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Text>
+      <Text fx:id="channelName" layoutX="169.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="561.1392822265625">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Text>
+      <Button fx:id="previous" layoutX="169.0" layoutY="234.0" mnemonicParsing="false" onAction="#previous" prefHeight="36.0" prefWidth="87.0" text="Previous">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="next" layoutX="642.0" layoutY="234.0" mnemonicParsing="false" onAction="#next" prefHeight="36.0" prefWidth="87.0" text="Next">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="joinButton" layoutX="406.0" layoutY="234.0" mnemonicParsing="false" onAction="#join" prefHeight="36.0" prefWidth="87.0" text="Join">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <TextField fx:id="bannedUsername" alignment="CENTER" layoutX="263.0" layoutY="427.0" prefHeight="37.0" prefWidth="370.0" promptText="Username">
+         <font>
+            <Font size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </TextField>
+      <Button fx:id="limitButton" layoutX="405.0" layoutY="500.0" mnemonicParsing="false" onAction="#limitMember" prefHeight="36.0" prefWidth="87.0" text="Limit">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="deleteButton" layoutX="345.0" layoutY="297.0" mnemonicParsing="false" onAction="#deleteChannel" prefHeight="37.0" prefWidth="206.0" text="Delete channel">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="822.0" layoutY="659.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="26.0" prefWidth="64.0" text="Back">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
 </AnchorPane>

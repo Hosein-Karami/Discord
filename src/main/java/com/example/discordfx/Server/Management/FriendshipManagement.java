@@ -1,6 +1,7 @@
 package com.example.discordfx.Server.Management;
 
 import com.example.discordfx.Lateral.Notification;
+import com.example.discordfx.Log.FriendshipLog;
 import com.example.discordfx.Moduls.Dto.User.Status;
 import com.example.discordfx.Moduls.Dto.User.User;
 import com.example.discordfx.Server.Service.AccountsService;
@@ -13,16 +14,18 @@ import java.net.Socket;
 public class FriendshipManagement {
 
     private final Socket clientSocket;
+    private final FriendshipLog log = new FriendshipLog();
 
     FriendshipManagement(Socket clientSocket){
         this.clientSocket = clientSocket;
     }
 
     void requestFriendShip(User user) {
+        String targetUsername = "";
         try {
             ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
-            String targetUsername = (String) inputStream.readObject();
+            targetUsername = (String) inputStream.readObject();
             User targetUser = Server.accountsService.getParticularUser(targetUsername);
             if (targetUser == null)
                 outputStream.writeObject("There is no user with this username");
@@ -46,12 +49,14 @@ public class FriendshipManagement {
                             targetUser.addNotification(new Notification(user.getUsername() + " send you a friendship request"));
                             targetUser.addPending(user.getId());
                             user.addOutputRequest(targetUser.getId());
+                            log.friendRequestSuccessfully(user.getUsername(),targetUsername);
                             outputStream.writeObject("Request send successfully");
                         }
                     }
                 }
             }
         } catch (Exception e) {
+            log.friendRequestError(user.getUsername(),targetUsername);
             e.printStackTrace();
         }
     }
@@ -70,6 +75,7 @@ public class FriendshipManagement {
                 targetUser.addFriend(user.getId());
                 Notification notification = new Notification(user.getUsername() + " accepted your friendship request");
                 targetUser.addNotification(notification);
+                log.addFriendSuccessfully(user.getUsername(), targetUser.getUsername());
             }
             else{
                 outputStream.writeObject("Friendship request rejected");
@@ -130,10 +136,11 @@ public class FriendshipManagement {
     }
 
     void block(User user){
+        String targetUsername = "";
         try {
             ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
-            String targetUsername = (String) inputStream.readObject();
+            targetUsername = (String) inputStream.readObject();
             User targetUser = Server.accountsService.getParticularUser(targetUsername);
             if(targetUser == null)
                 outputStream.writeObject("Error");
@@ -151,10 +158,12 @@ public class FriendshipManagement {
                     user.addBlock(targetUser.getId());
                     Notification notification = new Notification(user.getUsername() + " blocked you");
                     targetUser.addNotification(notification);
+                    log.blockSuccessfully(user.getUsername(),targetUsername);
                     outputStream.writeObject("User blocked successfully");
                 }
             }
         } catch (Exception e) {
+            log.blockError(user.getUsername(),targetUsername);
             e.printStackTrace();
         }
     }

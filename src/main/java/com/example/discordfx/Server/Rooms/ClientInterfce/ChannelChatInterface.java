@@ -24,22 +24,23 @@ public class ChannelChatInterface extends GeneralInterface implements Runnable{
             while (true) {
                 inputStream = new ObjectInputStream(clientSocket.getInputStream());
                 temp = (String) inputStream.readObject();
-                chat.sendMessage(temp);
-                String Info = (String) inputStream.readObject();
-                chat.sendMessage(Info);
+                if((!(temp.equals("#PIN"))) && (!(temp.equals("#GETPIN")))) {
+                    chat.sendMessage(temp);
+                    String Info = (String) inputStream.readObject();
+                    chat.sendMessage(Info);
+                }
                 switch (temp) {
                     case "#TEXT" -> sendTextMessage(inputStream);
                     case "#FILE" -> sendFile(inputStream);
                     case "#VOICE" -> sendVoice(inputStream);
                     case "#GETPIN" ->{
-                        chat.sendMessageToParticularSocket("#GETPIN",clientSocket);
+                        chat.sendMessageToParticularSocket(temp,clientSocket);
                         chat.sendMessageToParticularSocket(((ChannelChat)chat).getPinnedMessage(),clientSocket);
                     }
                     case "#PIN"-> {
                         chat.sendMessageToParticularSocket(temp,clientSocket);
-                        String pinnerUsername = (String) inputStream.readObject();
                         Integer messageNumber = (Integer) inputStream.readObject();
-                        pinMessage(pinnerUsername,messageNumber);
+                        pinMessage(messageNumber);
                     }
                     case "#REACT" -> react();
                     case "#EXIT" ->{
@@ -49,29 +50,16 @@ public class ChannelChatInterface extends GeneralInterface implements Runnable{
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
-    private void pinMessage(String pinnerUsername,int messageNumber) {
-        try {
-            AccountsService service = new AccountsService();
-            int pinnerId = service.getParticularUser(pinnerUsername).getId();
-            //Check permission :
-            Member member = ((ChannelChat)chat).getDserver().getParticularMember(pinnerId);
-            if(member.canPinMessage()){
-                chat.sendMessageToParticularSocket("OK",clientSocket);
-                if(((ChannelChat)chat).pinMessage(messageNumber))
-                    chat.sendMessageToParticularSocket("OK",clientSocket);
-                else
-                    chat.sendMessageToParticularSocket("ERROR",clientSocket);
-            }
-            else
-                chat.sendMessageToParticularSocket("Permission denied",clientSocket);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    private void pinMessage(int messageNumber) {
+        if(((ChannelChat)chat).pinMessage(messageNumber))
+            chat.sendMessageToParticularSocket("OK",clientSocket);
+        else
+            chat.sendMessageToParticularSocket("ERROR",clientSocket);
     }
+
 
     private void react(){
         try {
