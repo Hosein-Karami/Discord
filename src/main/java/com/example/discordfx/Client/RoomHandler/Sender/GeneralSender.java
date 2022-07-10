@@ -1,3 +1,9 @@
+/**
+ * @author Hosein Karami
+ * @since 7/11/22
+ * @version 1.0
+ */
+
 package com.example.discordfx.Client.RoomHandler.Sender;
 
 import com.example.discordfx.Moduls.Dto.Messages.FileMessage;
@@ -23,6 +29,10 @@ public class GeneralSender {
         this.senderUsername = senderUsername;
     }
 
+    /**
+     * Is used to send a text message
+     * @param text : text of message
+     */
     public void sendText(String text){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
@@ -35,6 +45,10 @@ public class GeneralSender {
         }
     }
 
+    /**
+     * Is used to send a text file
+     * @param file : refrence of file
+     */
     public void sendFile(File file){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
@@ -49,6 +63,9 @@ public class GeneralSender {
         }
     }
 
+    /**
+     * Is used to send a voice
+     */
     public void sendVoice(){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
@@ -62,6 +79,9 @@ public class GeneralSender {
         }
     }
 
+    /**
+     * Is used when client want left from chat
+     */
     public void exitChat(){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(out);

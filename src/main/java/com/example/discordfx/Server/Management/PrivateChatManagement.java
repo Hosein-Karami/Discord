@@ -1,3 +1,9 @@
+/**
+ * @author Hosein Karami
+ * @since 7/11/22
+ * @version 1.0
+ */
+
 package com.example.discordfx.Server.Management;
 
 import com.example.discordfx.Moduls.Dto.User.User;
@@ -25,7 +31,7 @@ public class PrivateChatManagement {
             User targetUser = Server.accountsService.getParticularUser(targetUsername);
             if(targetUser != null) {
                 outputStream.writeObject("OK");
-                if (targetUser.checkIsBlock(user.getId()))
+                if (targetUser.getInformation().checkIsBlock(user.getId()))
                     outputStream.writeObject("This user blocked you :)");
                 else {
                     outputStream.writeObject("OK");

@@ -1,3 +1,9 @@
+/**
+ * @author Hosein Karami
+ * @since 7/11/22
+ * @version 1.0
+ */
+
 package com.example.discordfx.Lateral;
 
 import java.io.File;
@@ -15,6 +21,9 @@ public class FileCopier implements Runnable{
         this.fileOutputStream = fileOutputStream;
     }
 
+    /**
+     * Is used to run thread and read a file bytes and write to another file
+     */
     @Override
     public void run() {
         try {

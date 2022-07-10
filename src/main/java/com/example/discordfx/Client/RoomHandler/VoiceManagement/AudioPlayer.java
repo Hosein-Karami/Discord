@@ -1,3 +1,9 @@
+/**
+ * @author Hosein Karami
+ * @since 7/11/22
+ * @version 1.0
+ */
+
 package com.example.discordfx.Client.RoomHandler.VoiceManagement;
 
 import javax.sound.sampled.AudioInputStream;
@@ -13,6 +19,9 @@ public class AudioPlayer implements Runnable{
         this.audio = audio;
     }
 
+    /**
+     * Is used to run thread and play audio file
+     */
     @Override
     public void run() {
         try {

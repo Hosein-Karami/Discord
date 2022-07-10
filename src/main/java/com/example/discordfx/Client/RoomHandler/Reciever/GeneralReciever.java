@@ -1,10 +1,15 @@
+/**
+ * @author Hosein Karami
+ * @since 7/11/22
+ * @version 1.0
+ */
+
 package com.example.discordfx.Client.RoomHandler.Reciever;
 
 import com.example.discordfx.Client.RoomHandler.VoiceManagement.AudioPlayer;
 import com.example.discordfx.Moduls.Dto.Messages.FileMessage;
 import javafx.application.Platform;
 import javafx.scene.control.TextArea;
-
 import java.io.*;
 import java.net.Socket;
 
@@ -24,6 +29,10 @@ public class GeneralReciever {
         }
     }
 
+    /**
+     * Is used to show messages in textarea
+     * @param message : new message from server
+     */
     public void showMessage(String message){
         Platform.runLater(new Runnable() {
             @Override
@@ -33,6 +42,10 @@ public class GeneralReciever {
         });
     }
 
+    /**
+     * Is used to show client how to get file which saves in server
+     * @param inputStream : Stream of server
+     */
     public void getFile(ObjectInputStream inputStream){
         try {
             FileMessage message = (FileMessage) inputStream.readObject();
@@ -42,6 +55,10 @@ public class GeneralReciever {
         }
     }
 
+    /**
+     * Is used when voice chat is coming from server
+     * @param inputStream : Stream of server
+     */
     public void getVoice(ObjectInputStream inputStream){
         try {
             byte[] voiceBytes = (byte[]) inputStream.readObject();
@@ -53,6 +70,9 @@ public class GeneralReciever {
         }
     }
 
+    /**
+     * Is used to close socket when user want to left from chat
+     */
     public void disconnect(){
         try {
             socket.close();
@@ -61,6 +81,10 @@ public class GeneralReciever {
         }
     }
 
+    /**
+     * Is used to save voice files and play them
+     * @param voiceBytes : bytes of voice file
+     */
     private void saveVoice(byte[] voiceBytes){
         File file = new File("ClientFiles/Voice.wav");
         try (FileOutputStream fileOutputStream = new FileOutputStream(file)){

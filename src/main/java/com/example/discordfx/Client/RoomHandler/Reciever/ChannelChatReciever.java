@@ -1,9 +1,13 @@
+/**
+ * @author Hosein Karami
+ * @since 7/11/22
+ * @version 1.0
+ */
+
 package com.example.discordfx.Client.RoomHandler.Reciever;
 
 import com.example.discordfx.Moduls.Dto.Messages.Message;
 import javafx.scene.control.TextArea;
-
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
@@ -13,6 +17,9 @@ public class ChannelChatReciever extends GeneralReciever implements Runnable{
         super(textArea,socket);
     }
 
+    /**
+     * start reader thread for recieve messages from server and show them
+     */
     @Override
     public void run() {
         try {
@@ -50,6 +57,10 @@ public class ChannelChatReciever extends GeneralReciever implements Runnable{
         }
     }
 
+    /**
+     * Is used when client pin a message and we should show results
+     * @param inputStream : inputStream of server
+     */
     private void pin(ObjectInputStream inputStream){
         try {
             String status = (String) inputStream.readObject();
@@ -62,6 +73,10 @@ public class ChannelChatReciever extends GeneralReciever implements Runnable{
         }
     }
 
+    /**
+     * Is used when user want to see pinned message in a channel chat
+     * @param inputStream : inputStream of server
+     */
     private void getPinnedMessage(ObjectInputStream inputStream){
         try {
             Message pinnedMessage = (Message) inputStream.readObject();

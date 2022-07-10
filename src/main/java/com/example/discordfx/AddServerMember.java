@@ -1,3 +1,9 @@
+/**
+ * @author Hosein Karami
+ * @since 7/11/22
+ * @version 1.0
+ */
+
 package com.example.discordfx;
 
 import com.example.discordfx.Moduls.Dto.User.Status;
@@ -63,7 +69,7 @@ public class AddServerMember implements Initializable {
             out.write(1);
             ObjectInputStream inputStream = new ObjectInputStream(in);
             user = (User) inputStream.readObject();
-            friends = user.getFriends();
+            friends = user.getInformation().getFriendsId();
             if(friends.size() == 0){
                 resultText.setText("You don't have any friend");
                 nextButton.setVisible(false);

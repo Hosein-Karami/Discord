@@ -1,3 +1,9 @@
+/**
+ * @author Hosein Karami
+ * @since 7/11/22
+ * @version 1.0
+ */
+
 package com.example.discordfx.Lateral;
 
 import com.example.discordfx.Lateral.Exceptions.EmailException;
@@ -17,6 +23,14 @@ public class Checker {
             throw new UsernameException();
     }
 
+    /**
+     * Is used to check passwords
+     * @param password : password which should be checked
+     * @throws FirstPasswordException
+     * @throws SecondPasswordException
+     * @throws ThirdPasswordException
+     * @throws FourthPasswordException
+     */
     public static void checkPassword(String password) throws FirstPasswordException, SecondPasswordException, ThirdPasswordException, FourthPasswordException {
         if(password.length() < 8)
             throw new FirstPasswordException();
@@ -28,11 +42,21 @@ public class Checker {
             throw new FourthPasswordException();
     }
 
+    /**
+     * Is used to check emails
+     * @param email : email which should be checked
+     * @throws EmailException
+     */
     public static void checkEmail(String email) throws EmailException {
         if(!(Pattern.compile("^(.+)@(.+)$").matcher(email).find()))
             throw new EmailException();
     }
 
+    /**
+     * Is used to check phone numbers
+     * @param phone : number which should be checked
+     * @throws PhoneException
+     */
     public static void checkPhone(String phone) throws PhoneException {
         if(Pattern.compile("[A-Z]").matcher(phone).find() || Pattern.compile("[a-z]").matcher(phone).find())
             throw new PhoneException();

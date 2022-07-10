@@ -1,3 +1,9 @@
+/**
+ * @author Hosein Karami
+ * @since 7/11/22
+ * @version 1.0
+ */
+
 package com.example.discordfx;
 
 import com.example.discordfx.Moduls.Dto.DiscordServer.Invitation;
@@ -56,7 +62,7 @@ public class ShowServerChats implements Initializable {
             out.write(20);
             ObjectInputStream inputStream = new ObjectInputStream(in);
             user = (User) inputStream.readObject();
-            invitations = user.getInvitations();
+            invitations = user.getInformation().getInvitations();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -67,7 +73,7 @@ public class ShowServerChats implements Initializable {
             out.write(20);
             ObjectInputStream inputStream = new ObjectInputStream(in);
             user = (User) inputStream.readObject();
-            servers = user.getServerChats();
+            servers = user.getInformation().getDiscordServers();
             if(servers.size() == 0){
                 text.setText("You aren't in any discord server");
                 nextButton.setVisible(false);

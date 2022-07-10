@@ -1,3 +1,9 @@
+/**
+ * @author Hosein Karami
+ * @since 7/11/22
+ * @version 1.0
+ */
+
 package com.example.discordfx.Client.Management;
 
 import com.example.discordfx.Moduls.Dto.User.User;
@@ -14,6 +20,12 @@ public class AccountManagement {
         this.socket = socket;
     }
 
+    /**
+     * Is used when a client want to login
+     * @param username : client's username
+     * @param password : client's password
+     * @return : result refrence
+     */
     public User logIn(String username, String password){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
@@ -27,6 +39,14 @@ public class AccountManagement {
         return null;
     }
 
+    /**
+     * Is used when a client want to register
+     * @param text : text for show results
+     * @param username : client's username
+     * @param password : client's password
+     * @param email : client's email
+     * @param phone : client's phone number
+     */
     public void signUp(Text text,String username,String password,String email,String phone){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
@@ -38,9 +58,7 @@ public class AccountManagement {
                 return;
             }
             User newUser = new User(0,username,password,email,phone);
-            System.out.println("111111");
             outputStream.writeObject(newUser);
-            System.out.println("222222");
             String status = (String) inputStream.readObject();
         } catch (Exception e) {
             text.setText(e.getMessage());

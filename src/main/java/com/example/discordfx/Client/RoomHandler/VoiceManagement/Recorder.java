@@ -1,3 +1,9 @@
+/**
+ * @author Hosein Karami
+ * @since 7/11/22
+ * @version 1.0
+ */
+
 package com.example.discordfx.Client.RoomHandler.VoiceManagement;
 
 import javax.sound.sampled.*;
@@ -27,6 +33,9 @@ public class Recorder implements Runnable
         }
     }
 
+    /**
+     * Is used to run thread and record voice from microphone
+     */
     @Override
     public void run()
     {
@@ -42,6 +51,9 @@ public class Recorder implements Runnable
         thread.start();
     }
 
+    /**
+     * Is used to stop recorder
+     */
     public void stop(){
         try {
             audioInputStream.close();

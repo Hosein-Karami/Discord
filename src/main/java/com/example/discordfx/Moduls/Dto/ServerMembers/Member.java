@@ -1,3 +1,9 @@
+/**
+ * @author Hosein Karami
+ * @since 7/11/22
+ * @version 1.0
+ */
+
 package com.example.discordfx.Moduls.Dto.ServerMembers;
 
 import com.example.discordfx.Moduls.Dto.User.User;
@@ -14,19 +20,35 @@ public class Member implements Serializable {
         this.userId = userId;
     }
 
+    /**
+     * get access to user of member
+     * @return : refrence of user
+     */
     public User getUser(){
         AccountsService service = new AccountsService();
         return service.getParticularUser(userId);
     }
 
+    /**
+     * get access to roles of member
+     * @return : roles of member
+     */
     public ArrayList<Role> getRoles(){
         return roles;
     }
 
+    /**
+     * Is used to add a role to member
+     * @param newRole : new role
+     */
     public void addRole(Role newRole){
         roles.add(newRole);
     }
 
+    /**
+     * show this member is owner of server chat or not
+     * @return : boolean value
+     */
     public boolean isOwner(){
         for(Role x : roles){
             if(x.getName().equals("Owner"))
@@ -35,6 +57,10 @@ public class Member implements Serializable {
         return false;
     }
 
+    /**
+     * show member can kick members from server chat or not
+     * @return : boolean value
+     */
     public boolean canKickMembers(){
         for(Role x : roles){
             if(x.isRemoveMemberFromServer())
@@ -43,6 +69,10 @@ public class Member implements Serializable {
         return false;
     }
 
+    /**
+     * show member can change name of server or not
+     * @return : boolean value
+     */
     public boolean canChangeServerName(){
         for(Role x : roles){
             if(x.isChangeServerName())
@@ -51,6 +81,10 @@ public class Member implements Serializable {
         return false;
     }
 
+    /**
+     * show member can make a channel or not
+     * @return : boolean value
+     */
     public boolean canMakeChannel(){
         for(Role x : roles){
             if(x.isMakeChannel())
@@ -59,6 +93,10 @@ public class Member implements Serializable {
         return false;
     }
 
+    /**
+     * show member can delete a channel or not
+     * @return : boolean value
+     */
     public boolean canDeleteChannel(){
         for(Role x : roles){
             if(x.isDeleteChannel())
@@ -67,6 +105,10 @@ public class Member implements Serializable {
         return false;
     }
 
+    /**
+     * show member can limit members to access to channels or not
+     * @return : boolean value
+     */
     public boolean canLimitMembersToChannels(){
         for(Role x : roles){
             if(x.isLimitMemberToJoinChannel())
@@ -75,6 +117,10 @@ public class Member implements Serializable {
         return false;
     }
 
+    /**
+     * show member can pin messages in channels or not
+     * @return : boolean value
+     */
     public boolean canPinMessage(){
         for(Role x : roles){
             if(x.isPinMessage())

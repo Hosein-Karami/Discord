@@ -1,3 +1,9 @@
+/**
+ * @author Hosein Karami
+ * @since 7/11/22
+ * @version 1.0
+ */
+
 package com.example.discordfx.Lateral;
 
 import java.io.Serial;
@@ -14,6 +20,9 @@ public class Notification implements Serializable {
         this.notificationMessage = notificationMessage;
     }
 
+    /**
+     * @return : message of notification
+     */
     public String getNotificationMessage(){
         return notificationMessage;
     }

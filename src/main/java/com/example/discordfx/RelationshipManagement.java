@@ -1,3 +1,9 @@
+/**
+ * @author Hosein Karami
+ * @since 7/11/22
+ * @version 1.0
+ */
+
 package com.example.discordfx;
 
 import com.example.discordfx.Moduls.Dto.User.Status;
@@ -108,7 +114,7 @@ public class RelationshipManagement {
             ObjectInputStream inputStream = new ObjectInputStream(in);
             user = (User) inputStream.readObject();
             System.out.println(user.getPassword());
-            requestsSenders = user.getPendings();
+            requestsSenders = user.getInformation().getPendingId();
             loadInputRequests();
         }catch (Exception e){
             e.printStackTrace();
@@ -211,7 +217,7 @@ public class RelationshipManagement {
             out.write(20);
             ObjectInputStream inputStream = new ObjectInputStream(in);
             user = (User) inputStream.readObject();
-            outputRequests = user.getOutputRequests();
+            outputRequests = user.getInformation().getOutputRequestsId();
             loadOutputRequests();
         } catch (Exception e) {
             e.printStackTrace();

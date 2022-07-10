@@ -1,3 +1,9 @@
+/**
+ * @author Hosein Karami
+ * @since 7/11/22
+ * @version 1.0
+ */
+
 package com.example.discordfx;
 
 import com.example.discordfx.Moduls.Dto.User.User;
@@ -54,7 +60,7 @@ public class MakePrivateChat implements Initializable {
             text.setText("You can't start private chat with yourself");
             return;
         }
-        if(user.getPrivateChats().get(targetUsername.getText()) != null){
+        if(user.getInformation().getPrivateChats().get(targetUsername.getText()) != null){
             text.setText("You have private chat with this user");
             return;
         }

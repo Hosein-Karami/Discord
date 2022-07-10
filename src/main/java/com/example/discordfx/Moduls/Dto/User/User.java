@@ -1,11 +1,14 @@
+/**
+ * @author Hosein Karami
+ * @since 7/11/22
+ * @version 1.0
+ */
+
 package com.example.discordfx.Moduls.Dto.User;
 
 import com.example.discordfx.Lateral.Notification;
 import com.example.discordfx.Moduls.Dto.DiscordServer.Invitation;
-
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class User implements Serializable {
 
@@ -27,6 +30,9 @@ public class User implements Serializable {
         information = new UserLateralInformation();
     }
 
+    /**
+     * Is used to load user's information from binary file
+     */
     public void loadInformation(){
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("Files/UsersInfo/"+id+".bin"))){
             information = (UserLateralInformation) inputStream.readObject();
@@ -36,23 +42,43 @@ public class User implements Serializable {
         }
     }
 
+    /**
+     * Is used to set status of user
+     * @param status : status of user
+     */
     public void setStatus(Status status){
         information.setStatus(status);
         updateInformation();
     }
 
+    /**
+     * Is used to set username of user
+     * @param username : username of user
+     */
     public void setUsername(String username){
         this.username = username;
     }
 
+    /**
+     * Is used to set password of user
+     * @param password : password of user
+     */
     public void setPassword(String password){
         this.password = password;
     }
 
+    /**
+     * Is used to set email of user
+     * @param email : email of user
+     */
     public void setEmail(String email){
         this.email = email;
     }
 
+    /**
+     * Is used to set phone number of user
+     * @param phone : phone number of user
+     */
     public void setPhone(String phone){
         this.phone = phone;
     }
@@ -61,90 +87,95 @@ public class User implements Serializable {
         this.jwtToken = jwtToken;
     }
 
+    /**
+     * get access to id of user
+     * @return : id of user
+     */
     public int getId(){
         return id;
     }
 
+    /**
+     * get access to username of user
+     * @return : username of user
+     */
     public String getUsername(){
         return username;
     }
 
+    /**
+     * get access to password of user
+     * @return : password of user
+     */
     public String getPassword(){
         return password;
     }
 
+    /**
+     * get access to email of user
+     * @return : email of user
+     */
     public String getEmail(){
         return email;
     }
 
+    /**
+     * get access to phone of user
+     * @return : phone of user
+     */
     public String getPhone(){
         return phone;
     }
 
-    public Status getStatus(){
-        return information.getStatus();
-    }
-
-    public ArrayList<Notification> getNotifications(){
-        return information.getNotifications();
-    }
-
-    public ArrayList<Integer> getPendings(){
-        return information.getPendingId();
-    }
-
-    public ArrayList<Integer> getServerChats(){
-        return information.getDiscordServers();
-    }
-
-    public ArrayList<Integer> getFriends() {
-        return information.getFriendsId();
-    }
-
-    public ArrayList<Integer> getBlockedId(){
-        return information.getBlockesId();
-    }
-
-    public ArrayList<Integer> getOutputRequests(){
-        return information.getOutputRequestsId();
-    }
-
-    public ArrayList<Invitation> getInvitations(){
-        return information.getInvitations();
-    }
-
-    public String getJwtToken(){
-        return jwtToken;
-    }
-
-    public HashMap<String,Integer> getPrivateChats(){
-        return information.getPrivateChats();
-    }
-
+    /**
+     * get access to information of user
+     * @return : information of user
+     */
     public UserLateralInformation getInformation(){
         return information;
     }
 
+    /**
+     * Is used to add a private chat
+     * @param port : port of private chat
+     * @param targetUsername : other username in private chat
+     */
     public void addPrivateChat(int port,String targetUsername){
         information.addPrivateChat(targetUsername,port);
         updateInformation();
     }
 
+    /**
+     * Is used to add a block id
+     * @param targetId : target id
+     */
     public void addBlock(Integer targetId){
         information.addBlock(targetId);
         updateInformation();
     }
 
+    /**
+     * Is used to add a friend id
+     * @param targetId : target id
+     */
     public void addFriend(Integer targetId){
         information.addFriend(targetId);
         updateInformation();
     }
 
-    public void addServerChat(Integer newDserverName){
-        information.addDiscordServer(newDserverName);
+    /**
+     * Is used to add a server chat id
+     * @param targetId : target id
+     */
+    public void addServerChat(Integer targetId){
+        information.addDiscordServer(targetId);
         updateInformation();
     }
 
+    /**
+     * Is used to add a invitation to a server chat
+     * @param newInvitation : target invitation
+     */
     public void addInvitation(Invitation newInvitation){
         information.addInvitation(newInvitation);
         updateInformation();
@@ -165,24 +196,9 @@ public class User implements Serializable {
         updateInformation();
     }
 
-    public boolean checkIsFriend(Integer targetId){
-        return information.checkIsFriend(targetId);
-    }
-
-//    public boolean checkIsPending(Integer targetId){
-      //  return information.checkIsPending(targetId);
-   // }
-
-    public boolean checkIsBlock(Integer targetId){
-        return information.checkIsBlock(targetId);
-    }
-
-    public boolean checkIsRequested(Integer targetId){
-        return information.checkIsRequested(targetId);
-    }
-
     public void unblock(Integer targetId){
         information.unblock(targetId);
+        updateInformation();
     }
 
     public void removeFriend(Integer targetId){

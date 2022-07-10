@@ -1,3 +1,9 @@
+/**
+ * @author Hosein Karami
+ * @since 7/11/22
+ * @version 1.0
+ */
+
 package com.example.discordfx;
 
 import com.example.discordfx.Moduls.Dto.User.Status;
@@ -71,7 +77,7 @@ public class FriendsManagement implements Initializable{
             out.write(20);
             ObjectInputStream inputStream = new ObjectInputStream(in);
             user = (User) inputStream.readObject();
-            allFriends = user.getFriends();
+            allFriends = user.getInformation().getFriendsId();
             load_1();
         } catch (Exception e) {
             e.printStackTrace();
@@ -220,7 +226,7 @@ public class FriendsManagement implements Initializable{
             out.write(20);
             ObjectInputStream inputStream = new ObjectInputStream(in);
             user = (User) inputStream.readObject();
-            blockedId = user.getBlockedId();
+            blockedId = user.getInformation().getBlockesId();
             load_3();
         } catch (Exception e) {
             e.printStackTrace();

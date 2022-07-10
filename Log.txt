@@ -694,3 +694,49 @@ Client whose address : /127.0.0.1 successfully connect to server.
 User with username=drdrdr log in successfully.
 2022-07-11 00:45 [Info] Server
 Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 00:57 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 00:57 [Info] UserDao
+an user added successfully with username=phphph.
+2022-07-11 00:57 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 00:58 [Info] UserDao
+an user added successfully with username=hphphp.
+2022-07-11 00:58 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 00:58 [Info] UserDao
+User with username=hphphp log in successfully.
+2022-07-11 00:58 [Info] FriendShipServices
+hphphp send friendship request to phphph successfully.
+2022-07-11 00:58 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 00:58 [Info] UserDao
+User with username=phphph log in successfully.
+2022-07-11 00:58 [Info] FriendShipServices
+phphph connect friendship with hphphp.
+2022-07-11 00:58 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 00:58 [Info] UserDao
+User with username=hphphp log in successfully.
+2022-07-11 00:59 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 00:59 [Info] UserDao
+User with username=phphph log in successfully.
+2022-07-11 01:01 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 01:01 [Info] UserDao
+User with username=phphph log in successfully.
+2022-07-11 01:01 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 01:01 [Info] UserDao
+User with username=phphph log in successfully.
+2022-07-11 01:02 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 01:02 [Info] UserDao
+User with username=hphphp log in successfully.
+2022-07-11 01:02 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 01:02 [Info] UserDao
+User with username=phphph log in successfully.
+2022-07-11 01:02 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.

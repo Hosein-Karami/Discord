@@ -1,3 +1,9 @@
+/**
+ * @author Hosein Karami
+ * @since 7/11/22
+ * @version 1.0
+ */
+
 package com.example.discordfx.Client.RoomHandler.Reciever;
 
 import javafx.scene.control.TextArea;
@@ -10,6 +16,9 @@ public class PrivateChatReciever extends GeneralReciever implements Runnable{
         super(textArea,socket);
     }
 
+    /**
+     * start reader thread for recieve messages from server and show them
+     */
     @Override
     public void run() {
         try {

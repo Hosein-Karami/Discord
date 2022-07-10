@@ -1,3 +1,9 @@
+/**
+ * @author Hosein Karami
+ * @since 7/11/22
+ * @version 1.0
+ */
+
 package com.example.discordfx.Server.Management;
 
 import com.example.discordfx.Lateral.Notification;
@@ -143,7 +149,7 @@ public class ClientManagement implements Runnable{
     private void sendNotifications(){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
-            for(Notification x : user.getNotifications())
+            for(Notification x : user.getInformation().getNotifications())
                 outputStream.writeObject(x);
             outputStream.writeObject(null);
         } catch (IOException e) {
@@ -175,7 +181,7 @@ public class ClientManagement implements Runnable{
     private void sendUserServerChats(){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
-            for(Integer x : user.getServerChats())
+            for(Integer x : user.getInformation().getDiscordServers())
                 outputStream.writeObject(Server.discordServers.get(x).getName());
             outputStream.writeObject(null);
         } catch (IOException e) {

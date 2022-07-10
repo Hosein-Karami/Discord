@@ -1,4 +1,11 @@
+/**
+ * @author Hosein Karami
+ * @since 7/11/22
+ * @version 1.0
+ */
+
 package com.example.discordfx.Server.Rooms.ClientInterfce;
+
 import com.example.discordfx.Server.Rooms.Chats.GeneralChat;
 import java.io.ObjectInputStream;
 import java.net.Socket;

@@ -1,3 +1,9 @@
+/**
+ * @author Hosein Karami
+ * @since 7/11/22
+ * @version 1.0
+ */
+
 package com.example.discordfx.Server.Management;
 
 import com.example.discordfx.Lateral.FileCopier;
@@ -148,7 +154,7 @@ public class AccountManagement {
             Integer targetId = (Integer) inputStream.readObject();
             User viewerUser = (User) inputStream.readObject();
             User  targetUser = Server.accountsService.getParticularUser(targetId);
-            if(targetUser.checkIsBlock(viewerUser.getId())){
+            if(targetUser.getInformation().checkIsBlock(viewerUser.getId())){
                 outputStream.writeObject(null);
                 outputStream.writeObject(null);
             }
@@ -157,7 +163,7 @@ public class AccountManagement {
                 File profileImage = new File(imageAddress);
                 byte[] imageBytes = Files.readAllBytes(profileImage.toPath());
                 outputStream.writeObject(imageBytes);
-                outputStream.writeObject(targetUser.getStatus());
+                outputStream.writeObject(targetUser.getInformation().getStatus());
             }
             outputStream.writeObject(targetUser.getUsername());
         } catch (Exception e) {

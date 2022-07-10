@@ -1,3 +1,9 @@
+/**
+ * @author Hosein Karami
+ * @since 7/11/22
+ * @version 1.0
+ */
+
 package com.example.discordfx;
 
 import com.example.discordfx.Moduls.Dto.User.Status;
@@ -58,7 +64,7 @@ public class ConnectToPrivateChat implements Initializable {
             out.write(20);
             ObjectInputStream inputStream = new ObjectInputStream(in);
             user = (User) inputStream.readObject();
-            privateChats = user.getPrivateChats();
+            privateChats = user.getInformation().getPrivateChats();
             if(privateChats.size() == 0) {
                 text.setText("You don't have any private chat");
                 nextButton.setVisible(false);

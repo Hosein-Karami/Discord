@@ -1,15 +1,18 @@
+/**
+ * @author Hosein Karami
+ * @since 7/11/22
+ * @version 1.0
+ */
+
 package com.example.discordfx.Server.Rooms.ClientInterfce;
 
 import com.example.discordfx.Lateral.Notification;
-import com.example.discordfx.Moduls.Dto.Messages.Message;
 import com.example.discordfx.Moduls.Dto.Messages.TextMessage;
-import com.example.discordfx.Moduls.Dto.ServerMembers.Member;
 import com.example.discordfx.Moduls.Dto.User.User;
 import com.example.discordfx.Server.Rooms.Chats.ChannelChat;
 import com.example.discordfx.Server.Rooms.Chats.GeneralChat;
 import com.example.discordfx.Server.Service.AccountsService;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class ChannelChatInterface extends GeneralInterface implements Runnable{

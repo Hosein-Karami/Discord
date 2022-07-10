@@ -1,3 +1,9 @@
+/**
+ * @author Hosein Karami
+ * @since 7/11/22
+ * @version 1.0
+ */
+
 package com.example.discordfx.Server.Management;
 
 import com.example.discordfx.Moduls.Dto.DiscordServer.Dserver;

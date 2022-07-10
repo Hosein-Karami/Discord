@@ -1,3 +1,9 @@
+/**
+ * @author Hosein Karami
+ * @since 7/11/22
+ * @version 1.0
+ */
+
 package com.example.discordfx.Server.Management;
 
 import com.example.discordfx.Lateral.Notification;
@@ -32,17 +38,17 @@ public class FriendshipManagement {
             else {
                 outputStream.writeObject("OK");
                 targetUser.loadInformation();
-                if (targetUser.checkIsBlock(user.getId()))
+                if (targetUser.getInformation().checkIsBlock(user.getId()))
                     outputStream.writeObject("Target user blocked you");
                 else {
                     outputStream.writeObject("OK");
-                    if (targetUser.checkIsFriend(user.getId()))
+                    if (targetUser.getInformation().checkIsFriend(user.getId()))
                         outputStream.writeObject("You were one of his/her friend from before");
-                    if (user.checkIsRequested(targetUser.getId()))
+                    if (user.getInformation().checkIsRequested(targetUser.getId()))
                         outputStream.writeObject("You requested to this user before");
                     else {
                         outputStream.writeObject("OK");
-                        if (user.checkIsFriend(targetUser.getId()))
+                        if (user.getInformation().checkIsFriend(targetUser.getId()))
                             outputStream.writeObject("You are friend from before");
                         else {
                             outputStream.writeObject("OK");
@@ -124,9 +130,9 @@ public class FriendshipManagement {
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
             AccountsService accountsService = new AccountsService();
             User friend;
-            for(Integer x : user.getFriends()){
+            for(Integer x : user.getInformation().getFriendsId()){
                 friend = accountsService.getParticularUser(x);
-                if(friend.getStatus() == Status.Online)
+                if(friend.getInformation().getStatus() == Status.Online)
                     outputStream.writeObject(x);
             }
             outputStream.writeObject(null);
@@ -146,12 +152,12 @@ public class FriendshipManagement {
                 outputStream.writeObject("Error");
             else {
                 outputStream.writeObject("OK");
-                if(user.checkIsBlock(targetUser.getId()))
+                if(user.getInformation().checkIsBlock(targetUser.getId()))
                     outputStream.writeObject("Blocked before");
                 else{
                     outputStream.writeObject("OK");
                     targetUser.loadInformation();
-                    if (targetUser.checkIsFriend(user.getId())) {
+                    if (targetUser.getInformation().checkIsFriend(user.getId())) {
                         user.removeFriend(targetUser.getId());
                         targetUser.removeFriend(user.getId());
                     }

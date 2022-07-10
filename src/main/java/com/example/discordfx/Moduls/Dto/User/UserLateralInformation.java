@@ -1,3 +1,9 @@
+/**
+ * @author Hosein Karami
+ * @since 7/11/22
+ * @version 1.0
+ */
+
 package com.example.discordfx.Moduls.Dto.User;
 
 import com.example.discordfx.Lateral.Notification;
@@ -23,38 +29,74 @@ public class UserLateralInformation implements Serializable {
     private final HashMap<String,Integer> privateChats = new HashMap<>();
     private Status status;
 
+    /**
+     * get access to blocked id of user
+     * @return : blocked id of user
+     */
     public ArrayList<Integer> getBlockesId(){
         return blockesId;
     }
 
+    /**
+     * get access to pending requests of user
+     * @return : pending requests of user
+     */
     public ArrayList<Integer> getPendingId(){
         return pendingId;
     }
 
+    /**
+     * get access to private chats of user
+     * @return : private chats of user
+     */
     public HashMap<String,Integer> getPrivateChats(){
         return privateChats;
     }
 
+    /**
+     * get access to friends id of user
+     * @return : friends id of user
+     */
     public ArrayList<Integer> getFriendsId(){
         return friendsId;
     }
 
+    /**
+     * get access to invitations of user
+     * @return : invitations of user
+     */
     public ArrayList<Invitation> getInvitations(){
         return invitations;
     }
 
+    /**
+     * get access to id of servers of user
+     * @return : id of servers
+     */
     public ArrayList<Integer> getDiscordServers(){
         return discordServers;
     }
 
+    /**
+     * get access to notifications of user
+     * @return : notifications of user
+     */
     public ArrayList<Notification> getNotifications(){
         return notifications;
     }
 
+    /**
+     * get access to output requests of user
+     * @return : output requests of user
+     */
     public ArrayList<Integer> getOutputRequestsId() {
         return outputRequestsId;
     }
 
+    /**
+     * get access to status of user
+     * @return : status of user
+     */
     public Status getStatus(){
         return status;
     }

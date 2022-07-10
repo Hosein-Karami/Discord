@@ -1,3 +1,9 @@
+/**
+ * @author Hosein Karami
+ * @since 7/11/22
+ * @version 1.0
+ */
+
 package com.example.discordfx.Client.RoomHandler.VoiceManagement;
 
 import javax.sound.sampled.AudioFileFormat;
@@ -18,6 +24,9 @@ public class Record implements Runnable
         this.audioInputStream = audioInputStream;
     }
 
+    /**
+     * Is used to run thread and record voice
+     */
     @Override
     public void run()
     {

@@ -1,3 +1,9 @@
+/**
+ * @author Hosein Karami
+ * @since 7/11/22
+ * @version 1.0
+ */
+
 package com.example.discordfx.Server.Service;
 
 import com.example.discordfx.Moduls.Dto.DiscordServer.Channel;
@@ -138,7 +144,7 @@ public class DserverService {
                 outputStream.writeObject(-1);
             else {
                 outputStream.writeObject(1);
-                if(member.getUser().checkIsFriend(targetUser.getId()))
+                if(member.getUser().getInformation().checkIsFriend(targetUser.getId()))
                     outputStream.writeObject(targetUser.getId());
                 else
                     outputStream.writeObject(-1);
