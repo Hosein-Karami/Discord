@@ -30,8 +30,6 @@ public class DserverService {
     public DserverService(Dserver dserver, Socket clientSocket, User client) {
         this.dserver = dserver;
         this.clientSocket = clientSocket;
-        for(Channel x : dserver.getChannels())
-            System.out.println(x.getName());
         member = dserver.getParticularMember(client.getId());
         try {
             in = clientSocket.getInputStream();
@@ -46,32 +44,46 @@ public class DserverService {
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
             outputStream.writeObject(member);
-            choose = in.read();
-            if (choose == 1) {
-                outputStream = new ObjectOutputStream(out);
-                outputStream.writeObject(member.getUser());
-                addMember();
+            outputStream.writeObject(dserver.getMusicPort());
+            while (true) {
+                choose = in.read();
+                if (choose == 1) {
+                    outputStream = new ObjectOutputStream(out);
+                    outputStream.writeObject(member.getUser());
+                    addMember();
+                    break;
+                } else if (choose == 2) {
+                    outputStream = new ObjectOutputStream(out);
+                    outputStream.writeObject(dserver);
+                    outputStream.writeObject(member.canKickMembers());
+                    outputStream.writeObject(member.isOwner());
+                    outputStream.writeObject(member.getUser());
+                    showMembers();
+                    break;
+                } else if (choose == 3) {
+                    changeName();
+                    break;
+                }
+                else if (choose == 4) {
+                    makeRole();
+                    break;
+                }
+                else if (choose == 5) {
+                    makeChannel();
+                    break;
+                }
+                else if (choose == 6) {
+                    outputStream = new ObjectOutputStream(out);
+                    outputStream.writeObject(member);
+                    outputStream.writeObject(dserver);
+                    manageChannels();
+                    break;
+                } else if (choose == 7)
+                    sendMusic();
+                else
+                    break;
             }
-            else if(choose == 2){
-                outputStream = new ObjectOutputStream(out);
-                outputStream.writeObject(dserver);
-                outputStream.writeObject(member.canKickMembers());
-                outputStream.writeObject(member.isOwner());
-                outputStream.writeObject(member.getUser());
-                showMembers();
-            }
-            else if(choose == 3)
-                changeName();
-            else if(choose == 4)
-                makeRole();
-            else if(choose == 5)
-                makeChannel();
-            else if(choose == 6){
-                outputStream = new ObjectOutputStream(out);
-                outputStream.writeObject(member);
-                outputStream.writeObject(dserver);
-                manageChannels();
-            }
+            System.out.println("break");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -288,6 +300,18 @@ public class DserverService {
     private void manageChannels(){
         ChannelChatService service = new ChannelChatService(dserver,clientSocket);
         service.start();
+    }
+
+    private void sendMusic(){
+        try {
+            ObjectInputStream inputStream = new ObjectInputStream(in);
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
+            byte[] musicBytes = (byte[]) inputStream.readObject();
+            dserver.sendMusicOnServer(musicBytes);
+            outputStream.writeObject("Music send successfully");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

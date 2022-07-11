@@ -73,5 +73,29 @@
             <Font size="15.0" />
          </font>
       </Button>
+      <Button layoutX="702.0" layoutY="419.0" mnemonicParsing="false" onAction="#sendMusicOnServer" prefHeight="34.0" prefWidth="132.0" text="Send music">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="287.0" layoutY="641.0" mnemonicParsing="false" onAction="#stopMusic" prefHeight="34.0" prefWidth="132.0" text="Stop music">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="463.0" layoutY="641.0" mnemonicParsing="false" onAction="#resumeMusic" prefHeight="34.0" prefWidth="132.0" text="Resume music">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

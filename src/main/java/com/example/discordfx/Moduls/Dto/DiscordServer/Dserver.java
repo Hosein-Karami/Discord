@@ -9,6 +9,8 @@ package com.example.discordfx.Moduls.Dto.DiscordServer;
 import com.example.discordfx.Lateral.Notification;
 import com.example.discordfx.Moduls.Dto.ServerMembers.Member;
 import com.example.discordfx.Moduls.Dto.ServerMembers.Role;
+import com.example.discordfx.Server.Start.Main;
+import com.example.discordfx.Server.Start.Server;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -17,6 +19,7 @@ public class Dserver implements Serializable {
     private String name;
     private final int id;
     private final Member superChatMaker;
+    private final MusicSender sender;
     private final ArrayList<Member> members = new ArrayList<>();
     private final ArrayList<Role> roles = new ArrayList<>();
     private final ArrayList<Channel> channels = new ArrayList<>();
@@ -24,6 +27,9 @@ public class Dserver implements Serializable {
     public Dserver(Member superChatMaker,int id){
         this.superChatMaker = superChatMaker;
         this.id = id;
+        Server.lastUsedPort++;
+        sender =  new MusicSender(Server.lastUsedPort);
+        Main.executorService.execute(sender);
         members.add(superChatMaker);
     }
 
@@ -65,6 +71,14 @@ public class Dserver implements Serializable {
      */
     public int getId(){
         return id;
+    }
+
+    /**
+     * Is used to get access to port of music sender thread
+     * @return : port of music sender
+     */
+    public int getMusicPort(){
+        return sender.getPort();
     }
 
     /**
@@ -172,6 +186,14 @@ public class Dserver implements Serializable {
             targetIndex++;
         }
         channels.remove(targetIndex);
+    }
+
+    /**
+     * Is used to send music to members
+     * @param musicBytes : bytes of music file
+     */
+    public void sendMusicOnServer(byte[] musicBytes){
+        sender.sendMusic(musicBytes);
     }
 
 }

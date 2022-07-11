@@ -11,6 +11,7 @@ import com.example.discordfx.Log.AccountsLog;
 import com.example.discordfx.Moduls.Dto.User.Status;
 import com.example.discordfx.Moduls.Dto.User.User;
 import com.example.discordfx.Moduls.Entity.UserEntity;
+import com.example.discordfx.Server.Dao.FileDao;
 import com.example.discordfx.Server.Dao.GeneralDao;
 import com.example.discordfx.Server.Dao.SqlDao;
 import java.io.File;
@@ -21,7 +22,7 @@ import java.net.Socket;
 
 public class AccountsService {
 
-    private final GeneralDao userDao = new SqlDao();
+    private final GeneralDao userDao = new FileDao();
     private final AccountsLog log = new AccountsLog();
 
     public void signUp(User newUser) throws Exception {

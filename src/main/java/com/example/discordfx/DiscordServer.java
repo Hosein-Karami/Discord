@@ -6,6 +6,7 @@
 
 package com.example.discordfx;
 
+import com.example.discordfx.Moduls.Dto.DiscordServer.MusicReceiver;
 import com.example.discordfx.Moduls.Dto.ServerMembers.Member;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,14 +18,18 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.*;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.ResourceBundle;
 
 public class DiscordServer implements Initializable {
 
     static int DserverId;
+    private int musicPort;
+    private MusicReceiver receiver;
     private Member member;
     private OutputStream out;
     private InputStream in;
@@ -60,6 +65,8 @@ public class DiscordServer implements Initializable {
             outputStream.writeObject(DserverId);
             inputStream = new ObjectInputStream(in);
             member = (Member) inputStream.readObject();
+            musicPort = (Integer) inputStream.readObject();
+            connectToMusicSender();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -164,9 +171,37 @@ public class DiscordServer implements Initializable {
         }
     }
 
+    public void sendMusicOnServer(ActionEvent event){
+        try {
+            FileChooser fileChooser = new FileChooser();
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            File targetFile = fileChooser.showOpenDialog(stage);
+            if((targetFile.getName().contains(".wav")) || (targetFile.getName().contains(".mp3"))){
+                out.write(7);
+                ObjectOutputStream outputStream = new ObjectOutputStream(out);
+                ObjectInputStream inputStream = new ObjectInputStream(in);
+                byte[] musicBytes = Files.readAllBytes(targetFile.toPath());
+                outputStream.writeObject(musicBytes);
+                result.setText((String) inputStream.readObject());
+            }else
+                result.setText("Invalid format,Format of selected file should be wav or mp3");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void stopMusic(){
+        receiver.stop();
+    }
+
+    public void resumeMusic(){
+        receiver.resume();
+    }
+
     public void backToMenu(ActionEvent event){
         try {
-            out.write(11);
+            out.write(8);
+            receiver.stop();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -192,6 +227,11 @@ public class DiscordServer implements Initializable {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    private void connectToMusicSender(){
+        receiver = new MusicReceiver(musicPort);
+        Start.executorService.execute(receiver);
     }
 
 }
