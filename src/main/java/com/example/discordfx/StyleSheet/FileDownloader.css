@@ -1,0 +1,41 @@
+#root
+{
+    -fx-background-color: #999999;
+}
+
+
+#anchorPane
+{
+    -fx-background-color: #8a2be2;
+    -fx-background-radius: 20;
+}
+
+
+.button
+{
+
+    -fx-background-radius: 20;
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #b3b3b3;
+    -fx-border-width: 3;
+    -fx-border-radius: 20;
+    -fx-border-style: outset;
+}
+
+
+#download
+{
+    -fx-graphic: url(../../../Icon/download.png);
+    -fx-max-height: 25px;
+}
+
+
+#circle
+{
+    -fx-background-color: #ffffff
+    ;
+    -fx-background-radius: 360;
+}

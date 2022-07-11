@@ -33,6 +33,18 @@ public class SetStatus {
         }
     }
 
+
+
+    public void setStyleSheet()
+    {
+        // Get scene
+        Scene scene = text.getScene();
+
+        //Css address
+        String css = this.getClass().getResource("styleSheet/SetStatus.css").toExternalForm();
+        scene.getStylesheets().add(css);
+    }
+
     public void Online(){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
