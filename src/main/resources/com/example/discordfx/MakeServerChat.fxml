@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.*?>
 <?import java.net.URL?>
-
 <AnchorPane fx:id="background" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.discordfx.MakeServerChat">
    <stylesheets>
       <URL value="@StyleSheet/MakeServerChat.css" />
@@ -29,11 +28,6 @@
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </TextField>
-            <Text fx:id="resultText" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="517.3367004394531">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Text>
             <Button layoutX="70.0" layoutY="317.0" mnemonicParsing="false" onAction="#setPicture" prefHeight="29.0" prefWidth="142.0" text="Set picture">
                <font>
                   <Font size="16.0" />
@@ -64,6 +58,11 @@
                   </ImageView>
                </graphic>
             </Label>
+            <Text fx:id="resultText" layoutX="284.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="364.79998779296864">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
    </children>
