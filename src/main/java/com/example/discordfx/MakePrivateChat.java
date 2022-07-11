@@ -43,7 +43,7 @@ public class MakePrivateChat implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            out.write(4);
+            out.write(20);
             ObjectInputStream inputStream = new ObjectInputStream(in);
             user = (User) inputStream.readObject();
         } catch (Exception e) {

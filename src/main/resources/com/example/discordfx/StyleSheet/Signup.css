@@ -1,0 +1,54 @@
+#background
+{
+    -fx-background-color: #999999;
+}
+
+.button
+{
+    -fx-background-color: 
+        #090a0c,
+        linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+        linear-gradient(#20262b, #191d22),
+        radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
+    -fx-background-radius: 20;
+    -fx-background-insets: 0,1,2,0;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-weight: bold;
+    -fx-font-size: 17px;
+}
+
+#pane
+{
+    -fx-background-color: #8a2be2;
+    -fx-background-radius: 20;
+}
+
+
+.text-field
+{
+    -fx-border: solid 5px #000;
+    -fx-background-color: rgba(0, 0, 0, 0.4);
+    -fx-border-radius: 5;
+    -fx-font-size: 20px;
+    -fx-font-family: "Arial";
+    -fx-text-fill: #fff;
+    -fx-prompt-text-fill: #fff;
+    -fx-focus-color: rgba(0, 0, 0, 0.4);;
+}
+
+
+#icon
+{
+    -fx-image: url(Icon/signup.png);
+    -fx-background-color: #999999;
+
+}
+
+
+#iconContainer
+{
+    -fx-background-color: #999999;
+    -fx-background-radius: 360;
+    -fx-padding: 15;
+}

@@ -83,11 +83,10 @@ public class ConnectToPrivateChat implements Initializable {
 
     public void loadInformation(){
         try {
-            out.write(7);
+            out.write(4);
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
             ObjectInputStream inputStream = new ObjectInputStream(in);
             outputStream.writeObject(usernames.get(index));
-            System.out.println(usernames.get(index));
             outputStream.writeObject(user);
             byte[] senderProfile = (byte[]) inputStream.readObject();
             Status userStatus = (Status) inputStream.readObject();
@@ -137,6 +136,7 @@ public class ConnectToPrivateChat implements Initializable {
             out.write(16);
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
             outputStream.writeObject(privateChats.get(usernames.get(index)));
+            System.out.println(privateChats.get(usernames.get(index)));
             FXMLLoader loader = new FXMLLoader(getClass().getResource("PrivateChat.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

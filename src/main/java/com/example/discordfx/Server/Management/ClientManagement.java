@@ -73,12 +73,14 @@ public class ClientManagement implements Runnable{
                     downloadFile();
                 else if(choose == 3)
                     accountManagement.setStatus(user,clientSocket);
+                else if(choose == 4)
+                    accountManagement.sendUserInfoWithUsername(clientSocket);
                 else if(choose == 5)
                     friendshipManagement.requestFriendShip(user);
                 else if(choose == 6)
                     friendshipManagement.invitationsHandle(user);
                 else if(choose == 7)
-                    accountManagement.sendUserInfo(clientSocket);
+                    accountManagement.sendUserInfoWithId(clientSocket);
                 else if(choose == 8)
                     friendshipManagement.cancelRequest(user);
                 else if(choose == 9)
@@ -99,10 +101,8 @@ public class ClientManagement implements Runnable{
                     connectToPrivateChat();
                 else if(choose == 17)
                     dserverManagement.makeServerChat(clientSocket,user);
-                else if(choose == 20){
-                    ObjectOutputStream outputStream = new ObjectOutputStream(out);
-                    outputStream.writeObject(user);
-                }
+                else if(choose == 20)
+                    sendUserInfo();
                 else if(choose == 21)
                     dserverManagement.sendServerChatInfo(clientSocket);
                 else if(choose == 22)
@@ -119,6 +119,15 @@ public class ClientManagement implements Runnable{
                 user.setStatus(Status.Offline);
                 break;
             }
+        }
+    }
+
+    private void sendUserInfo(){
+        try {
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
+            outputStream.writeObject(user);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -159,9 +168,13 @@ public class ClientManagement implements Runnable{
 
     public void connectToPrivateChat(){
         try {
+            System.out.println("0");
             ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
+            System.out.println("1");
             Integer port = (Integer) inputStream.readObject();
+            System.out.println("2");
             chatManagement.connectToPrivateChat(user,port,clientSocket);
+            System.out.println("3");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -189,8 +202,5 @@ public class ClientManagement implements Runnable{
         }
     }
 
-    private void sendInvitations(){
-
-    }
 
 }

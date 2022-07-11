@@ -151,7 +151,7 @@ public class DserverService {
 
     private void sendUserInfo(){
         AccountManagement accountManagement = new AccountManagement();
-        accountManagement.sendUserInfo(clientSocket);
+        accountManagement.sendUserInfoWithId(clientSocket);
     }
 
     private void searchFriend(){
@@ -182,7 +182,7 @@ public class DserverService {
             try {
                 choice = in.read();
                 if(choice == 1) {
-                    management.sendUserInfo(clientSocket);
+                    management.sendUserInfoWithId(clientSocket);
                     sendMemberRoles();
                 }
                 else if(choice == 2)

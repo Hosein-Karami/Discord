@@ -1,0 +1,47 @@
+#background
+{
+    -fx-background-color: #999999;
+}
+
+#pane
+{
+    -fx-background-color: #8a2be2;
+    -fx-background-radius: 30;
+}
+
+
+.button
+{
+    -fx-background-color: rgba(0, 0, 0 ,0);
+}
+
+
+#logoutIcon
+{
+    -fx-image: url(Icon/back.png);
+}
+
+#statusIcon
+{
+    -fx-image: url(Icon/status.png);
+}
+
+#profileIcon
+{
+    -fx-image: url(Icon/profileIcon.png);
+}
+
+#relationshipIcon
+{
+    -fx-image: url(Icon/relationshipIconIcon.jpg);
+}
+
+#downloadIcon
+{
+    -fx-image: url(Icon/downloadIcon.png);
+}
+
+#friendshipManagementIcon
+{
+    -fx-image: url(Icon/friendshipManagementIcon.png);
+}

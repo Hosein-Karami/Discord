@@ -10,8 +10,6 @@ import com.example.discordfx.Moduls.Dto.User.User;
 import com.example.discordfx.Server.Rooms.Connector;
 import com.example.discordfx.Server.Start.Main;
 import com.example.discordfx.Server.Start.Server;
-
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -59,7 +57,7 @@ public class PrivateChatManagement {
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
             outputStream.writeObject(port);
             outputStream.writeObject(user);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

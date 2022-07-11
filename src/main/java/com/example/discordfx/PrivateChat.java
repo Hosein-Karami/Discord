@@ -59,6 +59,7 @@ public class PrivateChat implements Initializable {
             sender = new PrivateChatSender(socket, user.getUsername());
             PrivateChatReciever reciever = new PrivateChatReciever(socket, messages);
             Start.executorService.execute(reciever);
+            System.out.println("9");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -103,6 +104,10 @@ public class PrivateChat implements Initializable {
         voiceRecorder.stop();
         sendVoice.setVisible(false);
         cancelVoice.setVisible(false);
+    }
+
+    public void clear(){
+        messages.clear();
     }
 
     public void exit(ActionEvent event){

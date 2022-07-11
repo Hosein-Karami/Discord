@@ -79,5 +79,13 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Button layoutX="48.0" layoutY="166.0" mnemonicParsing="false" onAction="#makePrivateChat" prefHeight="38.0" prefWidth="162.0" text="Server chats" textAlignment="CENTER">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

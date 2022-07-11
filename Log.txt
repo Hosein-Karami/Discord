@@ -1056,3 +1056,597 @@ an user added successfully with username=klklkl.
 Client whose address : /127.0.0.1 successfully connect to server.
 2022-07-11 11:51 [Info] UserDao
 User with username=klklkl log in successfully.
+2022-07-11 14:40 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 14:40 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 14:40 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-11 15:09 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:15 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:15 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:15 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:15 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-11 15:15 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-11 15:17 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:17 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:17 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:17 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-11 15:17 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-11 15:19 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:19 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-11 15:20 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:20 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-11 15:25 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:25 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-11 15:27 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:27 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-11 15:28 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:28 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-11 15:31 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:31 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-11 15:32 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:32 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-11 15:34 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:34 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-11 15:37 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:40 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:41 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:41 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:43 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:45 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:46 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:48 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:49 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:52 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:55 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:55 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:56 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:57 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:57 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 15:57 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-11 16:00 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 16:06 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 16:06 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 16:07 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 16:07 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-11 16:07 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 16:07 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-11 16:07 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 16:08 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-11 16:10 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 16:10 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-11 16:10 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 16:11 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-11 16:11 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 16:11 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 16:11 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-11 16:12 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 16:13 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 16:13 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 16:13 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-11 16:13 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 16:15 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-11 16:24 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 16:31 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 16:31 [Info] UserDao
+an user added successfully with username=MohammadReza.
+2022-07-11 16:31 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 16:31 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-11 16:41 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 16:41 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 16:41 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-11 16:43 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 16:43 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-11 16:45 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 16:45 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-11 16:47 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 16:47 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-11 16:51 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 16:51 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-11 16:54 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 16:54 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-11 16:54 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 16:54 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-11 16:55 [Info] ClientService
+User with id=0 changed profile picture successfully.
+2022-07-11 16:56 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 16:56 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-11 16:56 [Info] Server
+MohammadReza logout successfully.
+2022-07-11 16:56 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:00 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:00 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-11 17:08 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:08 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-11 17:09 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:09 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-11 17:13 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:13 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-11 17:13 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:14 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-11 17:15 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:15 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-11 17:16 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:16 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-11 17:20 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:21 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:21 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:21 [Info] UserDao
+an user added successfully with username=HamidReza2.
+2022-07-11 17:21 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:21 [Info] UserDao
+User with username=HamidReza2 log in successfully.
+2022-07-11 17:21 [Info] FriendShipServices
+HamidReza2 send friendship request to MohammadReza successfully.
+2022-07-11 17:22 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:22 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-11 17:25 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:25 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:25 [Info] UserDao
+an user added successfully with username=121212.
+2022-07-11 17:25 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:26 [Info] UserDao
+an user added successfully with username=212121.
+2022-07-11 17:26 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:26 [Info] UserDao
+User with username=121212 log in successfully.
+2022-07-11 17:27 [Info] FriendShipServices
+121212 send friendship request to 212121 successfully.
+2022-07-11 17:27 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:27 [Info] UserDao
+User with username=212121 log in successfully.
+2022-07-11 17:27 [Info] FriendShipServices
+212121 connect friendship with 121212.
+2022-07-11 17:27 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:29 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:29 [Info] UserDao
+User with username=121212 log in successfully.
+2022-07-11 17:30 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:30 [Info] UserDao
+User with username=121212 log in successfully.
+2022-07-11 17:31 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:31 [Info] UserDao
+User with username=121212 log in successfully.
+2022-07-11 17:31 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:31 [Info] UserDao
+User with username=121212 log in successfully.
+2022-07-11 17:32 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:32 [Info] UserDao
+User with username=121212 log in successfully.
+2022-07-11 17:32 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:33 [Info] UserDao
+User with username=121212 log in successfully.
+2022-07-11 17:34 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:35 [Info] UserDao
+User with username=121212 log in successfully.
+2022-07-11 17:35 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:35 [Info] UserDao
+User with username=121212 log in successfully.
+2022-07-11 17:36 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:36 [Info] UserDao
+User with username=121212 log in successfully.
+2022-07-11 17:37 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:37 [Info] UserDao
+User with username=121212 log in successfully.
+2022-07-11 17:40 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:40 [Info] UserDao
+User with username=121212 log in successfully.
+2022-07-11 17:41 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:41 [Info] UserDao
+User with username=121212 log in successfully.
+2022-07-11 17:42 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:46 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:46 [Info] UserDao
+User with username=121212 log in successfully.
+2022-07-11 17:46 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:46 [Info] UserDao
+User with username=121212 log in successfully.
+2022-07-11 17:46 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:48 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:48 [Info] UserDao
+User with username=121212 log in successfully.
+2022-07-11 17:49 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:55 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:56 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:56 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:56 [Info] UserDao
+an user added successfully with username=111111.
+2022-07-11 17:56 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:57 [Info] UserDao
+an user added successfully with username=222222.
+2022-07-11 17:57 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 17:57 [Info] UserDao
+User with username=111111 log in successfully.
+2022-07-11 17:57 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-11 17:59 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 18:00 [Info] UserDao
+User with username=111111 log in successfully.
+2022-07-11 18:01 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 18:01 [Info] UserDao
+User with username=111111 log in successfully.
+2022-07-11 18:01 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 18:02 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 18:02 [Info] UserDao
+User with username=111111 log in successfully.
+2022-07-11 18:04 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 18:04 [Info] UserDao
+User with username=111111 log in successfully.
+2022-07-11 18:08 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 18:08 [Info] UserDao
+User with username=111111 log in successfully.
+2022-07-11 18:08 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 18:28 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 18:29 [Info] UserDao
+User with username=111111 log in successfully.
+2022-07-11 18:29 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 18:29 [Info] UserDao
+an user added successfully with username=333333.
+2022-07-11 18:29 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 18:29 [Info] UserDao
+User with username=333333 log in successfully.
+2022-07-11 18:31 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 18:31 [Info] UserDao
+an user added successfully with username=444444.
+2022-07-11 18:31 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 18:31 [Info] UserDao
+User with username=444444 log in successfully.
+2022-07-11 18:31 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 18:31 [Info] UserDao
+User with username=444444 log in successfully.
+2022-07-11 18:35 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 18:35 [Info] UserDao
+User with username=444444 log in successfully.
+2022-07-11 18:35 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 18:35 [Info] UserDao
+an user added successfully with username=555555.
+2022-07-11 18:35 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 18:35 [Info] UserDao
+User with username=555555 log in successfully.
+2022-07-11 18:41 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 18:41 [Info] UserDao
+an user added successfully with username=1111111.
+2022-07-11 18:41 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 18:41 [Info] UserDao
+User with username=1111111 log in successfully.
+2022-07-11 18:42 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 18:42 [Info] UserDao
+User with username=1111111 log in successfully.
+2022-07-11 18:49 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 18:49 [Info] UserDao
+an user added successfully with username=cccccc.
+2022-07-11 18:49 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 18:49 [Info] UserDao
+User with username=cccccc log in successfully.
+2022-07-11 18:50 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 18:51 [Info] UserDao
+an user added successfully with username=vvvvvv.
+2022-07-11 18:51 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 18:51 [Info] UserDao
+User with username=vvvvvv log in successfully.
+2022-07-11 18:52 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 18:52 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 18:53 [Info] UserDao
+an user added successfully with username=xxxxxx.
+2022-07-11 18:53 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 18:53 [Info] UserDao
+User with username=vvvvvv log in successfully.
+2022-07-11 18:56 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 18:56 [Info] UserDao
+User with username=vvvvvv log in successfully.
+2022-07-11 19:00 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:00 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:00 [Info] UserDao
+an user added successfully with username=323232.
+2022-07-11 19:00 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:00 [Info] UserDao
+User with username=323232 log in successfully.
+2022-07-11 19:12 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:12 [Info] UserDao
+an user added successfully with username=sdsdsd.
+2022-07-11 19:12 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:12 [Info] UserDao
+User with username=sdsdsd log in successfully.
+2022-07-11 19:14 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:14 [Info] UserDao
+an user added successfully with username=qqqqqq.
+2022-07-11 19:14 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:14 [Info] UserDao
+an user added successfully with username=aaaaaa.
+2022-07-11 19:14 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:14 [Info] UserDao
+User with username=qqqqqq log in successfully.
+2022-07-11 19:15 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:15 [Info] UserDao
+User with username=aaaaaa log in successfully.
+2022-07-11 19:17 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:17 [Info] UserDao
+User with username=aaaaaa log in successfully.
+2022-07-11 19:17 [Error] FriendShipServices
+Error happening when aaaaaa want to send friendship request to .
+2022-07-11 19:20 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:22 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:22 [Info] UserDao
+an user added successfully with username=aaaaaa.
+2022-07-11 19:22 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:22 [Info] UserDao
+User with username=aaaaaa log in successfully.
+2022-07-11 19:23 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:23 [Info] UserDao
+User with username=aaaaaa log in successfully.
+2022-07-11 19:23 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:23 [Info] UserDao
+an user added successfully with username=222222.
+2022-07-11 19:23 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:23 [Info] UserDao
+User with username=222222 log in successfully.
+2022-07-11 19:24 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:25 [Info] UserDao
+an user added successfully with username=333333.
+2022-07-11 19:25 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:25 [Info] UserDao
+User with username=333333 log in successfully.
+2022-07-11 19:26 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:26 [Info] UserDao
+an user added successfully with username=xxxxxx.
+2022-07-11 19:26 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:26 [Info] UserDao
+User with username=xxxxxx log in successfully.
+2022-07-11 19:29 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:30 [Info] UserDao
+an user added successfully with username=xcxcxc.
+2022-07-11 19:30 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:30 [Info] UserDao
+User with username=xcxcxc log in successfully.
+2022-07-11 19:33 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:33 [Info] UserDao
+an user added successfully with username=eeeeee.
+2022-07-11 19:33 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:33 [Info] UserDao
+User with username=eeeeee log in successfully.
+2022-07-11 19:44 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:44 [Info] UserDao
+an user added successfully with username=HamidReza.
+2022-07-11 19:44 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:45 [Info] UserDao
+User with username=HamidReza log in successfully.
+2022-07-11 19:47 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:47 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:47 [Info] UserDao
+an user added successfully with username=999999.
+2022-07-11 19:47 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:47 [Info] UserDao
+User with username=999999 log in successfully.
+2022-07-11 19:47 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:47 [Info] UserDao
+an user added successfully with username=777777.
+2022-07-11 19:47 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:47 [Info] UserDao
+User with username=999999 log in successfully.
+2022-07-11 19:48 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:48 [Info] UserDao
+User with username=777777 log in successfully.
+2022-07-11 19:48 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:49 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 19:49 [Info] UserDao
+User with username=999999 log in successfully.
+2022-07-11 20:00 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 20:01 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 20:01 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-11 20:01 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 20:01 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 20:02 [Info] UserDao
+an user added successfully with username=MohammadReza.
+2022-07-11 20:02 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 20:02 [Info] UserDao
+User with username=MohammadReza log in successfully.
+2022-07-11 20:03 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-11 20:03 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 20:03 [Info] UserDao
+User with username=MohammadReza log in successfully.

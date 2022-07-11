@@ -1,49 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.*?>
+<?import java.net.URL?>
 
-<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.discordfx.MakeServerChat">
+<AnchorPane fx:id="background" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.discordfx.MakeServerChat">
+   <stylesheets>
+      <URL value="@StyleSheet/MakeServerChat.css" />
+   </stylesheets>
    <children>
-      <TextField fx:id="serverName" alignment="CENTER" layoutX="271.0" layoutY="292.0" prefHeight="42.0" prefWidth="356.0" promptText="Server name">
-         <font>
-            <Font size="19.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="TEXT" />
-         </cursor>
-      </TextField>
-      <Text fx:id="resultText" layoutX="191.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="517.3367004394531">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Text>
-      <Button layoutX="378.0" layoutY="360.0" mnemonicParsing="false" onAction="#setPicture" prefHeight="29.0" prefWidth="142.0" text="Set picture">
-         <font>
-            <Font size="16.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button layoutX="378.0" layoutY="426.0" mnemonicParsing="false" onAction="#makeServer" prefHeight="29.0" prefWidth="142.0" text="Create">
-         <font>
-            <Font size="16.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <ImageView fx:id="serverProfile" fitHeight="150.0" fitWidth="200.0" layoutX="361.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="822.0" layoutY="659.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="26.0" prefWidth="64.0" text="Back">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
+      <Pane fx:id="pane" layoutX="120.0" layoutY="108.0" prefHeight="512.0" prefWidth="682.0">
+         <children>
+            <Button layoutX="530.0" layoutY="446.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="38.0" prefWidth="108.0" text="Back">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <TextField fx:id="serverName" alignment="CENTER" layoutX="288.0" layoutY="220.0" prefHeight="42.0" prefWidth="356.0" promptText="Server name">
+               <font>
+                  <Font size="19.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <Text fx:id="resultText" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="517.3367004394531">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Text>
+            <Button layoutX="70.0" layoutY="317.0" mnemonicParsing="false" onAction="#setPicture" prefHeight="29.0" prefWidth="142.0" text="Set picture">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="231.0" layoutY="380.0" mnemonicParsing="false" onAction="#makeServer" prefHeight="55.0" prefWidth="220.0" text="Create">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label layoutX="49.0" layoutY="87.0" prefHeight="172.0" prefWidth="183.0">
+               <graphic>
+                  <ImageView fx:id="serverProfile" fitHeight="203.0" fitWidth="179.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+            </Label>
+            <Label fx:id="iconContainer" layoutX="236.0" layoutY="-105.0" prefHeight="161.0" prefWidth="210.0">
+               <graphic>
+                  <ImageView fx:id="icon" fitHeight="200.0" fitWidth="200.0">
+                     <image>
+                        <Image url="Icon/group.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

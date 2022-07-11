@@ -31,8 +31,8 @@ public class PrivateChatReciever extends GeneralReciever implements Runnable{
             while (true) {
                 inputStream = new ObjectInputStream(in);
                 messageType = (String) inputStream.readObject();
-                inputStream = new ObjectInputStream(in);
                 if (!(messageType.equals("#LEFT"))) {
+                    inputStream = new ObjectInputStream(in);
                     showMessage((String) inputStream.readObject());
                     inputStream = new ObjectInputStream(in);
                 }

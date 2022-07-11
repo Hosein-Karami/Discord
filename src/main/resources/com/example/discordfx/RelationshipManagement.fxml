@@ -11,7 +11,8 @@
 <?import javafx.scene.text.Text?>
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.discordfx.RelationshipManagement">
-  <tabs>
+
+   <tabs>
     <Tab text="Send request">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="900.0">
@@ -45,7 +46,7 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <ImageView fx:id="profileImage_1" fitHeight="142.0" fitWidth="202.0" layoutX="349.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true" />
-                  <Text fx:id="username_1" layoutX="294.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="354.13671875">
+                  <Text fx:id="username_1" layoutX="272.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="354.13671875">
                      <font>
                         <Font size="21.0" />
                      </font>

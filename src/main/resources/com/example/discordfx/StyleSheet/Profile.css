@@ -1,0 +1,42 @@
+#pane
+{
+    -fx-background-color: #8a2be2;
+    -fx-background-radius: 20;
+}
+
+
+#see
+{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 20;
+}
+
+#edit
+{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 20;
+}
+
+#password
+{
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-background-color: #000000;
+}
+
+
+#imageView
+{
+    -fx-background-color: #000000;
+    -fx-background-radius: 40;
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+}
+
+
+.textField
+{
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-background-color: #000000;
+}
