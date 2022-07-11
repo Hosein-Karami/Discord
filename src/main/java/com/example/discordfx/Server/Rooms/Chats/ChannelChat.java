@@ -28,6 +28,7 @@ public class ChannelChat extends GeneralChat{
             sendBeforeMessages(joinedSocket);
             ChannelChatInterface clientInterface = new ChannelChatInterface(this, joinedSocket);
             Start.executorService.execute(clientInterface);
+            joinedNumbers++;
         } catch (Exception e) {
             e.printStackTrace();
         }

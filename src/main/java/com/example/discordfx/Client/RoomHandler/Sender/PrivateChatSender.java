@@ -5,7 +5,6 @@
  */
 
 package com.example.discordfx.Client.RoomHandler.Sender;
-
 import java.net.Socket;
 
 public class PrivateChatSender extends GeneralSender{

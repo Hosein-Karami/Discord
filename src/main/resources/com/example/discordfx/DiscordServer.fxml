@@ -97,5 +97,13 @@
             <Font size="15.0" />
          </font>
       </Button>
+      <Button layoutX="702.0" layoutY="476.0" mnemonicParsing="false" onAction="#deleteServer" prefHeight="34.0" prefWidth="132.0" text="Send music">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

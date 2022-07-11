@@ -149,7 +149,7 @@ public class UserLateralInformation implements Serializable {
         pendingId.remove(targetPendingId);
     }
 
-    public void removeDiscordServer(String targetDiscordServer){
+    public void removeDiscordServer(Integer targetDiscordServer){
         discordServers.remove(targetDiscordServer);
     }
 

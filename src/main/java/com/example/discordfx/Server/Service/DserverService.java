@@ -6,7 +6,6 @@
 
 package com.example.discordfx.Server.Service;
 
-import com.example.discordfx.Moduls.Dto.DiscordServer.Channel;
 import com.example.discordfx.Moduls.Dto.DiscordServer.Dserver;
 import com.example.discordfx.Moduls.Dto.DiscordServer.Invitation;
 import com.example.discordfx.Moduls.Dto.ServerMembers.Member;
@@ -15,6 +14,8 @@ import com.example.discordfx.Moduls.Dto.User.User;
 import com.example.discordfx.Server.Management.AccountManagement;
 import com.example.discordfx.Server.Management.ChannelChatManagement;
 import com.example.discordfx.Server.Management.DserverManagement;
+import com.example.discordfx.Server.Start.Server;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -45,6 +46,7 @@ public class DserverService {
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
             outputStream.writeObject(member);
             outputStream.writeObject(dserver.getMusicPort());
+            dserver.increaseJoinedCounter();
             while (true) {
                 choose = in.read();
                 if (choose == 1) {
@@ -80,8 +82,15 @@ public class DserverService {
                     break;
                 } else if (choose == 7)
                     sendMusic();
-                else
+                else if (choose == 8) {
+                    boolean delete = deleteServer();
+                    if(delete)
+                        break;
+                }
+                else {
+                    dserver.decreaseJoinedCounter();
                     break;
+                }
             }
             System.out.println("break");
         } catch (Exception e) {
@@ -311,6 +320,25 @@ public class DserverService {
             outputStream.writeObject("Music send successfully");
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private boolean deleteServer(){
+        try {
+            ObjectOutputStream outputStream = new ObjectOutputStream(out);
+            if(dserver.getJoinedCounter() > 1) {
+                outputStream.writeObject("ERROR");
+                return false;
+            }
+            else {
+                outputStream.writeObject("OK");
+                Server.discordServers.remove(dserver);
+                dserver.deleteServer();
+                return true;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 

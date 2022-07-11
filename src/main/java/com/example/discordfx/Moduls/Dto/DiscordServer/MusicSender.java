@@ -11,6 +11,7 @@ public class MusicSender implements Runnable, Serializable {
 
     private final int port;
     private final ArrayList<Socket> sockets = new ArrayList<>();
+    private ServerSocket serverSocket;
 
     public MusicSender(int port){
         this.port = port;
@@ -23,7 +24,7 @@ public class MusicSender implements Runnable, Serializable {
     @Override
     public void run() {
         try {
-            ServerSocket serverSocket = new ServerSocket(port);
+            serverSocket = new ServerSocket(port);
             while (true){
                 Socket socket = serverSocket.accept();
                 sockets.add(socket);
@@ -42,6 +43,15 @@ public class MusicSender implements Runnable, Serializable {
             }catch (Exception e){
                 sockets.remove(x);
             }
+        }
+    }
+
+    public void stop(){
+        sockets.clear();
+        try {
+            serverSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

@@ -10,7 +10,6 @@ import com.example.discordfx.Moduls.Dto.DiscordServer.Channel;
 import com.example.discordfx.Moduls.Dto.DiscordServer.Dserver;
 import com.example.discordfx.Moduls.Dto.ServerMembers.Member;
 import com.example.discordfx.Moduls.Dto.User.User;
-
 import java.io.*;
 import java.net.Socket;
 
@@ -38,7 +37,7 @@ public class ChannelChatService {
                 choice = in.read();
                 if(choice == 1)
                     joinChannel();
-                if(choice == 2)
+                else if(choice == 2)
                     deleteChannel();
                 else if(choice == 3)
                     addBannedMember();

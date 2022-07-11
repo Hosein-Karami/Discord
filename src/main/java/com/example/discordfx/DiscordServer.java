@@ -190,6 +190,31 @@ public class DiscordServer implements Initializable {
         }
     }
 
+    public void deleteServer(ActionEvent event){
+        if(member.isOwner()) {
+            try {
+                out.write(8);
+                ObjectInputStream inputStream = new ObjectInputStream(in);
+                String status = (String) inputStream.readObject();
+                if (status.equals("ERROR"))
+                    result.setText("You can't delete server when some members are in server");
+                else {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
+                    Parent root = loader.load();
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.setResizable(false);
+                    stage.show();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else
+            result.setText("Permission denied");
+    }
+
     public void stopMusic(){
         receiver.stop();
     }
@@ -200,7 +225,7 @@ public class DiscordServer implements Initializable {
 
     public void backToMenu(ActionEvent event){
         try {
-            out.write(8);
+            out.write(9);
             receiver.stop();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
             Parent root = loader.load();

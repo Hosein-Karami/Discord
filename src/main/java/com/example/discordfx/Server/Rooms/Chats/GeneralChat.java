@@ -16,6 +16,7 @@ public abstract class GeneralChat {
     protected ArrayList<Socket> joinSockets = new ArrayList<>();
     protected ArrayList<String> memberUsernames = new ArrayList<>();
     protected final ArrayList<Message> messages = new ArrayList<>();
+    protected int joinedNumbers;
 
     public abstract void join(Socket joinedSocket);
 
@@ -53,6 +54,7 @@ public abstract class GeneralChat {
 
     public void removeSocket(Socket socket){
         joinSockets.remove(socket);
+        joinedNumbers--;
     }
 
     protected void sendBeforeMessages(Socket socket){
@@ -73,6 +75,10 @@ public abstract class GeneralChat {
 
     public int getMessagesSize(){
         return messages.size();
+    }
+
+    public int getJoinedNumbers(){
+        return joinedNumbers;
     }
 
 }

@@ -216,8 +216,8 @@ public class User implements Serializable {
         updateInformation();
     }
 
-    public void removeServerChat(String targetServerChatName){
-        information.removeDiscordServer(targetServerChatName);
+    public void removeServerChat(Integer targetServerChat){
+        information.removeDiscordServer(targetServerChat);
         updateInformation();
     }
 

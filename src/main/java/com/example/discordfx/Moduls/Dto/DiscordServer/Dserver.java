@@ -18,8 +18,9 @@ public class Dserver implements Serializable {
 
     private String name;
     private final int id;
-    private final Member superChatMaker;
-    private final MusicSender sender;
+    private int joinedCounter;
+    private Member superChatMaker;
+    private MusicSender sender;
     private final ArrayList<Member> members = new ArrayList<>();
     private final ArrayList<Role> roles = new ArrayList<>();
     private final ArrayList<Channel> channels = new ArrayList<>();
@@ -79,6 +80,10 @@ public class Dserver implements Serializable {
      */
     public int getMusicPort(){
         return sender.getPort();
+    }
+
+    public int getJoinedCounter(){
+        return joinedCounter;
     }
 
     /**
@@ -194,6 +199,26 @@ public class Dserver implements Serializable {
      */
     public void sendMusicOnServer(byte[] musicBytes){
         sender.sendMusic(musicBytes);
+    }
+
+    public void increaseJoinedCounter(){
+        joinedCounter++;
+    }
+
+    public void decreaseJoinedCounter(){
+        joinedCounter--;
+    }
+
+    public void deleteServer(){
+        for (Member x : members)
+            x.getUser().removeServerChat(id);
+        members.clear();
+        roles.clear();
+        channels.clear();
+        name = null;
+        superChatMaker = null;
+        sender.stop();
+        sender = null;
     }
 
 }
