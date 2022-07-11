@@ -102,7 +102,7 @@
                <graphic>
                   <ImageView fx:id="icon" fitHeight="185.0" fitWidth="185.0">
                      <image>
-                        <Image url="@../../../../../../Icon/avatardefault_92824.png" />
+                        <Image url="Icon/server-icon.png" />
                      </image>
                   </ImageView>
                </graphic>

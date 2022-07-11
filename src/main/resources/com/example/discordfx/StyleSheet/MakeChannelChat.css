@@ -3,13 +3,11 @@
     -fx-background-color: #999999;
 }
 
-
 #pane
 {
     -fx-background-color: #8a2be2;
     -fx-background-radius: 30;
 }
-
 
 .button
 {
@@ -27,29 +25,24 @@
 }
 
 
-.label
-{
-    -fx-background-radius: 360;
-    -fx-border-color: #000000;
-    -fx-border-width: 2;
-    -fx-border-radius: 10;
-}
-
-
-#logout
-{
-    -fx-text-fill: red;
-}
-
 #icon
 {
-    -fx-image: url(../../../../../../../Icon/status.png);
+    -fx-image: url(Icon/createIcon.png);
 }
+
 
 #iconContainer
 {
     -fx-background-color: #999999;
     -fx-background-radius: 360;
-    -fx-padding: 15;
+    -fx-padding: 20;
     -fx-border-width: 0;
+}
+
+
+#text
+{
+    -fx-font-size: 23px;
+    -fx-fill: yellow;
+    -fx-font-style: italic;
 }

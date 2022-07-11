@@ -35,21 +35,35 @@
     -fx-border-radius: 10;
 }
 
-
-#logout
-{
-    -fx-text-fill: red;
-}
-
 #icon
 {
-    -fx-image: url(../../../../../../../Icon/status.png);
+    -fx-image: url(Icon/setting.png);
 }
 
 #iconContainer
 {
     -fx-background-color: #999999;
     -fx-background-radius: 360;
-    -fx-padding: 15;
+    -fx-padding: 5;
     -fx-border-width: 0;
+}
+
+
+#deleteButton
+{
+    -fx-text-fill: red;
+}
+
+
+#channelName
+{
+    -fx-font-size: 30px;
+}
+
+
+#result
+{
+    -fx-font-size: 23px;
+    -fx-fill: yellow;
+    -fx-font-style: italic;
 }

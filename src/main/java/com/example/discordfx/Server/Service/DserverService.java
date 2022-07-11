@@ -76,6 +76,8 @@ public class DserverService {
                 }
                 else if (choose == 6) {
                     outputStream = new ObjectOutputStream(out);
+                    System.out.println(member.getUser().getUsername() + "   " + member.getUser().getPassword());
+                    System.out.println(dserver.getName());
                     outputStream.writeObject(member);
                     outputStream.writeObject(dserver);
                     manageChannels();

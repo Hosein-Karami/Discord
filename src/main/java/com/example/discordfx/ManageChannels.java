@@ -17,7 +17,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.*;
@@ -27,6 +30,9 @@ import java.util.ResourceBundle;
 
 public class ManageChannels implements Initializable {
 
+    public AnchorPane background;
+    public Label iconContainer;
+    public ImageView icon;
     private ArrayList<Channel> channels;
     private int channelIndex;
     private Member member;
@@ -69,6 +75,7 @@ public class ManageChannels implements Initializable {
         try {
             ObjectInputStream inputStream = new ObjectInputStream(in);
             member = (Member) inputStream.readObject();
+            System.out.println(member.getUser().getUsername() + "   " + member.getUser().getPassword());
             dserver = (Dserver) inputStream.readObject();
             channels = dserver.getChannels();
             if(channels.size() == 0)

@@ -48,6 +48,10 @@ public class Start {
     private final AccountManagement accountManagement = new AccountManagement(socket);
     public static ExecutorService executorService = Executors.newCachedThreadPool();
 
+    /**
+     * Is used to login
+     * @param event .
+     */
     public void login(ActionEvent event){
         if(username.getText().isEmpty() || password.getText().isEmpty())
             text.setText("Enter username and password");
@@ -79,6 +83,10 @@ public class Start {
         }
     }
 
+    /**
+     * Is used to signup
+     * @param event .
+     */
     public void signup(ActionEvent event){
         try {
             OutputStream outputStream = socket.getOutputStream();
@@ -95,6 +103,9 @@ public class Start {
         }
     }
 
+    /**
+     * Is used to exit from discord
+     */
     public void exit(){
         try {
             OutputStream outputStream = socket.getOutputStream();

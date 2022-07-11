@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="background" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.discordfx.ManageChannels">
+   <stylesheets>
+      <URL value="@StyleSheet/ManageChannels.css" />
+   </stylesheets>
+   <children>
+      <Pane fx:id="pane" layoutX="94.0" layoutY="124.0" prefHeight="478.0" prefWidth="712.0">
+         <children>
+            <Label fx:id="iconContainer" layoutX="284.0" layoutY="-72.0">
+               <graphic>
+                  <ImageView fx:id="icon" fitHeight="134.0" fitWidth="158.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+            </Label>
+            <TextField fx:id="bannedUsername" alignment="CENTER" layoutX="201.0" layoutY="247.0" prefHeight="38.0" prefWidth="285.0" promptText="Username">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <Button fx:id="limitButton" layoutX="201.0" layoutY="303.0" mnemonicParsing="false" onAction="#limitMember" prefHeight="38.0" prefWidth="102.0" text="Limit">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="deleteButton" layoutX="240.0" layoutY="390.0" mnemonicParsing="false" onAction="#deleteChannel" prefHeight="37.0" prefWidth="206.0" text="Delete channel">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="587.0" layoutY="409.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="38.0" prefWidth="102.0" text="Back">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="joinButton" layoutX="384.0" layoutY="303.0" mnemonicParsing="false" onAction="#join" prefHeight="38.0" prefWidth="102.0" text="Join">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="next" layoutX="544.0" layoutY="303.0" mnemonicParsing="false" onAction="#next" prefHeight="38.0" prefWidth="102.0" text="Next">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="previous" layoutX="58.0" layoutY="303.0" mnemonicParsing="false" onAction="#previous" prefHeight="38.0" prefWidth="102.0" text="Previous">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Text fx:id="channelName" layoutX="75.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="561.1392822265625">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Text>
+            <Text fx:id="result" layoutX="62.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="561.1392822265625">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

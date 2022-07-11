@@ -6,17 +6,17 @@
 
 package com.example.discordfx;
 
-import com.example.discordfx.Client.Management.*;
+import com.example.discordfx.Client.Management.AccountManagement;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.util.regex.Pattern;
 
@@ -32,9 +32,11 @@ public class Signup {
     TextField email;
     @FXML
     TextField phoneNumber;
-    @FXML
-    Button button;
 
+    /**
+     * Is used to back
+     * @param event .
+     */
     public void back(ActionEvent event){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Start.fxml"));
         Parent root;
@@ -50,6 +52,10 @@ public class Signup {
         }
     }
 
+    /**
+     * Is used to sign up
+     * @param event .
+     */
     public void signup(ActionEvent event){
         if(checkInfo()){
             AccountManagement accountManagement = new AccountManagement(Start.socket);
@@ -70,6 +76,10 @@ public class Signup {
         }
     }
 
+    /**
+     * Is used to check validity of inputs
+     * @return : validity value of inputs
+     */
     private boolean checkInfo(){
         String pass = password.getText();
         if(username.getText().length() < 6) {

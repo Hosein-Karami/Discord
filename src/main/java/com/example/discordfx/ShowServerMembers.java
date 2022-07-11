@@ -92,6 +92,9 @@ public class ShowServerMembers implements Initializable {
         }
     }
 
+    /**
+     * Is used when we want to load member's info
+     */
     public void loadInformation(){
         try {
             out.write(1);
@@ -123,6 +126,9 @@ public class ShowServerMembers implements Initializable {
         }
     }
 
+    /**
+     * Is used to load next member info
+     */
     public void next(){
         if(memberIndex != (membersId.size() - 1)) {
             profileImage.setImage(null);
@@ -132,6 +138,9 @@ public class ShowServerMembers implements Initializable {
         }
     }
 
+    /**
+     * Is used to load previous member info
+     */
     public void previous(){
         if(memberIndex != 0) {
             profileImage.setImage(null);
@@ -141,6 +150,9 @@ public class ShowServerMembers implements Initializable {
         }
     }
 
+    /**
+     * Is used to kick members from server chat
+     */
     public void kick(){
         try {
             out.write(2);
@@ -157,11 +169,17 @@ public class ShowServerMembers implements Initializable {
         }
     }
 
+    /**
+     * Is used to add a role to particular member
+     */
     public void addRole(){
         roleName.setVisible(true);
         add.setVisible(true);
     }
 
+    /**
+     * Submit addition a role to particular member
+     */
     public void add(){
         if(roleName.getText().isEmpty()){
             result.setText("Enter name of role");
@@ -191,6 +209,10 @@ public class ShowServerMembers implements Initializable {
         add.setVisible(false);
     }
 
+    /**
+     * Is used to back
+     * @param event .
+     */
     public void backToMenu(ActionEvent event){
         try {
             out.write(4);
@@ -206,6 +228,10 @@ public class ShowServerMembers implements Initializable {
         }
     }
 
+    /**
+     * Is used to set status image of a particular member
+     * @param status : status of target member
+     */
     private void setProperStatusImage(Status status){
         Image image = null;
         if(status == Status.Online)
@@ -221,6 +247,9 @@ public class ShowServerMembers implements Initializable {
         statusImage.setImage(image);
     }
 
+    /**
+     * Is used to load member's roles
+     */
     private void setRoles(){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
