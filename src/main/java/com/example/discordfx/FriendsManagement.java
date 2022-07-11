@@ -38,6 +38,11 @@ public class FriendsManagement implements Initializable{
         }
     }
 
+    /**
+     * Is used to initialize the fxml page
+     * @param url .
+     * @param resourceBundle .
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -70,6 +75,9 @@ public class FriendsManagement implements Initializable{
     private User user;
     private int friendIndex;
 
+    /**
+     * Is used to initialize all friends page
+     */
     public void initialize_1() {
         blockedIndex = 0;
         friendIndex = 0;
@@ -84,6 +92,9 @@ public class FriendsManagement implements Initializable{
         }
     }
 
+    /**
+     * Is used to load all friends information
+     */
     public void load_1() {
         if (allFriends.size() == 0) {
             textStatus_1.setText("You don't have any friend");
@@ -98,6 +109,9 @@ public class FriendsManagement implements Initializable{
             loadInformation(allFriends,friendIndex,profileImage_1,status_1,username_1);
     }
 
+    /**
+     * Is used to load next friend info
+     */
     public void next_1(){
         if(friendIndex != (allFriends.size() - 1)) {
             profileImage_1.setImage(null);
@@ -107,6 +121,9 @@ public class FriendsManagement implements Initializable{
         }
     }
 
+    /**
+     * Is used to load previous friend info
+     */
     public void previous_1(){
         if(friendIndex != 0) {
             profileImage_1.setImage(null);
@@ -116,6 +133,9 @@ public class FriendsManagement implements Initializable{
         }
     }
 
+    /**
+     * Is used to remove target friend
+     */
     public void removeFriend_1(){
         removeFriend(allFriends.get(friendIndex),profileImage_1,status_1,username_1,textStatus_1);
         initialize_1();
@@ -141,6 +161,9 @@ public class FriendsManagement implements Initializable{
     private final ArrayList<Integer> onlineFriends = new ArrayList<>();
     private int onlineFriendIndex;
 
+    /**
+     * Is used to initialize online friends page
+     */
     public void initialize_2(){
         friendIndex = 0;
         onlineFriendIndex = 0;
@@ -160,6 +183,9 @@ public class FriendsManagement implements Initializable{
         }
     }
 
+    /**
+     * Is used to load online friends information
+     */
     public void load_2(){
         if (onlineFriends.size() == 0) {
             textStatus_2.setText("You don't have any online friend");
@@ -174,6 +200,9 @@ public class FriendsManagement implements Initializable{
             loadInformation(onlineFriends,onlineFriendIndex,profileImage_2,status_2,username_2);
     }
 
+    /**
+     * Is used to load next friend info
+     */
     public void next_2(){
         if(onlineFriendIndex != (onlineFriends.size() - 1)) {
             username_2.setText("");
@@ -184,6 +213,9 @@ public class FriendsManagement implements Initializable{
         }
     }
 
+    /**
+     * Is used to load previous friend info
+     */
     public void previous_2(){
         if(onlineFriendIndex != 0) {
             username_2.setText("");
@@ -194,6 +226,9 @@ public class FriendsManagement implements Initializable{
         }
     }
 
+    /**
+     * Is used to remove target online friend
+     */
     public void removeFriend_2(){
         removeFriend(onlineFriends.get(onlineFriendIndex),profileImage_2,status_2,username_2,textStatus_2);
         initialize_2();
@@ -219,6 +254,9 @@ public class FriendsManagement implements Initializable{
     private ArrayList<Integer> blockedId;
     private int blockedIndex;
 
+    /**
+     * Is used to initialize blocked page
+     */
     public void initialize_3(){
         friendIndex = 0;
         blockedIndex = 0;
@@ -233,6 +271,9 @@ public class FriendsManagement implements Initializable{
         }
     }
 
+    /**
+     * Is used to load blocked information
+     */
     public void load_3(){
         if (blockedId.size() == 0) {
             textStatus_3.setText("You didn't block any user");
@@ -247,6 +288,9 @@ public class FriendsManagement implements Initializable{
             loadInformation(blockedId,blockedIndex,profileImage_3,status_3,username_3);
     }
 
+    /**
+     * Is used to load next blocked user info
+     */
     public void next_3(){
         if(blockedIndex != (blockedId.size() - 1)) {
             username_3.setText("");
@@ -257,6 +301,9 @@ public class FriendsManagement implements Initializable{
         }
     }
 
+    /**
+     * Is used to load previous blocked user info
+     */
     public void previous_3(){
         if(blockedIndex != 0) {
             username_3.setText("");
@@ -267,6 +314,9 @@ public class FriendsManagement implements Initializable{
         }
     }
 
+    /**
+     * Is used to unblock target blocked user
+     */
     public void unblock() {
         try {
             out.write(10);
@@ -280,6 +330,10 @@ public class FriendsManagement implements Initializable{
         }
     }
 
+    /**
+     * Is used to back menu
+     * @param event .
+     */
     public void backToMenu(ActionEvent event){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
@@ -294,12 +348,20 @@ public class FriendsManagement implements Initializable{
         }
     }
 
-    private void loadInformation(ArrayList<Integer> usernames,int index,ImageView profileImage,ImageView status,Text username){
+    /**
+     * Is used to load target users info
+     * @param Id : arraylist of Ids
+     * @param index : index in arraylist
+     * @param profileImage : imageview for show image of target user's profile
+     * @param status : status of target user
+     * @param username : username of target user
+     */
+    private void loadInformation(ArrayList<Integer> Id,int index,ImageView profileImage,ImageView status,Text username){
         try {
             out.write(7);
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
             ObjectInputStream inputStream = new ObjectInputStream(in);
-            outputStream.writeObject(usernames.get(index));
+            outputStream.writeObject(Id.get(index));
             outputStream.writeObject(user);
             byte[] senderProfile = (byte[]) inputStream.readObject();
             Status userStatus = (Status) inputStream.readObject();
@@ -325,6 +387,14 @@ public class FriendsManagement implements Initializable{
         }
     }
 
+    /**
+     * Is used to remove a friend
+     * @param targetId : friend's id
+     * @param profileImage :
+     * @param statusImage :
+     * @param username : username of friend
+     * @param result : result from server
+     */
     private void removeFriend(Integer targetId,ImageView profileImage,ImageView statusImage,Text username,Text result){
         try {
             out.write(11);
@@ -341,6 +411,11 @@ public class FriendsManagement implements Initializable{
         }
     }
 
+    /**
+     * Is used to set status image of target users
+     * @param status : status of target user
+     * @param imageView : imageview for show status image
+     */
     private void setProperStatusImage(Status status,ImageView imageView){
         Image image = null;
         if(status == Status.Online)

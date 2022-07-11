@@ -63,6 +63,11 @@ public class AddServerMember implements Initializable {
     @FXML
     Button searchButton;
 
+    /**
+     * Initialize the fxml page
+     * @param url .
+     * @param resourceBundle .
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -85,6 +90,9 @@ public class AddServerMember implements Initializable {
         }
     }
 
+    /**
+     * Is used to send invitation to target user
+     */
     public void sendInvitation(){
         try {
             out.write(2);
@@ -99,6 +107,9 @@ public class AddServerMember implements Initializable {
         }
     }
 
+    /**
+     * Is used to load information of target user
+     */
     public void load(){
         Integer Id = friends.get(friendIndex);
         try {
@@ -131,6 +142,9 @@ public class AddServerMember implements Initializable {
         }
     }
 
+    /**
+     * Is used to search a friend with his/her username
+     */
     public void searchFriend(){
         if(targetUsername.getText().isEmpty()){
             resultText.setText("Enter your friend username");
@@ -163,6 +177,9 @@ public class AddServerMember implements Initializable {
         targetUsername.clear();
     }
 
+    /**
+     * Is used to load next user info
+     */
     public void next(){
         System.out.println(friends.size());
         System.out.println(friendIndex);
@@ -174,6 +191,9 @@ public class AddServerMember implements Initializable {
         }
     }
 
+    /**
+     * Is used to load previous user info
+     */
     public void previous(){
         if(friendIndex != 0) {
             targetUserProfile.setImage(null);
@@ -183,6 +203,10 @@ public class AddServerMember implements Initializable {
         }
     }
 
+    /**
+     * Is used to back
+     * @param event .
+     */
     public void backToServer(ActionEvent event){
         try {
             out.write(5);
@@ -198,6 +222,10 @@ public class AddServerMember implements Initializable {
         }
     }
 
+    /**
+     * Is used to show target profile information
+     * @param bytes : bytes of target profile image
+     */
     private void setTargetUserProfile(byte[] bytes) {
         File file = new File("ClientFiles/temp.jpg");
         try (FileOutputStream fileOutputStream = new FileOutputStream(file)){
@@ -211,6 +239,10 @@ public class AddServerMember implements Initializable {
         file.delete();
     }
 
+    /**
+     * Set status image of target user
+     * @param status : status of user
+     */
     private void setProperStatusImage(Status status){
         Image image = null;
         if(status == Status.Online)

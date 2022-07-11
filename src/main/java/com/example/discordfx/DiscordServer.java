@@ -49,6 +49,11 @@ public class DiscordServer implements Initializable {
     @FXML
     Text result;
 
+    /**
+     * Is used to initialize the fxml page
+     * @param url .
+     * @param resourceBundle .
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -72,6 +77,10 @@ public class DiscordServer implements Initializable {
         }
     }
 
+    /**
+     * Is used to add member to server
+     * @param event .
+     */
     public void addMember(ActionEvent event){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AddServerMember.fxml"));
@@ -86,6 +95,10 @@ public class DiscordServer implements Initializable {
         }
     }
 
+    /**
+     * Is used to show members of server
+     * @param event .
+     */
     public void showMembers(ActionEvent event){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ShowServerMembers.fxml"));
@@ -100,6 +113,10 @@ public class DiscordServer implements Initializable {
         }
     }
 
+    /**
+     * Is used to change name of server
+     * @param event .
+     */
     public void changeName(ActionEvent event){
         if(member.canChangeServerName()){
             try {
@@ -118,6 +135,10 @@ public class DiscordServer implements Initializable {
             result.setText("Permission denied");
     }
 
+    /**
+     * Is used to make a role in server
+     * @param event .
+     */
     public void makeRole(ActionEvent event){
         if(member.isOwner()){
             try{
@@ -137,6 +158,10 @@ public class DiscordServer implements Initializable {
             result.setText("Permission denied");
     }
 
+    /**
+     * Is used to make a channel in server
+     * @param event .
+     */
     public void makeChannel(ActionEvent event){
         if(member.canMakeChannel()){
             try {
@@ -156,6 +181,10 @@ public class DiscordServer implements Initializable {
             result.setText("Permission denied");
     }
 
+    /**
+     * Is used to go channel section
+     * @param event .
+     */
     public void channels(ActionEvent event){
         try {
             out.write(6);
@@ -171,6 +200,10 @@ public class DiscordServer implements Initializable {
         }
     }
 
+    /**
+     * Is used to send music on server
+     * @param event .
+     */
     public void sendMusicOnServer(ActionEvent event){
         try {
             FileChooser fileChooser = new FileChooser();
@@ -190,6 +223,10 @@ public class DiscordServer implements Initializable {
         }
     }
 
+    /**
+     * Is used to delete server
+     * @param event .
+     */
     public void deleteServer(ActionEvent event){
         if(member.isOwner()) {
             try {
@@ -215,14 +252,24 @@ public class DiscordServer implements Initializable {
             result.setText("Permission denied");
     }
 
+    /**
+     * Is used to stop music
+     */
     public void stopMusic(){
         receiver.stop();
     }
 
+    /**
+     * Is used to resume music
+     */
     public void resumeMusic(){
         receiver.resume();
     }
 
+    /**
+     * Is used to back menu
+     * @param event .
+     */
     public void backToMenu(ActionEvent event){
         try {
             out.write(9);
@@ -239,6 +286,10 @@ public class DiscordServer implements Initializable {
         }
     }
 
+    /**
+     * Is used to set image of server
+     * @param imageBytes : bytes of image
+     */
     private void setServerImageProfile(byte[] imageBytes){
         try {
             File file = new File("ClientFiles/temp.jpg");
@@ -254,6 +305,9 @@ public class DiscordServer implements Initializable {
         }
     }
 
+    /**
+     * Is used to connect members to music sender
+     */
     private void connectToMusicSender(){
         receiver = new MusicReceiver(musicPort);
         Start.executorService.execute(receiver);

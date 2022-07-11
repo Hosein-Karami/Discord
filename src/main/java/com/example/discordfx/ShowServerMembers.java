@@ -66,6 +66,11 @@ public class ShowServerMembers implements Initializable {
     private final ArrayList<Integer> membersId = new ArrayList<>();
     private int memberIndex;
 
+    /**
+     * Is used to initialize the fxml page
+     * @param url .
+     * @param resourceBundle .
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {

@@ -27,6 +27,9 @@ public class FileDownloader {
 
     private final Socket socket = Start.socket;
 
+    /**
+     * Is used to download a file with its name from server
+     */
     public void download(){
         if(fileName.getText().isEmpty()) {
             text.setText("Enter name of file");
@@ -57,6 +60,10 @@ public class FileDownloader {
         }
     }
 
+    /**
+     * is used to back menu
+     * @param event .
+     */
     public void back(ActionEvent event){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());

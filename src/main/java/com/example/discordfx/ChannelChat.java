@@ -58,6 +58,11 @@ public class ChannelChat implements Initializable {
     @FXML
     Button smileButton;
 
+    /**
+     * Is used to initialize the fxml page
+     * @param url .
+     * @param resourceBundle .
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -73,6 +78,9 @@ public class ChannelChat implements Initializable {
         }
     }
 
+    /**
+     * Is used to manage sender
+     */
     public void pressSend(){
         if(sendTagMessage)
             sendTaggedMessage();
@@ -80,6 +88,9 @@ public class ChannelChat implements Initializable {
             sendMessage();
     }
 
+    /**
+     * Is used to send text message
+     */
     public void sendMessage(){
         if(!(sendVoice.isVisible())) {
             sender.sendText(textField.getText());
@@ -87,6 +98,10 @@ public class ChannelChat implements Initializable {
         }
     }
 
+    /**
+     * Is used to send file
+     * @param event .
+     */
     public void sendFile(ActionEvent event) {
         if (!(sendVoice.isVisible())) {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -96,6 +111,9 @@ public class ChannelChat implements Initializable {
         }
     }
 
+    /**
+     * Is used to record voice
+     */
     public void recordeVoice() {
         if (!(sendVoice.isVisible())) {
             sendVoice.setVisible(true);
@@ -108,6 +126,9 @@ public class ChannelChat implements Initializable {
         }
     }
 
+    /**
+     * Is used to send voice
+     */
     public void sendVoice(){
         voiceRecorder.stop();
         sender.sendVoice();
@@ -115,12 +136,18 @@ public class ChannelChat implements Initializable {
         cancelVoice.setVisible(false);
     }
 
+    /**
+     * Is used to cancel voice message
+     */
     public void cancelVoice(){
         voiceRecorder.stop();
         sendVoice.setVisible(false);
         cancelVoice.setVisible(false);
     }
 
+    /**
+     * Is used to pin messages
+     */
     public void pinMessage(){
         if(member.canPinMessage()) {
             tempTextField.setVisible(true);
@@ -128,6 +155,9 @@ public class ChannelChat implements Initializable {
         }
     }
 
+    /**
+     * Is used to submit pinned message
+     */
     public void submitPinMessage() {
         try {
             sender.pinMessage(Integer.parseInt(tempTextField.getText()));
@@ -139,10 +169,16 @@ public class ChannelChat implements Initializable {
         }
     }
 
+    /**
+     * Is used to get pinned message
+     */
     public void getPinnedMessage(){
         sender.getPinnedMessage();
     }
 
+    /**
+     * Is used to react messages
+     */
     public void react(){
         tempTextField.setVisible(true);
         likeButton.setVisible(true);
@@ -150,6 +186,9 @@ public class ChannelChat implements Initializable {
         smileButton.setVisible(true);
     }
 
+    /**
+     * Is used to act like messages
+     */
     public void like(){
         try {
             sender.react(Integer.parseInt(tempTextField.getText()), "LIKE");
@@ -160,6 +199,9 @@ public class ChannelChat implements Initializable {
         }
     }
 
+    /**
+     * Is used to act dislike messages
+     */
     public void dislike() {
         try {
             sender.react(Integer.parseInt(tempTextField.getText()), "DISLIKE");
@@ -170,6 +212,9 @@ public class ChannelChat implements Initializable {
         }
     }
 
+    /**
+     * Is used to act smile messages
+     */
     public void smile() {
         try {
             sender.react(Integer.parseInt(tempTextField.getText()), "SMILE");
@@ -180,6 +225,9 @@ public class ChannelChat implements Initializable {
         }
     }
 
+    /**
+     * Is used to send react to server
+     */
     public void finishReact(){
         likeButton.setVisible(false);
         dislikeButton.setVisible(false);
@@ -188,17 +236,27 @@ public class ChannelChat implements Initializable {
         tempTextField.setVisible(false);
     }
 
+    /**
+     * Is used to tag a member
+     */
     public void tag(){
         sendTagMessage = true;
         tempTextField.setVisible(true);
     }
 
+    /**
+     * Is used to send tagged message
+     */
     public void sendTaggedMessage(){
         sender.tagMember(textField.getText(),tempTextField.getText());
         tempTextField.setVisible(false);
         sendTagMessage = false;
     }
 
+    /**
+     * Is used to exit from channel
+     * @param event .
+     */
     public void exit(ActionEvent event){
         sender.exitChat();
         try {

@@ -35,6 +35,9 @@ public class MakeChannelChat {
     @FXML
     TextField channelName;
 
+    /**
+     * Is used to make a channel
+     */
     public void makeChannel(){
         if(channelName.getText().isEmpty()){
             result.setText("Enter channel name");
@@ -52,6 +55,10 @@ public class MakeChannelChat {
         channelName.clear();
     }
 
+    /**
+     * Is used to back
+     * @param event .
+     */
     public void backToMenu(ActionEvent event){
         try {
             out.write(2);

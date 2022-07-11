@@ -40,6 +40,11 @@ public class MakePrivateChat implements Initializable {
     @FXML
     Text text;
 
+    /**
+     * Is used to initialize the fxml page
+     * @param url .
+     * @param resourceBundle .
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -51,6 +56,10 @@ public class MakePrivateChat implements Initializable {
         }
     }
 
+    /**
+     * Is used to make a private chat
+     * @param event .
+     */
     public void makePrivateChat(ActionEvent event){
         if(targetUsername.getText().isEmpty()){
             text.setText("Enter target username");
@@ -91,6 +100,10 @@ public class MakePrivateChat implements Initializable {
         }
     }
 
+    /**
+     * Is used to back
+     * @param event .
+     */
     public void backToMenu(ActionEvent event){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));

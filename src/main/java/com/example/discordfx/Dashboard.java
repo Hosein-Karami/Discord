@@ -28,6 +28,10 @@ public class Dashboard {
         }
     }
 
+    /**
+     * Is used to go user to profile page
+     * @param event .
+     */
     public void profile(ActionEvent event){
         try {
             out.write(1);
@@ -43,6 +47,10 @@ public class Dashboard {
         }
     }
 
+    /**
+     * Is used when user want to get files from server
+     * @param event .
+     */
     public void downloadFile(ActionEvent event){
         try {
             out.write(2);
@@ -58,6 +66,10 @@ public class Dashboard {
         }
     }
 
+    /**
+     * Is used when user want to set status for himself/herself
+     * @param event .
+     */
     public void setStatus(ActionEvent event){
         try {
             out.write(3);
@@ -73,6 +85,10 @@ public class Dashboard {
         }
     }
 
+    /**
+     * Is used when user want to manage his/her relationship with other users
+     * @param event .
+     */
     public void relationship(ActionEvent event){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("RelationshipManagement.fxml"));
@@ -87,6 +103,10 @@ public class Dashboard {
         }
     }
 
+    /**
+     * Is used when user want to manage his/her friendship with other users
+     * @param event .
+     */
     public void friendshipManagement(ActionEvent event){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("FriendsManagement.fxml"));
@@ -101,6 +121,10 @@ public class Dashboard {
         }
     }
 
+    /**
+     * Is used when user want to see his/her notifications
+     * @param event .
+     */
     public void notification(ActionEvent event){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ShowNotifications.fxml"));
@@ -115,6 +139,10 @@ public class Dashboard {
         }
     }
 
+    /**
+     * Is used when user want to make a private chat with a user
+     * @param event .
+     */
     public void makePrivateChat(ActionEvent event){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("MakePrivateChat.fxml"));
@@ -143,6 +171,10 @@ public class Dashboard {
         }
     }
 
+    /**
+     * Is used when user want to manage his/her server chats
+     * @param event .
+     */
     public void showServers(ActionEvent event){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ShowServerChats.fxml"));
@@ -157,6 +189,10 @@ public class Dashboard {
         }
     }
 
+    /**
+     * Is used when user want to logout
+     * @param event .
+     */
     public void logOut(ActionEvent event){
         try {
             out.write(200);

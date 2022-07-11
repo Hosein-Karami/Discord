@@ -1698,3 +1698,17 @@ Client whose address : /127.0.0.1 successfully connect to server.
 User with username=aaaaaaa log in successfully.
 2022-07-11 20:51 [Info] Server
 Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 20:55 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 20:55 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 20:55 [Info] UserDao
+User with username=aaaaaaa log in successfully.
+2022-07-11 20:55 [Error] ClientManagement
+Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-11 21:04 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-11 21:04 [Info] UserDao
+User with username=aaaaaaa log in successfully.
+2022-07-11 21:05 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.

@@ -47,6 +47,11 @@ public class PrivateChat implements Initializable {
     @FXML
     TextArea messages;
 
+    /**
+     * Is used to initialize the fxml page
+     * @param url .
+     * @param resourceBundle .
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -65,6 +70,9 @@ public class PrivateChat implements Initializable {
         }
     }
 
+    /**
+     * Is used to send message
+     */
     public void sendMessage(){
         if(!(sendVoice.isVisible())) {
             sender.sendText(textField.getText());
@@ -72,6 +80,10 @@ public class PrivateChat implements Initializable {
         }
     }
 
+    /**
+     * Is used to send file
+     * @param event .
+     */
     public void sendFile(ActionEvent event) {
         if (!(sendVoice.isVisible())) {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -81,6 +93,9 @@ public class PrivateChat implements Initializable {
         }
     }
 
+    /**
+     * Is used to record voice
+     */
     public void recordeVoice() {
         if (!(sendVoice.isVisible())) {
             sendVoice.setVisible(true);
@@ -93,6 +108,9 @@ public class PrivateChat implements Initializable {
         }
     }
 
+    /**
+     * Is used to send voice
+     */
     public void sendVoice(){
         voiceRecorder.stop();
         sender.sendVoice();
@@ -100,16 +118,26 @@ public class PrivateChat implements Initializable {
         cancelVoice.setVisible(false);
     }
 
+    /**
+     * Is used to cancel voice
+     */
     public void cancelVoice(){
         voiceRecorder.stop();
         sendVoice.setVisible(false);
         cancelVoice.setVisible(false);
     }
 
+    /**
+     * Is used to clear text area
+     */
     public void clear(){
         messages.clear();
     }
 
+    /**
+     * Is used to left from chat
+     * @param event .
+     */
     public void exit(ActionEvent event){
         sender.exitChat();
         try {

@@ -42,6 +42,9 @@ public class MakeServerChat {
         }
     }
 
+    /**
+     * Is used to make a server chat
+     */
     public void makeServer(){
         if(serverName.getText().isEmpty()){
             resultText.setText("Enter name of server");
@@ -64,6 +67,10 @@ public class MakeServerChat {
         }
     }
 
+    /**
+     * Is used to set image of server chat
+     * @param event .
+     */
     public void setPicture(ActionEvent event){
         FileChooser fileChooser = new FileChooser();
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -83,6 +90,10 @@ public class MakeServerChat {
         }
     }
 
+    /**
+     * Is used to back
+     * @param event .
+     */
     public void backToMenu(ActionEvent event){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ShowServerChats.fxml"));

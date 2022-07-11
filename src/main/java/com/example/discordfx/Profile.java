@@ -68,6 +68,11 @@ public class Profile implements Initializable {
     private InputStream in;
     public static User user;
 
+    /**
+     * Is used to initialize the fxml page
+     * @param url .
+     * @param resourceBundle .
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -84,6 +89,10 @@ public class Profile implements Initializable {
         }
     }
 
+    /**
+     * Is used to set profile image
+     * @param event .
+     */
     public void setPicture(ActionEvent event){
         try{
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -113,11 +122,17 @@ public class Profile implements Initializable {
         }
     }
 
+    /**
+     * Is used when user want to chane his/her username
+     */
     public void wantToChangeUsername(){
         newUsername.setVisible(true);
         changeUsernameButton.setVisible(true);
     }
 
+    /**
+     * finalize change
+     */
     public void changeUsername(){
         try {
             Checker.checkUsername(newUsername.getText());
@@ -143,11 +158,17 @@ public class Profile implements Initializable {
         }
     }
 
+    /**
+     * Is used when user want to chane his/her password
+     */
     public void wantToChangePass(){
         newPassword.setVisible(true);
         changePassButton.setVisible(true);
     }
 
+    /**
+     * finalize change
+     */
     public void changePassword(){
         try {
             Checker.checkPassword(newPassword.getText());
@@ -164,11 +185,17 @@ public class Profile implements Initializable {
         }
     }
 
+    /**
+     * Is used when user want to chane his/her email
+     */
     public void wantToChangeEmail(){
         newEmail.setVisible(true);
         changeEmailButton.setVisible(true);
     }
 
+    /**
+     * finalize change
+     */
     public void changeEmail(){
         try {
             Checker.checkEmail(newEmail.getText());
@@ -186,11 +213,17 @@ public class Profile implements Initializable {
         }
     }
 
+    /**
+     * Is used when user want to chane his/her phone
+     */
     public void wantToChangePhone(){
         newPhone.setVisible(true);
         changePhoneButton.setVisible(true);
     }
 
+    /**
+     * finalize change
+     */
     public void changePhone() {
         try {
             Checker.checkPhone(newPhone.getText());
@@ -207,6 +240,11 @@ public class Profile implements Initializable {
         }
     }
 
+    /**
+     * Is used to submit changes
+     * @param newValue : new wishes value
+     * @throws Exception : Parse exception
+     */
     private void change(String newValue) throws Exception {
         try{
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
@@ -218,6 +256,10 @@ public class Profile implements Initializable {
         }
     }
 
+    /**
+     * Is used when user want to logout
+     * @param event .
+     */
     public void logout(ActionEvent event){
         try {
             out.write(6);
@@ -233,6 +275,10 @@ public class Profile implements Initializable {
         }
     }
 
+    /**
+     * Is used to back
+     * @param event .
+     */
     public void back(ActionEvent event){
         try {
             out.write(7);

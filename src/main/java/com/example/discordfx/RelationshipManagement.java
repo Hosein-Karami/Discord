@@ -48,7 +48,9 @@ public class RelationshipManagement {
         }
     }
 
-
+    /**
+     * Is used to send friendship request to a particular user
+     */
     public void sendRequest() {
         if (requestUsername.getText().isEmpty()) {
             requestText.setText("Enter target username");
@@ -108,6 +110,9 @@ public class RelationshipManagement {
     private int senderIndex = 0;
     private ArrayList<Integer> requestsSenders;
 
+    /**
+     * Is used to initialize pending page
+     */
     public void initialize() {
         try {
             out.write(20);
@@ -121,6 +126,9 @@ public class RelationshipManagement {
         }
     }
 
+    /**
+     * Is used to load next pending user
+     */
     public void nextRequest(){
         if(senderIndex != (requestsSenders.size() - 1)) {
             profileImage_1.setImage(null);
@@ -130,6 +138,9 @@ public class RelationshipManagement {
         }
     }
 
+    /**
+     * Is used to load previous pending user
+     */
     public void previousRequest(){
         if(senderIndex != 0) {
             profileImage_1.setImage(null);
@@ -139,6 +150,9 @@ public class RelationshipManagement {
         }
     }
 
+    /**
+     * Is used to load requests info
+     */
     public void loadInputRequests(){
         try {
             if(requestsSenders.size() == 0){
@@ -158,6 +172,9 @@ public class RelationshipManagement {
         }
     }
 
+    /**
+     * Is used to accept request
+     */
     public void acceptRequest(){
         try {
             out.write(6);
@@ -175,6 +192,9 @@ public class RelationshipManagement {
         }
     }
 
+    /**
+     * Is used to reject request
+     */
     public void rejectRequest(){
         try {
             out.write(6);
@@ -212,6 +232,9 @@ public class RelationshipManagement {
     private int requestIndex;
     private ArrayList<Integer> outputRequests;
 
+    /**
+     * Is used to initialize output requests page
+     */
     public void initialize_2(){
         try {
             out.write(20);
@@ -224,6 +247,9 @@ public class RelationshipManagement {
         }
     }
 
+    /**
+     * Is used to load requests info
+     */
     public void loadOutputRequests(){
         try {
             if(outputRequests.size() == 0){
@@ -240,6 +266,9 @@ public class RelationshipManagement {
         }
     }
 
+    /**
+     * Is used to load next
+     */
     public void next(){
         if(requestIndex != (outputRequests.size() - 1)) {
             profileImage_2.setImage(null);
@@ -249,6 +278,9 @@ public class RelationshipManagement {
         }
     }
 
+    /**
+     * Is used to load previous
+     */
     public void previous(){
         if(requestIndex != 0) {
             profileImage_2.setImage(null);
@@ -258,6 +290,9 @@ public class RelationshipManagement {
         }
     }
 
+    /**
+     * Is used to cancel request
+     */
     public void cancelRequest(){
         try {
             out.write(8);
@@ -281,6 +316,9 @@ public class RelationshipManagement {
     @FXML
     TextField targetUsername;
 
+    /**
+     * Is used to block a particular user
+     */
     public void block(){
         if(targetUsername.getText().isEmpty()){
             text_3.setText("Enter your target username");
@@ -311,6 +349,14 @@ public class RelationshipManagement {
         targetUsername.setText("");
     }
 
+    /**
+     * Is used to load information of users
+     * @param Id : target user's id
+     * @param index : index in arraylist
+     * @param profileImage : target user's profile image
+     * @param status : status of target user
+     * @param username : username of target user
+     */
     private void loadInformation(ArrayList<Integer> Id,int index,ImageView profileImage,ImageView status,Text username){
         try {
             out.write(7);
@@ -342,6 +388,11 @@ public class RelationshipManagement {
         }
     }
 
+    /**
+     * Is used to set image of target user's status
+     * @param status : status of target user
+     * @param imageView : imageview for show status image
+     */
     private void setProperStatusImage(Status status,ImageView imageView){
         Image image = null;
         if(status == Status.Online)
@@ -357,6 +408,10 @@ public class RelationshipManagement {
         imageView.setImage(image);
     }
 
+    /**
+     * Is used to back
+     * @param event .
+     */
     public void backToMenu(ActionEvent event){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));

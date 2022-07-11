@@ -40,6 +40,11 @@ public class ShowNotifications implements Initializable {
         }
     }
 
+    /**
+     * Is used to initialize the fxml page
+     * @param url .
+     * @param resourceBundle .
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -59,6 +64,9 @@ public class ShowNotifications implements Initializable {
         }
     }
 
+    /**
+     * Is used when user want to delete notifications
+     */
     public void deleteNotifications(){
         try {
             out.write(14);
@@ -68,6 +76,10 @@ public class ShowNotifications implements Initializable {
         }
     }
 
+    /**
+     * Is used to back
+     * @param event .
+     */
     public void backToMenu(ActionEvent event){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));

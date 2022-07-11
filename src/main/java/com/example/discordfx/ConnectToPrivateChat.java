@@ -58,6 +58,11 @@ public class ConnectToPrivateChat implements Initializable {
         }
     }
 
+    /**
+     * Is used to initialize the fxml page
+     * @param url .
+     * @param resourceBundle .
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -81,6 +86,9 @@ public class ConnectToPrivateChat implements Initializable {
         }
     }
 
+    /**
+     * s used to load information of people who user has chat with them
+     */
     public void loadInformation(){
         try {
             out.write(4);
@@ -111,6 +119,9 @@ public class ConnectToPrivateChat implements Initializable {
         }
     }
 
+    /**
+     * Is used to load next private chat info
+     */
     public void next(){
         if(index != (usernames.size() - 1)) {
             username.setText("");
@@ -121,6 +132,9 @@ public class ConnectToPrivateChat implements Initializable {
         }
     }
 
+    /**
+     * Is used to load previous private chat info
+     */
     public void previous(){
         if(index != 0) {
             username.setText("");
@@ -131,6 +145,10 @@ public class ConnectToPrivateChat implements Initializable {
         }
     }
 
+    /**
+     * Is used to connect to a private chat
+     * @param event .
+     */
     public void connect(ActionEvent event){
         try {
             out.write(16);
@@ -149,6 +167,10 @@ public class ConnectToPrivateChat implements Initializable {
         }
     }
 
+    /**
+     * Is used to set status image of target user
+     * @param status : status of target user
+     */
     private void setProperStatusImage(Status status){
         Image image = null;
         if(status == Status.Online)

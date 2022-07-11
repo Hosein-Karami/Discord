@@ -35,6 +35,9 @@ public class ChangeServerName {
     @FXML
     Text result;
 
+    /**
+     * Is used to change name of server chat
+     */
     public void changeName(){
         try {
             out.write(1);
@@ -47,6 +50,10 @@ public class ChangeServerName {
         }
     }
 
+    /**
+     * Is used to back
+     * @param event .
+     */
     public void backToMenu(ActionEvent event){
         try {
             out.write(2);

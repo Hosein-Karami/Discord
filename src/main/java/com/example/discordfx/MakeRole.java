@@ -50,6 +50,9 @@ public class MakeRole {
     @FXML
     RadioButton pinMessages;
 
+    /**
+     * Is used to make a role in server
+     */
     public void makeRole(){
         if(roleName.getText().isEmpty()){
             result.setText("Enter name of role");
@@ -76,6 +79,10 @@ public class MakeRole {
         }
     }
 
+    /**
+     * Is used to back
+     * @param event .
+     */
     public void backToMenu(ActionEvent event){
         try {
             out.write(2);
@@ -91,6 +98,10 @@ public class MakeRole {
         }
     }
 
+    /**
+     * Is used to make a proper role with user wishes
+     * @return : proper role
+     */
     private Role getRole(){
         Role role = new Role(roleName.getText());
         if(addChannel.isSelected())

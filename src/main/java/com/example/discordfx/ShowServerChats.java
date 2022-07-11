@@ -56,6 +56,11 @@ public class ShowServerChats implements Initializable {
         }
     }
 
+    /**
+     * Is used to initialize the fxml page
+     * @param url .
+     * @param resourceBundle .
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -68,6 +73,9 @@ public class ShowServerChats implements Initializable {
         }
     }
 
+    /**
+     * Is used to initialize show servers page
+     */
     public void initialize_1() {
         try {
             out.write(20);
@@ -90,10 +98,16 @@ public class ShowServerChats implements Initializable {
         }
     }
 
+    /**
+     * Is used to load servers which user are in
+     */
     public void loadInformation(){
         load(servers.get(serverIndex),serverProfileImage,serverChatName);
     }
 
+    /**
+     * Is used to load next server info
+     */
     public void next(){
         if(serverIndex != (servers.size() - 1)) {
             serverProfileImage.setImage(null);
@@ -102,6 +116,9 @@ public class ShowServerChats implements Initializable {
         }
     }
 
+    /**
+     * Is used to load previous server info
+     */
     public void previous(){
         if(serverIndex != 0) {
             serverProfileImage.setImage(null);
@@ -110,6 +127,10 @@ public class ShowServerChats implements Initializable {
         }
     }
 
+    /**
+     * Is used to connect to a server chat
+     * @param event .
+     */
     public void connect(ActionEvent event){
         DiscordServer.DserverId = servers.get(serverIndex);
         try {
@@ -125,6 +146,10 @@ public class ShowServerChats implements Initializable {
         }
     }
 
+    /**
+     * Is used to make a server chat
+     * @param event .
+     */
     public void makeDserver(ActionEvent event){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("MakeServerChat.fxml"));
@@ -160,6 +185,9 @@ public class ShowServerChats implements Initializable {
     @FXML
     Button rejectButton;
 
+    /**
+     * Is used to initialize invitations for join server chats
+     */
     public void initialize_2(){
         if(invitations.size() == 0){
             nextButton_2.setVisible(false);
@@ -174,12 +202,18 @@ public class ShowServerChats implements Initializable {
         }
     }
 
+    /**
+     * Is used to load invitation's info
+     */
     public void loadInformation_2(){
         Invitation targetInvitation = invitations.get(inviteIndex);
         load(targetInvitation.getServerId(),serverProfileImage_2,serverChatName_2);
         invitationMessage.setText(targetInvitation.getInvitationText());
     }
 
+    /**
+     * Is used to load next invitation's info
+     */
     public void next_2(){
         if(inviteIndex != (invitations.size() - 1)) {
             serverProfileImage_2.setImage(null);
@@ -188,6 +222,9 @@ public class ShowServerChats implements Initializable {
         }
     }
 
+    /**
+     * Is used to load previous invitation's info
+     */
     public void previous_2(){
         if(inviteIndex != 0) {
             serverProfileImage_2.setImage(null);
@@ -196,6 +233,9 @@ public class ShowServerChats implements Initializable {
         }
     }
 
+    /**
+     * Is used to accept invitation
+     */
     public void accept(){
         try {
             out.write(24);
@@ -205,6 +245,9 @@ public class ShowServerChats implements Initializable {
         }
     }
 
+    /**
+     * Is used to reject invitations
+     */
     public void reject(){
         try {
             out.write(24);
@@ -214,6 +257,12 @@ public class ShowServerChats implements Initializable {
         }
     }
 
+    /**
+     * Is used to load a particular server's info
+     * @param serverId : id of target server
+     * @param profile : imageview for show server's profile image
+     * @param serverName : name of target server
+     */
     private void load(int serverId,ImageView profile,Text serverName){
         try {
             out.write(21);
@@ -240,6 +289,10 @@ public class ShowServerChats implements Initializable {
         }
     }
 
+    /**
+     * Is used to send reaction of user to invitations to server
+     * @param reaction : user's reaction
+     */
     private void invitationHandle(String reaction){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
@@ -259,6 +312,10 @@ public class ShowServerChats implements Initializable {
         }
     }
 
+    /**
+     * Is used to back
+     * @param event .
+     */
     public void backToMenu(ActionEvent event){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));

@@ -59,6 +59,11 @@ public class ManageChannels implements Initializable {
     @FXML
     Button limitButton;
 
+    /**
+     * Is used to initialize the fxml page
+     * @param url .
+     * @param resourceBundle .
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -82,6 +87,9 @@ public class ManageChannels implements Initializable {
         }
     }
 
+    /**
+     * Is used to load information of channels
+     */
     public void load() {
         if (channels.size() == 0)
             setUnvisible();
@@ -90,6 +98,9 @@ public class ManageChannels implements Initializable {
         }
     }
 
+    /**
+     * Is used to load next channel's info
+     */
     public void next(){
         if(channelIndex != (channels.size() - 1)) {
             channelIndex++;
@@ -97,6 +108,9 @@ public class ManageChannels implements Initializable {
         }
     }
 
+    /**
+     * Is used to load previous channel's info
+     */
     public void previous(){
         if(channelIndex != 0) {
             channelIndex--;
@@ -104,6 +118,10 @@ public class ManageChannels implements Initializable {
         }
     }
 
+    /**
+     * Is used to join to target channel
+     * @param event .
+     */
     public void join(ActionEvent event){
         if(channels.get(channelIndex).checkIsBanned(member.getUser().getId())){
             result.setText("You are banned to access to this channel");
@@ -126,6 +144,9 @@ public class ManageChannels implements Initializable {
         }
     }
 
+    /**
+     * Is used to delete channel frm server chat
+     */
     public void deleteChannel(){
         try {
             out.write(2);
@@ -140,6 +161,9 @@ public class ManageChannels implements Initializable {
         }
     }
 
+    /**
+     * Is used to limit members to access to a particular channel
+     */
     public void limitMember(){
         if(bannedUsername.getText().isEmpty()){
             result.setText("Enter target username");
@@ -158,6 +182,10 @@ public class ManageChannels implements Initializable {
         bannedUsername.clear();
     }
 
+    /**
+     * Is used to back
+     * @param event .
+     */
     public void backToMenu(ActionEvent event){
         try {
             out.write(4);
@@ -173,6 +201,9 @@ public class ManageChannels implements Initializable {
         }
     }
 
+    /**
+     * Is used set unvisible some fxml component
+     */
     private void setUnvisible(){
         result.setText("There is no channel in this server");
         next.setVisible(false);

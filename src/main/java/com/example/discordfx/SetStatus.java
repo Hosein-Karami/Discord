@@ -33,18 +33,9 @@ public class SetStatus {
         }
     }
 
-
-
-    public void setStyleSheet()
-    {
-        // Get scene
-        Scene scene = text.getScene();
-
-        //Css address
-        String css = this.getClass().getResource("styleSheet/SetStatus.css").toExternalForm();
-        scene.getStylesheets().add(css);
-    }
-
+    /**
+     * Is used when user want to be online
+     */
     public void Online(){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
@@ -55,6 +46,9 @@ public class SetStatus {
         }
     }
 
+    /**
+     * Is used when user want to be idle
+     */
     public void Idle(){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
@@ -65,6 +59,9 @@ public class SetStatus {
         }
     }
 
+    /**
+     * Is used when user want to be disturb
+     */
     public void Do_Not_Disturb(){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
@@ -75,6 +72,9 @@ public class SetStatus {
         }
     }
 
+    /**
+     * Is used when user want to be invisible
+     */
     public void Invisible(){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
@@ -85,6 +85,10 @@ public class SetStatus {
         }
     }
 
+    /**
+     * Is used to back
+     * @param event .
+     */
     public void back(ActionEvent event){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
