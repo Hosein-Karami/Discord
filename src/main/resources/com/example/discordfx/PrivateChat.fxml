@@ -74,7 +74,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="637.0" layoutY="452.0" mnemonicParsing="false" onAction="#clear" prefHeight="38.0" prefWidth="155.0" text="Clear chatbox">
+            <Button layoutX="470.0" layoutY="506.0" mnemonicParsing="false" onAction="#clear" prefHeight="38.0" prefWidth="155.0" text="Clear chatbox">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="muteSetButton" layoutX="637.0" layoutY="452.0" mnemonicParsing="false" onAction="#setMute" prefHeight="38.0" prefWidth="155.0" text="Mute">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

@@ -10,11 +10,15 @@ import com.example.discordfx.Client.RoomHandler.VoiceManagement.AudioPlayer;
 import com.example.discordfx.Moduls.Dto.Messages.FileMessage;
 import javafx.application.Platform;
 import javafx.scene.control.TextArea;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import java.io.*;
 import java.net.Socket;
 
 public class GeneralReciever {
 
+    private boolean mute;
     protected final Socket socket;
     protected InputStream in;
     private final TextArea textArea;
@@ -29,6 +33,10 @@ public class GeneralReciever {
         }
     }
 
+    public void setMute(boolean mute){
+        this.mute = mute;
+    }
+
     /**
      * Is used to show messages in textarea
      * @param message : new message from server
@@ -40,6 +48,7 @@ public class GeneralReciever {
                 textArea.appendText(message + "\n");
             }
         });
+        playNotificationSound();
     }
 
     /**
@@ -50,6 +59,7 @@ public class GeneralReciever {
         try {
             FileMessage message = (FileMessage) inputStream.readObject();
             showMessage(message.getInformation());
+            playNotificationSound();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -64,6 +74,7 @@ public class GeneralReciever {
             byte[] voiceBytes = (byte[]) inputStream.readObject();
             saveVoice(voiceBytes);
             AudioPlayer player = new AudioPlayer(new File("ClientFiles/Voice.wav"));
+            playNotificationSound();
             player.run();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -91,6 +102,22 @@ public class GeneralReciever {
             fileOutputStream.write(voiceBytes);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * Is used to play notification sound
+     */
+    protected void playNotificationSound() {
+        if (!mute) {
+            try {
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("ClientFiles/RecieveNotification.wav"));
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioInputStream);
+                clip.start();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

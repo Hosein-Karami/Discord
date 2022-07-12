@@ -181,56 +181,98 @@ public class User implements Serializable {
         updateInformation();
     }
 
+    /**
+     * Is used to a pending request
+     * @param newPending .
+     */
     public void addPending(Integer newPending){
         information.addPending(newPending);
         updateInformation();
     }
 
+    /**
+     * Is used to a output request
+     * @param Id .
+     */
     public void addOutputRequest(Integer Id){
         information.addOutputRequestUsername(Id);
         updateInformation();
     }
 
+    /**
+     * Is used to add a new notification
+     * @param notification : new notification
+     */
     public void addNotification(Notification notification){
         information.addNotification(notification);
         updateInformation();
     }
 
+    /**
+     * Is used to unblock a user
+     * @param targetId : user's id
+     */
     public void unblock(Integer targetId){
         information.unblock(targetId);
         updateInformation();
     }
 
+    /**
+     * Is used to remove a friend's id
+     * @param targetId : target user's id
+     */
     public void removeFriend(Integer targetId){
         information.removeFriend(targetId);
         updateInformation();
     }
 
+    /**
+     * Is used to delete a notification
+     */
     public void deleteNotifications(){
         information.deleteNotifications();
         updateInformation();
     }
 
+    /**
+     * Is used to remove a pending request
+     * @param targetId : target pending's id
+     */
     public void removePending(Integer targetId){
         information.removePending(targetId);
         updateInformation();
     }
 
+    /**
+     * Is used to remove a server chat with id
+     * @param targetServerChat : Id of target server chat
+     */
     public void removeServerChat(Integer targetServerChat){
         information.removeDiscordServer(targetServerChat);
         updateInformation();
     }
 
+    /**
+     * Is used to remove an invitation
+     * @param targetInvitation : Id of target invitation
+     */
     public void removeInvitation(Invitation targetInvitation){
         information.removeInvitation(targetInvitation);
         updateInformation();
     }
 
+    /**
+     * Is used to remove an output request
+     * @param targetId :
+     */
     public void removeOutputRequest(Integer targetId){
         information.removeOutputRequest(targetId);
         updateInformation();
     }
 
+    /**
+     * Is used to update user's field's values after each change
+     */
     public void updateInformation() {
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("Files/UsersInfo/"+this.getId()+".bin"))){
             outputStream.writeObject(information);

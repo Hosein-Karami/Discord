@@ -6,10 +6,12 @@
 
 package com.example.discordfx;
 
+import com.example.discordfx.Client.RoomHandler.FileReaderService;
 import com.example.discordfx.Client.RoomHandler.Reciever.PrivateChatReciever;
 import com.example.discordfx.Client.RoomHandler.Sender.PrivateChatSender;
 import com.example.discordfx.Client.RoomHandler.VoiceManagement.Recorder;
 import com.example.discordfx.Moduls.Dto.User.User;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,8 +22,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
-import javafx.event.ActionEvent;
 import javafx.stage.Stage;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import java.io.File;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -31,12 +35,11 @@ import java.util.ResourceBundle;
 
 public class PrivateChat implements Initializable {
 
+    private PrivateChatReciever reciever;
     private PrivateChatSender sender;
     private Recorder voiceRecorder;
+    private boolean mute;
     private final FileChooser fileChooser = new FileChooser();
-    {
-        fileChooser.setTitle("Discord");
-    }
 
     @FXML
     TextField textField;
@@ -44,6 +47,8 @@ public class PrivateChat implements Initializable {
     Button sendVoice;
     @FXML
     Button cancelVoice;
+    @FXML
+    Button muteSetButton;
     @FXML
     TextArea messages;
 
@@ -61,13 +66,24 @@ public class PrivateChat implements Initializable {
             Socket socket = new Socket(Start.hostIp, port);
             ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
             outputStream.writeObject(user.getUsername());
-            sender = new PrivateChatSender(socket, user.getUsername());
-            PrivateChatReciever reciever = new PrivateChatReciever(socket, messages);
+            sender = new PrivateChatSender(socket, user.getUsername(),messages);
+            reciever = new PrivateChatReciever(socket, messages);
             Start.executorService.execute(reciever);
-            System.out.println("9");
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void setMute(){
+        if(mute){
+            mute = false;
+            muteSetButton.setText("Mute");
+        }
+        else {
+            mute = true;
+            muteSetButton.setText("Unmute");
+        }
+        reciever.setMute(mute);
     }
 
     /**
@@ -76,6 +92,7 @@ public class PrivateChat implements Initializable {
     public void sendMessage(){
         if(!(sendVoice.isVisible())) {
             sender.sendText(textField.getText());
+            playNotificationSound();
             textField.clear();
         }
     }
@@ -88,8 +105,11 @@ public class PrivateChat implements Initializable {
         if (!(sendVoice.isVisible())) {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             File file = fileChooser.showOpenDialog(stage);
-            if (file != null)
-                sender.sendFile(file);
+            if (file != null) {
+                FileReaderService service = new FileReaderService(file,sender);
+                Start.executorService.execute(service);
+                playNotificationSound();
+            }
         }
     }
 
@@ -114,6 +134,7 @@ public class PrivateChat implements Initializable {
     public void sendVoice(){
         voiceRecorder.stop();
         sender.sendVoice();
+        playNotificationSound();
         sendVoice.setVisible(false);
         cancelVoice.setVisible(false);
     }
@@ -150,6 +171,19 @@ public class PrivateChat implements Initializable {
             stage.show();
         }catch (Exception e){
             e.printStackTrace();
+        }
+    }
+
+    private void playNotificationSound() {
+        if (!mute) {
+            try {
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("ClientFiles/SendNotification.wav"));
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioInputStream);
+                clip.start();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

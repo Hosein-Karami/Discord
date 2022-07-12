@@ -17,6 +17,10 @@ public class FileDao implements GeneralDao{
     private UserDaoLog log = new UserDaoLog();
     private static final HashMap<Integer,String> usersInfo = new HashMap<>();
 
+    /**
+     * Is used to insert a new user to database
+     * @param userEntity : entity refrence of new user
+     */
     @Override
     public void insert(UserEntity userEntity) {
         File file = new File(getValidPath(userEntity.getUsername()));
@@ -33,6 +37,12 @@ public class FileDao implements GeneralDao{
         }
     }
 
+    /**
+     * Is used when a user want to login
+     * @param username : username of user
+     * @param password : password of user
+     * @return : if password and username are true return entity refrence of user,else return null
+     */
     @Override
     public UserEntity logIn(String username, String password) {
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(getValidPath(username)))){
@@ -51,6 +61,11 @@ public class FileDao implements GeneralDao{
         }
     }
 
+    /**
+     * Is used to get a user with his/her username
+     * @param username : username of target user
+     * @return : if username is validated,return entity refrence of user,else return null
+     */
     @Override
     public UserEntity getParticularUser(String username) {
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(getValidPath(username)))){
@@ -63,6 +78,11 @@ public class FileDao implements GeneralDao{
         }
     }
 
+    /**
+     * Is used to get a user with his/her id
+     * @param id : id of target user
+     * @return : if id is validated,return entity refrence of user,else return null
+     */
     @Override
     public UserEntity getParticularUser(int id) {
         String targetUsername = usersInfo.get(id);
@@ -78,6 +98,11 @@ public class FileDao implements GeneralDao{
         }
     }
 
+    /**
+     * Is used when user want to change his/her username
+     * @param username : old username
+     * @param newUsername : new username
+     */
     @Override
     public void changeUsername(String username, String newUsername) {
         int targetId = 0;
@@ -110,6 +135,11 @@ public class FileDao implements GeneralDao{
         }
     }
 
+    /**
+     * Is used when a user want to change his/her password
+     * @param targetUsername : user's username
+     * @param newPassword : new password
+     */
     @Override
     public void changePassword(String targetUsername, String newPassword) {
         UserEntity targetUser;
@@ -128,6 +158,11 @@ public class FileDao implements GeneralDao{
         }
     }
 
+    /**
+     * Is used when a user want to change his/her email
+     * @param targetUsername : user's username
+     * @param newEmail : new email
+     */
     @Override
     public void changeEmail(String targetUsername, String newEmail) {
         UserEntity targetUser;
@@ -146,6 +181,11 @@ public class FileDao implements GeneralDao{
         }
     }
 
+    /**
+     * Is used when a user want to change his/her phone
+     * @param targetUsername : user's username
+     * @param newPhone : new phone
+     */
     @Override
     public void changePhone(String targetUsername, String newPhone) {
         UserEntity targetUser;

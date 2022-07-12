@@ -22,6 +22,10 @@ public class SqlDao implements GeneralDao{
         }
     }
 
+    /**
+     * Is used to insert a new user to database
+     * @param userEntity : entity refrence of new user
+     */
     @Override
     public void insert(UserEntity userEntity) {
         try {
@@ -38,6 +42,12 @@ public class SqlDao implements GeneralDao{
         }
     }
 
+    /**
+     * Is used when a user want to login
+     * @param username : username of user
+     * @param password : password of user
+     * @return : if password and username are true return entity refrence of user,else return null
+     */
     @Override
     public UserEntity logIn(String username,String password) {
         try {
@@ -59,6 +69,11 @@ public class SqlDao implements GeneralDao{
         }
     }
 
+    /**
+     * Is used to get a user with his/her username
+     * @param username : username of target user
+     * @return : if username is validated,return entity refrence of user,else return null
+     */
     @Override
     public UserEntity getParticularUser(String username) {
         try {
@@ -78,6 +93,11 @@ public class SqlDao implements GeneralDao{
         }
     }
 
+    /**
+     * Is used to get a user with his/her id
+     * @param id : id of target user
+     * @return : if id is validated,return entity refrence of user,else return null
+     */
     @Override
     public UserEntity getParticularUser(int id) {
         try {
@@ -95,6 +115,11 @@ public class SqlDao implements GeneralDao{
         }
     }
 
+    /**
+     * Is used when user want to change his/her username
+     * @param username : old username
+     * @param newUsername : new username
+     */
     @Override
     public void changeUsername(String username,String newUsername) {
         try {
@@ -110,6 +135,11 @@ public class SqlDao implements GeneralDao{
         }
     }
 
+    /**
+     * Is used when a user want to change his/her password
+     * @param targetUsername : user's username
+     * @param newPassword : new password
+     */
     @Override
     public void changePassword(String targetUsername,String newPassword) {
         try {
@@ -124,6 +154,11 @@ public class SqlDao implements GeneralDao{
         }
     }
 
+    /**
+     * Is used when a user want to change his/her email
+     * @param targetUsername : user's username
+     * @param newEmail : new email
+     */
     @Override
     public void changeEmail(String targetUsername,String newEmail) {
         try {
@@ -138,6 +173,11 @@ public class SqlDao implements GeneralDao{
         }
     }
 
+    /**
+     * Is used when a user want to change his/her phone
+     * @param targetUsername : user's username
+     * @param newPhone : new phone
+     */
     @Override
     public void changePhone(String targetUsername,String newPhone) {
         try {

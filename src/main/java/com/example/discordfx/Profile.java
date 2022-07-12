@@ -20,9 +20,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -34,6 +37,22 @@ import java.util.ResourceBundle;
 
 public class Profile implements Initializable {
 
+    public AnchorPane background;
+    public Button logout;
+    public Label iconContainer;
+    public ImageView icon;
+    public Pane see;
+    public Label profileContainer;
+    public Label phoneTxt;
+    public Label passwordTxt;
+    public Label usernameTxt;
+    public Label emailTxt;
+    public Label emailLabel;
+    public Label usernameLabel;
+    public Label phoneNumberLabel;
+    public Label passwordLabel;
+    public Button changeProfileButton;
+    public Pane change;
     @FXML
     ImageView imageView;
     @FXML
@@ -123,14 +142,6 @@ public class Profile implements Initializable {
     }
 
     /**
-     * Is used when user want to chane his/her username
-     */
-    public void wantToChangeUsername(){
-        newUsername.setVisible(true);
-        changeUsernameButton.setVisible(true);
-    }
-
-    /**
      * finalize change
      */
     public void changeUsername(){
@@ -145,8 +156,7 @@ public class Profile implements Initializable {
                 text.setText("Username changed successfully");
                 user.setUsername(newUsername.getText());
                 username.setText("Username : " + newUsername.getText());
-                changeUsernameButton.setVisible(false);
-                newUsername.setVisible(false);
+                newUsername.clear();
             }
             else
                 text.setText("This username is used before");
@@ -159,14 +169,6 @@ public class Profile implements Initializable {
     }
 
     /**
-     * Is used when user want to chane his/her password
-     */
-    public void wantToChangePass(){
-        newPassword.setVisible(true);
-        changePassButton.setVisible(true);
-    }
-
-    /**
      * finalize change
      */
     public void changePassword(){
@@ -176,21 +178,12 @@ public class Profile implements Initializable {
             change(newPassword.getText());
             password.setText("Password : " + newPassword.getText());
             user.setPassword(newPassword.getText());
-            newPassword.setVisible(false);
-            changePassButton.setVisible(false);
+            newPassword.clear();
         } catch (PasswordException e) {
             text.setText(e.getErrorMessage());
         }catch (Exception e){
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Is used when user want to chane his/her email
-     */
-    public void wantToChangeEmail(){
-        newEmail.setVisible(true);
-        changeEmailButton.setVisible(true);
     }
 
     /**
@@ -203,22 +196,13 @@ public class Profile implements Initializable {
             change(newEmail.getText());
             email.setText("Email : " + newEmail.getText());
             user.setEmail(newEmail.getText());
-            newEmail.setVisible(false);
-            changeEmailButton.setVisible(false);
+            newEmail.clear();
         }catch (EmailException e){
             text.setText(e.getErrorMessage());
         }
         catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Is used when user want to chane his/her phone
-     */
-    public void wantToChangePhone(){
-        newPhone.setVisible(true);
-        changePhoneButton.setVisible(true);
     }
 
     /**
@@ -231,8 +215,7 @@ public class Profile implements Initializable {
             change(newPhone.getText());
             phone.setText("Phone : " + newPhone.getText());
             user.setPhone(newPhone.getText());
-            newPhone.setVisible(false);
-            changePhoneButton.setVisible(false);
+            newPhone.clear();
         } catch (PhoneException e) {
             text.setText(e.getErrorMessage());
         }catch (Exception e){

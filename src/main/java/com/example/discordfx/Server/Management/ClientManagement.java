@@ -12,7 +12,6 @@ import com.example.discordfx.Moduls.Dto.User.User;
 import com.example.discordfx.Server.Service.DserverService;
 import com.example.discordfx.Server.Service.ProfileService;
 import com.example.discordfx.Server.Start.Server;
-
 import java.io.*;
 import java.net.Socket;
 import java.nio.file.Files;
@@ -41,6 +40,9 @@ public class ClientManagement implements Runnable{
         friendshipManagement = new FriendshipManagement(clientSocket);
     }
 
+    /**
+     * Is used to management client's requests
+     */
     @Override
     public void run() {
         while (true) {
@@ -61,11 +63,16 @@ public class ClientManagement implements Runnable{
         }
     }
 
+    /**
+     * Is used when user log in
+     * @param user : refrence of user who log in
+     */
     private void start(User user){
         this.user = user;
         while (true) {
             try {
                 int choose = in.read();
+                user.loadInformation();
                 if (choose == 1) {
                     ProfileService profileService = new ProfileService(user, clientSocket);
                     profileService.start();
@@ -122,6 +129,9 @@ public class ClientManagement implements Runnable{
         }
     }
 
+    /**
+     * Is used to send a user information
+     */
     private void sendUserInfo(){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
@@ -131,6 +141,9 @@ public class ClientManagement implements Runnable{
         }
     }
 
+    /**
+     * Is used when user want to download a file from server
+     */
     private void downloadFile(){
         while (true) {
             try {
@@ -155,6 +168,9 @@ public class ClientManagement implements Runnable{
         }
     }
 
+    /**
+     * Is used to send notifications of user
+     */
     private void sendNotifications(){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
@@ -166,20 +182,22 @@ public class ClientManagement implements Runnable{
         }
     }
 
+    /**
+     * Is used to connect to a private chat
+     */
     public void connectToPrivateChat(){
         try {
-            System.out.println("0");
             ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
-            System.out.println("1");
             Integer port = (Integer) inputStream.readObject();
-            System.out.println("2");
             chatManagement.connectToPrivateChat(user,port,clientSocket);
-            System.out.println("3");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * Is used to connect to a server chat
+     */
     private void connectToServerChat(){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
@@ -191,6 +209,9 @@ public class ClientManagement implements Runnable{
         }
     }
 
+    /**
+     * Is used to send previous messages of a chat to user
+     */
     private void sendUserServerChats(){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());

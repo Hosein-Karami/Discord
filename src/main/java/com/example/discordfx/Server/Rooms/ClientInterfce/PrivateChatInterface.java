@@ -28,9 +28,9 @@ public class PrivateChatInterface extends GeneralInterface implements Runnable{
                 inputStream = new ObjectInputStream(clientSocket.getInputStream());
                 temp = (String) inputStream.readObject();
                 if(!(temp.equals("#EXIT"))) {
-                    chat.sendMessage(temp);
+                    chat.sendMessage(temp,clientSocket);
                     String Info = (String) inputStream.readObject();
-                    chat.sendMessage(Info);
+                    chat.sendMessage(Info,clientSocket);
                 }
                 switch (temp) {
                     case "#TEXT" -> sendTextMessage(inputStream);

@@ -6,6 +6,7 @@
 
 package com.example.discordfx;
 
+import com.example.discordfx.Client.RoomHandler.FileReaderService;
 import com.example.discordfx.Client.RoomHandler.Reciever.ChannelChatReciever;
 import com.example.discordfx.Client.RoomHandler.Sender.ChannelChatSender;
 import com.example.discordfx.Client.RoomHandler.VoiceManagement.Recorder;
@@ -22,6 +23,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import java.io.File;
 import java.io.ObjectInputStream;
 import java.net.Socket;
@@ -30,8 +34,10 @@ import java.util.ResourceBundle;
 
 public class ChannelChat implements Initializable {
 
+    private boolean mute;
     private boolean sendTagMessage = false;
     private Member member;
+    private ChannelChatReciever reciever;
     private ChannelChatSender sender;
     private Recorder voiceRecorder;
     private final FileChooser fileChooser = new FileChooser();
@@ -57,6 +63,8 @@ public class ChannelChat implements Initializable {
     Button dislikeButton;
     @FXML
     Button smileButton;
+    @FXML
+    Button muteSetButton;
 
     /**
      * Is used to initialize the fxml page
@@ -71,12 +79,24 @@ public class ChannelChat implements Initializable {
             member = (Member) inputStream.readObject();
             String memberUsername = (String) inputStream.readObject();
             Socket socket = new Socket(Start.hostIp, port);
-            sender = new ChannelChatSender(socket, memberUsername);
-            ChannelChatReciever reciever = new ChannelChatReciever(messages, socket);
+            sender = new ChannelChatSender(socket, memberUsername,messages);
+            reciever = new ChannelChatReciever(messages, socket);
             Start.executorService.execute(reciever);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void setMute(){
+        if(mute){
+            mute = false;
+            muteSetButton.setText("Mute");
+        }
+        else {
+            mute = true;
+            muteSetButton.setText("Unmute");
+        }
+        reciever.setMute(mute);
     }
 
     /**
@@ -95,6 +115,7 @@ public class ChannelChat implements Initializable {
     public void sendMessage(){
         if(!(sendVoice.isVisible())) {
             sender.sendText(textField.getText());
+            playNotificationSound();
             textField.clear();
         }
     }
@@ -107,8 +128,11 @@ public class ChannelChat implements Initializable {
         if (!(sendVoice.isVisible())) {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             File file = fileChooser.showOpenDialog(stage);
-            if (file != null)
-                sender.sendFile(file);
+            if (file != null) {
+                FileReaderService service = new FileReaderService(file,sender);
+                Start.executorService.execute(service);
+                playNotificationSound();
+            }
         }
     }
 
@@ -133,6 +157,7 @@ public class ChannelChat implements Initializable {
     public void sendVoice(){
         voiceRecorder.stop();
         sender.sendVoice();
+        playNotificationSound();
         sendVoice.setVisible(false);
         cancelVoice.setVisible(false);
     }
@@ -250,8 +275,18 @@ public class ChannelChat implements Initializable {
      */
     public void sendTaggedMessage(){
         sender.tagMember(textField.getText(),tempTextField.getText());
+        playNotificationSound();
         tempTextField.setVisible(false);
         sendTagMessage = false;
+        textField.clear();
+        tempTextField.clear();
+    }
+
+    /**
+     * Is used when user want to clear messages
+     */
+    public void clearTextBox(){
+        messages.clear();
     }
 
     /**
@@ -270,6 +305,19 @@ public class ChannelChat implements Initializable {
             stage.show();
         }catch (Exception e){
             e.printStackTrace();
+        }
+    }
+
+    private void playNotificationSound() {
+        if (!mute) {
+            try {
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("ClientFiles/SendNotification.wav"));
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioInputStream);
+                clip.start();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

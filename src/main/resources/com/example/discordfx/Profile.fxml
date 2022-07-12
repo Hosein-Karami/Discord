@@ -3,6 +3,7 @@
 <?import java.net.URL?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,128 +11,150 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.discordfx.Profile">
+<AnchorPane fx:id="background" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.discordfx.Profile">
    <stylesheets>
       <URL value="@StyleSheet/Profile.css" />
    </stylesheets>
    <children>
-      <Pane fx:id="pane" layoutX="113.0" layoutY="112.0" prefHeight="500.0" prefWidth="698.0">
+      <Pane fx:id="pane" layoutX="66.0" layoutY="79.0" prefHeight="569.0" prefWidth="768.0">
          <children>
-            <Pane fx:id="see" layoutX="18.0" layoutY="56.0" prefHeight="388.0" prefWidth="329.0">
-               <children>
-                  <Text fx:id="password" layoutX="14.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="217.73668670654286">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="email" layoutX="14.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="235.0">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="phone" layoutX="14.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone" wrappingWidth="335.783935546875">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="username" layoutX="14.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="268.73668670654286">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
-                  <ImageView fx:id="imageView" fitHeight="138.0" fitWidth="153.0" layoutX="79.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button layoutX="254.0" layoutY="175.0" mnemonicParsing="false" onAction="#wantToChangeUsername" prefHeight="26.0" prefWidth="64.0" text="Change">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button layoutX="254.0" layoutY="287.0" mnemonicParsing="false" onAction="#wantToChangePhone" prefHeight="26.0" prefWidth="64.0" text="Change">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button layoutX="254.0" layoutY="247.0" mnemonicParsing="false" onAction="#wantToChangeEmail" prefHeight="26.0" prefWidth="64.0" text="Change">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button layoutX="254.0" layoutY="213.0" mnemonicParsing="false" onAction="#wantToChangePass" prefHeight="26.0" prefWidth="64.0" text="Change">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button layoutX="247.0" layoutY="140.0" mnemonicParsing="false" onAction="#setPicture" text="Edit picture">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-               </children>
-            </Pane>
-            <Button layoutX="617.0" layoutY="450.0" mnemonicParsing="false" onAction="#back" prefHeight="26.0" prefWidth="64.0" text="Back">
+            <Button layoutX="639.0" layoutY="518.0" mnemonicParsing="false" onAction="#back" prefHeight="26.0" prefWidth="100.0" text="Back">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Pane fx:id="edit" layoutX="351.0" layoutY="56.0" prefHeight="388.0" prefWidth="329.0">
+            <Button fx:id="logout" layoutX="320.0" layoutY="510.0" mnemonicParsing="false" onAction="#logout" prefHeight="38.0" prefWidth="145.0" text="Log out">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label fx:id="iconContainer" layoutX="296.0" layoutY="-76.0">
+               <graphic>
+                  <ImageView fx:id="icon" fitHeight="143.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+            </Label>
+            <Pane fx:id="see" layoutX="33.0" layoutY="142.0" prefHeight="350.0" prefWidth="417.0">
                <children>
-                  <TextField fx:id="newEmail" layoutX="14.0" layoutY="250.0" prefHeight="26.0" prefWidth="235.0" promptText="New email" text="New email" visible="false">
-                     <cursor>
-                        <Cursor fx:constant="TEXT" />
-                     </cursor>
-                  </TextField>
-                  <TextField fx:id="newPassword" layoutX="14.0" layoutY="213.0" prefHeight="26.0" prefWidth="235.0" promptText="New password" text="New password" visible="false">
-                     <cursor>
-                        <Cursor fx:constant="TEXT" />
-                     </cursor>
-                  </TextField>
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Change" visible="false">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <TextField fx:id="newPhone" layoutX="14.0" layoutY="287.0" prefHeight="26.0" prefWidth="235.0" promptText="New phone" text="new Phone " visible="false">
-                     <cursor>
-                        <Cursor fx:constant="TEXT" />
-                     </cursor>
-                  </TextField>
-                  <TextField fx:id="newUsername" layoutX="14.0" layoutY="174.0" prefHeight="26.0" prefWidth="235.0" promptText="New username" text="New username" visible="false">
-                     <cursor>
-                        <Cursor fx:constant="TEXT" />
-                     </cursor>
-                  </TextField>
-                  <Button fx:id="changeUsernameButton" layoutX="251.0" layoutY="174.0" mnemonicParsing="false" onAction="#changeUsername" prefHeight="26.0" prefWidth="64.0" text="Ok" visible="false">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="changePassButton" layoutX="251.0" layoutY="213.0" mnemonicParsing="false" onAction="#changePassword" prefHeight="26.0" prefWidth="64.0" text="ok" visible="false">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="changeEmailButton" layoutX="251.0" layoutY="250.0" mnemonicParsing="false" onAction="#changeEmail" prefHeight="26.0" prefWidth="64.0" text="Ok" visible="false">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="changePhoneButton" layoutX="251.0" layoutY="287.0" mnemonicParsing="false" onAction="#changePhone" prefHeight="26.0" prefWidth="64.0" text="Ok" visible="false">
+                  <Label fx:id="profileContainer" layoutX="26.0" layoutY="42.0">
+                     <graphic>
+                        <ImageView fx:id="imageView" fitHeight="181.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </Label>
+                  <Label fx:id="phoneTxt" layoutX="189.0" layoutY="196.0" prefHeight="28.0" prefWidth="200.0">
+                     <graphic>
+                        <Text fx:id="phone" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="200.783935546875">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </graphic>
+                  </Label>
+                  <Label fx:id="passwordTxt" layoutX="189.0" layoutY="266.0">
+                     <graphic>
+                        <Text fx:id="password" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="200.73668670654286">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </graphic>
+                  </Label>
+                  <Label fx:id="usernameTxt" layoutX="189.0" layoutY="126.0">
+                     <graphic>
+                        <Text fx:id="username" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="200.73668670654286">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </graphic>
+                  </Label>
+                  <Label fx:id="emailTxt" layoutX="189.0" layoutY="56.0">
+                     <graphic>
+                        <Text fx:id="email" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="200.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </graphic>
+                  </Label>
+                  <Label fx:id="emailLabel" layoutX="189.0" layoutY="29.0" text="Email" />
+                  <Label fx:id="usernameLabel" layoutX="189.0" layoutY="99.0" text="Username" />
+                  <Label fx:id="phoneNumberLabel" layoutX="190.0" layoutY="169.0" text="Phnoe Number" />
+                  <Label fx:id="passwordLabel" layoutX="190.0" layoutY="239.0" text="Password" />
+                  <Button fx:id="changeProfileButton" layoutX="35.0" layoutY="266.0" mnemonicParsing="false" onAction="#setPicture" prefHeight="40.0" prefWidth="137.0" text="Change Profile">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
                </children>
             </Pane>
-            <Text fx:id="text" layoutX="179.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="335.783935546875">
+            <Pane fx:id="change" layoutX="465.0" layoutY="142.0" prefHeight="350.0" prefWidth="275.0">
+               <children>
+                  <Button fx:id="changePhoneButton" layoutX="87.0" layoutY="214.0" mnemonicParsing="false" onAction="#changePhone" prefHeight="30.0" prefWidth="182.0" text="Change Phone Number">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="changeEmailButton" layoutX="87.0" layoutY="294.0" mnemonicParsing="false" onAction="#changeEmail" prefHeight="30.0" prefWidth="182.0" text="Change Email">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="changePassButton" layoutX="87.0" layoutY="54.0" mnemonicParsing="false" onAction="#changePassword" prefHeight="30.0" prefWidth="182.0" text="Change Password">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Label layoutX="14.0" layoutY="254.0" prefHeight="30.0" prefWidth="200.0">
+                     <graphic>
+                        <TextField fx:id="newEmail" prefHeight="26.0" prefWidth="235.0" promptText="New email">
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </TextField>
+                     </graphic>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="200.0">
+                     <graphic>
+                        <TextField fx:id="newPassword" prefHeight="26.0" prefWidth="235.0" promptText="New password">
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </TextField>
+                     </graphic>
+                  </Label>
+                  <Label layoutX="15.0" layoutY="174.0" prefHeight="30.0" prefWidth="200.0">
+                     <graphic>
+                        <TextField fx:id="newPhone" prefHeight="26.0" prefWidth="235.0" promptText="New phone">
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </TextField>
+                     </graphic>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="94.0" prefHeight="30.0" prefWidth="200.0">
+                     <graphic>
+                        <TextField fx:id="newUsername" prefHeight="26.0" prefWidth="235.0" promptText="New username">
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </TextField>
+                     </graphic>
+                  </Label>
+                  <Button fx:id="changeUsernameButton" layoutX="87.0" layoutY="134.0" mnemonicParsing="false" onAction="#changeUsername" prefHeight="30.0" prefWidth="182.0" text="Change Username">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+               </children>
+            </Pane>
+            <Text fx:id="text" layoutX="167.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="451.5392761230469">
                <font>
-                  <Font size="16.0" />
+                  <Font size="21.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
             </Text>
          </children>
       </Pane>
-      <Button layoutX="411.0" layoutY="634.0" mnemonicParsing="false" onAction="#logout" text="Log out">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
    </children>
 </AnchorPane>

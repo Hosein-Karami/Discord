@@ -74,7 +74,9 @@ public class RelationshipManagement {
                     if (Status.equals("OK")) {
                         Status = (String) inputStream.readObject();
                         if (Status.equals("OK")) {
-                            requestText.setText((String) inputStream.readObject());
+                            requestText.setStyle("-fx-fill: #00f626");
+                            Status = (String) inputStream.readObject();
+                            requestText.setText(Status + " to " + requestUsername.getText());
                             out.write(20);
                             inputStream = new ObjectInputStream(in);
                             user = (User) inputStream.readObject();

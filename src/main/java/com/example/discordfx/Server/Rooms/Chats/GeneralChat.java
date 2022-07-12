@@ -20,9 +20,11 @@ public abstract class GeneralChat {
 
     public abstract void join(Socket joinedSocket);
 
-    synchronized public <T> void sendMessage(T t){
+    synchronized public <T> void sendMessage(T t,Socket clientSocket){
         ObjectOutputStream outputStream;
         for(Socket x : joinSockets) {
+            if(x == clientSocket)
+                continue;
             if(x.isClosed())
                 joinSockets.remove(x);
             else {

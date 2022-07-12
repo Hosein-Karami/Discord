@@ -1,3 +1,31 @@
+.textField
+{
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-background-color: #000000;
+}
+
+
+#background
+{
+    -fx-background-color: #999999;
+}
+
+.button
+{
+    -fx-background-color: 
+        #090a0c,
+        linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+        linear-gradient(#20262b, #191d22),
+        radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
+    -fx-background-radius: 20;
+    -fx-background-insets: 0,1,2,0;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-weight: bold;
+    -fx-font-size: 17px;
+}
+
 #pane
 {
     -fx-background-color: #8a2be2;
@@ -5,38 +33,135 @@
 }
 
 
+.label
+{
+    -fx-border-width: 2px;
+    -fx-border-color: #000000;
+    -fx-border-radius: 5px;
+}
+
+#changePhoneButton
+{
+    -fx-font-size: 14px;
+}
+
+#changeEmailButton
+{
+    -fx-font-size: 14px;
+}
+
+#changePassButton
+{
+    -fx-font-size: 14px;
+}
+
+#changePhoneButton
+{
+    -fx-font-size: 14px;
+}
+
+#changeUsernameButton
+{
+    -fx-font-size: 14px;
+}
+
+#profileContainer
+{
+    -fx-border-radius: 360;
+}
+
+#changeProfileButton
+{
+    -fx-font-size: 14px;
+}
+
+#icon
+{
+    -fx-image: url(Icon/profileIcon.png);
+}
+
+#iconContainer
+{
+    -fx-background-color: #999999;
+    -fx-background-radius: 360;
+    -fx-padding: 15;
+    -fx-border-width: 0;
+}
+
+
 #see
 {
-    -fx-background-color: #ffffff;
+    -fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 0.0%, #fcdfe8ff 0.0%, #b6fefcff 100.0%);
     -fx-background-radius: 20;
 }
 
-#edit
+
+#change
 {
-    -fx-background-color: #ffffff;
+    -fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 0.0%, #fcdfe8ff 0.0%, #b6fefcff 100.0%);
     -fx-background-radius: 20;
 }
 
-#password
+#logout
 {
-    -fx-border-width: 2px;
-    -fx-border-color: black;
-    -fx-background-color: #000000;
+    -fx-text-fill: red;
+    -fx-font-size: 21;
 }
 
 
-#imageView
+#passwordLabel
 {
-    -fx-background-color: #000000;
-    -fx-background-radius: 40;
-    -fx-border-width: 2px;
-    -fx-border-color: black;
+    -fx-border-width: 0;
+    -fx-font-size: 17;
+    -fx-font-weight: bold;
+}
+
+#emailLabel
+{
+    -fx-border-width: 0;
+    -fx-font-size: 17;
+    -fx-font-weight: bold;
+}
+
+#phoneNumberLabel
+{
+    -fx-border-width: 0;
+    -fx-font-size: 17;
+    -fx-font-weight: bold;
+}
+
+#usernameLabel
+{
+    -fx-border-width: 0;
+    -fx-font-size: 17;
+    -fx-font-weight: bold;
 }
 
 
-.textField
+#usernameTxt
 {
-    -fx-border-width: 2px;
-    -fx-border-color: black;
-    -fx-background-color: #000000;
+    -fx-border-width: 0;
+    -fx-padding: 4;
+    -fx-background-color: rgba(102,102,102, 0.4);
+}
+
+#emailTxt
+{
+    -fx-border-width: 0;
+    -fx-padding: 4;
+    -fx-background-color: rgba(102,102,102, 0.4);
+}
+
+#phoneTxt
+{
+    -fx-border-width: 0;
+    -fx-padding: 4;
+    -fx-background-color: rgba(102,102,102, 0.4);
+}
+
+#passwordTxt
+{
+    -fx-border-width: 0;
+    -fx-padding: 4;
+    -fx-background-color: rgba(102,102,102, 0.4);
 }

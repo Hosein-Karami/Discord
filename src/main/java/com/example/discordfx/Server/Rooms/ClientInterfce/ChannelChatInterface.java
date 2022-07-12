@@ -32,9 +32,9 @@ public class ChannelChatInterface extends GeneralInterface implements Runnable{
                 temp = (String) inputStream.readObject();
                 if((!(temp.equals("#PIN"))) && (!(temp.equals("#GETPIN"))) && (!(temp.equals("#REACT"))) &&
                         (!(temp.equals("#EXIT"))) && (!(temp.equals("#TAG")))) {
-                    chat.sendMessage(temp);
+                    chat.sendMessage(temp,clientSocket);
                     String Info = (String) inputStream.readObject();
-                    chat.sendMessage(Info);
+                    chat.sendMessage(Info,clientSocket);
                 }
                 switch (temp) {
                     case "#TEXT" -> sendTextMessage(inputStream);
@@ -83,8 +83,10 @@ public class ChannelChatInterface extends GeneralInterface implements Runnable{
                     reactEmoji = "\uD83D\uDE00";
                 TextMessage reactMessage = new TextMessage(reactorUsername,"React : "+reactEmoji+"  react message : "+
                         chat.getParticularMessage(messageNumber - 1).getText());
-                chat.sendMessage("#REACT");
-                chat.sendMessage(reactMessage.getInformation());
+                chat.sendMessage("#REACT",clientSocket);
+                chat.sendMessage(reactMessage.getInformation(),clientSocket);
+                chat.sendMessageToParticularSocket("#REACT",clientSocket);
+                chat.sendMessageToParticularSocket(reactMessage.getInformation(),clientSocket);
                 chat.addMessage(reactMessage);
             }
         } catch (Exception e) {
@@ -100,8 +102,8 @@ public class ChannelChatInterface extends GeneralInterface implements Runnable{
             AccountsService service = new AccountsService();
             User targetUser = service.getParticularUser(taggedUsername);
             if((targetUser != null) && (((ChannelChat)chat).getDserver().getParticularMember(targetUser.getId()) != null)){
-                chat.sendMessage("#TAGMESSAGE");
-                chat.sendMessage(message.getInformation());
+                chat.sendMessage("#TAGMESSAGE",clientSocket);
+                chat.sendMessage(message.getInformation(),clientSocket);
                 Notification notification = new Notification("You are tagged,"+message.getInformation());
                 targetUser.addNotification(notification);
             }

@@ -8,6 +8,9 @@ package com.example.discordfx.Client.RoomHandler.Sender;
 
 import com.example.discordfx.Moduls.Dto.Messages.FileMessage;
 import com.example.discordfx.Moduls.Dto.Messages.TextMessage;
+import javafx.application.Platform;
+import javafx.scene.control.TextArea;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -19,14 +22,16 @@ public class GeneralSender {
 
     protected OutputStream out;
     protected final String senderUsername;
+    protected final TextArea messages;
 
-    public GeneralSender(Socket socket,String senderUsername){
+    public GeneralSender(Socket socket,String senderUsername,TextArea messages){
         try {
             out = socket.getOutputStream();
         } catch (IOException e) {
             e.printStackTrace();
         }
         this.senderUsername = senderUsername;
+        this.messages = messages;
     }
 
     /**
@@ -40,6 +45,7 @@ public class GeneralSender {
             outputStream.writeObject(senderUsername + " is writing...");
             TextMessage message = new TextMessage(senderUsername,text);
             outputStream.writeObject(message);
+            showMessageForItself(message.getInformation());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,17 +53,18 @@ public class GeneralSender {
 
     /**
      * Is used to send a text file
-     * @param file : refrence of file
+     * @param bytes : bytes of file
      */
-    public void sendFile(File file){
+    public void sendFile(byte[] bytes,String fileName){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
-            byte[] fileBytes = Files.readAllBytes(file.toPath());
             outputStream.writeObject("#FILE");
             outputStream.writeObject(senderUsername + " is sending a file...");
-            outputStream.writeObject(file.getName());
-            outputStream.writeObject(new FileMessage(senderUsername,file.getName()));
-            outputStream.writeObject(fileBytes);
+            outputStream.writeObject(fileName);
+            FileMessage fileMessage = new FileMessage(senderUsername,fileName);
+            outputStream.writeObject(fileMessage);
+            outputStream.writeObject(bytes);
+            showMessageForItself(fileMessage.getInformation());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -89,6 +96,19 @@ public class GeneralSender {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Is used to show user's messages in chat for himself/herself
+     * @param message : message of user
+     */
+    protected void showMessageForItself(String message){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                messages.appendText(message + "\n");
+            }
+        });
     }
 
 }

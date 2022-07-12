@@ -49,7 +49,7 @@ public class FriendshipManagement {
                     else {
                         outputStream.writeObject("OK");
                         if (user.getInformation().checkIsFriend(targetUser.getId()))
-                            outputStream.writeObject("You are friend from before");
+                            outputStream.writeObject("You were friend from before");
                         else {
                             outputStream.writeObject("OK");
                             targetUser.addNotification(new Notification(user.getUsername() + " send you a friendship request"));

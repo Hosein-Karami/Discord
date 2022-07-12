@@ -25,7 +25,7 @@ public abstract class GeneralInterface {
     public void sendTextMessage(ObjectInputStream inputStream) {
         try {
             TextMessage message = (TextMessage) inputStream.readObject();
-            chat.sendMessage(message.getInformation());
+            chat.sendMessage(message.getInformation(),clientSocket);
             chat.addMessage(message);
         }catch (Exception e){
             e.printStackTrace();
@@ -36,7 +36,7 @@ public abstract class GeneralInterface {
         try {
             String fileName = (String) inputStream.readObject();
             FileMessage message_2 = (FileMessage) inputStream.readObject();
-            chat.sendMessage(message_2);
+            chat.sendMessage(message_2,clientSocket);
             byte[] bytes = (byte[]) inputStream.readObject();
             saveFile(bytes, fileName);
             chat.addMessage(message_2);
@@ -48,7 +48,7 @@ public abstract class GeneralInterface {
     public void sendVoice(ObjectInputStream inputStream) {
         try {
             byte[] bytes = (byte[]) inputStream.readObject();
-            chat.sendMessage(bytes);
+            chat.sendMessage(bytes,clientSocket);
         }catch (Exception e){
             e.printStackTrace();
         }

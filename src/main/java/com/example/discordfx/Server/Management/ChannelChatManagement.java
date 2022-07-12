@@ -17,6 +17,11 @@ import java.net.Socket;
 
 public class ChannelChatManagement {
 
+    /**
+     * Is used to make a channel in a discord server
+     * @param socket .
+     * @param dserver : target discord server
+     */
     public void makeChannel(Socket socket, Dserver dserver){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
@@ -37,6 +42,11 @@ public class ChannelChatManagement {
         }
     }
 
+    /**
+     * Is used to run a channel
+     * @param channelPort : port of channel
+     * @param dserver : target discord server
+     */
     private void runChannel(int channelPort,Dserver dserver){
         Connector connector = new Connector(channelPort);
         connector.setChat(dserver);

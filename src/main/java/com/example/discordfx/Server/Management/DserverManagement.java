@@ -18,6 +18,11 @@ import java.nio.file.Files;
 
 public class DserverManagement {
 
+    /**
+     *
+     * @param socket
+     * @param serverMaker
+     */
     public void makeServerChat(Socket socket, User serverMaker){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());

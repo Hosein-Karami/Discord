@@ -168,7 +168,6 @@ public class ConnectToPrivateChat implements Initializable {
             out.write(16);
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
             outputStream.writeObject(privateChats.get(usernames.get(index)));
-            System.out.println(privateChats.get(usernames.get(index)));
             FXMLLoader loader = new FXMLLoader(getClass().getResource("PrivateChat.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

@@ -5,12 +5,14 @@
  */
 
 package com.example.discordfx.Client.RoomHandler.Sender;
+import javafx.scene.control.TextArea;
+
 import java.net.Socket;
 
 public class PrivateChatSender extends GeneralSender{
 
-    public PrivateChatSender(Socket socket, String senderUsername) {
-        super(socket, senderUsername);
+    public PrivateChatSender(Socket socket, String senderUsername, TextArea messages) {
+        super(socket, senderUsername,messages);
     }
 
 }

@@ -292,6 +292,7 @@ public class DiscordServer implements Initializable {
         try {
             out.write(9);
             receiver.stop();
+            receiver.end();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

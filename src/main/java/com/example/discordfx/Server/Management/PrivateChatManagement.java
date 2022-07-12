@@ -57,6 +57,8 @@ public class PrivateChatManagement {
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
             outputStream.writeObject(port);
             outputStream.writeObject(user);
+            ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
+            String temp = (String) inputStream.readObject();
         } catch (Exception e) {
             e.printStackTrace();
         }

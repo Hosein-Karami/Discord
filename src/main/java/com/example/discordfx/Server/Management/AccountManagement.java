@@ -21,6 +21,10 @@ public class AccountManagement {
 
     ServerLog log = new ServerLog();
 
+    /**
+     * Is used when user want to register
+     * @param clientSocket .
+     */
     void signUp(Socket clientSocket) {
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
@@ -46,6 +50,10 @@ public class AccountManagement {
         }
     }
 
+    /**
+     * Is used when user want to log in
+     * @param clientSocket .
+     */
     User logIn(Socket clientSocket){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
@@ -65,14 +73,28 @@ public class AccountManagement {
         return null;
     }
 
+    /**
+     * Is used when user want to log out
+     * @param user : refrence of target user
+     */
     public void logout(User user){
         Server.accountsService.logout(user);
     }
 
+    /**
+     * Is used when user want to set his/her profile picture
+     * @param user : refrence of user
+     * @param clientSocket .
+     */
     public void setPicture(User user, Socket clientSocket){
         Server.accountsService.setPicture(user,clientSocket);
     }
 
+    /**
+     * Is used want to change his/her username
+     * @param user : refrence of user
+     * @param clientSocket .
+     */
     public void changeUsername(User user,Socket clientSocket){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
@@ -91,6 +113,11 @@ public class AccountManagement {
         }
     }
 
+    /**
+     * Is used want to change his/her password
+     * @param user : refrence of user
+     * @param clientSocket .
+     */
     public void changePassword(User user, Socket clientSocket){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
@@ -104,6 +131,11 @@ public class AccountManagement {
         }
     }
 
+    /**
+     * Is used want to change his/her email
+     * @param user : refrence of user
+     * @param clientSocket .
+     */
     public void changeEmail(User user,Socket clientSocket){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
@@ -117,6 +149,11 @@ public class AccountManagement {
         }
     }
 
+    /**
+     * Is used want to change his/her phone
+     * @param user : refrence of user
+     * @param clientSocket .
+     */
     public void changePhone(User user,Socket clientSocket){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
@@ -130,6 +167,11 @@ public class AccountManagement {
         }
     }
 
+    /**
+     * Is used to set status picture of user
+     * @param user : refrence of user
+     * @param socket .
+     */
     public void setStatus(User user,Socket socket){
         ObjectInputStream inputStream;
         Status status;
@@ -147,6 +189,10 @@ public class AccountManagement {
         }
     }
 
+    /**
+     * Is used to send a particular user's info with his/her id
+     * @param socket .
+     */
     public void sendUserInfoWithId(Socket socket){
         try{
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
@@ -171,6 +217,10 @@ public class AccountManagement {
         }
     }
 
+    /**
+     * Is used to send a particular user's info with his/her username
+     * @param socket .
+     */
     public void sendUserInfoWithUsername(Socket socket){
         try{
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());

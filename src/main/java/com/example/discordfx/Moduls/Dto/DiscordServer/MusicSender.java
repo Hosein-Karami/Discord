@@ -17,10 +17,17 @@ public class MusicSender implements Runnable, Serializable {
         this.port = port;
     }
 
+    /**
+     * Is used to get access to port of music sender's port
+     * @return : port of music sender
+     */
     public int getPort(){
         return port;
     }
 
+    /**
+     * Is used to recieve music bytes from a member and send to all joined members
+     */
     @Override
     public void run() {
         try {
@@ -34,6 +41,9 @@ public class MusicSender implements Runnable, Serializable {
         }
     }
 
+    /**
+     * Is used to recieve music bytes from a member and send to all joined members
+     */
     synchronized public void sendMusic(byte[] musicBytes){
         ObjectOutputStream outputStream;
         for(Socket x : sockets){
@@ -46,6 +56,9 @@ public class MusicSender implements Runnable, Serializable {
         }
     }
 
+    /**
+     * Is used to stop sender
+     */
     public void stop(){
         sockets.clear();
         try {

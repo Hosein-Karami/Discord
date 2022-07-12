@@ -201,14 +201,23 @@ public class Dserver implements Serializable {
         sender.sendMusic(musicBytes);
     }
 
+    /**
+     * Is used to increase joined counter to server chat
+     */
     public void increaseJoinedCounter(){
         joinedCounter++;
     }
 
+    /**
+     * Is used to decrease joined counter to server chat
+     */
     public void decreaseJoinedCounter(){
         joinedCounter--;
     }
 
+    /**
+     * Is used to delete server chat
+     */
     public void deleteServer(){
         for (Member x : members)
             x.getUser().removeServerChat(id);
