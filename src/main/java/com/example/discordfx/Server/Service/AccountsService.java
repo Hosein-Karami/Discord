@@ -6,14 +6,14 @@
 
 package com.example.discordfx.Server.Service;
 
-import com.example.discordfx.Log.ServerLog;
 import com.example.discordfx.Log.AccountsLog;
+import com.example.discordfx.Log.ServerLog;
 import com.example.discordfx.Moduls.Dto.User.Status;
 import com.example.discordfx.Moduls.Dto.User.User;
 import com.example.discordfx.Moduls.Entity.UserEntity;
 import com.example.discordfx.Server.Dao.FileDao;
 import com.example.discordfx.Server.Dao.GeneralDao;
-import com.example.discordfx.Server.Dao.SqlDao;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -66,10 +66,15 @@ public class AccountsService {
                 user.loadInformation();
                 return user;
             }
+            else {
+                System.out.println("Sag too roohet");
+                return null;
+            }
         } catch (Exception e) {
+            System.out.println("saaaaag to roohet");
             e.printStackTrace();
+            return null;
         }
-        return null;
     }
 
     public User logIn(String username,String password){

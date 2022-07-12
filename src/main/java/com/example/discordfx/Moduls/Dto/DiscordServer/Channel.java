@@ -81,9 +81,7 @@ public class Channel implements Serializable {
      * @return : boolean value
      */
     public boolean checkIsBanned(Integer targetUserId){
-        if(banedMembersId.contains(targetUserId))
-            return true;
-        return false;
+        return banedMembersId.contains(targetUserId);
     }
 
 }

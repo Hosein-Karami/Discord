@@ -57,6 +57,7 @@ public class ChannelChatService {
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
             outputStream.writeObject(channelPort);
             outputStream.writeObject(member);
+            outputStream.writeObject(member.getUser().getUsername());
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }

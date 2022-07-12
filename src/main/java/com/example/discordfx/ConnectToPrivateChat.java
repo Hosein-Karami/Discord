@@ -145,6 +145,20 @@ public class ConnectToPrivateChat implements Initializable {
         }
     }
 
+    public void backToMenu(ActionEvent event){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Is used to connect to a private chat
      * @param event .

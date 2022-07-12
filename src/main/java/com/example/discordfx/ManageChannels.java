@@ -23,6 +23,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
@@ -75,9 +76,7 @@ public class ManageChannels implements Initializable {
         try {
             ObjectInputStream inputStream = new ObjectInputStream(in);
             member = (Member) inputStream.readObject();
-            System.out.println(member.getUser().getUsername() + "   " + member.getUser().getPassword());
-            dserver = (Dserver) inputStream.readObject();
-            channels = dserver.getChannels();
+            channels = ((Dserver) inputStream.readObject()).getChannels();
             if(channels.size() == 0)
                 setUnvisible();
             else {
@@ -130,7 +129,7 @@ public class ManageChannels implements Initializable {
      * @param event .
      */
     public void join(ActionEvent event){
-        if(channels.get(channelIndex).checkIsBanned(member.getUser().getId())){
+        if(channels.get(channelIndex).checkIsBanned(member.getUserId())){
             result.setText("You are banned to access to this channel");
             return;
         }

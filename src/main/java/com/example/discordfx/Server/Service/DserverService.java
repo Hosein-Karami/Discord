@@ -238,7 +238,7 @@ public class DserverService {
             Integer memberId = (Integer) inputStream.readObject();
             if (dserver.getSuperChatMaker().getUser().getId() != memberId) {
                 dserver.kickMember(memberId);
-                outputStream.writeObject("User kicked successfully");
+                outputStream.writeObject("OK");
             } else
                 outputStream.writeObject("You can't kick server maker");
         } catch (Exception e) {

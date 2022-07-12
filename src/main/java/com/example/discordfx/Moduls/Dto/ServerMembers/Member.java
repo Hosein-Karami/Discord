@@ -27,6 +27,15 @@ public class Member implements Serializable {
     public User getUser(){
         AccountsService service = new AccountsService();
         return service.getParticularUser(userId);
+
+    }
+
+    /**
+     * get access to id of member's user
+     * @return : id of member's user
+     */
+    public int getUserId(){
+        return userId;
     }
 
     /**

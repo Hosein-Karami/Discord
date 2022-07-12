@@ -78,7 +78,7 @@ public class ShowServerMembers implements Initializable {
             ObjectInputStream inputStream = new ObjectInputStream(in);
             ArrayList<Member> members = ((Dserver) inputStream.readObject()).getMembers();
             for(Member x : members)
-                membersId.add(x.getUser().getId());
+                membersId.add(x.getUserId());
             Boolean canKick = (Boolean) inputStream.readObject();
             Boolean isOwner = (Boolean) inputStream.readObject();
             user = (User) inputStream.readObject();
@@ -154,16 +154,21 @@ public class ShowServerMembers implements Initializable {
      * Is used to kick members from server chat
      */
     public void kick(){
+
         try {
             out.write(2);
             ObjectOutputStream outputStream = new ObjectOutputStream(out);
             ObjectInputStream inputStream = new ObjectInputStream(in);
             outputStream.writeObject(membersId.get(memberIndex));
-            result.setText((String) inputStream.readObject());
-            profileImage.setImage(null);
-            statusImage.setImage(null);
-            roles.clear();
-            memberUsername.setText("");
+            String status = (String) inputStream.readObject();
+            if(status.equals("OK")) {
+                profileImage.setImage(null);
+                statusImage.setImage(null);
+                roles.clear();
+                memberUsername.setText("");
+                result.setText("Member removed successfully");
+            }else
+                result.setText(status);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -22,10 +22,6 @@ public class MusicReceiver implements Runnable{
         }
     }
 
-    public Socket getSocket(){
-        return socket;
-    }
-
     @Override
     public void run() {
         try {
@@ -62,7 +58,8 @@ public class MusicReceiver implements Runnable{
     }
 
     public void resume(){
-        clip.start();
+        if(clip != null)
+            clip.start();
     }
 
 }

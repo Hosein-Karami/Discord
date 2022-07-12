@@ -16,7 +16,6 @@ public class Role implements Serializable {
     private boolean removeMemberFromServer;
     private boolean changeServerName;
     private boolean limitMemberToJoinChannel;
-    private boolean changeChannelName;
     private boolean pinMessage;
 
     public Role(String name){
@@ -61,14 +60,6 @@ public class Role implements Serializable {
      */
     public void setChangeServerName(boolean changeServerName){
         this.changeServerName = changeServerName;
-    }
-
-    /**
-     * determine can change name of channel or not
-     * @param changeChannelName : ability value
-     */
-    public void setChangeChannelName(boolean changeChannelName){
-        this.changeChannelName = changeChannelName;
     }
 
     /**

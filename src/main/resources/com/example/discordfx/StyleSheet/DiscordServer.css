@@ -1,0 +1,119 @@
+#background
+{
+    -fx-background-color: #999999;
+}
+
+
+#pane
+{
+    -fx-background-color: #8a2be2;
+    -fx-background-radius: 30;
+}
+
+
+.button
+{
+    -fx-background-color:
+            #090a0c,
+            linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+            linear-gradient(#20262b, #191d22),
+            radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
+    -fx-background-radius: 20;
+    -fx-background-insets: 0,1,2,0;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-weight: bold;
+    -fx-font-size: 17px;
+    -fx-padding: -10;
+}
+
+
+.label
+{
+    -fx-background-radius: 360;
+    -fx-background-color: #ffffff;
+}
+
+#iconContainer
+{
+    -fx-background-color: #999999;
+    -fx-background-radius: 360;
+    -fx-padding: 15;
+    -fx-border-width: 0;
+}
+
+
+#result
+{
+    -fx-font-size: 23px;
+    -fx-fill: yellow;
+    -fx-font-style: italic;
+}
+
+
+#resumeIcon
+{
+    -fx-image: url(Icon/resume.png);
+}
+
+
+#stopIcon
+{
+    -fx-image: url(Icon/stop.png);
+}
+
+#resumeButton
+{
+    -fx-padding: -10;
+}
+
+#stopButton
+{
+    -fx-padding: -10;
+}
+
+
+#deleteServer
+{
+    -fx-text-fill: red;
+    -fx-font-size: 20px;
+}
+
+#addMemberIcon
+{
+    -fx-image: url(Icon/addMember.png);
+}
+
+#makeChannelIcon
+{
+    -fx-image: url(Icon/make.png);
+}
+
+#makeRoleIcon
+{
+    -fx-image: url(Icon/makeRole.png);
+}
+
+#changeNameIcon
+{
+    -fx-image: url(Icon/changeName.png);
+}
+
+
+#membersIcon
+{
+    -fx-image: url(Icon/members.png);
+}
+
+
+#channelsIcon
+{
+    -fx-image: url(Icon/channels.png);
+}
+
+#name
+{
+    -fx-font-size: 30px;
+    -fx-fill: white;
+    -fx-font-weight: bold;
+}

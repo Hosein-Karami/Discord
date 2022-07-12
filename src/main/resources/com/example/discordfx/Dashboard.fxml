@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.*?>
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.*?>
-<?import java.net.URL?>
+<?import javafx.scene.text.Font?>
 
-<?import javafx.scene.image.Image?>
 <AnchorPane fx:id="background" focusTraversable="true" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.discordfx.Dashboard">
    <stylesheets>
       <URL value="@StyleSheet/Dashboard.css" />
@@ -24,7 +25,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="98.0" layoutY="152.0" mnemonicParsing="false" onAction="#showServers" prefHeight="40.0" prefWidth="250.0" text="Server chats" textAlignment="CENTER">
+            <Button layoutX="418.0" layoutY="332.0" mnemonicParsing="false" onAction="#showServers" prefHeight="40.0" prefWidth="250.0" text="Server chats" textAlignment="CENTER">
                <font>
                   <Font size="16.0" />
                </font>
@@ -32,7 +33,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="98.0" layoutY="227.0" mnemonicParsing="false" onAction="#connectToPrivateChat" prefHeight="40.0" prefWidth="250.0" text="Connect private chat" textAlignment="CENTER">
+            <Button layoutX="98.0" layoutY="207.0" mnemonicParsing="false" onAction="#connectToPrivateChat" prefHeight="40.0" prefWidth="250.0" text="Connect private chat" textAlignment="CENTER">
                <font>
                   <Font size="16.0" />
                </font>
@@ -40,7 +41,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="98.0" layoutY="301.0" mnemonicParsing="false" onAction="#notification" prefHeight="40.0" prefWidth="250.0" text="Notifications" textAlignment="CENTER">
+            <Button layoutX="98.0" layoutY="271.0" mnemonicParsing="false" onAction="#notification" prefHeight="40.0" prefWidth="250.0" text="Notifications" textAlignment="CENTER">
                <font>
                   <Font size="16.0" />
                </font>
@@ -48,7 +49,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="98.0" layoutY="375.0" mnemonicParsing="false" onAction="#friendshipManagement" prefHeight="40.0" prefWidth="250.0" text="Friendship" textAlignment="CENTER">
+            <Button layoutX="98.0" layoutY="332.0" mnemonicParsing="false" onAction="#friendshipManagement" prefHeight="40.0" prefWidth="250.0" text="Friendship" textAlignment="CENTER">
                <font>
                   <Font size="16.0" />
                </font>
@@ -56,7 +57,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="418.0" layoutY="152.0" mnemonicParsing="false" onAction="#relationship" prefHeight="40.0" prefWidth="250.0" text="Relationship" textAlignment="CENTER">
+            <Button layoutX="418.0" layoutY="207.0" mnemonicParsing="false" onAction="#setStatus" prefHeight="40.0" prefWidth="250.0" text="Set status" textAlignment="CENTER">
                <font>
                   <Font size="16.0" />
                </font>
@@ -64,7 +65,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="418.0" layoutY="227.0" mnemonicParsing="false" onAction="#setStatus" prefHeight="40.0" prefWidth="250.0" text="Set status" textAlignment="CENTER">
+            <Button layoutX="418.0" layoutY="271.0" mnemonicParsing="false" onAction="#downloadFile" prefHeight="40.0" prefWidth="250.0" text="Download file" textAlignment="CENTER">
                <font>
                   <Font size="16.0" />
                </font>
@@ -72,15 +73,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="418.0" layoutY="301.0" mnemonicParsing="false" onAction="#downloadFile" prefHeight="40.0" prefWidth="250.0" text="Download file" textAlignment="CENTER">
-               <font>
-                  <Font size="16.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button layoutX="418.0" layoutY="375.0" mnemonicParsing="false" onAction="#profile" prefHeight="40.0" prefWidth="250.0" text="Profile" textAlignment="CENTER">
+            <Button layoutX="273.0" layoutY="138.0" mnemonicParsing="false" onAction="#profile" prefHeight="40.0" prefWidth="250.0" text="Profile" textAlignment="CENTER">
                <font>
                   <Font size="16.0" />
                </font>
@@ -90,11 +83,27 @@
             </Button>
             <Label fx:id="iconContainer" layoutX="281.0" layoutY="-88.0">
                <graphic>
-                  <ImageView fitHeight="174.0" fitWidth="203.0" pickOnBounds="true" preserveRatio="true" >
-                     <Image url="@Icon/discord-logo.png"/>
+                  <ImageView fitHeight="174.0" fitWidth="203.0" pickOnBounds="true" preserveRatio="true">
+                     <Image url="@Icon/discord-logo.png" />
                   </ImageView>
                </graphic>
             </Label>
+            <Button layoutX="98.0" layoutY="394.0" mnemonicParsing="false" onAction="#makePrivateChat" prefHeight="40.0" prefWidth="250.0" text="Make private chat" textAlignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="418.0" layoutY="394.0" mnemonicParsing="false" onAction="#relationship" prefHeight="40.0" prefWidth="250.0" text="Relationship" textAlignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
       </Pane>
    </children>

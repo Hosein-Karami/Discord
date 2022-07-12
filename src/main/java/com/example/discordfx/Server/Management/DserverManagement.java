@@ -113,7 +113,6 @@ public class DserverManagement {
         ownerRole.setPinMessage(true);
         ownerRole.setLimitMemberToJoinChannel(true);
         ownerRole.setRemoveMemberFromServer(true);
-        ownerRole.setChangeChannelName(true);
         return ownerRole;
     }
 

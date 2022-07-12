@@ -8,7 +8,6 @@ package com.example.discordfx.Moduls.Dto.User;
 
 import com.example.discordfx.Lateral.Notification;
 import com.example.discordfx.Moduls.Dto.DiscordServer.Invitation;
-
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;

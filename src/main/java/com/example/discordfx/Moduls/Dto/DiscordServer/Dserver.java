@@ -20,7 +20,7 @@ public class Dserver implements Serializable {
     private final int id;
     private int joinedCounter;
     private Member superChatMaker;
-    private MusicSender sender;
+    private transient MusicSender sender;
     private final ArrayList<Member> members = new ArrayList<>();
     private final ArrayList<Role> roles = new ArrayList<>();
     private final ArrayList<Channel> channels = new ArrayList<>();

@@ -69,8 +69,9 @@ public class ChannelChat implements Initializable {
             ObjectInputStream inputStream = new ObjectInputStream(Start.socket.getInputStream());
             Integer port = (Integer) inputStream.readObject();
             member = (Member) inputStream.readObject();
+            String memberUsername = (String) inputStream.readObject();
             Socket socket = new Socket(Start.hostIp, port);
-            sender = new ChannelChatSender(socket, member.getUser().getUsername());
+            sender = new ChannelChatSender(socket, memberUsername);
             ChannelChatReciever reciever = new ChannelChatReciever(messages, socket);
             Start.executorService.execute(reciever);
         } catch (Exception e) {
