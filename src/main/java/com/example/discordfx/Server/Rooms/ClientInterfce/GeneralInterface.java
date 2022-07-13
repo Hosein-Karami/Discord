@@ -22,6 +22,10 @@ public abstract class GeneralInterface {
         this.clientSocket = clientSocket;
     }
 
+    /**
+     * Is used to send a text to users
+     * @param inputStream .
+     */
     public void sendTextMessage(ObjectInputStream inputStream) {
         try {
             TextMessage message = (TextMessage) inputStream.readObject();
@@ -32,6 +36,10 @@ public abstract class GeneralInterface {
         }
     }
 
+    /**
+     * Is used to send a file to users
+     * @param inputStream .
+     */
     public void sendFile(ObjectInputStream inputStream){
         try {
             String fileName = (String) inputStream.readObject();
@@ -45,6 +53,10 @@ public abstract class GeneralInterface {
         }
     }
 
+    /**
+     * Is used to send a voice to users
+     * @param inputStream .
+     */
     public void sendVoice(ObjectInputStream inputStream) {
         try {
             byte[] bytes = (byte[]) inputStream.readObject();
@@ -54,11 +66,19 @@ public abstract class GeneralInterface {
         }
     }
 
+    /**
+     * Is used to exit from chat
+     */
     public void exit(){
         chat.sendMessageToParticularSocket("#LEFT",clientSocket);
         chat.removeSocket(clientSocket);
     }
 
+    /**
+     * Is used to save a file in server
+     * @param bytes : bytes of file
+     * @param fileName : name of file
+     */
     private void saveFile(byte[] bytes,String fileName){
         try{
             File file = new File("Files/ChatFiles/"+fileName);

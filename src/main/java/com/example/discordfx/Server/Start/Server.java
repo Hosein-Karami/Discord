@@ -25,6 +25,9 @@ public class Server {
     static ExecutorService executorService = Executors.newCachedThreadPool();
     private final ServerLog log = new ServerLog();
 
+    /**
+     * Start server
+     */
     void start(){
         int port = 2000;
         try {
@@ -42,6 +45,10 @@ public class Server {
         }
     }
 
+    /**
+     * Make and run a thread for clients
+     * @param newClient .
+     */
     void runClientThread(Socket newClient){
         clients.add(newClient);
         ClientManagement clientManagement = new ClientManagement(newClient);

@@ -76,8 +76,6 @@ public class DserverService {
                 }
                 else if (choose == 6) {
                     outputStream = new ObjectOutputStream(out);
-                    System.out.println(member.getUser().getUsername() + "   " + member.getUser().getPassword());
-                    System.out.println(dserver.getName());
                     outputStream.writeObject(member);
                     outputStream.writeObject(dserver);
                     manageChannels();
@@ -94,12 +92,14 @@ public class DserverService {
                     break;
                 }
             }
-            System.out.println("break");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * Is used to add a member to server chat
+     */
     private void addMember(){
         int choose;
         try {
@@ -121,6 +121,9 @@ public class DserverService {
         }
     }
 
+    /**
+     * Is used to check existence of a particular user in server chat
+     */
     private void checkExistenceMember(){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(in);
@@ -135,6 +138,9 @@ public class DserverService {
         }
     }
 
+    /**
+     * Is used to invite a user to server chat
+     */
     private void invite(){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(in);
@@ -151,6 +157,9 @@ public class DserverService {
         }
     }
 
+    /**
+     * Is used to send member's info
+     */
     private void sendUserInfo(){
         AccountManagement accountManagement = new AccountManagement();
         accountManagement.sendUserInfoWithId(clientSocket);
@@ -177,6 +186,9 @@ public class DserverService {
         }
     }
 
+    /**
+     * Is used to show members of server chat
+     */
     private void showMembers(){
         AccountManagement management = new AccountManagement();
         int choice;
@@ -200,6 +212,9 @@ public class DserverService {
         }
     }
 
+    /**
+     * Is used to send roles of members
+     */
     private void sendMemberRoles(){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(in);
@@ -211,6 +226,9 @@ public class DserverService {
         }
     }
 
+    /**
+     * Is used to add a role to a member
+     */
     private void addRoleToMember(){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(in);
@@ -231,6 +249,9 @@ public class DserverService {
         }
     }
 
+    /**
+     * Is used to kick a member from server chat
+     */
     private void kickMember() {
         try {
             ObjectInputStream inputStream = new ObjectInputStream(in);
@@ -246,6 +267,9 @@ public class DserverService {
         }
     }
 
+    /**
+     * Is used to change name of server
+     */
     private void changeName() {
         DserverManagement management = new DserverManagement();
         int choice;
@@ -269,6 +293,9 @@ public class DserverService {
         }
     }
 
+    /**
+     * Is used to make a role in server chat
+     */
     private void makeRole(){
         int choice;
         while (true){
@@ -294,6 +321,9 @@ public class DserverService {
         }
     }
 
+    /**
+     * Is used to make a channel in server chat
+     */
     private void makeChannel(){
         int choose;
         try {
@@ -308,6 +338,9 @@ public class DserverService {
         }
     }
 
+    /**
+     * Is used to manage channel in server chat
+     */
     private void manageChannels(){
         ChannelChatService service = new ChannelChatService(dserver,clientSocket);
         service.start();
@@ -325,6 +358,10 @@ public class DserverService {
         }
     }
 
+    /**
+     * Is used to delete a server chat
+     * @return : success or not of this task
+     */
     private boolean deleteServer(){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(out);

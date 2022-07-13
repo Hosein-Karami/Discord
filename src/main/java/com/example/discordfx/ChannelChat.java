@@ -28,6 +28,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -79,6 +80,8 @@ public class ChannelChat implements Initializable {
             member = (Member) inputStream.readObject();
             String memberUsername = (String) inputStream.readObject();
             Socket socket = new Socket(Start.hostIp, port);
+            ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
+            outputStream.writeObject(member.getUserId());
             sender = new ChannelChatSender(socket, memberUsername,messages);
             reciever = new ChannelChatReciever(messages, socket);
             Start.executorService.execute(reciever);

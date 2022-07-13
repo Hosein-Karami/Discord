@@ -127,7 +127,6 @@ public class SqlDao implements GeneralDao{
             preparedStatement.setString(1,newUsername);
             preparedStatement.setString(2,username);
             preparedStatement.execute();
-            System.out.println(username +"     " + newUsername);
             log.changeUsernameSuccessfully(username,newUsername);
         } catch (Exception e) {
             log.changeUsernameError(username);

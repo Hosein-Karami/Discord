@@ -10,13 +10,12 @@ public class MusicReceiver implements Runnable{
 
     private InputStream in;
     private Clip clip;
-    private Socket socket;
     private boolean end;
 
     public MusicReceiver(int port){
         try {
             String ip = "127.0.0.1";
-            socket = new Socket(ip,port);
+            Socket socket = new Socket(ip, port);
             in = socket.getInputStream();
         } catch (IOException e) {
             e.printStackTrace();

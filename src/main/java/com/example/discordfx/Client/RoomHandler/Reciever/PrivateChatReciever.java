@@ -24,7 +24,6 @@ public class PrivateChatReciever extends GeneralReciever implements Runnable{
         try {
             ObjectInputStream inputStream = new ObjectInputStream(in);
             String beforeMessages = (String) inputStream.readObject();
-            System.out.println(beforeMessages);
             showMessage(beforeMessages);
             String messageType;
             label:

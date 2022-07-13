@@ -21,6 +21,11 @@ public class PrivateChatManagement {
     private final ExecutorService executorService = Main.executorService;
     private final HashMap<Integer, Connector> connectors = new HashMap<>();
 
+    /**
+     * Is used to make a private chat
+     * @param user : maker
+     * @param clientSocket .
+     */
     void makePrivateChat(User user,Socket clientSocket){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
@@ -52,6 +57,12 @@ public class PrivateChatManagement {
         }
     }
 
+    /**
+     * Is used to connect to a private chat
+     * @param user : user
+     * @param port : port of private chat on server
+     * @param clientSocket .
+     */
     public void connectToPrivateChat(User user,int port,Socket clientSocket){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());

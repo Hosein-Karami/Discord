@@ -61,6 +61,10 @@ public class ChannelChatInterface extends GeneralInterface implements Runnable{
         }
     }
 
+    /**
+     * Is used to pin a message
+     * @param messageNumber : target message number
+     */
     private void pinMessage(int messageNumber) {
         if(((ChannelChat)chat).pinMessage(messageNumber))
             chat.sendMessageToParticularSocket("OK",clientSocket);
@@ -68,6 +72,10 @@ public class ChannelChatInterface extends GeneralInterface implements Runnable{
             chat.sendMessageToParticularSocket("ERROR",clientSocket);
     }
 
+    /**
+     * Is used to react to a channel's message
+     * @param inputStream .
+     */
     private void react(ObjectInputStream inputStream){
         try {
             Integer messageNumber = (Integer) inputStream.readObject();
@@ -95,6 +103,10 @@ public class ChannelChatInterface extends GeneralInterface implements Runnable{
 
     }
 
+    /**
+     * Is used to tag a particular member
+     * @param inputStream .
+     */
     private void tag(ObjectInputStream inputStream){
         try {
             TextMessage message = (TextMessage) inputStream.readObject();

@@ -174,6 +174,9 @@ public class PrivateChat implements Initializable {
         }
     }
 
+    /**
+     * Is used to play send notification sound
+     */
     private void playNotificationSound() {
         if (!mute) {
             try {

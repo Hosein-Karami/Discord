@@ -25,6 +25,11 @@ public class AccountsService {
     private final GeneralDao userDao = new FileDao();
     private final AccountsLog log = new AccountsLog();
 
+    /**
+     * Is used to sign up
+     * @param newUser .
+     * @throws Exception .
+     */
     public void signUp(User newUser) throws Exception {
         try {
             userDao.insert(convertDtoToEntity(newUser));
@@ -42,6 +47,11 @@ public class AccountsService {
         }
     }
 
+    /**
+     * Is used to get particular user
+     * @param username : target user's username
+     * @return : target user
+     */
     public User getParticularUser(String username){
         try {
             UserEntity userEntity = userDao.getParticularUser(username);
@@ -58,6 +68,11 @@ public class AccountsService {
         }
     }
 
+    /**
+     * Is used to get particular user
+     * @param userId : target user's id
+     * @return : target user
+     */
     public User getParticularUser(int userId){
         try {
             UserEntity userEntity = userDao.getParticularUser(userId);
@@ -77,6 +92,12 @@ public class AccountsService {
         }
     }
 
+    /**
+     * Is used to log in
+     * @param username .
+     * @param password .
+     * @return : log in user
+     */
     public User logIn(String username,String password){
         try {
             UserEntity userEntity = userDao.logIn(username,password);
@@ -93,12 +114,22 @@ public class AccountsService {
         return null;
     }
 
+    /**
+     * Is used to log out
+     * @param user : lefter user
+     */
     public void logout(User user){
         ServerLog log = new ServerLog();
         log.logOut(user.getUsername());
         user.setStatus(Status.Offline);
     }
 
+    /**
+     * Is used to change username of user
+     * @param username : old username
+     * @param newUsername : new username
+     * @throws Exception .
+     */
     public void changeUsername(String username,String newUsername) throws Exception {
         try {
             userDao.changeUsername(username,newUsername);
@@ -108,6 +139,12 @@ public class AccountsService {
         }
     }
 
+    /**
+     * Is used to change password of user
+     * @param username : username of user
+     * @param newPassword .
+     * @throws Exception .
+     */
     public void changePassword(String username,String newPassword) throws Exception {
         try {
             userDao.changePassword(username,newPassword);
@@ -116,14 +153,26 @@ public class AccountsService {
         }
     }
 
-    public void changeEmail(String username,String newPassword) throws Exception {
+    /**
+     * Is used to change email of user
+     * @param username : username of user
+     * @param newEmail .
+     * @throws Exception .
+     */
+    public void changeEmail(String username,String newEmail) throws Exception {
         try {
-            userDao.changeEmail(username,newPassword);
+            userDao.changeEmail(username,newEmail);
         } catch (Exception e) {
             throw new Exception();
         }
     }
 
+    /**
+     * Is used to change phone number of user
+     * @param username : username of user
+     * @param newPhone .
+     * @throws Exception .
+     */
     public void changePhone(String username,String newPhone) throws Exception {
         try {
             userDao.changePhone(username, newPhone);
@@ -132,6 +181,11 @@ public class AccountsService {
         }
     }
 
+    /**
+     * Is used to set a user's profile image
+     * @param user .
+     * @param clientSocket .
+     */
     public void setPicture(User user, Socket clientSocket){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
@@ -148,10 +202,20 @@ public class AccountsService {
         }
     }
 
+    /**
+     * Is used to convert entity to dto
+     * @param entity : entity refrence
+     * @return : dto refrence
+     */
     private User convertEntityToDto(UserEntity entity){
         return new User(entity.getId(), entity.getUsername(),entity.getPassword(),entity.getEmail(),entity.getPhone());
     }
 
+    /**
+     * Is used to convert dto to entity
+     * @param dto : dto refrence
+     * @return : entity refrence
+     */
     private UserEntity convertDtoToEntity(User dto){
         return new UserEntity(dto.getId(), dto.getUsername(),dto.getPassword(),dto.getEmail(),dto.getPhone());
     }

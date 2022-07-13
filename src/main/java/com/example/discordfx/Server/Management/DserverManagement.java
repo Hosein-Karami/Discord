@@ -19,9 +19,9 @@ import java.nio.file.Files;
 public class DserverManagement {
 
     /**
-     *
-     * @param socket
-     * @param serverMaker
+     * Is used to make a server chat
+     * @param socket .
+     * @param serverMaker : maker of server chat
      */
     public void makeServerChat(Socket socket, User serverMaker){
         try {
@@ -58,6 +58,11 @@ public class DserverManagement {
         }
     }
 
+    /**
+     * Is used to manage invitation which sent to user
+     * @param user : user
+     * @param socket .
+     */
     public void invitationHandle(User user,Socket socket){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
@@ -78,6 +83,10 @@ public class DserverManagement {
         }
     }
 
+    /**
+     * Is used to send information of server chat
+     * @param socket .
+     */
     public void sendServerChatInfo(Socket socket){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
@@ -92,6 +101,10 @@ public class DserverManagement {
         }
     }
 
+    /**
+     * Is used to set picture of server chat
+     * @param path : image path
+     */
     private void setDefaultProfilePicture(String path){
         File defaultPicture = new File("Files/Pictures/defaultServer.jpg");
         try (FileOutputStream fileOutputStream = new FileOutputStream(path)){
@@ -102,6 +115,11 @@ public class DserverManagement {
         }
     }
 
+    /**
+     * Is used to get a particular server chat with its name
+     * @param serverName : name of server chat
+     * @return : target server chat
+     */
     public Dserver getDserver(String serverName){
         for(Dserver x : Server.discordServers){
             if(x.getName().equals(serverName))
@@ -110,6 +128,10 @@ public class DserverManagement {
         return null;
     }
 
+    /**
+     * Is used to make and get owner role for server chat maker
+     * @return : owner role
+     */
     private Role getOwnerRole(){
         Role ownerRole = new Role("Owner");
         ownerRole.setDeleteChannel(true);

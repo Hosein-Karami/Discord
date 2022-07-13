@@ -86,6 +86,8 @@ public class FriendsManagement implements Initializable{
             ObjectInputStream inputStream = new ObjectInputStream(in);
             user = (User) inputStream.readObject();
             allFriends = user.getInformation().getFriendsId();
+            if(friendIndex == allFriends.size())
+                friendIndex--;
             load_1();
         } catch (Exception e) {
             e.printStackTrace();
@@ -177,6 +179,8 @@ public class FriendsManagement implements Initializable{
                     break;
                 onlineFriends.add(onlineFriendId);
             }
+            if(onlineFriendIndex == onlineFriends.size())
+                onlineFriendIndex--;
             load_2();
         } catch (Exception e) {
             e.printStackTrace();
@@ -265,6 +269,8 @@ public class FriendsManagement implements Initializable{
             ObjectInputStream inputStream = new ObjectInputStream(in);
             user = (User) inputStream.readObject();
             blockedId = user.getInformation().getBlockesId();
+            if(blockedIndex == blockedId.size())
+                blockedIndex--;
             load_3();
         } catch (Exception e) {
             e.printStackTrace();

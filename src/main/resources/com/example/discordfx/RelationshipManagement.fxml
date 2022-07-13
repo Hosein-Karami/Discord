@@ -54,7 +54,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="previousButton_1" layoutX="673.0" layoutY="514.0" mnemonicParsing="false" onAction="#previousRequest" prefHeight="38.0" prefWidth="100.0" text="Back">
+                        <Button layoutX="673.0" layoutY="514.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="38.0" prefWidth="100.0" text="Back">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -62,7 +62,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="nextButton_1" layoutX="542.0" layoutY="352.0" mnemonicParsing="false" onAction="#nextRequest" prefHeight="35.0" prefWidth="150.0" text="Next">
+                        <Button fx:id="nextButton_1" layoutX="604.0" layoutY="352.0" mnemonicParsing="false" onAction="#nextRequest" prefHeight="35.0" prefWidth="150.0" text="Next">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -70,7 +70,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="acceptButton_1" layoutX="332.0" layoutY="352.0" mnemonicParsing="false" onAction="#acceptRequest" prefHeight="35.0" prefWidth="150.0" text="Accept" textFill="#179c29">
+                        <Button fx:id="acceptButton_1" layoutX="423.0" layoutY="352.0" mnemonicParsing="false" onAction="#acceptRequest" prefHeight="35.0" prefWidth="150.0" text="Accept" textFill="#179c29">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -78,7 +78,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="rejectButton_1" layoutX="122.0" layoutY="352.0" mnemonicParsing="false" onAction="#rejectRequest" prefHeight="35.0" prefWidth="150.0" text="Reject" textFill="#ef0000">
+                        <Button fx:id="rejectButton_1" layoutX="248.0" layoutY="352.0" mnemonicParsing="false" onAction="#rejectRequest" prefHeight="35.0" prefWidth="150.0" text="Reject" textFill="#ef0000">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -119,6 +119,14 @@
                               <ImageView fx:id="status_1" fitHeight="50.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
                         </Label>
+                        <Button fx:id="previousButton_1" layoutX="62.0" layoutY="352.0" mnemonicParsing="false" onAction="#previousRequest" prefHeight="35.0" prefWidth="150.0" text="Previous" textFill="#ef0000">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
                      </children>
                   </AnchorPane>
                </content>
@@ -215,6 +223,14 @@
                            </font>
                         </Text>
                         <Button layoutX="822.0" layoutY="630.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="26.0" prefWidth="64.0" text="Back">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button layoutX="687.0" layoutY="531.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="38.0" prefWidth="100.0" text="Back">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>

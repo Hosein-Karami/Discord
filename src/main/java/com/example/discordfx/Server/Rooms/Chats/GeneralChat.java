@@ -20,6 +20,12 @@ public abstract class GeneralChat {
 
     public abstract void join(Socket joinedSocket);
 
+    /**
+     * Is used to send message to all users except sender
+     * @param t : message
+     * @param clientSocket : sender socket
+     * @param <T> : type of message
+     */
     synchronized public <T> void sendMessage(T t,Socket clientSocket){
         ObjectOutputStream outputStream;
         for(Socket x : joinSockets) {
@@ -39,6 +45,12 @@ public abstract class GeneralChat {
         }
     }
 
+    /**
+     * Is used to send message to a particular user
+     * @param t : message
+     * @param targetSocket : user's socket
+     * @param <T> : type of message
+     */
     synchronized public <T> void sendMessageToParticularSocket(T t,Socket targetSocket){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(targetSocket.getOutputStream());
@@ -49,16 +61,28 @@ public abstract class GeneralChat {
         }
     }
 
+    /**
+     * Is used to add a message to chat's messages
+     * @param newMessage .
+     */
     public void addMessage(Message newMessage){
         messages.add(newMessage);
 
     }
 
+    /**
+     * Is used to remove a socket
+     * @param socket : target socket
+     */
     public void removeSocket(Socket socket){
         joinSockets.remove(socket);
         joinedNumbers--;
     }
 
+    /**
+     * Is used to send before messages of chat for new joined socket
+     * @param socket : target socket
+     */
     protected void sendBeforeMessages(Socket socket){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
@@ -71,16 +95,21 @@ public abstract class GeneralChat {
         }
     }
 
+    /**
+     * Is used to get a particular message of chat with its index in messages arraylist
+     * @param messageIndex : index of message
+     * @return : target message
+     */
     public Message getParticularMessage(int messageIndex){
         return messages.get(messageIndex);
     }
 
+    /**
+     * Is used to get size of chat's messages
+     * @return : size of chat's messages
+     */
     public int getMessagesSize(){
         return messages.size();
-    }
-
-    public int getJoinedNumbers(){
-        return joinedNumbers;
     }
 
 }

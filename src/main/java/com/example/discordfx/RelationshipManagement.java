@@ -66,7 +66,6 @@ public class RelationshipManagement {
             ObjectInputStream inputStream = new ObjectInputStream(in);
             outputStream.writeObject(requestUsername.getText());
             String Status = (String) inputStream.readObject();
-            System.out.println(Status.equals("OK"));
             if (Status.equals("OK")) {
                 Status = (String) inputStream.readObject();
                 if (Status.equals("OK")) {
@@ -120,7 +119,6 @@ public class RelationshipManagement {
             out.write(20);
             ObjectInputStream inputStream = new ObjectInputStream(in);
             user = (User) inputStream.readObject();
-            System.out.println(user.getPassword());
             requestsSenders = user.getInformation().getPendingId();
             loadInputRequests();
         }catch (Exception e){
@@ -188,6 +186,8 @@ public class RelationshipManagement {
             requestsSenders.remove(senderIndex);
             profileImage_1.setImage(null);
             status_1.setImage(null);
+            if(senderIndex == requestsSenders.size())
+                senderIndex--;
             initialize();
         } catch (Exception e) {
             e.printStackTrace();
@@ -208,6 +208,8 @@ public class RelationshipManagement {
             requestsSenders.remove(senderIndex);
             profileImage_1.setImage(null);
             status_1.setImage(null);
+            if(senderIndex == requestsSenders.size())
+                senderIndex--;
             initialize();
         } catch (Exception e) {
             e.printStackTrace();
@@ -305,6 +307,8 @@ public class RelationshipManagement {
             profileImage_2.setImage(null);
             status_2.setImage(null);
             username_2.setText("");
+            if(requestIndex == outputRequests.size())
+                requestIndex--;
             initialize_2();
         } catch (Exception e) {
             e.printStackTrace();

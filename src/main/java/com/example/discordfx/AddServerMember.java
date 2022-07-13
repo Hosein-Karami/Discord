@@ -181,8 +181,6 @@ public class AddServerMember implements Initializable {
      * Is used to load next user info
      */
     public void next(){
-        System.out.println(friends.size());
-        System.out.println(friendIndex);
         if(friendIndex != (friends.size() - 1)) {
             targetUserProfile.setImage(null);
             targetUserStatus.setImage(null);

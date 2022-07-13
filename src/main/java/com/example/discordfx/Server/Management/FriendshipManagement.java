@@ -26,6 +26,10 @@ public class FriendshipManagement {
         this.clientSocket = clientSocket;
     }
 
+    /**
+     * Is used to request friendship to a particular user
+     * @param user : sender request user
+     */
     void requestFriendShip(User user) {
         String targetUsername = "";
         try {
@@ -67,6 +71,10 @@ public class FriendshipManagement {
         }
     }
 
+    /**
+     * Is used to manage friendship requests which sent to user
+     * @param user : user
+     */
     void invitationsHandle(User user) {
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
@@ -95,6 +103,10 @@ public class FriendshipManagement {
         }
     }
 
+    /**
+     * Is used to cancel output request
+     * @param user : requester user
+     */
     void cancelRequest(User user){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
@@ -110,6 +122,10 @@ public class FriendshipManagement {
         }
     }
 
+    /**
+     * Is used to remove a fiend
+     * @param user : remover user
+     */
     void removeFriend(User user){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
@@ -125,6 +141,10 @@ public class FriendshipManagement {
         }
     }
 
+    /**
+     * Is used to send online friends of a user
+     * @param user : target user
+     */
     void sendOnlineFriends(User user){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
@@ -141,6 +161,10 @@ public class FriendshipManagement {
         }
     }
 
+    /**
+     * Is used to block a user
+     * @param user : blocker
+     */
     void block(User user){
         String targetUsername = "";
         try {
@@ -174,6 +198,10 @@ public class FriendshipManagement {
         }
     }
 
+    /**
+     * Is used to unblock a user
+     * @param user : unBlocker user
+     */
     public void unblock(User user){
         try {
             AccountsService accountsService = new AccountsService();

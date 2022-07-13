@@ -63,7 +63,6 @@ public class Recorder implements Runnable
         targetDataLine.stop();
         targetDataLine.flush();
         targetDataLine.close();
-        System.out.println("FINISH");
     }
 }
 

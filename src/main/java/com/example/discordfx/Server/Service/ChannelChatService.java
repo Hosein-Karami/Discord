@@ -49,6 +49,9 @@ public class ChannelChatService {
         }
     }
 
+    /**
+     * Is used to join user to a particular channel
+     */
     private void joinChannel(){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(in);
@@ -63,6 +66,9 @@ public class ChannelChatService {
         }
     }
 
+    /**
+     * Is used to delete a channel
+     */
     private void deleteChannel(){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(in);
@@ -81,6 +87,9 @@ public class ChannelChatService {
         }
     }
 
+    /**
+     * Is used to add banned members to channel
+     */
     private void addBannedMember(){
         try {
             ObjectInputStream inputStream = new ObjectInputStream(in);

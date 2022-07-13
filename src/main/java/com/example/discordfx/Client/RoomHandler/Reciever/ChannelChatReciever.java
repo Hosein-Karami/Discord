@@ -25,7 +25,6 @@ public class ChannelChatReciever extends GeneralReciever implements Runnable{
         try {
             ObjectInputStream inputStream = new ObjectInputStream(in);
             String beforeMessages = (String) inputStream.readObject();
-            System.out.println(beforeMessages);
             showMessage(beforeMessages);
             String messageType;
             label:
@@ -35,13 +34,13 @@ public class ChannelChatReciever extends GeneralReciever implements Runnable{
                 if(!(messageType.equals("#LEFT"))) {
                     inputStream = new ObjectInputStream(in);
                     if ((!(messageType.equals("#GETPIN"))) && (!(messageType.equals("#PIN"))) &&
-                            (!(messageType.equals("#REACT"))) && (!(messageType.equals("#TAGMESSAGE")))) {
+                            (!(messageType.equals("#REACT"))) && (!(messageType.equals("#TAGMESSAGE"))) && (!(messageType.equals("#WELCOME")))) {
                         showMessage((String) inputStream.readObject());
                         inputStream = new ObjectInputStream(in);
                     }
                 }
                 switch (messageType) {
-                    case "#TEXT","#REACT","#TAGMESSAGE" -> showMessage((String) inputStream.readObject());
+                    case "#TEXT","#REACT","#TAGMESSAGE", "#WELCOME" -> showMessage((String) inputStream.readObject());
                     case "#FILE" -> getFile(inputStream);
                     case "#VOICE" -> getVoice(inputStream);
                     case "#PIN" -> pin(inputStream);
