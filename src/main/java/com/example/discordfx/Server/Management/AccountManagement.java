@@ -38,7 +38,7 @@ public class AccountManagement {
             outputStream.writeObject("OK");
             User newUser = (User)inputStream.readObject();
             Server.accountsService.signUp(newUser);
-            File file = new File("Files/Pictures/"+Server.accountsService.getParticularUser(username).getId() + ".jpg");
+            File file = new File("ServerFiles/Pictures/"+Server.accountsService.getParticularUser(username).getId() + ".jpg");
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             File defaultProfile = new File("ServerFiles/Pictures/default.jpg");
             FileCopier copier = new FileCopier(defaultProfile,fileOutputStream);

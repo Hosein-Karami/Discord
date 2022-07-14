@@ -34,7 +34,7 @@ public class User implements Serializable {
      * Is used to load user's information from binary file
      */
     public void loadInformation(){
-        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("Files/UsersInfo/"+id+".bin"))){
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("ServerFiles/UsersInfo/"+id+".bin"))){
             information = (UserLateralInformation) inputStream.readObject();
             System.out.println(information.getBlockesId());
         } catch (Exception e) {
@@ -274,7 +274,7 @@ public class User implements Serializable {
      * Is used to update user's field's values after each change
      */
     public void updateInformation() {
-        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("Files/UsersInfo/"+this.getId()+".bin"))){
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("ServerFiles/UsersInfo/"+this.getId()+".bin"))){
             outputStream.writeObject(information);
             outputStream.flush();
         } catch (IOException e) {
