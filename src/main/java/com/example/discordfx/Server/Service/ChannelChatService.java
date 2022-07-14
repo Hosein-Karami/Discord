@@ -35,8 +35,10 @@ public class ChannelChatService {
         try{
             while (true){
                 choice = in.read();
-                if(choice == 1)
+                if(choice == 1) {
                     joinChannel();
+                    break;
+                }
                 else if(choice == 2)
                     deleteChannel();
                 else if(choice == 3)

@@ -6,6 +6,7 @@
 
 package com.example.discordfx.Server.Service;
 
+import com.example.discordfx.Lateral.Notification;
 import com.example.discordfx.Moduls.Dto.DiscordServer.Dserver;
 import com.example.discordfx.Moduls.Dto.DiscordServer.Invitation;
 import com.example.discordfx.Moduls.Dto.ServerMembers.Member;
@@ -151,6 +152,8 @@ public class DserverService {
             String senderUsername = (String) inputStream.readObject();
             Invitation invitation = new Invitation(dserver.getId(),senderUsername);
             user.addInvitation(invitation);
+            Notification notification = new Notification(senderUsername + " send you a server invitation");
+            user.addNotification(notification);
             outputStream.writeObject("Invitation send successfully");
         } catch (Exception e) {
             e.printStackTrace();

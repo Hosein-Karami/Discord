@@ -118,6 +118,7 @@ public class ChannelChatInterface extends GeneralInterface implements Runnable{
                 chat.sendMessage(message.getInformation(),clientSocket);
                 Notification notification = new Notification("You are tagged,"+message.getInformation());
                 targetUser.addNotification(notification);
+                chat.addMessage(message);
             }
         }catch (Exception e){
             e.printStackTrace();

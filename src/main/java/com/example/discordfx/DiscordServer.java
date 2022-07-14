@@ -227,15 +227,17 @@ public class DiscordServer implements Initializable {
             FileChooser fileChooser = new FileChooser();
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             File targetFile = fileChooser.showOpenDialog(stage);
-            if((targetFile.getName().contains(".wav")) || (targetFile.getName().contains(".mp3"))){
-                out.write(7);
-                ObjectOutputStream outputStream = new ObjectOutputStream(out);
-                ObjectInputStream inputStream = new ObjectInputStream(in);
-                byte[] musicBytes = Files.readAllBytes(targetFile.toPath());
-                outputStream.writeObject(musicBytes);
-                result.setText((String) inputStream.readObject());
-            }else
-                result.setText("Invalid format,Format of selected file should be wav or mp3");
+            if(targetFile != null) {
+                if ((targetFile.getName().contains(".wav")) || (targetFile.getName().contains(".mp3"))) {
+                    out.write(7);
+                    ObjectOutputStream outputStream = new ObjectOutputStream(out);
+                    ObjectInputStream inputStream = new ObjectInputStream(in);
+                    byte[] musicBytes = Files.readAllBytes(targetFile.toPath());
+                    outputStream.writeObject(musicBytes);
+                    result.setText((String) inputStream.readObject());
+                } else
+                    result.setText("Invalid format,Format of selected file should be wav or mp3");
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
