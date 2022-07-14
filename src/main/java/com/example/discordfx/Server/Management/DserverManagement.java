@@ -38,17 +38,17 @@ public class DserverManagement {
                 dserver.setName(serverName);
                 Server.discordServers.add(dserver);
                 serverMaker.addServerChat(dserver.getId());
-                File serverFolder = new File("Files/DiscordServers/" + dserver.getId());
+                File serverFolder = new File("ServerFiles/DiscordServers/" + dserver.getId());
                 serverFolder.mkdir();
                 byte[] imageBytes = (byte[]) inputStream.readObject();
                 if (imageBytes != null) {
-                    FileOutputStream fileOutputStream = new FileOutputStream("Files/DiscordServers/" + dserver.getId() + "/Profile.jpg");
+                    FileOutputStream fileOutputStream = new FileOutputStream("ServerFiles/DiscordServers/" + dserver.getId() + "/Profile.jpg");
                     fileOutputStream.write(imageBytes);
                     fileOutputStream.flush();
                     fileOutputStream.close();
                 }
                 else
-                    setDefaultProfilePicture("Files/DiscordServers/" + dserver.getId()+"/Profile.jpg");
+                    setDefaultProfilePicture("ServerFiles/DiscordServers/" + dserver.getId()+"/Profile.jpg");
                 outputStream.writeObject("Server made successfully");
             }
             else
@@ -93,7 +93,7 @@ public class DserverManagement {
             ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
             Integer serverId = (Integer) inputStream.readObject();
             Dserver targetServer = Server.discordServers.get(serverId);
-            File serverProfile = new File("Files/DiscordServers/"+targetServer.getId()+"/Profile.jpg");
+            File serverProfile = new File("ServerFiles/DiscordServers/"+targetServer.getId()+"/Profile.jpg");
             outputStream.writeObject(targetServer.getName());
             outputStream.writeObject(Files.readAllBytes(serverProfile.toPath()));
         } catch (Exception e) {
@@ -106,7 +106,7 @@ public class DserverManagement {
      * @param path : image path
      */
     private void setDefaultProfilePicture(String path){
-        File defaultPicture = new File("Files/Pictures/defaultServer.jpg");
+        File defaultPicture = new File("ServerFiles/Pictures/defaultServer.jpg");
         try (FileOutputStream fileOutputStream = new FileOutputStream(path)){
             fileOutputStream.write(Files.readAllBytes(defaultPicture.toPath()));
             fileOutputStream.flush();

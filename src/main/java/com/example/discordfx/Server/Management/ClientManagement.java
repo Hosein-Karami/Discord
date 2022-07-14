@@ -153,7 +153,7 @@ public class ClientManagement implements Runnable{
                     break;
                 ObjectOutputStream outputStream = new ObjectOutputStream(out);
                 String name = (String) inputStream.readObject();
-                Path path = Paths.get("Files/ChatFiles/" + name);
+                Path path = Paths.get("ServerFiles/ChatFiles/" + name);
                 if (Files.exists(path)) {
                     outputStream.writeObject("OK");
                     byte[] bytes = Files.readAllBytes(path);

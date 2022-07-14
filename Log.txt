@@ -124,3 +124,21 @@ Client whose address : /127.0.0.1 successfully connect to server.
 User with username=vvvvvv log in successfully.
 2022-07-14 14:05 [Info] Server
 Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-14 14:48 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-14 14:48 [Info] UserDao
+an user added successfully with username=hhhhhh.
+2022-07-14 14:48 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-14 14:48 [Info] UserDao
+User with username=hhhhhh log in successfully.
+2022-07-14 14:54 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-14 14:54 [Info] UserDao
+an user added successfully with username=oooooo.
+2022-07-14 14:54 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-14 14:54 [Info] UserDao
+User with username=oooooo log in successfully.
+2022-07-14 14:55 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.

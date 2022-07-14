@@ -40,7 +40,7 @@ public class AccountManagement {
             Server.accountsService.signUp(newUser);
             File file = new File("Files/Pictures/"+Server.accountsService.getParticularUser(username).getId() + ".jpg");
             FileOutputStream fileOutputStream = new FileOutputStream(file);
-            File defaultProfile = new File("Files/Pictures/default.jpg");
+            File defaultProfile = new File("ServerFiles/Pictures/default.jpg");
             FileCopier copier = new FileCopier(defaultProfile,fileOutputStream);
             Main.executorService.execute(copier);
             outputStream.writeObject("OK");
@@ -205,7 +205,7 @@ public class AccountManagement {
                 outputStream.writeObject(null);
             }
             else {
-                String imageAddress = "Files/Pictures/" + targetUser.getId() + ".jpg";
+                String imageAddress = "ServerFiles/Pictures/" + targetUser.getId() + ".jpg";
                 File profileImage = new File(imageAddress);
                 byte[] imageBytes = Files.readAllBytes(profileImage.toPath());
                 outputStream.writeObject(imageBytes);
@@ -233,7 +233,7 @@ public class AccountManagement {
                 outputStream.writeObject(null);
             }
             else {
-                String imageAddress = "Files/Pictures/" + targetUser.getId() + ".jpg";
+                String imageAddress = "ServerFiles/Pictures/" + targetUser.getId() + ".jpg";
                 File profileImage = new File(imageAddress);
                 byte[] imageBytes = Files.readAllBytes(profileImage.toPath());
                 outputStream.writeObject(imageBytes);

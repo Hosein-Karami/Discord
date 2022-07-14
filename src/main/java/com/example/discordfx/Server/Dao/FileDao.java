@@ -203,7 +203,7 @@ public class FileDao implements GeneralDao{
     }
 
     private String getValidPath(String targetUsername){
-        return "Files/DatabaseFiles/"+targetUsername+".bin";
+        return "ServerFiles/DatabaseFiles/"+targetUsername+".bin";
     }
 
 

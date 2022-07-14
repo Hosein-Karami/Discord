@@ -36,7 +36,7 @@ public class AccountsService {
             //Make a binary file for this user in LateralFiles directory :
             User user = convertEntityToDto(userDao.getParticularUser(newUser.getUsername()));
             user.setStatus(Status.Offline);
-            File file = new File("Files/UsersInfo/"+ user.getId() + ".bin");
+            File file = new File("ServerFiles/UsersInfo/"+ user.getId() + ".bin");
             file.createNewFile();
             //Initialize file :
             ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(file));
@@ -81,12 +81,9 @@ public class AccountsService {
                 user.loadInformation();
                 return user;
             }
-            else {
-                System.out.println("Sag too roohet");
+            else
                 return null;
-            }
         } catch (Exception e) {
-            System.out.println("saaaaag to roohet");
             e.printStackTrace();
             return null;
         }
@@ -191,7 +188,7 @@ public class AccountsService {
             ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
             byte[] bytes = (byte[]) inputStream.readObject();
-            FileOutputStream outputStream_2 = new FileOutputStream("Files/Pictures/" + user.getId() + ".jpg");
+            FileOutputStream outputStream_2 = new FileOutputStream("ServerFiles/Pictures/" + user.getId() + ".jpg");
             outputStream_2.write(bytes);
             outputStream_2.close();
             outputStream.writeObject("Your profile changed successfully");

@@ -81,7 +81,7 @@ public abstract class GeneralInterface {
      */
     private void saveFile(byte[] bytes,String fileName){
         try{
-            File file = new File("Files/ChatFiles/"+fileName);
+            File file = new File("ServerFiles/ChatFiles/"+fileName);
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             fileOutputStream.write(bytes);
             fileOutputStream.flush();
