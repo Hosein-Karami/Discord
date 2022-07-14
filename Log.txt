@@ -148,3 +148,85 @@ Client whose address : /127.0.0.1 successfully connect to server.
 an user added successfully with username=MohammadReza.
 2022-07-14 18:24 [Error] ClientManagement
 Error happening when we want to open stream to transfer data with client whose address is :  /127.0.0.1 on server.
+2022-07-14 18:26 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-14 18:26 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-14 18:26 [Info] UserDao
+an user added successfully with username=HamidReza.
+2022-07-14 18:26 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-14 18:26 [Info] UserDao
+User with username=HamidReza log in successfully.
+2022-07-14 18:26 [Info] ClientService
+User with id=0 changed profile picture successfully.
+2022-07-14 18:27 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-14 18:27 [Info] UserDao
+User with username=HamidReza log in successfully.
+2022-07-14 18:28 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-14 18:28 [Info] UserDao
+User with username=HamidReza log in successfully.
+2022-07-14 18:29 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-14 18:29 [Info] UserDao
+an user added successfully with username=Alireza.
+2022-07-14 18:29 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-14 18:29 [Info] UserDao
+User with username=Alireza log in successfully.
+2022-07-14 18:29 [Info] FriendShipServices
+Alireza send friendship request to HamidReza successfully.
+2022-07-14 18:30 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-14 18:30 [Info] UserDao
+User with username=Alireza log in successfully.
+2022-07-14 18:30 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-14 18:30 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-14 18:32 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-14 18:32 [Info] UserDao
+an user added successfully with username=wwwwww.
+2022-07-14 18:32 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-14 18:32 [Info] UserDao
+an user added successfully with username=vvvvvv.
+2022-07-14 18:32 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-14 18:32 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-14 18:32 [Info] UserDao
+User with username=vvvvvv log in successfully.
+2022-07-14 18:32 [Info] UserDao
+User with username=wwwwww log in successfully.
+2022-07-14 18:33 [Info] FriendShipServices
+wwwwww send friendship request to vvvvvv successfully.
+2022-07-14 18:33 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-14 18:35 [Info] UserDao
+User with username=wwwwww log in successfully.
+2022-07-14 18:35 [Info] ClientService
+User with id=0 changed profile picture successfully.
+2022-07-14 18:36 [Info] FriendShipServices
+vvvvvv connect friendship with wwwwww.
+2022-07-14 18:37 [Error] FriendShipServices
+Error happening when vvvvvv want to send friendship request to .
+2022-07-14 18:38 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-14 18:38 [Info] UserDao
+User with username=vvvvvv log in successfully.
+2022-07-14 18:40 [Info] FriendShipServices
+vvvvvv blocked wwwwww.
+2022-07-14 18:41 [Info] FriendShipServices
+wwwwww blocked vvvvvv.
+2022-07-14 18:43 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-14 18:45 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-14 18:45 [Info] UserDao
+User with username=wwwwww log in successfully.
+2022-07-14 18:46 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
