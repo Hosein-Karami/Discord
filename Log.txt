@@ -230,3 +230,85 @@ Client whose address : /127.0.0.1 successfully connect to server.
 User with username=wwwwww log in successfully.
 2022-07-14 18:46 [Info] Server
 Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-16 21:32 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-16 21:33 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-16 21:33 [Info] UserDao
+an user added successfully with username=ecwcdvsvcws.
+2022-07-16 21:33 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-16 21:34 [Info] UserDao
+an user added successfully with username=89898989.
+2022-07-16 21:34 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-16 21:34 [Info] UserDao
+an user added successfully with username=llllll.
+2022-07-16 21:34 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-16 21:34 [Info] UserDao
+User with username=llllll log in successfully.
+2022-07-16 21:34 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-16 21:48 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-16 21:48 [Info] UserDao
+an user added successfully with username=pppppp.
+2022-07-16 21:48 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-16 21:48 [Info] UserDao
+User with username=pppppp log in successfully.
+2022-07-16 21:48 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-16 21:48 [Info] UserDao
+User with username=llllll log in successfully.
+2022-07-16 21:48 [Info] FriendShipServices
+llllll send friendship request to pppppp successfully.
+2022-07-16 21:49 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-16 21:49 [Info] UserDao
+User with username=pppppp log in successfully.
+2022-07-16 21:49 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-16 21:49 [Info] UserDao
+an user added successfully with username=yyyyyy.
+2022-07-16 21:49 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-16 21:49 [Info] UserDao
+User with username=yyyyyy log in successfully.
+2022-07-16 21:50 [Info] FriendShipServices
+llllll send friendship request to yyyyyy successfully.
+2022-07-16 21:51 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-16 21:52 [Info] UserDao
+User with username=llllll log in successfully.
+2022-07-16 21:54 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-16 21:54 [Info] UserDao
+an user added successfully with username=aaaaaa.
+2022-07-16 21:54 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-16 21:54 [Info] UserDao
+User with username=aaaaaa log in successfully.
+2022-07-16 21:54 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-16 21:54 [Info] UserDao
+an user added successfully with username=bbbbbb.
+2022-07-16 21:54 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-16 21:55 [Info] UserDao
+User with username=bbbbbb log in successfully.
+2022-07-16 21:55 [Info] FriendShipServices
+bbbbbb send friendship request to aaaaaa successfully.
+2022-07-16 21:55 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-16 21:58 [Info] UserDao
+User with username=aaaaaa log in successfully.
+2022-07-16 21:59 [Info] ClientService
+User with id=0 changed profile picture successfully.
+2022-07-16 22:00 [Info] FriendShipServices
+aaaaaa connect friendship with bbbbbb.
+2022-07-16 22:04 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.
+2022-07-16 22:04 [Info] Server
+Client whose address : /127.0.0.1 successfully connect to server.

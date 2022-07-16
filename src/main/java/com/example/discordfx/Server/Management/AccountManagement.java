@@ -26,27 +26,40 @@ public class AccountManagement {
      * @param clientSocket .
      */
     void signUp(Socket clientSocket) {
+        int end;
+        InputStream in;
         try {
-            ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
-            ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
-            String username = (String) inputStream.readObject();
-            User userWithParticularUsername = Server.accountsService.getParticularUser(username);
-            if(userWithParticularUsername != null){
-                outputStream.writeObject("This username signed up before");
-                return;
-            }
-            outputStream.writeObject("OK");
-            User newUser = (User)inputStream.readObject();
-            Server.accountsService.signUp(newUser);
-            File file = new File("ServerFiles/Pictures/"+Server.accountsService.getParticularUser(username).getId() + ".jpg");
-            FileOutputStream fileOutputStream = new FileOutputStream(file);
-            File defaultProfile = new File("ServerFiles/Pictures/default.jpg");
-            FileCopier copier = new FileCopier(defaultProfile,fileOutputStream);
-            Main.executorService.execute(copier);
-            outputStream.writeObject("OK");
-        } catch (Exception e) {
-            log.openStreamError(clientSocket.getInetAddress());
+            in = clientSocket.getInputStream();
+        } catch (IOException e) {
             e.printStackTrace();
+            return;
+        }
+        while (true) {
+            try {
+                end = in.read();
+                if(end == 1)
+                    break;
+                ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
+                ObjectInputStream inputStream = new ObjectInputStream(clientSocket.getInputStream());
+                String username = (String) inputStream.readObject();
+                User userWithParticularUsername = Server.accountsService.getParticularUser(username);
+                if (userWithParticularUsername != null) {
+                    outputStream.writeObject("This username signed up before");
+                    return;
+                }
+                outputStream.writeObject("OK");
+                User newUser = (User) inputStream.readObject();
+                Server.accountsService.signUp(newUser);
+                File file = new File("ServerFiles/Pictures/" + Server.accountsService.getParticularUser(username).getId() + ".jpg");
+                FileOutputStream fileOutputStream = new FileOutputStream(file);
+                File defaultProfile = new File("ServerFiles/Pictures/default.jpg");
+                FileCopier copier = new FileCopier(defaultProfile, fileOutputStream);
+                Main.executorService.execute(copier);
+                outputStream.writeObject("OK");
+            } catch (Exception e) {
+                log.openStreamError(clientSocket.getInetAddress());
+                e.printStackTrace();
+            }
         }
     }
 

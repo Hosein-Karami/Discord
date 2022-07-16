@@ -18,6 +18,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.net.Socket;
 import java.util.regex.Pattern;
 
 public class Signup {
@@ -33,16 +35,27 @@ public class Signup {
     @FXML
     TextField phoneNumber;
 
+    private Socket socket = Start.socket;
+    private OutputStream out;
+    {
+        try {
+            out = socket.getOutputStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Is used to back
      * @param event .
      */
-    public void back(ActionEvent event){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Start.fxml"));
-        Parent root;
+    public void back(ActionEvent event) {
         try {
+            out.write(1);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Start.fxml"));
+            Parent root;
             root = loader.load();
-            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.setResizable(false);
@@ -57,21 +70,23 @@ public class Signup {
      * @param event .
      */
     public void signup(ActionEvent event){
-        if(checkInfo()){
-            AccountManagement accountManagement = new AccountManagement(Start.socket);
-            accountManagement.signUp(text,username.getText(),password.getText(),email.getText(),phoneNumber.getText());
-            if(!(text.getText().equals("This username signed up before"))){
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("Start.fxml"));
-                try {
+        if(checkInfo()) {
+            try {
+                out.write(0);
+                AccountManagement accountManagement = new AccountManagement(socket);
+                accountManagement.signUp(text, username.getText(), password.getText(), email.getText(), phoneNumber.getText());
+                if (!(text.getText().equals("This username signed up before"))) {
+                    out.write(1);
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("Start.fxml"));
                     Parent root = loader.load();
-                    Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
                     stage.setResizable(false);
                     stage.show();
-                } catch (IOException e) {
-                    e.printStackTrace();
                 }
+            }catch (Exception e){
+                e.printStackTrace();
             }
         }
     }
