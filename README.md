@@ -11,6 +11,7 @@ In this app you can send text,file and voice;In channel chats you can also pin m
 
 ## Technologies Used
 - Core-java
+- Socket programming
 - Javafx
 - Css
 - Mysql
